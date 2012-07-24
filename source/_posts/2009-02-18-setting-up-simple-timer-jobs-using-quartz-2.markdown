@@ -21,17 +21,17 @@ and there is! One option is to use the built in java.timer functions in the jdk.
 
 To get it integrated though with your java app is made very easy if you are using [Spring](http://www.springsource.org/). We're using Spring 2.5 for this example, you can find out more here: [Spring Scheduling](http://static.springframework.org/spring/docs/2.5.x/reference/scheduling.html)
 
-    
+{% codeblock lang:xml  %}
     	<bean id="jobYouWantToRun" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
       		<property name="targetObject" ref="thisIsAReferenceToTheSpringBeanWithTheMethod" />
       		<property name="targetMethod" value="thisIsTheMethodName" />
       		<property name="concurrent" value="false" />
     	</bean>
-
+{% endcodeblock %}
 
 So the config above sets up a job bean of type MethodInvoking blah - this takes a reference to a Spring Managed bean (one of your beans) and a method name, which is the method you want to run on a specific schedule.
 
-    
+``` xml 
     	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
     	    <property name="triggers">
     	        <list>
@@ -39,20 +39,16 @@ So the config above sets up a job bean of type MethodInvoking blah - this takes 
     	        </list>
     	    </property>
     	</bean>
-
+```
 
 Here we set up the actual scheduler. We've only put one trigger in the list for example purposes. You can have simple triggers, for example, run every 100 seconds, or cron based triggers, which is what we've set up below.
 
-    
-    	<bean id="cronTriggerForOurJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
-    	    <property name="jobDetail" ref="jobYouWantToRun" />
-    	    <property name="cronExpression" value="* 10 * ? * *" />
-
-
-
-    
-    	</bean>
-
+``` xml  
+<bean id="cronTriggerForOurJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<property name="jobDetail" ref="jobYouWantToRun" />
+	<property name="cronExpression" value="* 10 * ? * *" />
+</bean>
+```
 
 The cron expression can be set up how you want, for [more details](http://quartz.sourceforge.net/javadoc/org/quartz/CronTrigger.html)
 

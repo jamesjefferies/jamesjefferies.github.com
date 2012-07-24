@@ -26,8 +26,7 @@ when it was specified in both properties and as a parameter I should have realis
 
 So, when you set up the maven plugin in and they recommend doing this:
 
-    
-    
+``` xml 
             <plugin>
               <groupid>org.liquibase</groupid>
               <artifactid>liquibase-plugin</artifactid>
@@ -44,7 +43,7 @@ So, when you set up the maven plugin in and they recommend doing this:
                 </execution>
               </executions>
             </plugin>
-    
+```    
 
 
 
@@ -52,7 +51,7 @@ you just ignore them as the configuration is only set for that particular phase 
 
 
     
-    
+  ``` xml 
             <plugin>
                 <groupid>org.liquibase</groupid>
                 <artifactid>liquibase-plugin</artifactid>
@@ -74,7 +73,7 @@ you just ignore them as the configuration is only set for that particular phase 
                     </execution>
                 </executions>
             </plugin>
-    
+   ``` 
     
 
 

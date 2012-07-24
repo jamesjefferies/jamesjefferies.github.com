@@ -13,8 +13,9 @@ As we are building our project using maven, we can ask maven to build a 'site' f
 
 One of the maven plugins generates the javadocs for your project and it's very straightforward to set up, just add this to the reporting section of your pom file (for maven) and when you do a mvn site it automatically builds your javadocs.
 
-    
+``` xml    
     <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-javadoc-plugin</artifactId>
     </plugin>
+```

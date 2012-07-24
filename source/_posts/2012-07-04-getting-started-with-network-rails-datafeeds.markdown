@@ -55,7 +55,7 @@ Ultimately of course, you'd process the JSON from the body and do something with
 ## Example Ruby Listener
 
 
-[ruby]
+``` ruby
 require 'rubygems'
 require 'stomp'
 
@@ -80,4 +80,4 @@ begin
   @connection.disconnect
 rescue
 end
-[/ruby]
+```

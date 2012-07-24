@@ -8,11 +8,11 @@ wordpress_id: 13
 ---
 
 When you have a problem with hibernate and mysql, namely mysql dropping the connection before hibernate does, then you need to configure the c3p0 connection pooling functionality. There are two main things which need setting, plus one which actually switches it on, helpfully badly documented!
-
+``` xml
 <property name="c3p0.idle_test_period">5</property>
 <property name="c3p0.timeout">100</property>
 <property name="c3p0.max_size">100</property>
-
+``` 
 The max size property actually switches connection pooling on and in this case sets it to a maximum of 100 connections in the pool. Then the other two come in to play.
 
 Idle test period is how many seconds between hibernate testing the unused connections in the pool to make sure they're ok. You want this to be set less than mysql's timeout.

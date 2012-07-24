@@ -13,10 +13,10 @@ So I reckon I've spent over an hour wrestling with this chuffer....
 
 Simple search button on a page using Tomahawk Data Table to render the output. Page would render first time out, but then using the search button resulted in the following error
 
-    
-    <code>java.lang.NoSuchMethodError: org.apache.myfaces.component.html.ext.HtmlDataTable.refresh(Ljavax/faces/context/FacesContext;)
-    
-    </code>
+   
+``` java 
+    java.lang.NoSuchMethodError: org.apache.myfaces.component.html.ext.HtmlDataTable.refresh(Ljavax/faces/context/FacesContext;)
+``` 
 
 
 Looks like there might be a problem rendering the data table doesn't it. Well, I thought I'd made a chimpolata mistake somewhere down the line... and I had, but nothing to do with the table....

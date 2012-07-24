@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-24T17:00:42+01:00</updated>
+  <updated>2012-07-24T21:15:46+01:00</updated>
   <id>http://jamesjefferies.github.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Whatever next - the technical stuff]]></title>
-    <link href="http://jamesjefferies.github.com/blog/2012/06/15/whatever-next-the-technical-stuff/"/>
+    <link href="http://jamesjefferies.github.com/2012/06/15/whatever-next-the-technical-stuff/"/>
     <updated>2012-06-15T12:51:02+01:00</updated>
-    <id>http://jamesjefferies.github.com/blog/2012/06/15/whatever-next-the-technical-stuff</id>
+    <id>http://jamesjefferies.github.com/2012/06/15/whatever-next-the-technical-stuff</id>
     <content type="html"><![CDATA[<p>In recent years my main programming language has been Java, sprinkled with a bit of the usual korn/zsh scrips, SQL, HTML, JavaScript and other gubbins. The world of Java is rich with libraries, web frameworks, platforms and alternate languages. I've invested a lot of time in this ecosystem, knowing which tools are useful for which problems, gained expertise in various web frameworks, development environments and platforms, generally to be as productive as I've ever been.</p>
 
 <p>For the last couple of years though, I've been pondering whether to stick with what I know, or to spend time learning some new stuff. It is fair to say that I'm not a natural polyglot. I like to spend decent time getting to know a language and it's ecosystem and I find it can be tricky switching.</p>
@@ -68,9 +68,9 @@
   
   <entry>
     <title type="html"><![CDATA[Running Eclipse under the Unity interface]]></title>
-    <link href="http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface/"/>
+    <link href="http://jamesjefferies.github.com/2011/09/09/running-eclipse-under-the-unity-interface/"/>
     <updated>2011-09-09T10:00:36+01:00</updated>
-    <id>http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface</id>
+    <id>http://jamesjefferies.github.com/2011/09/09/running-eclipse-under-the-unity-interface</id>
     <content type="html"><![CDATA[<p>Unity eh? Love it or hate it the version in Ubuntu 11.04 seems not quite complete. Also other applications sometimes will not play nicely.</p>
 
 <p>Eclipse is one of them, your menu items can go walk about. I found this <a href="http://blog.matto1990.com/2011/04/using-eclipse-under-ubuntu-11-04-natty/">blog post</a> which has a helpful hint. Unsetting UBUNTU_MENUPROXY for the application does the trick</p>
@@ -84,9 +84,9 @@ path/to/eclipse/here
   
   <entry>
     <title type="html"><![CDATA[Disabling liquibase when running unit tests]]></title>
-    <link href="http://jamesjefferies.github.com/blog/2011/08/25/disabling-liquibase-when-running-unit-tests/"/>
+    <link href="http://jamesjefferies.github.com/2011/08/25/disabling-liquibase-when-running-unit-tests/"/>
     <updated>2011-08-25T10:33:44+01:00</updated>
-    <id>http://jamesjefferies.github.com/blog/2011/08/25/disabling-liquibase-when-running-unit-tests</id>
+    <id>http://jamesjefferies.github.com/2011/08/25/disabling-liquibase-when-running-unit-tests</id>
     <content type="html"><![CDATA[<p>If you're running Liquibase, configured by Spring (or whatever) and you don't want it to run it's checks when running unit tests, you can disable it from running by setting a system property.</p>
 
 <p>Whilst running a single unit test class many times, you might want to add a system set property call before any of the tests are run. Hence:</p>
@@ -101,9 +101,9 @@ path/to/eclipse/here
   
   <entry>
     <title type="html"><![CDATA[The Scala Momentum builds...]]></title>
-    <link href="http://jamesjefferies.github.com/blog/2011/04/06/the-scala-momentum-builds/"/>
+    <link href="http://jamesjefferies.github.com/2011/04/06/the-scala-momentum-builds/"/>
     <updated>2011-04-06T13:01:22+01:00</updated>
-    <id>http://jamesjefferies.github.com/blog/2011/04/06/the-scala-momentum-builds</id>
+    <id>http://jamesjefferies.github.com/2011/04/06/the-scala-momentum-builds</id>
     <content type="html"><![CDATA[<p>Scala is a relatively new programming language, which runs on the Java Virtual Machine and has very good interoperability with the Java Language.</p>
 
 <p>Here is the blurb from <a href="http://www.scala-lang.org/">the official site</a></p>
@@ -128,9 +128,9 @@ path/to/eclipse/here
   
   <entry>
     <title type="html"><![CDATA[Testing the Grails, Spring Security, LDAP combo]]></title>
-    <link href="http://jamesjefferies.github.com/blog/2011/01/06/356/"/>
+    <link href="http://jamesjefferies.github.com/2011/01/06/356/"/>
     <updated>2011-01-06T16:00:46+00:00</updated>
-    <id>http://jamesjefferies.github.com/blog/2011/01/06/356</id>
+    <id>http://jamesjefferies.github.com/2011/01/06/356</id>
     <content type="html"><![CDATA[<p>For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you're working remotely, or because you want a disposable directory to throw away after you've run your tests. Well, there is a <a href="http://www.grails.org/plugin/ldap-server">grails plugin</a> which adds an embedded LDAP directory (ApacheDS) to your application which can be fired up as/when required.</p>
 
 <p>After installing the plugin, it requires a bit of configuration, so in your Config.groovy:</p>

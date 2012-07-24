@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Catching 'file size exceeded' when using Tomahawk file upload component - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+
+  
+  <meta name="description" content="When using Tomahawk&#8217;s file upload component it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Catching 'File Size Exceeded' When Using Tomahawk File Upload Component</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-27T11:22:40+01:00" pubdate data-updated="true">May 27<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>When using T<a href="http://myfaces.apache.org/tomahawk-project/tomahawk12/tagdoc/t_inputFileUpload.html">omahawk&#8217;s file upload component</a> it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit is set in the web.xml configuration for Tomahawk, i.e.</p>
+
+<p>`  <filter>
+<filter-name>extensionsFilter</filter-name>
+<filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+<init-param>
+<description></p>
+
+<pre><code>Set the size limit for uploaded files. Format: 10 - 10
+bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
+</code></pre>
+
+<p></description>
+<param-name>uploadMaxFileSize</param-name>
+<param-value>10m</param-value>
+</init-param></p>
+
+<pre><code>.....
+</code></pre>
+
+<p></filter>`</p>
+
+<p>Here you can see the limit is set to 10 meg.</p>
+
+<p>So by default, if you blow the limit, the component fails silently.. or does it?</p>
+
+<p>Well, the component actually adds a couple of attributes to the request when refreshing the page (following the click of the upload button). The attributes are:</p>
+
+<pre><code>&lt;span&gt;org.apache.myfaces.custom.fileupload.exception&lt;/span&gt;&lt;span&gt;
+org.apache.myfaces.custom.fileupload.maxSize&lt;/span&gt;
+</code></pre>
+
+<p>by checking the request (during the page render) you can grab these attributes, if set, and display something meaningful to the user. You could have a little render tag at the top of the page to ensure the attributes are checked. Whilst this is a bit cronky, it is one of the jsf workarounds which does work.. in a fashion.</p>
+
+<p>If they are present and you want to display the max size to the user, then apache commons FileUtils comes along to save the day</p>
+
+<p><code>[org.apache.commons.io.FileUtils.byteCountToDisplaySize](http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize(long))(new Long(maxSizeFromRequestAttribute));</code></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-27T11:22:40+01:00" pubdate data-updated="true">May 27<span>th</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/05/01/deploying-applications-to-tomcat-running-under/" title="Previous Post: Deploying applications to tomcat running under /">&laquo; Deploying applications to tomcat running under /</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/06/10/how-do-i-find-the-version-of-java-my-class-was-compiled-against/" title="Next Post: How do I find the version of java my class was compiled against?">How do I find the version of java my class was compiled against? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

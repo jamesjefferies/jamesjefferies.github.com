@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Grails, Spring Security & Ldap - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+
+  
+  <meta name="description" content="At work we&#8217;re building a grails application which needs to authenticate users against our internal user directory using LDAP (Lightweight &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/2011/01/06/grails-spring-security-ldap/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Grails, Spring Security & Ldap</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-06T15:25:32+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>At work we&#8217;re building a grails application which needs to authenticate users against our internal user directory using LDAP (Lightweight Directory something-or-other Protocol). Grails has two fantastic plugins to help here:</p>
+
+<p>a) Spring security plugin
+b) Spring security LDAP plugin</p>
+
+<p>Now, getting the LDAP plugin to work has proved somewhat problematic, partially because of me rushing ahead, partially because documentation isn&#8217;t quite as good as it could be. So to get the application to authenticate users with LDAP, there are two main ways of doing it.</p>
+
+<p>1) Password comparison (where you have to do your own password encoding)
+2) Bind authentication (where you pass on the username and password and let the LDAP directory authenticate)</p>
+
+<p>for some daft reason, I started off down the Password comparison route, which was made more problematic when I found out that our internal LDAP directory uses an archaic form of password encryption. Once I&#8217;d stopped and re-read the documentation, a little light came on in my head and I started trying to get it to work with Bind authentication - then it doesn&#8217;t matter how the password is encrypted, you&#8217;re delegating that task.</p>
+
+<p>The other part of the requirement is that the roles which will be retrieved following authentication will be from the application database (initially anyway) rather than the LDAP directory using a userDetailsService. So, to get everything working, the various Spring components need configuring manually, rather than relying on the plug in to do it.</p>
+
+<p>So - how did I get it working against a real LDAP directory once the Spring Security &amp; LDAP plugins are installed?</p>
+
+<p>Well, first, in the application configuration, set the ldap context:</p>
+
+<pre><code>grails.plugins.springsecurity.ldap.context.server = 'ldap://this is the ip address of my ldap directory:this is the port used'
+</code></pre>
+
+<p>Then, in the resources.groovy spring configuration file, set up the following:</p>
+
+<pre><code>beans = {
+     // this gives the pattern for authenticating the user, as the user doesn't want to enter the whole thing, 
+     // just their unique id
+     myLdapAuthenticator(org.springframework.security.ldap.authentication.BindAuthenticator, ref("contextSource")) {
+         userDnPatterns = ['uid={0},ou=People,dc=people,dc=somewhereorother,dc=int']
+     }
+
+     // this overrides the default Authentication Provider with our authenticator and our user details service
+     ldapAuthProvider(org.springframework.security.ldap.authentication.LdapAuthenticationProvider,
+        ref("myLdapAuthenticator"),
+        ref("userDetailsService")
+     )
+
+     // defining our user details service
+     userDetailsService(com.companyname.service.UserDetailsService)   
+}
+</code></pre>
+
+<p>Now, when the application is started, spring security knows it needs to use LDAP to do it&#8217;s business and once it&#8217;s authenticated, it needs to use our user details service to return the list of roles. Hurrah!</p>
+
+<p>PS - nearly forgot - to use the userDetailsService for retrieving the roles, it has to implement the org.springframework.security.ldap.userdetails.LdapAuthoritiesPopulator interface, returning a collection of org.springframework.security.core.GrantedAuthority</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-06T15:25:32+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/2011/01/06/grails-spring-security-ldap/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/2011/01/06/grails-spring-security-ldap/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2010/12/29/how-big-are-my-mysql-tables/" title="Previous Post: How big are my MySQL tables?">&laquo; How big are my MySQL tables?</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/01/06/356/" title="Next Post: Testing the Grails, Spring Security, LDAP combo">Testing the Grails, Spring Security, LDAP combo &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

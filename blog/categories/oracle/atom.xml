@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oracle | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.github.com/blog/categories/oracle/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-24T17:00:42+01:00</updated>
+  <updated>2012-07-24T21:15:46+01:00</updated>
   <id>http://jamesjefferies.github.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Adding a link in javascript]]></title>
-    <link href="http://jamesjefferies.github.com/blog/2008/05/01/adding-a-link-in-javascript/"/>
+    <link href="http://jamesjefferies.github.com/2008/05/01/adding-a-link-in-javascript/"/>
     <updated>2008-05-01T13:26:27+01:00</updated>
-    <id>http://jamesjefferies.github.com/blog/2008/05/01/adding-a-link-in-javascript</id>
+    <id>http://jamesjefferies.github.com/2008/05/01/adding-a-link-in-javascript</id>
     <content type="html"><![CDATA[<p>thank you Jamie!</p>
 
 <p>(but then I found this too with prototype)</p>
@@ -68,9 +68,9 @@ else if (window.attachEvent) { window.attachEvent("onload", addLink); }
   
   <entry>
     <title type="html"><![CDATA[Oracle 10g]]></title>
-    <link href="http://jamesjefferies.github.com/blog/2007/04/19/oracle-10g/"/>
+    <link href="http://jamesjefferies.github.com/2007/04/19/oracle-10g/"/>
     <updated>2007-04-19T15:09:25+01:00</updated>
-    <id>http://jamesjefferies.github.com/blog/2007/04/19/oracle-10g</id>
+    <id>http://jamesjefferies.github.com/2007/04/19/oracle-10g</id>
     <content type="html"><![CDATA[<p>How come Oracle 10g comes with so many nice things which are advertised as working 'out of the box' but actually a licence fee is paid. This wouldn't be so bad if the company refuses to pay the extra licences to access all of the performance tweaking goodies we need!</p>
 
 <p>Honestly, I tear my hair out :(</p>

@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Migration from MyFaces 1.1 to 1.2 - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+
+  
+  <meta name="description" content="Number of things need to be done: 1) Update dependencies for api and implementation jars 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;dependency&gt;
+&lt;groupId&gt;org. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/2008/05/23/migration-from-myfaces-11-to-12/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Migration From MyFaces 1.1 to 1.2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-23T14:11:31+01:00" pubdate data-updated="true">May 23<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Number of things need to be done:</p>
+
+<p>1) Update dependencies for api and implementation jars</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;groupId&gt;</span>org.apache.myfaces.core<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>myfaces-api<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;version&gt;</span>1.2.3<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;groupId&gt;</span>org.apache.myfaces.core<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>myfaces-impl<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;version&gt;</span>1.2.3<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note: The api package replaces the standard javax.faces functionality. The iml is the actual implementation</p>
+
+<p>2) Ensure that anything which depends on the javax.el (expression language) package doesn&#8217;t pull it in to the maven build as we end up with the version embedded in myfaces <em>and</em> the version pulled in. This can be done by:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;groupId&gt;</span>org.jboss.jsfunit<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>jboss-jsfunit-core<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;version&gt;</span>1.0-beta-1<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'><span class="nt">&lt;exclusions&gt;</span>
+</span><span class='line'><span class="nt">&lt;exclusion&gt;</span>
+</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>el-api<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;groupId&gt;</span>javax.el<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'><span class="nt">&lt;/exclusion&gt;</span>
+</span><span class='line'><span class="nt">&lt;/exclusions&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;groupId&gt;</span>org.jboss.el<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>jboss-el<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;version&gt;</span>2.0.1.GA<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;exclusions&gt;</span>
+</span><span class='line'><span class="nt">&lt;exclusion&gt;</span>
+</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>el-api<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;groupId&gt;</span>javax.el<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'><span class="nt">&lt;/exclusion&gt;</span>
+</span><span class='line'><span class="nt">&lt;/exclusions&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Issues</p>
+
+<p>Apparently JSF 1.2 and consequently MyFaces 1.2 move away from the old expression language to use some new unified version. This article describes it, but to be honest it all seems a bit of a faff.</p>
+
+<p>This means that as our application stands, switching to 1.2 involves using some deprecated functionality. In BaseManagedBean the valuebinding functionality is now deprecated (in italics). It works, but at some point we&#8217;d want to switch it across, from ValueBinding to ValueExpression (easier said than done)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">FacesContext</span><span class="o">.</span><span class="na">getCurrentInstance</span><span class="o">().</span><span class="na">getApplication</span><span class="o">().</span><span class="na">_createValueBinding_</span><span class="o">(</span><span class="s">&quot;#{&quot;</span> <span class="o">+</span><span class="err"> </span> <span class="n">bindingName</span> <span class="o">+</span> <span class="s">&quot;}&quot;</span><span class="o">).</span><span class="na">_getValue_</span><span class="o">(</span><span class="n">FacesContext</span><span class="o">.</span><span class="na">getCurrentInstance</span><span class="o">());</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://java.sun.com/javaee/javaserverfaces/docs/ReleaseNotes.html#migrating">http://java.sun.com/javaee/javaserverfaces/docs/ReleaseNotes.html#migrating</a></p>
+
+<p><a href="http://java.sun.com/products/jsp/reference/techart/unifiedEL.html#Migrating_to_the_Unified_EL">http://java.sun.com/products/jsp/reference/techart/unifiedEL.html#Migrating_to_the_Unified_EL</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-23T14:11:31+01:00" pubdate data-updated="true">May 23<span>rd</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/2008/05/23/migration-from-myfaces-11-to-12/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/2008/05/23/migration-from-myfaces-11-to-12/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/05/12/class-equals/" title="Previous Post: class equals">&laquo; class equals</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/05/23/easy-way-to-find-dependencies-for-java-archives/" title="Next Post: Easy way to find dependencies for Java archives">Easy way to find dependencies for Java archives &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

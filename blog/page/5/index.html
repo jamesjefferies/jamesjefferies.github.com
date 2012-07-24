@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Choosing a NAS solution where you can&#8217;t mount the storage media outside of the NAS is asking for trouble. I was worried I&#8217;d made the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/blog/page/5/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/06/mounting-readynas-duo-drives-in-ubuntu/">Mounting ReadyNAS Duo Drives From Ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T00:20:35+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Choosing a NAS solution where you can&#8217;t mount the storage media outside of the NAS is asking for trouble. I was worried I&#8217;d made the wrong choice when I found that mounting the ReadyNAS do ext3 drives is not trivial, mainly because they use a 16kb block size with their SPARC cpus.</p>
+
+<p>A bit of routing around found various solutions, but the one which worked for me was as follows.</p>
+
+<ol>
+    <li>Fire up ubuntu vm (running on OS X for me and in my case 9.10 Karmic)</li>
+    <li>install lvm2 with a apt-get install lvm2</li>
+    <li>Download ext2fuse 0.5 (from <a href="http://linux.softpedia.com/progDownload/ext2fuse-Download-29820.html">here</a> for example)</li>
+    <li>run vgscan to locate drives</li>
+    <li>vgchange -ay c to allow access to drive</li>
+    <li>mkdir /mnt/lvm</li>
+    <li>ext2fuse /dev/c/c /mnt/lvm (where ext2fuse will have been downloaded)</li>
+    <li>drive can now be accessed on /mnt/lvm</li>
+</ol>
+
+
+<p>Hurrah!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/11/24/jpa-and-hades/">JPA and Hades</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-24T23:21:43+00:00" pubdate data-updated="true">Nov 24<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>JPA (Java Persistence API) is the standard implementation for persistence in the Java world. Although most people would probably use Hibernate (which is JPA compliant) the JPA spec gives a standard way forward for the various persistence vendors to produce compliant platforms which they can then extend with their own bells and whistles.</p>
+
+<p>Having used JPA a few times now, I&#8217;ve found it to be well thought out and useful. However, although JPA 2.0 is around the corner there are still some improvments which could be made. Hades is an open source library which is built on top of JPA and makes producing the Data Access (DAO) layer super easy. Using convention over configuration means that simply by writing an interface with the simple queries you require is all that is required for Hades to factory produce the actual services you will need.</p>
+
+<p>So, for example, by declaring public User findByUsername(String username);  in your service interface, Hades will automatically generate a corresponding query returning a type safe User. This works for lists as well (which solves the pain of having generic lists returned which are not type safe)</p>
+
+<p>It uses a genericDAO service which is the JPA entity manager on steroids.</p>
+
+<p>Proper named queries can be added to the interface and once again, Hades will implement the query for you.</p>
+
+<p>All in all, definitely worth a look.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      Liquid error: incompatible character encodings: ASCII-8BIT and UTF-8
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/11/16/the-kanban-methodology/">The Kanban Methodology</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-16T19:27:38+00:00" pubdate data-updated="true">Nov 16<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now I&#8217;ve had some experience of working in a scrum environment, I was keen to find about other similiar methodologies. Kanban (which literally means - visual card) is a methodology direct from manufacturing, specifically in Japan. Limits and constraints are embraced to allow the smooth flow of tasks.</p>
+
+<p>A board is used to map flow of tasks, but generally with extra steps compared to a scrum board. Some of these steps are buffers, indicating that there may be inefficiencies or constraints which are hindering the flow, i.e. tasks which are in the &#8216;awaiting uploading&#8217; stage indicates that the uploading stage may have inefficiencies which constrain the throughput.</p>
+
+<p>Each stage has a limit, nominally set to twice the number of people working on the stage minus 1. The limits can be amended , but care must be taken that flow is increased rather than decreased. Work is managed on a pull basis. No one pushes work from left to right, people pull the work from the previous stage. This changes the stress that people encounter, they can only work at the limit which is set, they are not allowed to take on work which would take them above the limit. They can only take things on when they have spare capacity.</p>
+
+<p>I love how it works when there is spare capacity. If there is no task to pick up from the previous stage and say there are too many tasks in the test stage, then rather than jumping in to help someone else or do some testing, use the time to improve the efficiency of the process. Write a tool to make deployment faster etc. It&#8217;s in an inbuilt part of the processes that inefficiencies (when people are idle) work as a positive feedback loop in to the process to then speed things up, self healing!</p>
+
+<p>It was felt that kanban worked particularly well with</p>
+
+<ul>
+<li>dedicated teams - keeps variance low</li>
+<li>tasks of a similar size - again variance</li>
+<li>better on maintenance than big build projects, although it can work with both.</li>
+</ul>
+
+
+<p>Trust underpins it all, building trust for teams and for the client/customer. When we estimate we always add security, then others add further security and on and on we go until the actual estimates are wildly different from how long it takes to do the piece of work!</p>
+
+<p>If you&#8217;re blocked you can&#8217;t take on extra work over your limit. Forces concentration on blockers! Each worker has a magnet for the board, they have two magnets which are attached to whatever they are working on, they cannot work on anything else. Forces completion of tasks, and if there is idle time, work on the process.</p>
+
+<p>No planning or estimating in proper kanban process, the devs do the dev, testers test. Someone still has to break the tasks down, but there is an element of ensuring the spec&#8217;d bits are the right size too.</p>
+
+<p>The board uses different coloured postits and blockers are stuck on tasks which are stuck. Each day which a task remains in a stage, annotate it with a dot, so you can see how fast it is going.</p>
+
+<p>A few side notes: as a knowledge worker it&#8217;s important to remember that knowledge is perishable, if we accumulate it but don&#8217;t use it then it will decay&#8230;.</p>
+
+<p>if you are sawing down a tree, is it worth stopping to sharpen your saw on a regular basis? Why yes!</p>
+
+<p>For my workplace, I think we still have a lot to learn from scrum - have we ensured that we&#8217;re following scrum properly and learning the lessons from that before we&#8217;d think about taking a new process on. However, there are some principles which are always worth thinking about, especially when it comes to trust within organisations. If however, we had a maintenance team, with analysts, devs, testers - across projects, then I think kanban could prove really useful</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/11/16/devox-2009-antwerp/">Devox 2009 – Antwerp</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-16T19:21:44+00:00" pubdate data-updated="true">Nov 16<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m really pleased to be at Devoxx this year which is the biggest Java conference in Europe. Today around 3000 people turned up for day 1 of the university sessions. I ended up going to the following sessions</p>
+
+<p>1) Kanban methodology in the morning
+2) New features of JSF2 in the afternoon
+3) Half hour session on hades and JPA
+4) Half hour session on Spock, the testing framework.</p>
+
+<p>See other posts for how I got on!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/04/svn-diff-ignoring-whitespace/">Svn Diff Ignoring Whitespace</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-04T18:05:02+01:00" pubdate data-updated="true">Sep 4<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>svn diff is nice but not very configurable&#8230; fear not!</p>
+
+<p>svn diff &#8211;diff-cmd diff -x -uw /path/to/file</p>
+
+<p>will save the day. this tells svn diff to use diff with the -uw flags. Brill&#8230;</p>
+
+<p>now to get it working with my favourite diff, sdiff!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/02/spring-configuration-namespace-resolution/">Spring Configuration Namespace Resolution</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-02T18:07:31+01:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>try saying &#8220;Spring configuration namespace resolution&#8221; with a mouthful of tea.</p>
+
+<p>Anyway, from Spring 2.5, one can use the new namespace resolution functionality in your spring configuration. We&#8217;ve used this for example (by the way, http bits have lost a slash - stops them getting wordpress&#8217;d), here:</p>
+
+<p>&lt;beans xmlns=&#8221;http://www.springframework.org/schema/beans&#8221;</p>
+
+<pre><code>   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:amq="http://activemq.apache.org/schema/core"
+   xsi:schemaLocation="
+           http:/www.springframework.org/schema/beans
+           http:/www.springframework.org/schema/beans/spring-beans-2.0.xsd
+          http:/activemq.apache.org/schema/core
+          http:/activemq.apache.org/schema/core/activemq-core-5.2.0.xsd
+        "&gt;
+</code></pre>
+
+<p>Which allows you to use the namespace amq in your spring configuration, i.e.</p>
+
+<p> &lt;amq:connectionFactory id=&#8221;jmsFactory&#8221; /></p>
+
+<p>spring knows that amq maps to the active mq schema, and as we provide a url in the location section, it knows where it can get it from.</p>
+
+<p>The only downside to this is when apache.org goes down, as it did last week. Spring tries to look up the schema, can&#8217;t and consequently fails to start. This is catastrophic.</p>
+
+<p>I&#8217;ve been trying to find out how to work around this, ideally I&#8217;d like Spring to get the xsd from the classpath (where I&#8217;ve put it) rather than trying to download it from the internet. Just in case apache.org disappears up it&#8217;s own firewall.. again.</p>
+
+<p>The change is simple, if you know how. Chuck the .xsd schema file in src/main/resources and update the config as follows, change in red - hurrah!</p>
+
+<p>&lt;beans xmlns=&#8221;http://www.springframework.org/schema/beans&#8221;</p>
+
+<pre><code>   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:amq="http://activemq.apache.org/schema/core"
+   xsi:schemaLocation="
+</code></pre>
+
+<p>   http:/www.springframework.org/schema/beans http:/www.springframework.org/schema/beans/spring-beans-2.0.xsd
+   http:/activemq.apache.org/schema/core classpath:activemq-core-5.2.0.xsd</p>
+
+<pre><code>        "&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/08/25/tinkering-with-cpu-scaling-and-ubuntu/">Tinkering With CPU Scaling and Ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-25T18:06:55+01:00" pubdate data-updated="true">Aug 25<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have a little gnome applet running which tells me how fast my CPUs are running. Annoyingly, they seem to be lazing about at 2.0Ghz, saving energy and all that, speeding up (allegedly) when required.</p>
+
+<p>This seemed like a bit of cop out to me, I want them running at 2.3Ghz, their max speed, when I&#8217;m compiling and running apps! I&#8217;m all for saving energy, but I want the control.</p>
+
+<p>Well, now I have it thanks to a bit of reconfiguring..</p>
+
+<p>sudo dpkg-reconfigure gnome-applets</p>
+
+<p>Running this allows the CPU speed applet to change the settings (with root permission). So, I have changed it from On Demand to Performance. Hurrah!</p>
+
+<p>More on the configuration you can achieve can be found in this interesting article. Click here! (sorry, couldn&#8217;t resist!)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/06/29/embedded-tomcat-and-jetty/">Embedded Tomcat and Jetty</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-29T18:04:15+01:00" pubdate data-updated="true">Jun 29<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>With maven, running web apps with embedded tomcat &amp; jetty is brill&#8230; as long as you have a straightforward configuration, not requiring lots of extra dependencies. The maven jetty plugin is super configurable though and can be tweaked as required.</p>
+
+<p>To get the jetty plugin working though, you need to add the following to your settings.xml</p>
+
+<p><pluginGroups>
+<pluginGroup>org.mortbay.jetty</pluginGroup>
+</pluginGroups></p>
+
+<p>Once you&#8217;ve done that, it should pick up fine with mvn jetty:run for jetty or mvn tomcat:run for tomcat</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/06/10/how-do-i-find-the-version-of-java-my-class-was-compiled-against/">How Do I Find the Version of Java My Class Was Compiled Against?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-10T18:03:20+01:00" pubdate data-updated="true">Jun 10<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230;</p>
+
+<p>javap -verbose Classname</p>
+
+<p>where Classname is your class, will give you loads of information, including major and minor java version numbers. Handy huh?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/6/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/4/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

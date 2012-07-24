@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="So traditionally, using cron on a server, calling a java method would be the default way of running some java code on a regular basis. Usually though &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/blog/page/8/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/18/setting-up-simple-timer-jobs-using-quartz-2/">Setting Up Simple Timer Jobs Using Quartz</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-18T11:07:21+00:00" pubdate data-updated="true">Feb 18<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So traditionally, using cron on a server, calling a java method would be the default way of running some java code on a regular basis. Usually though you get tangled co-ordinating setting up the cron job, plus you have to write a specific method to be called which can be run from the command line. Before too long you&#8217;re wiring up special persistence sessions to do the work.</p>
+
+<p>There has to be a better way&#8230;</p>
+
+<p>and there is! One option is to use the built in java.timer functions in the jdk. However, a better option might be to use Quartz.</p>
+
+<p><a title="Quartz" href="http://www.opensymphony.com/quartz/">Quartz</a> is a job scheduling system, encapuslated in a java library. You can do all sorts of funky stuff, including using cron like scheduling configuration. Everybody&#8217;s happy.</p>
+
+<p>To get it integrated though with your java app is made very easy if you are using <a href="http://www.springsource.org/">Spring</a>. We&#8217;re using Spring 2.5 for this example, you can find out more here: <a href="http://static.springframework.org/spring/docs/2.5.x/reference/scheduling.html">Spring Scheduling</a></p>
+
+<pre>   &lt;bean id="jobYouWantToRun" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"&gt;
+        &lt;property name="targetObject" ref="thisIsAReferenceToTheSpringBeanWithTheMethod" /&gt;
+        &lt;property name="targetMethod" value="thisIsTheMethodName" /&gt;
+        &lt;property name="concurrent" value="false" /&gt;
+    &lt;/bean&gt;</pre>
+
+
+<p>So the config above sets up a job bean of type MethodInvoking blah - this takes a reference to a Spring Managed bean (one of your beans) and a method name, which is the method you want to run on a specific schedule.</p>
+
+<pre>   &lt;bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"&gt;
+        &lt;property name="triggers"&gt;
+            &lt;list&gt;
+                &lt;ref bean="cronTriggerForOurJob" /&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;</pre>
+
+
+<p>Here we set up the actual scheduler. We&#8217;ve only put one trigger in the list for example purposes. You can have simple triggers, for example, run every 100 seconds, or cron based triggers, which is what we&#8217;ve set up below.</p>
+
+<pre>   &lt;bean id="cronTriggerForOurJob" class="org.springframework.scheduling.quartz.CronTriggerBean"&gt;
+        &lt;property name="jobDetail" ref="jobYouWantToRun" /&gt;
+        &lt;property name="cronExpression" value="* 10 * ? * *" /&gt;</pre>
+
+
+<pre>   &lt;/bean&gt;</pre>
+
+
+<p>The cron expression can be set up how you want, for <a href="http://quartz.sourceforge.net/javadoc/org/quartz/CronTrigger.html">more details</a></p>
+
+<p>So, when the Spring container is instantiated, it&#8217;ll fire up quartz for you and before you know it, your method is being run on a regular basis.</p>
+
+<p>Nothing needs to change in the Spring managed bean containing the method, it&#8217;s all config in your Spring XML config. Hopefully in Spring 3.0 this can be done with annotations, making the link between the actual code in the class and the timer more explicit.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/03/annoying-bug-with-myfaces-2/">Annoying Bug With MyFaces</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-03T09:42:52+00:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So I reckon I&#8217;ve spent over an hour wrestling with this chuffer&#8230;.</p>
+
+<p>Simple search button on a page using Tomahawk Data Table to render the output. Page would render first time out, but then using the search button resulted in the following error</p>
+
+<pre><code>java.lang.NoSuchMethodError: org.apache.myfaces.component.html.ext.HtmlDataTable.refresh(Ljavax/faces/context/FacesContext;)
+
+</code></pre>
+
+
+<p>Looks like there might be a problem rendering the data table doesn&#8217;t it. Well, I thought I&#8217;d made a chimpolata mistake somewhere down the line&#8230; and I had, but nothing to do with the table&#8230;.</p>
+
+<p>The last thing the search method did was return a string to tell MyFaces where to navigate to next. Like a complete chump, at some point I&#8217;d removed the config from the faces navigation xml to tell it which page that string referred to.</p>
+
+<p>Consequently, rather than saying something like</p>
+
+<pre>Navigation failure you numpty, couldn't find "list-applicants"</pre>
+
+
+<p>it came up with the other error&#8230; Thanks MyFaces, you&#8217;re really helpful</p>
+
+<pre></pre>
+
+
+<pre></pre>
+
+
+<pre></pre>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/14/so-i-broke-the-package-installer-2/">So I Broke the Package Installer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-14T13:58:47+00:00" pubdate data-updated="true">Nov 14<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Tinkering around with vmware server install meant that I couldn&#8217;t do any apt-get stuff. It kept on trying to remove the half installed debian package, failing when running the scripts.</p>
+
+<p>useful commands</p>
+
+<p>dpkg &#8211;list</p>
+
+<p>gives a list of the packages installed, the ii first bit, is installed stuff, I think the half installed one was hI or something similar, it stood out anyway!</p>
+
+<p>the pre/post scripts were causing a problem. I found them here:</p>
+
+<p>/var/lib/dpkg/info</p>
+
+<p>and so I nobbled the four of them:</p>
+
+<p>-rwxr-xr-x 1 root root  6772 2008-11-13 10:36 vmware-server.prerm
+-rwxr-xr-x 1 root root 30474 2008-11-13 10:36 vmware-server.preinst
+-rwxr-xr-x 1 root root  1510 2008-11-13 10:36 vmware-server.postrm
+-rwxr-xr-x 1 root root 48652 2008-11-13 10:36 vmware-server.postinst</p>
+
+<p>and ran this</p>
+
+<p>sudo dpkg &#8211;purge  vmware-server</p>
+
+<p>hooray!</p>
+
+<p><code>
+</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/12/create-virtual-machine-on-ubuntu-and-install-windows/">Create Virtual Machine on Ubuntu and Install Windows</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-12T10:49:09+00:00" pubdate data-updated="true">Nov 12<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ok, I&#8217;ve tried doing this a number of ways, but here&#8217;s my favourite</p>
+
+<p>1) Use http://www.easyvmx.com/ to create the initial machine, it&#8217;s a breeze</p>
+
+<p>2) Fire up VMWare Reader with your windows disk in the cd drive</p>
+
+<p>3) Boots up the virtual machine and automatically starts the windows install &#8230; easy</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/11/i-know-nothing/">I Know Nothing!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-11T10:06:38+00:00" pubdate data-updated="true">Nov 11<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>about PHP..</p>
+
+<p>so todays tip is adding the var dump at the beginning of the page to find out what the chuff is going on:</p>
+
+<p>&lt;?php
+var_dump($_SERVER);</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/17/tomact-thread-dump/">Tomact Thread Dump</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-17T10:51:51+01:00" pubdate data-updated="true">Oct 17<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>wondering what tomcat is doing? kill -QUIT &lt;pid&gt; will do a thread dump to $TOMCAT_HOME/logs/catalina.out - very interesting!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/09/09/httpjstweenblogspotcom/">Javascript Motion Tween&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-09T18:34:38+01:00" pubdate data-updated="true">Sep 9<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>http://jstween.blogspot.com/</p>
+
+<p>says it all</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/24/finding-running-threads-on-a-jvm/">Finding Running Threads on a JVM</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-24T00:03:08+01:00" pubdate data-updated="true">Aug 24<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div>
+
+run kill -QUIT &lt;pid&gt; for the jvm and it&#8217;ll give you a useful summary of threads which are running, plus how much memory is being used!</div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/18/apple-keyboards-boot-keys-and-mac-minis/">Apple Keyboards, Boot Keys and Mac Minis</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-18T19:34:47+01:00" pubdate data-updated="true">Aug 18<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So, I thought I&#8217;d completely bust one of the Mac Minis I bought on ebay. It&#8217;s a dual core Intel 1.66Mhz Mini and I have one of the recent aluminium, USB Apple keyboards. Nice combo huh? Well, it would be if you could input key combinations at start up, say for example if you&#8217;d bodged up your boot camp install&#8230;</p>
+
+<p>.. well, you&#8217;re stuffed, because the Aluminium keyboards don&#8217;t work on Intel Minis during the boot sequence. How crappity is that?! So, a lot of trying out different things, until I borrowed a Dell keyboard from work. It felt dirty plugging it in to the Mac, but at least the Mac listened to what it was saying! Now, I&#8217;m happily booted back in to OS X, stumped at the lack of backwards compatibility provided by a keyboard.. yes, that&#8217;s a keyboard..</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/14/maybe-we-could-use-jmeter/">Maybe We Could Use Jmeter?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-14T18:02:30+01:00" pubdate data-updated="true">Aug 14<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>http://jakarta.apache.org/jmeter/</p>
+
+<p>or jprobe</p>
+
+<p>http://www.quest.com/common/registration.aspx?requestdefid=18937</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/9/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/7/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

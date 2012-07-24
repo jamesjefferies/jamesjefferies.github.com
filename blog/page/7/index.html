@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="If you&#8217;re using Lucene queries then there are some special characters which do magic things. Of course you might not want any wild card / range &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/blog/page/7/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/19/escaping-special-characters-with-lucene/">Escaping Special Characters With Lucene</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-19T12:10:57+00:00" pubdate data-updated="true">Mar 19<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you&#8217;re using Lucene queries then there are some special characters which do magic things. Of course you might not want any wild card / range magic going on and you&#8217;d rather the searcher could look up ] without everything blowing up.</p>
+
+<p>Well, you can escape those special characters simply by passing the query through the escape method of the QueryParser.. like so</p>
+
+<pre>searchTerm = QueryParser.escape(searchTerm);</pre>
+
+
+<p>of course this will nobble any asterixes or similar in there, so if you do want any wildcard stuff going on, add after the escaping.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/12/installing-maven-on-an-etch-box/">Installing Maven on an Etch Box</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-12T11:53:22+00:00" pubdate data-updated="true">Mar 12<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ok, noddy stuff this really, but it&#8217;s good reference for me, thanks to wilbatron. Lenny has maven packaged, but etch doesn&#8217;t, so a manual install is required!</p>
+
+<p>oh, make sure java and bzip2 are installed and set up</p>
+
+<p>download maven binary, unarchive it, move to /usr/local do some links</p>
+
+<pre>wget http://www.mirrorservice.org/sites/ftp.apache.org/maven/binaries/apache-maven-2.0.9-bin.tar.bz2
+tar xjvf apache-maven-2.0.9-bin.tar.bz2
+mv apache-maven-2.0.9 /usr/local/
+ln -s /usr/local/apache-maven-2.0.9/ /usr/local/maven
+ln -s /usr/local/maven/bin/mvn /usr/local/bin/</pre>
+
+
+<p>I went a bit off piste after that and added the following to /etc/mvnrc rather than chuck them in the mvn shell script</p>
+
+<p>JAVA_HOME=/whatever/this/is
+M2_HOME=/wherever/you/put/it
+MAVEN_OPTS=&#8221;-Xms256m -Xmx512m&#8221;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/">Migrating From HSQLDB to MySQL - Part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-11T11:49:03+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For this development project, we&#8217;ve been developing locally using in memory HSQLDB. The advantages of this are, easy set up out of the box (no database set up required), auto generation of schema from domain objects (thank you hibernate, using hbm2dll) and speed. A lightweight in memory db is good for us at this stage of the game.</p>
+
+<p>Unfortunately though we need a proper database for when we go out in to the big world and as we can&#8217;t use Oracle, we&#8217;re going to make do with MySQL (just kidding here folks ;) )..</p>
+
+<p>no, we really are using MySQL (see what I did there, I&#8217;m hilarious).</p>
+
+<p>Of course, hibernate provides transparent mapping to which ever databases it supports out of the box.. nothing can, nor will it go wrong..</p>
+
+<p>Hmm, see what I did their for comic effect? I can&#8217;t help myself.</p>
+
+<p>Fortunately, we&#8217;re approaching 300 unit tests now, so switching to a real database should be a few configuration tweaks, prove the tests still run and off you go.</p>
+
+<p>So, what issues did we hit:</p>
+
+<h4>MySQL doesn&#8217;t &#8216;support&#8217; sequences</h4>
+
+
+<p>You get used to sequences when developing with Oracle, hibernate lets you set a primary key as a sequence quite easily</p>
+
+<pre>@Id
+@GeneratedValue(strategy = GenerationType.SEQUENCE)
+private Integer id;</pre>
+
+
+<p>of course, everything works nicely with HSQLDB, however switch to MySQL and it doesn&#8217;t work. Fortunately from Hibernate 3.2.3 onwards, you can set up your own custom generator which will create a sequence table and use that instead, to emulate the behaviour of a sequence. A few magic annotations and off we go. What we do here is fire up the funky SequenceStyleGenerator (that&#8217;s the new bit) telling it to use a table, which we can name if we want, plus I&#8217;ve named the columns and given the sequence a noddy name.</p>
+
+<pre>@Id
+@GeneratedValue(generator="SuperDuperSequenceGenerator")
+@GenericGenerator
+    name="SuperDuperSequenceGenerator",
+    strategy="org.hibernate.id.enhanced.SequenceStyleGenerator",
+    parameters={
+@Parameter(name="force_table_use", value="true"),
+@Parameter(name="value_column", value="value_column"),
+@Parameter(name="sequence_name", value="sequence_name")
+})</pre>
+
+
+<pre>private Integer id;</pre>
+
+
+<h4>Don&#8217;t make assumptions about column lengths</h4>
+
+
+<p>Set up a String property and HSQLDB will happily do that for you, doesn&#8217;t care about length just works. I&#8217;m not advocating this is a good thing, but it is what it does. When you switch to using MySQL, this will default to a column with 255 characters. No problem with that default, but when you&#8217;ve happily chucked more than 255 characters in there, then MySQL will complain.</p>
+
+<p>Simple solution, set the column size</p>
+
+<pre>@Column(length=1000)</pre>
+
+
+<p>private String aThousandCharacterString;</p>
+
+<h4>Don&#8217;t be a complete monkey spanner and use reserved words for domain objects or properties..</h4>
+
+
+<p>Of course, being experienced developers, we wouldn&#8217;t get caught out with any of those puppies would we?</p>
+
+<p>If we had, we&#8217;d recommend that people watch out for the following if nothing else.</p>
+
+<ul>
+    <li>Calling a domain object Trigger</li>
+    <li>Calling a domain object RoyRodgers</li>
+    <li>Calling a property lines</li>
+</ul>
+
+
+<p>(by the way, one of those is just a joke)</p>
+
+<p>If you <em>have</em> done the naughty, then all is not lost. You could refactor everything, or simply specificy an explicit table or column name.. i.e.</p>
+
+<pre>@Column(name="LinesToRender")
+private Integer lines;</pre>
+
+
+<p>or</p>
+
+<pre>@Entity
+@Table(name="DiversityTrigger")
+public class Trigger</pre>
+
+
+<h4>Set the correct dialogue property in the hibernate properties</h4>
+
+
+<pre>hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect</pre>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/04/concurrent-http-session-management-with-spring-security/">Concurrent HTTP Session Management With Spring Security</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-04T12:06:26+00:00" pubdate data-updated="true">Mar 4<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Spring Security (formerly Acegi) is a useful framework for adding security to webapps. Directories, pages and the like can all be controlled with various user roles and methods can be annotated too, ensuring a belt and braces approach.</p>
+
+<p>The setting to switch it on in the configuration is just this (within the other security config):</p>
+
+<pre>      &lt;security:concurrent-session-control max-sessions="1" expired-url="/already-logged-in.faces"/&gt;</pre>
+
+
+<p>and as you can see, you can set a url for spring to redirect to if you already have a session somewhere else. The gotcha though seems to be that unless you configure  a listener, it may not know when the session has expired (i.e. if you don&#8217;t log out).</p>
+
+<p>so, in the good old web.xml, add this little puppy to listen out for expired sessions&#8230;</p>
+
+<pre>  &lt;listener&gt;
+      &lt;listener-class&gt;org.springframework.security.ui.session.HttpSessionEventPublisher&lt;/listener-class&gt;
+  &lt;/listener&gt;</pre>
+
+
+<p>hopefully, job is a good &#8216;un</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/03/using-dml-for-an-update-with-hibernatejpa/">Using DML for an Update With hibernate/JPA</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-03T09:05:25+00:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Got caught out with a gotcha last night which I &#8216;solved&#8217; this morning. I hate leaving work with an annoying problem, but I knew I was too tired to get it clear in my head.  So, I was doing a direct update to an object in the database using</p>
+
+<pre>Query query = entityManager.createQuery("Update Foo f set f.value = :value where f.key = :key");
+query.executeUpdate();</pre>
+
+
+<p>Which works, the database gets updated. However by doing the update directly the hibernate persistence context is bypassed so although the db is sorted, hibernate is blissfully ignorant of what you&#8217;ve done. Yes, what YOU have done!</p>
+
+<p>So, one way to get around this is to ask hibernate to refresh what it knows about the object using the entity manager (by the way, the entity manager is JPA&#8217;s equivalent of the hibernate session manager).</p>
+
+<pre>entityManager.refresh(theFoo);</pre>
+
+
+<p>Or.. I guess you could retrieve the Foo object, update it and then save it and you wouldn&#8217;t have got in this pickle in the first place&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/02/the-art-of-progamming-the-1k-zx81/">The Art of Progamming the 1K ZX81&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-02T09:07:13+00:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>.. is a book I rediscovered over the weekend. Forget your design patterns, social networking, annotated, concurrent, peristent, webby crap and build yourself a lunar lander.. in less than 1K.</p>
+
+<p>It even has a two line random word generator, that&#8217;s better than the one I built the other week!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/25/creating-mysql-users/">Creating Mysql Users</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-25T14:12:07+00:00" pubdate data-updated="true">Feb 25<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I used to know Ingres RDBMS pretty well and then got well in to Oracle, in fact, I&#8217;ve got 7 years of Oracle experience probably. Unfortunately, each day that goes by, I forget how to do the ninja stuff I used to be able to do..</p>
+
+<p>Instead now, I&#8217;m using HSQLDB for in memory speedy development and then today have been getting local mysql up and running. Of course, it&#8217;s easy to get the db fired up on ubuntu, where I have the block is creating a simple user who can log on to the flippin&#8217; thing. All you mysql veterans out there will be stroking your beard wondering what all the fuss is about. So, to remind my self, here&#8217;s some pimple simple stuff&#8230;</p>
+
+<pre> grant all on DATABASENAME.* to 'NEWUSERNAME'@'localhost' identified by 'NEWPASSWORD';</pre>
+
+
+<p>Yeah, yeah, you could, should do a lot more with this, but for what I want, it just works&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/24/java-persistence-temporal-types-spooky/">Java Persistence - Temporal Types - Spooky</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-24T10:55:26+00:00" pubdate data-updated="true">Feb 24<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Should be easy this, but I made an assumption (probably on a Friday afternoon) and it&#8217;s just returned to bite my petite derriere&#8230;</p>
+
+<pre>javax.persistence.TemporalType</pre>
+
+
+<p>is an enum which can have three values</p>
+
+<pre>DATE</pre>
+
+
+<pre>TIME</pre>
+
+
+<pre>TIMESTAMP</pre>
+
+
+<p>the differences being that with Date, you just get the date, no time factor at all.</p>
+
+<p>Time, you just get the time, no date factor at all.</p>
+
+<p>Timestamp, you get date and time, which is probably what you want when you want a timestamp (durr). Don&#8217;t be misled in to thinking that a TemporalType.Date will include the time, because it won&#8217;t!</p>
+
+<p>I don&#8217;t know why, but TemporalTypes make me think of Rentaghost&#8230; odd</p>
+
+<p>http://www.hibernate.org/hib_docs/ejb3-api/javax/persistence/TemporalType.html</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/19/asking-maven-nicely-to-download-the-javadocs-and-source-for-your-dependencies-2/">Asking Maven Nicely to Download the Javadocs and Source for Your Dependencies</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-19T16:40:08+00:00" pubdate data-updated="true">Feb 19<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just about every day I find something else useful out about Maven. Today&#8217;s little nugget of joy is asking it to download the javadocs (i.e. standard api documentation) and the source of the libraries you&#8217;re using in the project.</p>
+
+<p>Because we use nexus, these nice bits of info will be stored centrally for all to use.</p>
+
+<p>To get source and javadocs simply run</p>
+
+<pre>mvn eclipse:eclipse -DdownloadSources=true  -DdownloadJavadocs=true</pre>
+
+
+<p>and go and have a cup of tea or a biscuit or both.</p>
+
+<p>You can also run this to get the sources</p>
+
+<pre>mvn -DdownloadSources=true dependency:sources</pre>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/18/getting-sun-jdk6-up-and-running-on-debian-etc-2/">Getting Sun Jdk6 Up and Running on Debian Etc</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-18T12:31:00+00:00" pubdate data-updated="true">Feb 18<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ok, so we&#8217;ll be going for proper open jdk at some point (Java 7 preferably) but to get us up and running with Java 6 update 7&#8230;</p>
+
+<p>add the following to /etc/apt/sources.list</p>
+
+<pre>deb http://ftp.us.debian.org/debian/ etch main contrib non-free
+deb http://www.backports.org/debian etch-backports main non-free</pre>
+
+
+<p>and run</p>
+
+<pre>sudo apt-get update</pre>
+
+
+<p>before running</p>
+
+<pre>sudo apt-get install sun-java6-jdk</pre>
+
+
+<p>now, I had a problem with the default java install (not sure how to tinker with /etc/alternatives yet) so I uninstalled</p>
+
+<pre> sudo apt-get remove sablevm</pre>
+
+
+<p>and</p>
+
+<pre> sudo apt-get remove free-java-sdk</pre>
+
+
+<p>once I work out /etc/alternatives beyond them just being symbolic links, then that&#8217;ll be not required I guess</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/8/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/6/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>The Kanban Methodology - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Now I&#8217;ve had some experience of working in a scrum environment, I was keen to find about other similiar methodologies. Kanban (which literally &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/blog/2009/11/16/the-kanban-methodology/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">The Kanban Methodology</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-16T19:27:38+00:00" pubdate data-updated="true">Nov 16<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Now I&#8217;ve had some experience of working in a scrum environment, I was keen to find about other similiar methodologies. Kanban (which literally means - visual card) is a methodology direct from manufacturing, specifically in Japan. Limits and constraints are embraced to allow the smooth flow of tasks.</p>
+
+<p>A board is used to map flow of tasks, but generally with extra steps compared to a scrum board. Some of these steps are buffers, indicating that there may be inefficiencies or constraints which are hindering the flow, i.e. tasks which are in the &#8216;awaiting uploading&#8217; stage indicates that the uploading stage may have inefficiencies which constrain the throughput.</p>
+
+<p>Each stage has a limit, nominally set to twice the number of people working on the stage minus 1. The limits can be amended , but care must be taken that flow is increased rather than decreased. Work is managed on a pull basis. No one pushes work from left to right, people pull the work from the previous stage. This changes the stress that people encounter, they can only work at the limit which is set, they are not allowed to take on work which would take them above the limit. They can only take things on when they have spare capacity.</p>
+
+<p>I love how it works when there is spare capacity. If there is no task to pick up from the previous stage and say there are too many tasks in the test stage, then rather than jumping in to help someone else or do some testing, use the time to improve the efficiency of the process. Write a tool to make deployment faster etc. It&#8217;s in an inbuilt part of the processes that inefficiencies (when people are idle) work as a positive feedback loop in to the process to then speed things up, self healing!</p>
+
+<p>It was felt that kanban worked particularly well with</p>
+
+<ul>
+<li>dedicated teams - keeps variance low</li>
+<li>tasks of a similar size - again variance</li>
+<li>better on maintenance than big build projects, although it can work with both.</li>
+</ul>
+
+
+<p>Trust underpins it all, building trust for teams and for the client/customer. When we estimate we always add security, then others add further security and on and on we go until the actual estimates are wildly different from how long it takes to do the piece of work!</p>
+
+<p>If you&#8217;re blocked you can&#8217;t take on extra work over your limit. Forces concentration on blockers! Each worker has a magnet for the board, they have two magnets which are attached to whatever they are working on, they cannot work on anything else. Forces completion of tasks, and if there is idle time, work on the process.</p>
+
+<p>No planning or estimating in proper kanban process, the devs do the dev, testers test. Someone still has to break the tasks down, but there is an element of ensuring the spec&#8217;d bits are the right size too.</p>
+
+<p>The board uses different coloured postits and blockers are stuck on tasks which are stuck. Each day which a task remains in a stage, annotate it with a dot, so you can see how fast it is going.</p>
+
+<p>A few side notes: as a knowledge worker it&#8217;s important to remember that knowledge is perishable, if we accumulate it but don&#8217;t use it then it will decay&#8230;.</p>
+
+<p>if you are sawing down a tree, is it worth stopping to sharpen your saw on a regular basis? Why yes!</p>
+
+<p>For my workplace, I think we still have a lot to learn from scrum - have we ensured that we&#8217;re following scrum properly and learning the lessons from that before we&#8217;d think about taking a new process on. However, there are some principles which are always worth thinking about, especially when it comes to trust within organisations. If however, we had a maintenance team, with analysts, devs, testers - across projects, then I think kanban could prove really useful</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-16T19:27:38+00:00" pubdate data-updated="true">Nov 16<span>th</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/11/16/the-kanban-methodology/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2009/11/16/the-kanban-methodology/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/11/16/devox-2009-antwerp/" title="Previous Post: Devox 2009 – Antwerp">&laquo; Devox 2009 – Antwerp</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/11/17/jsf-2-highlights/" title="Next Post: JSF 2 highlights…">JSF 2 highlights… &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

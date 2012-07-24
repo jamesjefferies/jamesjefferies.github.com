@@ -13,4 +13,4 @@ categories:
 
 How come Oracle 10g comes with so many nice things which are advertised as working 'out of the box' but actually a licence fee is paid. This wouldn't be so bad if the company refuses to pay the extra licences to access all of the performance tweaking goodies we need!
 
-Honestly, I tear my hear out :(
+Honestly, I tear my hair out :(

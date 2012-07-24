@@ -17,18 +17,17 @@ Spring Security (formerly Acegi) is a useful framework for adding security to we
 
 The setting to switch it on in the configuration is just this (within the other security config):
 
-    
-          <security:concurrent-session-control max-sessions="1" expired-url="/already-logged-in.faces"/>
-
+``` xml    
+	<security:concurrent-session-control max-sessions="1" expired-url="/already-logged-in.faces"/>
+```
 
 and as you can see, you can set a url for spring to redirect to if you already have a session somewhere else. The gotcha though seems to be that unless you configure  a listener, it may not know when the session has expired (i.e. if you don't log out).
 
 so, in the good old web.xml, add this little puppy to listen out for expired sessions...
-
-    
-      <listener>
-    	  <listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
-      </listener>
-
+``` xml  
+<listener>
+	<listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
+</listener>
+```
 
 hopefully, job is a good 'un

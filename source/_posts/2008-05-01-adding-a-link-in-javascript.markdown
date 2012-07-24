@@ -13,20 +13,24 @@ thank you Jamie!
 
 (but then I found this too with prototype)
 
+``` javascript
 $('container').update('<a href="#" id="myclickid">text for link</a>');
+```
 
 which will update a container called div and pop in the following stuff
 
+``` html
 <div id="container"></div>
+```
 
 should become
 
+``` html
 <div id="container"><a href="#" id="myclickid">text for link</a></div>
 
 function addLink() {
 
-    
-      var closeP = document.createElement("p");
+    var closeP = document.createElement("p");
     closeP.appendChild(document.createTextNode("Alternatively, ");
     
     var closeLink = document.createElement("a");
@@ -42,7 +46,7 @@ function addLink() {
     
     if (window.addEventListener) { window.addEventListener("load", addLink, false); }
     else if (window.attachEvent) { window.attachEvent("onload", addLink); }
-
+```
 
 
 

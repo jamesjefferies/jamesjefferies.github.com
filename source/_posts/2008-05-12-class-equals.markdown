@@ -8,5 +8,6 @@ wordpress_id: 27
 ---
 
 ok, so if you don't want to do the instanceof (which allows subclasses to pass) you simply want to use .equals.. as so:
-
-classA.getClass().equals(classB.class)) {
+``` java
+classA.getClass().equals(classB.class)) 
+```

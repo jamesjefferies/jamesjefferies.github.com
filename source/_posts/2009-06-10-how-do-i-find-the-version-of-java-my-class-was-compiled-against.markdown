@@ -9,6 +9,7 @@ wordpress_id: 233
 
 Is a very good question and something I couldn't quite remember from the mists of time. However, there is a utility to help...
 
+``` sh
 javap -verbose Classname
-
+```
 where Classname is your class, will give you loads of information, including major and minor java version numbers. Handy huh?

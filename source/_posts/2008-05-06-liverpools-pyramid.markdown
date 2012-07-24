@@ -60,5 +60,3 @@ And when McKenzie glanced up, Mr Madison had vanished, but there was an aroma of
 It was his desperate attempt to cheat the Devil out of claiming his soul. As long as McKenzie's mortal remains are above ground, Lucifer can't claim his soul. But because McKenzie rejected eternal rest with God, he has condemned himself to walk the night as a restless ghost until Judgement Day. 
 
 When old Mr Brocklebank was leaving the house in Blackburne Place, Daniel Jackson said to him, "Sir, did you actually meet - you know who? Mr Madison?" Before the millionaire walked off into the jade fog, he nodded twice and with a worried look, he replied "You don't think I accumulated my wealth through hard work do you? But I'll have the devil to pay when my time comes."
-
-![Pyramid outside St. Andrews, Rodney Street](http://www.amsterdam-music.com/images/discography/pyramid.jpg)

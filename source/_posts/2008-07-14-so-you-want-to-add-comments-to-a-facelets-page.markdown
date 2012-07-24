@@ -9,6 +9,8 @@ wordpress_id: 32
 
 Simple, use the remove tag. This gets stripped out very early on and will not be rendered.
 
+``` xml
 <ui:remove>
 This is a comment basically, will get stripped out when facelets sorts out the templates...
 </ui:remove>
+```

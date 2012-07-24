@@ -90,27 +90,36 @@
   </header>
 
 
-<div class="entry-content"><p>When using T<a href="http://myfaces.apache.org/tomahawk-project/tomahawk12/tagdoc/t_inputFileUpload.html">omahawk&#8217;s file upload component</a> it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit is set in the web.xml configuration for Tomahawk, i.e.</p>
+<div class="entry-content"><p>When using <a href="http://myfaces.apache.org/tomahawk-project/tomahawk12/tagdoc/t_inputFileUpload.html">Tomahawk&#8217;s file upload component</a> it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit is set in the web.xml configuration for Tomahawk, i.e.</p>
 
-<p>`  <filter>
-<filter-name>extensionsFilter</filter-name>
-<filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
-<init-param>
-<description></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter&gt;</span>
+</span><span class='line'><span class="nt">&lt;filter-name&gt;</span>extensionsFilter<span class="nt">&lt;/filter-name&gt;</span>
+</span><span class='line'><span class="nt">&lt;filter-class&gt;</span>org.apache.myfaces.webapp.filter.ExtensionsFilter<span class="nt">&lt;/filter-class&gt;</span>
+</span><span class='line'><span class="nt">&lt;init-param&gt;</span>
+</span><span class='line'><span class="nt">&lt;description&gt;</span>
+</span><span class='line'>  Set the size limit for uploaded files. Format: 10 - 10
+</span><span class='line'>  bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
+</span><span class='line'><span class="nt">&lt;/description&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-name&gt;</span>uploadMaxFileSize<span class="nt">&lt;/param-name&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-value&gt;</span>10m<span class="nt">&lt;/param-value&gt;</span>
+</span><span class='line'><span class="nt">&lt;/init-param&gt;</span>
+</span><span class='line'>    .....
+</span><span class='line'><span class="nt">&lt;/filter&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>Set the size limit for uploaded files. Format: 10 - 10
-bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
-</code></pre>
-
-<p></description>
-<param-name>uploadMaxFileSize</param-name>
-<param-value>10m</param-value>
-</init-param></p>
-
-<pre><code>.....
-</code></pre>
-
-<p></filter>`</p>
 
 <p>Here you can see the limit is set to 10 meg.</p>
 
@@ -118,15 +127,18 @@ bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
 
 <p>Well, the component actually adds a couple of attributes to the request when refreshing the page (following the click of the upload button). The attributes are:</p>
 
-<pre><code>&lt;span&gt;org.apache.myfaces.custom.fileupload.exception&lt;/span&gt;&lt;span&gt;
-org.apache.myfaces.custom.fileupload.maxSize&lt;/span&gt;
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;span&gt;</span>org.apache.myfaces.custom.fileupload.exception<span class="nt">&lt;/span&gt;&lt;span&gt;</span>
+</span><span class='line'>org.apache.myfaces.custom.fileupload.maxSize<span class="nt">&lt;/span&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>by checking the request (during the page render) you can grab these attributes, if set, and display something meaningful to the user. You could have a little render tag at the top of the page to ensure the attributes are checked. Whilst this is a bit cronky, it is one of the jsf workarounds which does work.. in a fashion.</p>
 
 <p>If they are present and you want to display the max size to the user, then apache commons FileUtils comes along to save the day</p>
 
-<p><code>[org.apache.commons.io.FileUtils.byteCountToDisplaySize](http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize(long))(new Long(maxSizeFromRequestAttribute));</code></p>
+<p><a href="http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize">org.apache.commons.io.FileUtils.byteCountToDisplaySize</a>;</p>
 </div>
 
 

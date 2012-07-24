@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Choosing a NAS solution where you can&#8217;t mount the storage media outside of the NAS is asking for trouble. I was worried I&#8217;d made the &hellip;">
+  <meta name="description" content="JPA (Java Persistence API) is the standard implementation for persistence in the Java world. Although most people would probably use Hibernate (which &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,58 +64,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/12/06/mounting-readynas-duo-drives-in-ubuntu/">Mounting ReadyNAS Duo Drives From Ubuntu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-06T00:20:35+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Choosing a NAS solution where you can&#8217;t mount the storage media outside of the NAS is asking for trouble. I was worried I&#8217;d made the wrong choice when I found that mounting the ReadyNAS do ext3 drives is not trivial, mainly because they use a 16kb block size with their SPARC cpus.</p>
-
-<p>A bit of routing around found various solutions, but the one which worked for me was as follows.</p>
-
-<ol>
-<li><p>Fire up ubuntu vm (running on OS X for me and in my case 9.10 Karmic)</p></li>
-<li><p>install lvm2 with a apt-get install lvm2</p></li>
-<li><p>Download ext2fuse 0.5 (from <a href="http://linux.softpedia.com/progDownload/ext2fuse-Download-29820.html">here</a> for example)</p></li>
-<li><p>run vgscan to locate drives</p></li>
-<li><p>vgchange -ay c to allow access to drive</p></li>
-<li><p>mkdir /mnt/lvm</p></li>
-<li><p>ext2fuse /dev/c/c /mnt/lvm (where ext2fuse will have been downloaded)</p></li>
-<li><p>drive can now be accessed on /mnt/lvm</p></li>
-</ol>
-
-
-<p>Hurrah!</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -317,10 +265,13 @@
 
   <div class="entry-content"><p>I&#8217;m really pleased to be at Devoxx this year which is the biggest Java conference in Europe. Today around 3000 people turned up for day 1 of the university sessions. I ended up going to the following sessions</p>
 
-<p>1) Kanban methodology in the morning
-2) New features of JSF2 in the afternoon
-3) Half hour session on hades and JPA
-4) Half hour session on Spock, the testing framework.</p>
+<ol>
+<li>Kanban methodology in the morning</li>
+<li>New features of JSF2 in the afternoon</li>
+<li>Half hour session on hades and JPA</li>
+<li>Half hour session on Spock, the testing framework.</li>
+</ol>
+
 
 <p>See other posts for how I got on!</p>
 </div>
@@ -360,7 +311,10 @@
 
   <div class="entry-content"><p>svn diff is nice but not very configurable&#8230; fear not!</p>
 
-<p>svn diff &#8211;diff-cmd diff -x -uw /path/to/file</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn diff --diff-cmd diff -x -uw /path/to/file
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>will save the day. this tells svn diff to use diff with the -uw flags. Brill&#8230;</p>
 
@@ -454,7 +408,10 @@
 
 <p>Well, now I have it thanks to a bit of reconfiguring..</p>
 
-<p>sudo dpkg-reconfigure gnome-applets</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo dpkg-reconfigure gnome-applets
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Running this allows the CPU speed applet to change the settings (with root permission). So, I have changed it from On Demand to Performance. Hurrah!</p>
 
@@ -544,6 +501,90 @@
 
 
 <p>where Classname is your class, will give you loads of information, including major and minor java version numbers. Handy huh?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/">Catching &#8216;File Size Exceeded&#8217; When Using Tomahawk File Upload Component</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-27T11:22:40+01:00" pubdate data-updated="true">May 27<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When using <a href="http://myfaces.apache.org/tomahawk-project/tomahawk12/tagdoc/t_inputFileUpload.html">Tomahawk&#8217;s file upload component</a> it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit is set in the web.xml configuration for Tomahawk, i.e.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter&gt;</span>
+</span><span class='line'><span class="nt">&lt;filter-name&gt;</span>extensionsFilter<span class="nt">&lt;/filter-name&gt;</span>
+</span><span class='line'><span class="nt">&lt;filter-class&gt;</span>org.apache.myfaces.webapp.filter.ExtensionsFilter<span class="nt">&lt;/filter-class&gt;</span>
+</span><span class='line'><span class="nt">&lt;init-param&gt;</span>
+</span><span class='line'><span class="nt">&lt;description&gt;</span>
+</span><span class='line'>  Set the size limit for uploaded files. Format: 10 - 10
+</span><span class='line'>  bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
+</span><span class='line'><span class="nt">&lt;/description&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-name&gt;</span>uploadMaxFileSize<span class="nt">&lt;/param-name&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-value&gt;</span>10m<span class="nt">&lt;/param-value&gt;</span>
+</span><span class='line'><span class="nt">&lt;/init-param&gt;</span>
+</span><span class='line'>    .....
+</span><span class='line'><span class="nt">&lt;/filter&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here you can see the limit is set to 10 meg.</p>
+
+<p>So by default, if you blow the limit, the component fails silently.. or does it?</p>
+
+<p>Well, the component actually adds a couple of attributes to the request when refreshing the page (following the click of the upload button). The attributes are:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;span&gt;</span>org.apache.myfaces.custom.fileupload.exception<span class="nt">&lt;/span&gt;&lt;span&gt;</span>
+</span><span class='line'>org.apache.myfaces.custom.fileupload.maxSize<span class="nt">&lt;/span&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>by checking the request (during the page render) you can grab these attributes, if set, and display something meaningful to the user. You could have a little render tag at the top of the page to ensure the attributes are checked. Whilst this is a bit cronky, it is one of the jsf workarounds which does work.. in a fashion.</p>
+
+<p>If they are present and you want to display the max size to the user, then apache commons FileUtils comes along to save the day</p>
+
+<p><a href="http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize">org.apache.commons.io.FileUtils.byteCountToDisplaySize</a>;</p>
 </div>
   
   

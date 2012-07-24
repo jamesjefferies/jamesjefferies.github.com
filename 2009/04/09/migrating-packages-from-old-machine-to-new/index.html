@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Before switching off your old ubuntu machine for good, run dpkg --get-selections &gt; Packages.lst which will output all the stuff you&#8217;ve &hellip;">
+  <meta name="description" content="Before switching off your old ubuntu machine for good, run 1
+dpkg --get-selections &gt; Packages.lst which will output all the stuff you&#8217;ve &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,25 +93,31 @@
 
 <div class="entry-content"><p>Before switching off your old ubuntu machine for good, run</p>
 
-<pre><code>dpkg --get-selections &gt; Packages.lst
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --get-selections &gt; Packages.lst
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>which will output all the stuff you&#8217;ve installed using the package manager to a flat file (Packages.lst). Copy this file to your new machine.</p>
 
-<pre><code>dpkg --set-selections &lt; Packages.lst
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --set-selections &lt; Packages.lst
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>will then set all those packages ready for install on your new machine.</p>
 
-<p>Martin reckons run this first as a dry-run</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get -s dselect-upgrade
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>sudo apt-get -s dselect-upgrade
-</code></pre>
 
 <p>and then when you are feeling brave</p>
 
-<pre><code>sudo apt-get dselect-upgrade
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get dselect-upgrade
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>will install them for you&#8230;hopefully!</p>
 

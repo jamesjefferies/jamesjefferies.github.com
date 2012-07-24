@@ -108,29 +108,41 @@
 
 <p>You get used to sequences when developing with Oracle, hibernate lets you set a primary key as a sequence quite easily</p>
 
-<pre><code>@Id
-@GeneratedValue(strategy = GenerationType.SEQUENCE)
-private Integer id;
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Id</span>
+</span><span class='line'><span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="o">.</span><span class="na">SEQUENCE</span><span class="o">)</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>of course, everything works nicely with HSQLDB, however switch to MySQL and it doesn&#8217;t work. Fortunately from Hibernate 3.2.3 onwards, you can set up your own custom generator which will create a sequence table and use that instead, to emulate the behaviour of a sequence. A few magic annotations and off we go. What we do here is fire up the funky SequenceStyleGenerator (that&#8217;s the new bit) telling it to use a table, which we can name if we want, plus I&#8217;ve named the columns and given the sequence a noddy name.</p>
 
-<pre><code>@Id
-@GeneratedValue(generator="SuperDuperSequenceGenerator")
-@GenericGenerator
-    name="SuperDuperSequenceGenerator",
-    strategy="org.hibernate.id.enhanced.SequenceStyleGenerator",
-    parameters={
-@Parameter(name="force_table_use", value="true"),
-@Parameter(name="value_column", value="value_column"),
-@Parameter(name="sequence_name", value="sequence_name")
-})
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Id</span>
+</span><span class='line'><span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">generator</span><span class="o">=</span><span class="s">&quot;SuperDuperSequenceGenerator&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="nd">@GenericGenerator</span>
+</span><span class='line'>    <span class="n">name</span><span class="o">=</span><span class="s">&quot;SuperDuperSequenceGenerator&quot;</span><span class="o">,</span>
+</span><span class='line'>    <span class="n">strategy</span><span class="o">=</span><span class="s">&quot;org.hibernate.id.enhanced.SequenceStyleGenerator&quot;</span><span class="o">,</span>
+</span><span class='line'>    <span class="n">parameters</span><span class="o">={</span>
+</span><span class='line'><span class="nd">@Parameter</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;force_table_use&quot;</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="o">),</span>
+</span><span class='line'><span class="nd">@Parameter</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;value_column&quot;</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;value_column&quot;</span><span class="o">),</span>
+</span><span class='line'><span class="nd">@Parameter</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;sequence_name&quot;</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;sequence_name&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="o">})</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-
-
-
-private Integer id;
-</code></pre>
 
 <h4>Don&#8217;t make assumptions about column lengths</h4>
 
@@ -138,10 +150,12 @@ private Integer id;
 
 <p>Simple solution, set the column size</p>
 
-<pre><code>@Column(length=1000)
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Column</span><span class="o">(</span><span class="n">length</span><span class="o">=</span><span class="mi">1000</span><span class="o">)</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">String</span> <span class="n">aThousandCharacterString</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>private String aThousandCharacterString;</p>
 
 <h4>Don&#8217;t be a complete monkey spanner and use reserved words for domain objects or properties..</h4>
 
@@ -150,9 +164,9 @@ private Integer id;
 <p>If we had, we&#8217;d recommend that people watch out for the following if nothing else.</p>
 
 <ul>
-<li><p>Calling a domain object Trigger</p></li>
-<li><p>Calling a domain object RoyRodgers</p></li>
-<li><p>Calling a property lines</p></li>
+<li>Calling a domain object Trigger</li>
+<li>Calling a domain object RoyRodgers</li>
+<li>Calling a property lines</li>
 </ul>
 
 
@@ -160,21 +174,30 @@ private Integer id;
 
 <p>If you <em>have</em> done the naughty, then all is not lost. You could refactor everything, or simply specificy an explicit table or column name.. i.e.</p>
 
-<pre><code>@Column(name="LinesToRender")
-private Integer lines;
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;LinesToRender&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">lines</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>or</p>
 
-<pre><code>@Entity
-@Table(name="DiversityTrigger")
-public class Trigger
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Entity</span>
+</span><span class='line'><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;DiversityTrigger&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Trigger</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h4>Set the correct dialogue property in the hibernate properties</h4>
 
-<pre><code>hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>hibernate.dialect<span class="o">=</span>org.hibernate.dialect.MySQLInnoDBDialect
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 

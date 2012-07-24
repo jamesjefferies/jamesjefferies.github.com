@@ -96,18 +96,29 @@
 
 <p>download maven binary, unarchive it, move to /usr/local do some links</p>
 
-<pre><code>wget http://www.mirrorservice.org/sites/ftp.apache.org/maven/binaries/apache-maven-2.0.9-bin.tar.bz2
-tar xjvf apache-maven-2.0.9-bin.tar.bz2
-mv apache-maven-2.0.9 /usr/local/
-ln -s /usr/local/apache-maven-2.0.9/ /usr/local/maven
-ln -s /usr/local/maven/bin/mvn /usr/local/bin/
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget http://www.mirrorservice.org/sites/ftp.apache.org/maven/binaries/apache-maven-2.0.9-bin.tar.bz2
+</span><span class='line'>tar xjvf apache-maven-2.0.9-bin.tar.bz2
+</span><span class='line'>mv apache-maven-2.0.9 /usr/local/
+</span><span class='line'>ln -s /usr/local/apache-maven-2.0.9/ /usr/local/maven
+</span><span class='line'>ln -s /usr/local/maven/bin/mvn /usr/local/bin/
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>I went a bit off piste after that and added the following to /etc/mvnrc rather than chuck them in the mvn shell script</p>
 
-<p>JAVA_HOME=/whatever/this/is
-M2_HOME=/wherever/you/put/it
-MAVEN_OPTS=&#8221;-Xms256m -Xmx512m&#8221;</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">JAVA_HOME</span><span class="o">=</span>/whatever/this/is
+</span><span class='line'><span class="nv">M2_HOME</span><span class="o">=</span>/wherever/you/put/it
+</span><span class='line'><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">&quot;-Xms256m -Xmx512m&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 

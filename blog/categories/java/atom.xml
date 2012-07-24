@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-24T21:15:46+01:00</updated>
+  <updated>2012-07-24T21:57:22+01:00</updated>
   <id>http://jamesjefferies.github.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -91,11 +91,15 @@ path/to/eclipse/here
 
 <p>Whilst running a single unit test class many times, you might want to add a system set property call before any of the tests are run. Hence:</p>
 
-<pre><code> @BeforeClass
-    public static void switchOffLiquibase() {
-        System.setProperty(Liquibase.SHOULD_RUN_SYSTEM_PROPERTY, "false");
-    }
+<p>``` java  <br/>
+@BeforeClass
+public static void switchOffLiquibase() {</p>
+
+<pre><code>System.setProperty(Liquibase.SHOULD_RUN_SYSTEM_PROPERTY, "false");
 </code></pre>
+
+<p>}
+```</p>
 ]]></content>
   </entry>
   

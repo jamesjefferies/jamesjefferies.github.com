@@ -378,13 +378,19 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
 
   <div class="entry-content"><p>At work we&#8217;re building a grails application which needs to authenticate users against our internal user directory using LDAP (Lightweight Directory something-or-other Protocol). Grails has two fantastic plugins to help here:</p>
 
-<p>a) Spring security plugin
-b) Spring security LDAP plugin</p>
+<ol>
+<li>Spring security plugin</li>
+<li>Spring security LDAP plugin</li>
+</ol>
+
 
 <p>Now, getting the LDAP plugin to work has proved somewhat problematic, partially because of me rushing ahead, partially because documentation isn&#8217;t quite as good as it could be. So to get the application to authenticate users with LDAP, there are two main ways of doing it.</p>
 
-<p>1) Password comparison (where you have to do your own password encoding)
-2) Bind authentication (where you pass on the username and password and let the LDAP directory authenticate)</p>
+<ol>
+<li>Password comparison (where you have to do your own password encoding)</li>
+<li>Bind authentication (where you pass on the username and password and let the LDAP directory authenticate)</li>
+</ol>
+
 
 <p>for some daft reason, I started off down the Password comparison route, which was made more problematic when I found out that our internal LDAP directory uses an archaic form of password encryption. Once I&#8217;d stopped and re-read the documentation, a little light came on in my head and I started trying to get it to work with Bind authentication - then it doesn&#8217;t matter how the password is encrypted, you&#8217;re delegating that task.</p>
 
@@ -394,28 +400,49 @@ b) Spring security LDAP plugin</p>
 
 <p>Well, first, in the application configuration, set the ldap context:</p>
 
-<pre><code>grails.plugins.springsecurity.ldap.context.server = 'ldap://this is the ip address of my ldap directory:this is the port used'
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>grails.plugins.springsecurity.ldap.context.server <span class="o">=</span> <span class="s1">&#39;ldap://this is the ip address of my ldap directory:this is the port used&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Then, in the resources.groovy spring configuration file, set up the following:</p>
 
-<pre><code>beans = {
-     // this gives the pattern for authenticating the user, as the user doesn't want to enter the whole thing, 
-     // just their unique id
-     myLdapAuthenticator(org.springframework.security.ldap.authentication.BindAuthenticator, ref("contextSource")) {
-         userDnPatterns = ['uid={0},ou=People,dc=people,dc=somewhereorother,dc=int']
-     }
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">beans</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>     <span class="c1">// this gives the pattern for authenticating the user, as the user doesn&#39;t want to enter the whole thing, </span>
+</span><span class='line'>     <span class="c1">// just their unique id</span>
+</span><span class='line'>     <span class="n">myLdapAuthenticator</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ldap</span><span class="o">.</span><span class="na">authentication</span><span class="o">.</span><span class="na">BindAuthenticator</span><span class="o">,</span> <span class="n">ref</span><span class="o">(</span><span class="s2">&quot;contextSource&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>         <span class="n">userDnPatterns</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;uid={0},ou=People,dc=people,dc=somewhereorother,dc=int&#39;</span><span class="o">]</span>
+</span><span class='line'>     <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">// this overrides the default Authentication Provider with our authenticator and our user details service</span>
+</span><span class='line'>     <span class="n">ldapAuthProvider</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ldap</span><span class="o">.</span><span class="na">authentication</span><span class="o">.</span><span class="na">LdapAuthenticationProvider</span><span class="o">,</span>
+</span><span class='line'>        <span class="n">ref</span><span class="o">(</span><span class="s2">&quot;myLdapAuthenticator&quot;</span><span class="o">),</span>
+</span><span class='line'>        <span class="n">ref</span><span class="o">(</span><span class="s2">&quot;userDetailsService&quot;</span><span class="o">)</span>
+</span><span class='line'>     <span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">// defining our user details service</span>
+</span><span class='line'>     <span class="n">userDetailsService</span><span class="o">(</span><span class="n">com</span><span class="o">.</span><span class="na">companyname</span><span class="o">.</span><span class="na">service</span><span class="o">.</span><span class="na">UserDetailsService</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-     // this overrides the default Authentication Provider with our authenticator and our user details service
-     ldapAuthProvider(org.springframework.security.ldap.authentication.LdapAuthenticationProvider,
-        ref("myLdapAuthenticator"),
-        ref("userDetailsService")
-     )
 
-     // defining our user details service
-     userDetailsService(com.companyname.service.UserDetailsService)   
-}
-</code></pre>
+<p></p>
 
 <p>Now, when the application is started, spring security knows it needs to use LDAP to do it&#8217;s business and once it&#8217;s authenticated, it needs to use our user details service to return the list of roles. Hurrah!</p>
 
@@ -457,17 +484,28 @@ b) Spring security LDAP plugin</p>
 
   <div class="entry-content"><p>You may ask yourself this question - here is a little query from <a href="http://www.mysqlperformanceblog.com/">MySQL performance blog</a> which may well help:</p>
 
-<pre><code>SELECT count(*) TABLES,
-TABLE_NAME,
-concat(round(sum(table_rows)/1000000,2),'M') rows,
-concat(round(sum(data_length)/(1024*1024*1024),2),'G') DATA,
-concat(round(sum(index_length)/(1024*1024*1024),2),'G') idx,
-concat(round(sum(data_length+index_length)/(1024*1024*1024),2),'G') total_size,
-round(sum(index_length)/sum(data_length),2) idxfrac
-FROM information_schema.TABLES
-group by TABLE_NAME
-order by total_size desc;
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">TABLES</span><span class="p">,</span>
+</span><span class='line'><span class="k">TABLE_NAME</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">table_rows</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="k">rows</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="k">DATA</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="n">idx</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="o">+</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="n">total_size</span><span class="p">,</span>
+</span><span class='line'><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span> <span class="n">idxfrac</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">TABLES</span>
+</span><span class='line'><span class="k">group</span> <span class="k">by</span> <span class="k">TABLE_NAME</span>
+</span><span class='line'><span class="k">order</span> <span class="k">by</span> <span class="n">total_size</span> <span class="k">desc</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
@@ -507,13 +545,22 @@ order by total_size desc;
 
 <p>Getting it working with v2.0.0 proved problematic, the way you get it working is to add the following to your Spring context (note clazz should be class, but is messes up the markup!)</p>
 
-<pre><code>    &lt;bean id="liquibase" clazz="liquibase.integration.spring.SpringLiquibase"&gt;
-        &lt;property ref="dataSource" name="dataSource"&gt;&lt;/property&gt;
-        &lt;property name="changeLog" value="classpath:db/changelog-master.xml"&gt;&lt;/property&gt;
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;liquibase&quot;</span> <span class="na">clazz=</span><span class="s">&quot;liquibase.integration.spring.SpringLiquibase&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">ref=</span><span class="s">&quot;dataSource&quot;</span> <span class="na">name=</span><span class="s">&quot;dataSource&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;changeLog&quot;</span> <span class="na">value=</span><span class="s">&quot;classpath:db/changelog-master.xml&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;contexts&quot;</span> <span class="na">value=</span><span class="s">&quot;test, production&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>   
+</span></code></pre></td></tr></table></div></figure>
 
-        &lt;property name="contexts" value="test, production"&gt;&lt;/property&gt;
-    &lt;/bean&gt; 
-</code></pre>
+
+<p></p>
 
 <p>which is all well and good, except the SpringLiquibase class crashes on instantiation - it&#8217;s expecting a map named &#8216;parameters&#8217; to exist. Unfortunately, when you try and inject the map in to the class, that fails too as the Map can&#8217;t be set externally&#8230; looking at the code, you can see where it&#8217;s going wrong - fortunately, it has been fixed in the latest overnight snapshot build, so instead of using v2.0.0 I&#8217;m now using V2.0.1.SNAPSHOT</p>
 
@@ -559,8 +606,10 @@ order by total_size desc;
 
 <p>However, in classic Open Source fashion, the documentation leaves something to be desired. So when I found myself trusting the documentation and getting the error:</p>
 
-<pre><code>The driver has not been specified either as a parameter or in a properties file
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>The driver has not been specified either as a parameter or in a properties file
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>when it was specified in both properties and as a parameter I should have realised that it was the documentation which was wrong, not me. I&#8217;m far too trusting&#8230;.</p>
 
@@ -582,22 +631,22 @@ order by total_size desc;
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>        <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;groupid&gt;</span>org.liquibase<span class="nt">&lt;/groupid&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;artifactid&gt;</span>liquibase-plugin<span class="nt">&lt;/artifactid&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;version&gt;</span>1.6.1.0<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;propertyfile&gt;</span>src/main/resources/liquibase.properties<span class="nt">&lt;/propertyfile&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>update<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupid&gt;</span>org.liquibase<span class="nt">&lt;/groupid&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;artifactid&gt;</span>liquibase-plugin<span class="nt">&lt;/artifactid&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;version&gt;</span>1.6.1.0<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                          <span class="nt">&lt;propertyfile&gt;</span>src/main/resources/liquibase.properties<span class="nt">&lt;/propertyfile&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                          <span class="nt">&lt;goal&gt;</span>update<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -605,32 +654,52 @@ order by total_size desc;
 
 <p>you just ignore them as the configuration is only set for that particular phase - whereas you want the configuration for all phases.. so you should set it up like this instead, makes a lot of sense really.</p>
 
-<p>  &#8220;` xml</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>        <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;groupid&gt;</span>org.liquibase<span class="nt">&lt;/groupid&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;artifactid&gt;</span>liquibase-plugin<span class="nt">&lt;/artifactid&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;version&gt;</span>1.9.3.0<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;propertyfile&gt;</span>src/main/resources/liquibase.properties<span class="nt">&lt;/propertyfile&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;changelogfile&gt;</span>src/main/resources/db/changelog-master.xml<span class="nt">&lt;/changelogfile&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;driver&gt;</span>com.mysql.jdbc.Driver<span class="nt">&lt;/driver&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;url&gt;</span>${db-connection-url}<span class="nt">&lt;/url&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;username&gt;</span>${db-connection-username}<span class="nt">&lt;/username&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;password&gt;</span>${db-connection-password}<span class="nt">&lt;/password&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;goal&gt;</span>update<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>        &lt;plugin&gt;
-            &lt;groupid&gt;org.liquibase&lt;/groupid&gt;
-            &lt;artifactid&gt;liquibase-plugin&lt;/artifactid&gt;
-            &lt;version&gt;1.9.3.0&lt;/version&gt;
-            &lt;configuration&gt;
-                &lt;propertyfile&gt;src/main/resources/liquibase.properties&lt;/propertyfile&gt;
-                &lt;changelogfile&gt;src/main/resources/db/changelog-master.xml&lt;/changelogfile&gt;
-                &lt;driver&gt;com.mysql.jdbc.Driver&lt;/driver&gt;
-                &lt;url&gt;${db-connection-url}&lt;/url&gt;
-                &lt;username&gt;${db-connection-username}&lt;/username&gt;
-                &lt;password&gt;${db-connection-password}&lt;/password&gt;
-            &lt;/configuration&gt;
-            &lt;executions&gt;
-                &lt;execution&gt;
-                    &lt;phase&gt;process-resources&lt;/phase&gt;
-                    &lt;goals&gt;
-                        &lt;goal&gt;update&lt;/goal&gt;
-                    &lt;/goals&gt;
-                &lt;/execution&gt;
-            &lt;/executions&gt;
-        &lt;/plugin&gt;
-</code></pre>
 
-<p>   &#8220;`</p>
+<p></p>
 
 <p>hurrah.</p>
 </div>

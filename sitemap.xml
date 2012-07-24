@@ -78,7 +78,7 @@
         <loc>
             http://jamesjefferies.github.com/2008/05/06/ensuring-faces-spits-out-the-error-messages-when-developing/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:44:51+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2008/05/06/liverpools-pyramid/</loc>
@@ -206,11 +206,11 @@
         <loc>
             http://jamesjefferies.github.com/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:29:28+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2009/03/12/installing-maven-on-an-etch-box/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:33:02+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -226,7 +226,7 @@
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2009/04/07/uml-diagrams-in-javadocs/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:33:37+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -238,7 +238,7 @@
         <loc>
             http://jamesjefferies.github.com/2009/04/09/migrating-packages-from-old-machine-to-new/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:30:21+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2009/04/14/java-dates-and-times/</loc>
@@ -248,7 +248,7 @@
         <loc>
             http://jamesjefferies.github.com/2009/04/14/gotcha-with-auto-ddl-generation-and-hibernate/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:34:20+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -270,7 +270,7 @@
         <loc>
             http://jamesjefferies.github.com/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:43:01+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -286,7 +286,7 @@
         <loc>
             http://jamesjefferies.github.com/2009/08/25/tinkering-with-cpu-scaling-and-ubuntu/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:43:30+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -296,11 +296,11 @@
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2009/09/04/svn-diff-ignoring-whitespace/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:44:22+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2009/11/16/devox-2009-antwerp/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:45:42+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2009/11/16/the-kanban-methodology/</loc>
@@ -322,11 +322,11 @@
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2009/12/06/maven-reloaded-from-devoxx/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:47:43+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2009/12/06/ivar-jacobsen-at-devoxx/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:47:39+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2009/12/29/computer-please-talk-to-the-phone/</loc>
@@ -338,11 +338,7 @@
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2010/03/04/the-amazing-gnu-sed/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jamesjefferies.github.com/2010/04/15/290/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:53:11+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2010/05/12/debugging-with-jetty/</loc>
@@ -360,7 +356,7 @@
         <loc>
             http://jamesjefferies.github.com/2010/06/08/why-has-my-jsf-button-stopped-working/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:48:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2010/10/14/maven-gets-an-update-3-0/</loc>
@@ -374,21 +370,21 @@
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2010/12/14/liquibase-and-the-maven-plugin/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:50:17+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://jamesjefferies.github.com/2010/12/29/getting-spring-and-liquibase-to-play-nicely/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:50:39+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2010/12/29/how-big-are-my-mysql-tables/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:52:39+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2011/01/06/grails-spring-security-ldap/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:55:56+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2011/01/06/356/</loc>
@@ -412,7 +408,7 @@
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2011/06/29/mysql-and-foreign-keys/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:52:57+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2011/08/18/flickr-and-the-missing-images/</loc>
@@ -422,7 +418,7 @@
         <loc>
             http://jamesjefferies.github.com/2011/08/25/disabling-liquibase-when-running-unit-tests/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:51:14+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -510,14 +506,14 @@
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/blog/archives/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:55:56+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/blog/arsiv/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:55:56+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T21:55:56+01:00</lastmod>
     </url>
 </urlset>

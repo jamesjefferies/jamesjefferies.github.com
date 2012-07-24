@@ -9,8 +9,13 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="in the form view: &lt;h:messages>&lt;/h:messages> and in web.xml - switch facelets development on&#8230; facelets.DEVELOPMENT
-true ">
+  <meta name="description" content="in the form view: 1
+&lt;h:messages&gt;&lt;/h:messages&gt; and in web.xml - switch facelets development on&#8230; 1
+2
+3
+4
+&lt;context-param&gt;
+&lt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,14 +98,23 @@ true ">
 
 <div class="entry-content"><p>in the form view:</p>
 
-<p>&lt;h:messages>&lt;/h:messages></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;h:messages&gt;&lt;/h:messages&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>and in web.xml - switch facelets development on&#8230;</p>
 
-<p><context-param>
-<param-name>facelets.DEVELOPMENT</param-name>
-<param-value>true</param-value>
-</context-param></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;context-param&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-name&gt;</span>facelets.DEVELOPMENT<span class="nt">&lt;/param-name&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-value&gt;</span>true<span class="nt">&lt;/param-value&gt;</span>
+</span><span class='line'><span class="nt">&lt;/context-param&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 

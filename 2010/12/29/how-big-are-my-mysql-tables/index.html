@@ -9,8 +9,17 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="You may ask yourself this question - here is a little query from MySQL performance blog which may well help: SELECT count(*) TABLES,
-TABLE_NAME, &hellip;">
+  <meta name="description" content="You may ask yourself this question - here is a little query from MySQL performance blog which may well help: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+SELECT count(*) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,17 +102,28 @@ TABLE_NAME, &hellip;">
 
 <div class="entry-content"><p>You may ask yourself this question - here is a little query from <a href="http://www.mysqlperformanceblog.com/">MySQL performance blog</a> which may well help:</p>
 
-<pre><code>SELECT count(*) TABLES,
-TABLE_NAME,
-concat(round(sum(table_rows)/1000000,2),'M') rows,
-concat(round(sum(data_length)/(1024*1024*1024),2),'G') DATA,
-concat(round(sum(index_length)/(1024*1024*1024),2),'G') idx,
-concat(round(sum(data_length+index_length)/(1024*1024*1024),2),'G') total_size,
-round(sum(index_length)/sum(data_length),2) idxfrac
-FROM information_schema.TABLES
-group by TABLE_NAME
-order by total_size desc;
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">TABLES</span><span class="p">,</span>
+</span><span class='line'><span class="k">TABLE_NAME</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">table_rows</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="k">rows</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="k">DATA</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="n">idx</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="o">+</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="n">total_size</span><span class="p">,</span>
+</span><span class='line'><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span> <span class="n">idxfrac</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">TABLES</span>
+</span><span class='line'><span class="k">group</span> <span class="k">by</span> <span class="k">TABLE_NAME</span>
+</span><span class='line'><span class="k">order</span> <span class="k">by</span> <span class="n">total_size</span> <span class="k">desc</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 

@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="svn diff is nice but not very configurable&#8230; fear not! svn diff &#8211;diff-cmd diff -x -uw /path/to/file will save the day. this tells svn diff &hellip;">
+  <meta name="description" content="svn diff is nice but not very configurable&#8230; fear not! 1
+svn diff --diff-cmd diff -x -uw /path/to/file will save the day. this tells svn diff to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,7 +93,10 @@
 
 <div class="entry-content"><p>svn diff is nice but not very configurable&#8230; fear not!</p>
 
-<p>svn diff &#8211;diff-cmd diff -x -uw /path/to/file</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn diff --diff-cmd diff -x -uw /path/to/file
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>will save the day. this tells svn diff to use diff with the -uw flags. Brill&#8230;</p>
 

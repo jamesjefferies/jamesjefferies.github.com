@@ -94,11 +94,16 @@
 
 <p>Whilst running a single unit test class many times, you might want to add a system set property call before any of the tests are run. Hence:</p>
 
-<pre><code> @BeforeClass
-    public static void switchOffLiquibase() {
-        System.setProperty(Liquibase.SHOULD_RUN_SYSTEM_PROPERTY, "false");
-    }
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@BeforeClass</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">switchOffLiquibase</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="n">Liquibase</span><span class="o">.</span><span class="na">SHOULD_RUN_SYSTEM_PROPERTY</span><span class="o">,</span> <span class="s">&quot;false&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 

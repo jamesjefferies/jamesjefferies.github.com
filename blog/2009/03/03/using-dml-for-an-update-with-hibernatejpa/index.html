@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Using DML for an update with hibernate/JPA - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Using DML for an update with hibernate/JPA - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="Got caught out with a gotcha last night which I &#8216;solved&#8217; this morning. I hate leaving work with an annoying problem, but I knew I was too &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -92,16 +92,16 @@
 
 <div class="entry-content"><p>Got caught out with a gotcha last night which I &#8216;solved&#8217; this morning. I hate leaving work with an annoying problem, but I knew I was too tired to get it clear in my head.  So, I was doing a direct update to an object in the database using</p>
 
-<pre>Query query = entityManager.createQuery("Update Foo f set f.value = :value where f.key = :key");
-query.executeUpdate();</pre>
-
+<pre><code>Query query = entityManager.createQuery("Update Foo f set f.value = :value where f.key = :key");
+query.executeUpdate();
+</code></pre>
 
 <p>Which works, the database gets updated. However by doing the update directly the hibernate persistence context is bypassed so although the db is sorted, hibernate is blissfully ignorant of what you&#8217;ve done. Yes, what YOU have done!</p>
 
 <p>So, one way to get around this is to ask hibernate to refresh what it knows about the object using the entity manager (by the way, the entity manager is JPA&#8217;s equivalent of the hibernate session manager).</p>
 
-<pre>entityManager.refresh(theFoo);</pre>
-
+<pre><code>entityManager.refresh(theFoo);
+</code></pre>
 
 <p>Or.. I guess you could retrieve the Foo object, update it and then save it and you wouldn&#8217;t have got in this pickle in the first place&#8230;</p>
 </div>
@@ -112,7 +112,7 @@ query.executeUpdate();</pre>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -134,7 +134,7 @@ query.executeUpdate();</pre>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/03/03/using-dml-for-an-update-with-hibernatejpa/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2009/03/03/using-dml-for-an-update-with-hibernatejpa/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/03/03/using-dml-for-an-update-with-hibernatejpa/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2009/03/03/using-dml-for-an-update-with-hibernatejpa/" >Tweet</a>
   
   
   
@@ -183,6 +183,51 @@ query.executeUpdate();</pre>
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -195,7 +240,7 @@ query.executeUpdate();</pre>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

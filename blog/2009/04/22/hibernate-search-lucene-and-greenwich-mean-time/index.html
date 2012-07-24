@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hibernate Search, Lucene and Greenwich Mean Time - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Hibernate Search, Lucene and Greenwich Mean Time - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="Aww, what a gotcha this morning. Felt stoopid when I realised what was going on. There are a number of ways to use dates with Lucene and specifically &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -98,7 +98,7 @@
 
 <p>By the way, here is how it now woorks, still may not be the best way to do it, but it&#8217;s working for now.</p>
 
-<p><code> @Field(index = Index.UN_TOKENIZED)
+<p><code>@Field(index = Index.UN_TOKENIZED)
 @DateBridge(resolution = Resolution.HOUR)
 @Temporal(TemporalType.DATE)
 private Date startDate;</code></p>
@@ -110,7 +110,7 @@ private Date startDate;</code></p>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -132,7 +132,7 @@ private Date startDate;</code></p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/" >Tweet</a>
   
   
   
@@ -181,6 +181,51 @@ private Date startDate;</code></p>
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -193,7 +238,7 @@ private Date startDate;</code></p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

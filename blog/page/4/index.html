@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Liquid error: incompatible character encodings: ASCII-8BIT and UTF-8 &larr; Older Blog Archives Newer &rarr; Recent Posts Downloading the Network &hellip;">
+  <meta name="description" content="I&#8217;ve asked this a number of times in the past, but I think I&#8217;ve finally found the answer! Often with JSF you may have a command button &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -64,7 +64,554 @@
     <div id="content">
       <div class="blog-index">
   
-  Liquid error: incompatible character encodings: ASCII-8BIT and UTF-8
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/08/why-has-my-jsf-button-stopped-working/">Why Has My JSF Button Stopped Working..</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-08T14:44:01+01:00" pubdate data-updated="true">Jun 8<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve asked this a number of times in the past, but I think I&#8217;ve  finally found the answer!</p>
+
+<p>Often with JSF you may have a command  button wrapped in a div or subview rendered only in certain  circumstances.</p>
+
+<pre><code>&lt;f:subview id="show-the-button" rendered="#{managedBean.shouldButtonBeRendered}"&gt;
+    &lt;h:commandButton action="#{managedBean.doSomething}" value="Do Something" /&gt;
+&lt;/f:subview&gt;
+</code></pre>
+
+<p>Ok, you might have some extra mark up in there, id etc, but this is  just to keep things simple for this example.</p>
+
+<p>Now, for the button  to be rendered, the value of  managedBean.shouldButtonBeRendered should  be true when the page is being rendered, then the button appears.</p>
+
+<p>However,  if between the page loading and the button being clicked, the value of  managedBean.shouldButtonBeRendered changes, then the button action is  ignored. Many hours of headaches would have been saved if I&#8217;d realised this sooner!</p>
+
+<p>So, if you have a button which stops working under certain circumstances, check any rendering on the component or parent components!</p>
+
+<p>More info can be found on the <a href="http://forums.sun.com/thread.jspa?threadID=5410200">sun forums</a> and on <a href="http://balusc.blogspot.com/2010/06/benefits-and-pitfalls-of-viewscoped.html">BalusC&#8217;s</a> useful site</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/06/baby-kit-recommendations-part-2/">Baby Kit Recommendations – Part 2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-06T20:11:12+01:00" pubdate data-updated="true">Jun 6<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In all the rush of our baby arriving, we didn&#8217;t feel able to start with re-usable nappies, but once we got in to the swing of things, we wanted to try a few different varieties to see what suited us most. Our pick of the bunch are the <a href="http://www.babame.com/flip.php">flip nappies</a>.</p>
+
+<p>They are fab. We have two different liners, the super dry ones and the organic cloth ones. They both do the trick and although the organic ones are a bit bulkier, they both seem pretty absorbent.</p>
+
+<p>Adjustable? Yup, from little nippers up to big nippers&#8230; For the record, we started with Tesco&#8217;s disposables. Although I can&#8217;t stand Tesco, they got the good reviews and are good value. Wouldn&#8217;t want to go back now though!</p>
+
+<p><img src="http://www.babame.com/images/flip_reusable_nappies.jpg" alt="flip nappies" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/06/baby-kit-recommendations-part-1/">Baby Kit Recommendations – Part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-06T19:58:50+01:00" pubdate data-updated="true">Jun 6<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So when little nipper was born, we initially used cotton wool and warm water for all wiping up incidents. No nasty chemicals and worked a treat.. after a couple of weeks though, baby skin can cope with a bit more, so we switched to the pack of disposable wipes we&#8217;d been given in our baby welcome pack. They worked fine but just seemed a bit.. well, disposable and wasteful. This is where <a href="http://www.cheekywipes.com">cheeky wipes</a> come in.
+<img src="http://www.cheekywipes.com/images/cw/Opened_Kit_Sml.jpg" alt="Cheeky Wipes" /></p>
+
+<p>They are brilliant. They&#8217;re nice cotton squares complete with dirty and clean tubs and potions. You soak the clean ones in the clean tub with the clean potion, and the dirty go in the dirty tub with the dirty potion. Fantastic, the dirty potion is anti-bacterial and when it&#8217;s full, you pull the drawstring and chuck them in the washing machine.</p>
+
+<p>Travel bags are also provided and our top tip is to leave the squares out in the sunshine to dry as the sun bleaches them, removing any stains.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/12/debugging-with-jetty/">Debugging With Jetty</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-12T14:45:24+01:00" pubdate data-updated="true">May 12<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Having used jetty a fair bit recently, one thing I couldn&#8217;t get working was remote debugging connections from Eclipse. The magic combination of parameters for Jetty 6.1.24 and Java 1.6 is as follows, if you&#8217;re using maven.</p>
+
+<pre><code>export MAVEN_OPTS="$MAVEN_OPTS -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n" ; mvn jetty:run
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/04/15/290/">Election Posters?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-04-15T22:36:29+01:00" pubdate data-updated="true">Apr 15<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There is just something about these two posters.. the style maybe, makes me wonder if there is a connection&#8230;.</p>
+
+<p>[caption id=&#8221;attachment_288&#8221; align=&#8221;alignnone&#8221; width=&#8221;300&#8221; caption=&#8221;A Future Fair For All&#8221;]<a href="http://jamesjefferies.com/wordpress/wp-content/uploads/2010/04/picture1.png"><img src="http://www.jamesandclare.net/wp-content/uploads/2010/04/picture1-300x247.png" alt="A Future Fair For All" /></a>[/caption]</p>
+
+<p>[caption id=&#8221;attachment_289&#8221; align=&#8221;alignnone&#8221; width=&#8221;222&#8221; caption=&#8221;To Victory&#8221;]<a href="http://jamesjefferies.com/wordpress/wp-content/uploads/2010/04/picture2.png"><img src="http://www.jamesandclare.net/wp-content/uploads/2010/04/picture2-222x300.png" alt="To Victory" /></a>[/caption]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/03/04/the-amazing-gnu-sed/">The Amazing GNU Sed</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-04T11:50:57+00:00" pubdate data-updated="true">Mar 4<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Goodness me, how have I managed for the last 19 years without sed editing inplace&#8230;</p>
+
+<p>sed -i &#8216;s/old-fogey/new-fangled/g&#8217; *.james.documents.txt</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/02/26/the-arrival-of-the-little-nipper/">The Arrival of the Little Nipper</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-26T14:40:55+00:00" pubdate data-updated="true">Feb 26<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So we had a baby (planned)! At home (planned)! And there was no major damage to the house.. apart from fusing all the lights (unplanned), but you can&#8217;t win them all.</p>
+
+<p>Her name is Iris, she was 6lbs 6oz and is a real cutie.</p>
+
+<p>On Feb 3rd at around 5am, Clare woke up thinking contractions might have been starting. When I woke up an hour later, it hit me that maybe today was it, the beginning of the labour. In the back of my mind I was thinking that we might have a good 48 hours before our baby arrived so I didn&#8217;t need to get too worried, but I&#8217;d best phone work and stay at home to help Clare out. We were actually due 4 days later and often first babies are late, so we didn&#8217;t think we&#8217;d be in a rush.</p>
+
+<p>At around 10am we phoned the community midwife to ask her to come around. She arrived at 2pm and said that we had deffo started, but that it all could fizzle out or continue in to the next day. After she&#8217;d gone though, we were both relieved that things were ok (blood pressure and all that) so Clare went for a bath. It was around about now that things moved up a gear &amp; it started snowing.. a lot.</p>
+
+<p>I go the birthing pool ready and ran around the house trying to prepare everything and then at 5pm we phoned triage to ask for another midwife to come out as we were having three contractions in 10 minutes.</p>
+
+<p>The poor midwife had just managed to get home in the snow before turning around and coming to our house. She told us that if she couldn&#8217;t make it, she&#8217;d send an ambulance and we&#8217;d have to go in to hospital.. we really didn&#8217;t want that to happen..</p>
+
+<p>At around 6:30pm Clare&#8217;s waters broke - which wasn&#8217;t quite what I expected, I was pretty scared actually and called triage again to make sure all was ok. Midwife finally arrived at 7:15pm and we were amazed to find that we were at the 10 cm mark and ready to go!</p>
+
+<p>The midwife called for the second midwife ( you have two for home birth ) and for the baby resuscitation &amp; the gas &amp; air kit. Clare was just using a TENS machine for pain relief at this point as you&#8217;re not supposed to get in to the birthing pool until the midwife arrives, especially first time around. Unfortunately we were now too far gone for the pool, so we decamped to our bedroom.</p>
+
+<p>Iris by this time was facing the correct way, in the proper position and all seemed to be going well, phew. The second midwife arrived about 8pm, but the gas&#8217;n&#8217;air and resuscitation stuff didn&#8217;t arrive until about 15 minutes before Iris did, a close call - fortunately we didn&#8217;t need to use the resus equipment.</p>
+
+<p>Just after she was born, we had some kind of spillage, through the floorboards in our bedroom, in to the light rose of the sitting room which fused all the lights in the house. This wasn&#8217;t too much of a problem until we had to call out for the third midwife to do some repairs to Clare. These repairs were done using standard, anglepoise &amp; bedside lamps - coupled with a few candles for good measure! Very dramatic!</p>
+
+<p>Everyone left about 2:30am to leave the three of us, shattered, but happy!</p>
+
+<p><a href="http://www.flickr.com/photos/53005472@N00/4331197534/"><img src="http://farm5.static.flickr.com/4004/4331197534_09db5094d3_m.jpg" alt="P1000635" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/29/computer-please-talk-to-the-phone/">Computer – Please Talk to the Phone…</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-29T11:19:41+00:00" pubdate data-updated="true">Dec 29<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have in my hand a piece of paper, well, actually it is an htc hero android phone, but let&#8217;s not let that get in the way of an opening sentence..</p>
+
+<p>Karmic Koala, Ubuntu 9.10 doesn&#8217;t take kindly when you ask it to pick up an htc hero via USB. The android developers guide gives you hints for Hardy ubuntu, but nothing more recent. Assuming you&#8217;ve followed all the other steps outlined in the <a href="http://developer.android.com/guide/developing/device.html">guide</a>, you get stuck with this output when you run</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>adb devices
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>output is:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>List of devices attached
+</span><span class='line'>????????????    no permissions
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fortunately, <a href="http://truthseekernz.blogspot.com/2009/11/ubuntu-910-and-adt-094-tangle.html">someone else</a> has done the hard work sorting out the authentication. This is what you need to do:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;span&gt;&lt;span</span> <span class="na">style=</span><span class="s">&quot;font-family: Helvetica,Arial,sans-serif;&quot;</span> <span class="na">class=</span><span class="s">&quot;Apple-style-span&quot;</span><span class="nt">&gt;</span>sudo vi /etc/udev/rules.d/51-android.rules <span class="nt">&lt;/span&gt;&lt;/span&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and add the following (for an HTC phone - the code changes for other devices)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">SUBSYSTEMS</span><span class="o">==</span><span class="s2">&quot;usb&quot;</span>, ATTRS<span class="o">{</span>idVendor<span class="o">}==</span><span class="s2">&quot;0bb4&quot;</span>, ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2">&quot;0c01&quot;</span>, <span class="nv">MODE</span><span class="o">=</span><span class="s2">&quot;0666&quot;</span>
+</span><span class='line'><span class="nv">SUBSYSTEMS</span><span class="o">==</span><span class="s2">&quot;usb&quot;</span>, ATTRS<span class="o">{</span>idVendor<span class="o">}==</span><span class="s2">&quot;0bb4&quot;</span>, ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2">&quot;0c02&quot;</span>, <span class="nv">MODE</span><span class="o">=</span><span class="s2">&quot;0666&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sort out permissions for that file</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chmod a+r /etc/udev/rules.d/51-android.rules
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then restarted the android debugging thingy (adb should be on the path after installing the Android SDK)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>adb <span class="nb">kill</span>-server
+</span><span class='line'>sudo adb start-server
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now when you run</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>adb devices
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>you should get something like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>List of devices attached
+</span><span class='line'>HT9C2L901094    device
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/06/ivar-jacobsen-at-devoxx/">Ivar Jacobson at Devoxx</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T21:00:25+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.ivarjacobson.com/">Ivar Jacobson</a> is one of the architects of Rational Unified Process (RUP) and use cases and all that stuff. He gave a keynote talk at Devoxx on the state of the software engineering profession. His opening line was &#8216;Everyone knows how to develop software, but as an industry we don&#8217;t&#8217; which is a good line to start to a conference full of developers. His set up was</p>
+
+<ul>
+<li><p>Fashions - our industry follows fashions, how often do we do a project the same way as one previously. Obviously some clients prefer to work in certain ways, but having worked on three major projects recently, they have all done things in different ways. We&#8217;ve gone from OO through components through UML through Unified Process, RUP, CIMMI, 3 years ago XP, now scrum is the flavour of the month. He gave an example of meeting someone who&#8217;s business card had Phd and Certified Scrum master on it. How can you compare a two day course without any kind of test and 3+ years of research and writing! He wasn&#8217;t knocking scrum in it self, but the way in which methodologies seem to change whenever the wind blows.</p></li>
+<li><p>Industry v Academic - there is often a big difference between what happens in academia and industry. Lots of great research goes knowhere and lots of practical experience doesn&#8217;t feed back in to our researchers. Seem to be playing different games. Then when you add &#8216;methodlogists&#8217; in to the mix, it gets even more confusing.</p></li>
+<li><p>Methods - there are a huge number of methods, we re-invent the wheel, every methodology is a soup of new ideas, usually including one or two new ones. If you look at scrum, it isn&#8217;t all new, but just a new way of mixing it up.</p></li>
+<li><p>Learn from others mistakes - why, when we can blunder on ourselves!</p></li>
+</ul>
+
+
+<p>So..</p>
+
+<ul>
+<li><p>We need a theory, a foundation of software engineering. We are hampered by a multitude of immature practices. The differences between them are little understood. There is a lack of creditable experimental evaluation.</p></li>
+<li><p>SEMAT - a process to &#8216;re-found&#8217; software engineering based on a solid theory, proven principles and best practices. A kernel of widely agreed elements, addressing humans and technology, supported by acadameia, researchers, users and the industry. A theory which supports extension.</p></li>
+</ul>
+
+
+<p>&#8211;</p>
+
+<p>Enough processes, more practices. Practice has things to do, to produce, people with competencies, using common patterns. We don&#8217;t need branded methodologies, the kernel should be practice agnostic.</p>
+
+<p>&#8211;</p>
+
+<p>identify kernel and own best practices then you can pull practices from other sources. Many companies throw out the good with the bad, so they junk everything and then pick up &#8216;Scrum&#8217; as a whole. Good to adopt new practices one at a time, rather than wholesale adoption.</p>
+
+<p>&#8216;There is nothing as practical as a good theory&#8217;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/06/maven-reloaded-from-devoxx/">Maven Reloaded (From Devoxx)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T20:59:03+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other things. The points below are highlight points from his talk at devoxx.</p>
+
+<p>It was acknowledged that many things were wrong with maven 2.0 and version 3.0 is a chance to put those things right - adding extras like support for m2eclipse and osgi.</p>
+
+<p>Maven has moved from where it originally was set up. The main driver for changes are &#8216;desire lines&#8217; - difference between how things were intended and how people used things. Responding to invitations for improvement. How people check out whole source trees, mis use of the release plugin. Responding to under utilization of what exists.</p>
+
+<p>Maven 3 should be backwards compatible with maven 2, so we should be good to go with maven 3 - performance benefits?</p>
+
+<p>Pluggable modelreader for project builder (which has been refactored). mixins for poms, composition for poms. Keep hold of non-mutated model and track contributions to pom. Might have a &#8216;spring mixin&#8217; or &#8216;tomcat depoy mixin&#8217; or whatever, these can be stored in the reposoitory.</p>
+
+<p>More extension points on maven 3, decorate the lifecycle. DSLs can do all this, in groovy, ruby, scala, python.</p>
+
+<p>The queryable lifecycle. Can query the execution plan before it happens (which is what M2Eclipse now does). Big performance increase now in eclipse.</p>
+
+<p>Incremental build support. in M2 loads of stuff has been delegated to eclipse.</p>
+
+<p>Lifecycle extension points Tycho - maven plugins delegates stuff to OSGI/Eclipse stuff.</p>
+
+<p>Aggregator problems with maven 2, in 3, the post build works properly so report aggregation should work correctly.</p>
+
+<p>Tycho is the complete replacement for PDE headless build, buckminster and everything else that attmeptes to builf OSGI.</p>
+
+<p>Maven 3 used in hudson, M2Eclipse and netbeans already&#8230;</p>
+
+<p>Maven shell looks brilliant, a make-like reactor, the shell caches the poms and all sorts of stuff.</p>
+
+<p>Better error and inntegrity reporting. Lots of problems have a link to a wiki entry in confluence. Catalog to read about it. In the shell or m2eclipse, that data can be pulled in. Don&#8217;t allow builds where versions come from profiles which have to be activated manually.</p>
+
+<p>Plugin manager, switched over to OSGI runtime, conceierge, guice and peaberry. Creating isolated classloader and stuff, but decided to switch to OSGI instead. Hudson will be switched across to OSGI as well. Plexus going in maven 3.1, replaced by Guice.</p>
+
+<p>Plugin extension points, will be in 3.1 - rip off of Eclipse plugin.</p>
+
+<p>Replace HTTP stuff with jetty client. SSL, PGP SUPPORT, multiple threaded downloads and all that.</p>
+
+<p>End of january for 3.0 release.</p>
+
+<p>Extensible reporting. Logic is now in maven site plugin rather than contined in the core. Static maven sites will probably disappear.</p>
+
+<p>Guice and peaberry. Plexus has been going as long as spring, was ahead, but now&#8230;. not kept up. Needed more speed and injection listening - use guice with in effect a wrapper so all the plexus stuff still works as was. Use JSR330 in the future.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -104,6 +651,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -115,7 +707,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

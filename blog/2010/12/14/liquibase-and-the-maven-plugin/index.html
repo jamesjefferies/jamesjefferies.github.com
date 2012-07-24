@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Liquibase and the Maven Plugin - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Liquibase and the Maven Plugin - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="I&#8217;m having a look at the Liquibase product at the mo, mainly to help automate the database migrations for one of our clients. Currently the &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -96,60 +96,78 @@
 
 <p>However, in classic Open Source fashion, the documentation leaves something to be desired. So when I found myself trusting the documentation and getting the error:</p>
 
-<pre>The driver has not been specified either as a parameter or in a properties file</pre>
-
+<pre><code>The driver has not been specified either as a parameter or in a properties file
+</code></pre>
 
 <p>when it was specified in both properties and as a parameter I should have realised that it was the documentation which was wrong, not me. I&#8217;m far too trusting&#8230;.</p>
 
 <p>So, when you set up the maven plugin in and they recommend doing this:</p>
 
-<pre class="brush: xml;">
-        <plugin>
-          <groupId>org.liquibase</groupId>
-          <artifactId>liquibase-plugin</artifactId>
-          <version>1.6.1.0</version>
-          <executions>
-            <execution>
-              <phase>process-resources</phase>
-              <configuration>
-                <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-              </configuration>
-              <goals>
-                <goal>update</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>        <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;groupid&gt;</span>org.liquibase<span class="nt">&lt;/groupid&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;artifactid&gt;</span>liquibase-plugin<span class="nt">&lt;/artifactid&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;version&gt;</span>1.6.1.0<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;propertyfile&gt;</span>src/main/resources/liquibase.properties<span class="nt">&lt;/propertyfile&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>update<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
+
+<p></p>
 
 <p>you just ignore them as the configuration is only set for that particular phase - whereas you want the configuration for all phases.. so you should set it up like this instead, makes a lot of sense really.</p>
 
-<pre class="brush: xml;">
-        <plugin>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-plugin</artifactId>
-            <version>1.9.3.0</version>
-            <configuration>
-                <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                <changeLogFile>src/main/resources/db/changelog-master.xml</changeLogFile>
-                <driver>com.mysql.jdbc.Driver</driver>
-                <url>${db-connection-url}</url>
-                <username>${db-connection-username}</username>
-                <password>${db-connection-password}</password>
-            </configuration>
-            <executions>
-                <execution>
-                    <phase>process-resources</phase>
-                    <goals>
-                        <goal>update</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
+<p>  &#8220;` xml</p>
 
-</pre>
+<pre><code>        &lt;plugin&gt;
+            &lt;groupid&gt;org.liquibase&lt;/groupid&gt;
+            &lt;artifactid&gt;liquibase-plugin&lt;/artifactid&gt;
+            &lt;version&gt;1.9.3.0&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;propertyfile&gt;src/main/resources/liquibase.properties&lt;/propertyfile&gt;
+                &lt;changelogfile&gt;src/main/resources/db/changelog-master.xml&lt;/changelogfile&gt;
+                &lt;driver&gt;com.mysql.jdbc.Driver&lt;/driver&gt;
+                &lt;url&gt;${db-connection-url}&lt;/url&gt;
+                &lt;username&gt;${db-connection-username}&lt;/username&gt;
+                &lt;password&gt;${db-connection-password}&lt;/password&gt;
+            &lt;/configuration&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;phase&gt;process-resources&lt;/phase&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;update&lt;/goal&gt;
+                    &lt;/goals&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+        &lt;/plugin&gt;
+</code></pre>
 
+<p>   &#8220;`</p>
 
 <p>hurrah.</p>
 </div>
@@ -160,7 +178,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -177,12 +195,18 @@
 <time datetime="2010-12-14T16:40:04+00:00" pubdate data-updated="true">Dec 14<span>th</span>, 2010</time>
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
+
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2010/12/14/liquibase-and-the-maven-plugin/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2010/12/14/liquibase-and-the-maven-plugin/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2010/12/14/liquibase-and-the-maven-plugin/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2010/12/14/liquibase-and-the-maven-plugin/" >Tweet</a>
   
   
   
@@ -231,6 +255,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -243,7 +312,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Migrating from HSQLDB to MySQL - part 1 - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Migrating from HSQLDB to MySQL - part 1 - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="For this development project, we&#8217;ve been developing locally using in memory HSQLDB. The advantages of this are, easy set up out of the box (no &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -106,17 +106,16 @@
 
 <h4>MySQL doesn&#8217;t &#8216;support&#8217; sequences</h4>
 
-
 <p>You get used to sequences when developing with Oracle, hibernate lets you set a primary key as a sequence quite easily</p>
 
-<pre>@Id
+<pre><code>@Id
 @GeneratedValue(strategy = GenerationType.SEQUENCE)
-private Integer id;</pre>
-
+private Integer id;
+</code></pre>
 
 <p>of course, everything works nicely with HSQLDB, however switch to MySQL and it doesn&#8217;t work. Fortunately from Hibernate 3.2.3 onwards, you can set up your own custom generator which will create a sequence table and use that instead, to emulate the behaviour of a sequence. A few magic annotations and off we go. What we do here is fire up the funky SequenceStyleGenerator (that&#8217;s the new bit) telling it to use a table, which we can name if we want, plus I&#8217;ve named the columns and given the sequence a noddy name.</p>
 
-<pre>@Id
+<pre><code>@Id
 @GeneratedValue(generator="SuperDuperSequenceGenerator")
 @GenericGenerator
     name="SuperDuperSequenceGenerator",
@@ -125,35 +124,35 @@ private Integer id;</pre>
 @Parameter(name="force_table_use", value="true"),
 @Parameter(name="value_column", value="value_column"),
 @Parameter(name="sequence_name", value="sequence_name")
-})</pre>
+})
 
 
-<pre>private Integer id;</pre>
 
+
+private Integer id;
+</code></pre>
 
 <h4>Don&#8217;t make assumptions about column lengths</h4>
-
 
 <p>Set up a String property and HSQLDB will happily do that for you, doesn&#8217;t care about length just works. I&#8217;m not advocating this is a good thing, but it is what it does. When you switch to using MySQL, this will default to a column with 255 characters. No problem with that default, but when you&#8217;ve happily chucked more than 255 characters in there, then MySQL will complain.</p>
 
 <p>Simple solution, set the column size</p>
 
-<pre>@Column(length=1000)</pre>
-
+<pre><code>@Column(length=1000)
+</code></pre>
 
 <p>private String aThousandCharacterString;</p>
 
 <h4>Don&#8217;t be a complete monkey spanner and use reserved words for domain objects or properties..</h4>
-
 
 <p>Of course, being experienced developers, we wouldn&#8217;t get caught out with any of those puppies would we?</p>
 
 <p>If we had, we&#8217;d recommend that people watch out for the following if nothing else.</p>
 
 <ul>
-    <li>Calling a domain object Trigger</li>
-    <li>Calling a domain object RoyRodgers</li>
-    <li>Calling a property lines</li>
+<li><p>Calling a domain object Trigger</p></li>
+<li><p>Calling a domain object RoyRodgers</p></li>
+<li><p>Calling a property lines</p></li>
 </ul>
 
 
@@ -161,22 +160,21 @@ private Integer id;</pre>
 
 <p>If you <em>have</em> done the naughty, then all is not lost. You could refactor everything, or simply specificy an explicit table or column name.. i.e.</p>
 
-<pre>@Column(name="LinesToRender")
-private Integer lines;</pre>
-
+<pre><code>@Column(name="LinesToRender")
+private Integer lines;
+</code></pre>
 
 <p>or</p>
 
-<pre>@Entity
+<pre><code>@Entity
 @Table(name="DiversityTrigger")
-public class Trigger</pre>
-
+public class Trigger
+</code></pre>
 
 <h4>Set the correct dialogue property in the hibernate properties</h4>
 
-
-<pre>hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect</pre>
-
+<pre><code>hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+</code></pre>
 </div>
 
 
@@ -185,7 +183,7 @@ public class Trigger</pre>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -207,7 +205,7 @@ public class Trigger</pre>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/" >Tweet</a>
   
   
   
@@ -256,6 +254,51 @@ public class Trigger</pre>
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -268,7 +311,7 @@ public class Trigger</pre>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

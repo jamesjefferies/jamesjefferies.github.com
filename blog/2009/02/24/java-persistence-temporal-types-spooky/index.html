@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Java persistence - temporal types - spooky - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Java persistence - temporal types - spooky - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Should be easy this, but I made an assumption (probably on a Friday afternoon) and it&#8217;s just returned to bite my petite derriere&#8230; javax. &hellip;">
+  <meta name="description" content="Should be easy this, but I made an assumption (probably on a Friday afternoon) and it&#8217;s just returned to bite my petite derriere&#8230; 1
+javax &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +25,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +36,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -92,19 +93,17 @@
 
 <div class="entry-content"><p>Should be easy this, but I made an assumption (probably on a Friday afternoon) and it&#8217;s just returned to bite my petite derriere&#8230;</p>
 
-<pre>javax.persistence.TemporalType</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">javax</span><span class="o">.</span><span class="na">persistence</span><span class="o">.</span><span class="na">TemporalType</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>is an enum which can have three values</p>
 
-<pre>DATE</pre>
-
-
-<pre>TIME</pre>
-
-
-<pre>TIMESTAMP</pre>
-
+<pre><code>DATE
+TIME
+TIMESTAMP
+</code></pre>
 
 <p>the differences being that with Date, you just get the date, no time factor at all.</p>
 
@@ -114,7 +113,7 @@
 
 <p>I don&#8217;t know why, but TemporalTypes make me think of Rentaghost&#8230; odd</p>
 
-<p>http://www.hibernate.org/hib_docs/ejb3-api/javax/persistence/TemporalType.html</p>
+<p><a href="http://www.hibernate.org/hib_docs/ejb3-api/javax/persistence/TemporalType.html">Temporal Type</a></p>
 </div>
 
 
@@ -123,7 +122,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -145,7 +144,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/02/24/java-persistence-temporal-types-spooky/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2009/02/24/java-persistence-temporal-types-spooky/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/02/24/java-persistence-temporal-types-spooky/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2009/02/24/java-persistence-temporal-types-spooky/" >Tweet</a>
   
   
   
@@ -194,6 +193,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -206,7 +250,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

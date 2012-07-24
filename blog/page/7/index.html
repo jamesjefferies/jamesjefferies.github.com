@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="If you&#8217;re using Lucene queries then there are some special characters which do magic things. Of course you might not want any wild card / range &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -97,8 +97,8 @@
 
 <p>Well, you can escape those special characters simply by passing the query through the escape method of the QueryParser.. like so</p>
 
-<pre>searchTerm = QueryParser.escape(searchTerm);</pre>
-
+<pre><code>searchTerm = QueryParser.escape(searchTerm);
+</code></pre>
 
 <p>of course this will nobble any asterixes or similar in there, so if you do want any wildcard stuff going on, add after the escaping.</p>
 </div>
@@ -142,12 +142,12 @@
 
 <p>download maven binary, unarchive it, move to /usr/local do some links</p>
 
-<pre>wget http://www.mirrorservice.org/sites/ftp.apache.org/maven/binaries/apache-maven-2.0.9-bin.tar.bz2
+<pre><code>wget http://www.mirrorservice.org/sites/ftp.apache.org/maven/binaries/apache-maven-2.0.9-bin.tar.bz2
 tar xjvf apache-maven-2.0.9-bin.tar.bz2
 mv apache-maven-2.0.9 /usr/local/
 ln -s /usr/local/apache-maven-2.0.9/ /usr/local/maven
-ln -s /usr/local/maven/bin/mvn /usr/local/bin/</pre>
-
+ln -s /usr/local/maven/bin/mvn /usr/local/bin/
+</code></pre>
 
 <p>I went a bit off piste after that and added the following to /etc/mvnrc rather than chuck them in the mvn shell script</p>
 
@@ -205,17 +205,16 @@ MAVEN_OPTS=&#8221;-Xms256m -Xmx512m&#8221;</p>
 
 <h4>MySQL doesn&#8217;t &#8216;support&#8217; sequences</h4>
 
-
 <p>You get used to sequences when developing with Oracle, hibernate lets you set a primary key as a sequence quite easily</p>
 
-<pre>@Id
+<pre><code>@Id
 @GeneratedValue(strategy = GenerationType.SEQUENCE)
-private Integer id;</pre>
-
+private Integer id;
+</code></pre>
 
 <p>of course, everything works nicely with HSQLDB, however switch to MySQL and it doesn&#8217;t work. Fortunately from Hibernate 3.2.3 onwards, you can set up your own custom generator which will create a sequence table and use that instead, to emulate the behaviour of a sequence. A few magic annotations and off we go. What we do here is fire up the funky SequenceStyleGenerator (that&#8217;s the new bit) telling it to use a table, which we can name if we want, plus I&#8217;ve named the columns and given the sequence a noddy name.</p>
 
-<pre>@Id
+<pre><code>@Id
 @GeneratedValue(generator="SuperDuperSequenceGenerator")
 @GenericGenerator
     name="SuperDuperSequenceGenerator",
@@ -224,35 +223,35 @@ private Integer id;</pre>
 @Parameter(name="force_table_use", value="true"),
 @Parameter(name="value_column", value="value_column"),
 @Parameter(name="sequence_name", value="sequence_name")
-})</pre>
+})
 
 
-<pre>private Integer id;</pre>
 
+
+private Integer id;
+</code></pre>
 
 <h4>Don&#8217;t make assumptions about column lengths</h4>
-
 
 <p>Set up a String property and HSQLDB will happily do that for you, doesn&#8217;t care about length just works. I&#8217;m not advocating this is a good thing, but it is what it does. When you switch to using MySQL, this will default to a column with 255 characters. No problem with that default, but when you&#8217;ve happily chucked more than 255 characters in there, then MySQL will complain.</p>
 
 <p>Simple solution, set the column size</p>
 
-<pre>@Column(length=1000)</pre>
-
+<pre><code>@Column(length=1000)
+</code></pre>
 
 <p>private String aThousandCharacterString;</p>
 
 <h4>Don&#8217;t be a complete monkey spanner and use reserved words for domain objects or properties..</h4>
-
 
 <p>Of course, being experienced developers, we wouldn&#8217;t get caught out with any of those puppies would we?</p>
 
 <p>If we had, we&#8217;d recommend that people watch out for the following if nothing else.</p>
 
 <ul>
-    <li>Calling a domain object Trigger</li>
-    <li>Calling a domain object RoyRodgers</li>
-    <li>Calling a property lines</li>
+<li><p>Calling a domain object Trigger</p></li>
+<li><p>Calling a domain object RoyRodgers</p></li>
+<li><p>Calling a property lines</p></li>
 </ul>
 
 
@@ -260,22 +259,21 @@ private Integer id;</pre>
 
 <p>If you <em>have</em> done the naughty, then all is not lost. You could refactor everything, or simply specificy an explicit table or column name.. i.e.</p>
 
-<pre>@Column(name="LinesToRender")
-private Integer lines;</pre>
-
+<pre><code>@Column(name="LinesToRender")
+private Integer lines;
+</code></pre>
 
 <p>or</p>
 
-<pre>@Entity
+<pre><code>@Entity
 @Table(name="DiversityTrigger")
-public class Trigger</pre>
-
+public class Trigger
+</code></pre>
 
 <h4>Set the correct dialogue property in the hibernate properties</h4>
 
-
-<pre>hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect</pre>
-
+<pre><code>hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+</code></pre>
 </div>
   
   
@@ -315,16 +313,22 @@ public class Trigger</pre>
 
 <p>The setting to switch it on in the configuration is just this (within the other security config):</p>
 
-<pre>      &lt;security:concurrent-session-control max-sessions="1" expired-url="/already-logged-in.faces"/&gt;</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;security:concurrent-session-control</span> <span class="na">max-sessions=</span><span class="s">&quot;1&quot;</span> <span class="na">expired-url=</span><span class="s">&quot;/already-logged-in.faces&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>and as you can see, you can set a url for spring to redirect to if you already have a session somewhere else. The gotcha though seems to be that unless you configure  a listener, it may not know when the session has expired (i.e. if you don&#8217;t log out).</p>
 
 <p>so, in the good old web.xml, add this little puppy to listen out for expired sessions&#8230;</p>
 
-<pre>  &lt;listener&gt;
-      &lt;listener-class&gt;org.springframework.security.ui.session.HttpSessionEventPublisher&lt;/listener-class&gt;
-  &lt;/listener&gt;</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;listener&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;listener-class&gt;</span>org.springframework.security.ui.session.HttpSessionEventPublisher<span class="nt">&lt;/listener-class&gt;</span>
+</span><span class='line'><span class="nt">&lt;/listener&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>hopefully, job is a good &#8216;un</p>
@@ -365,16 +369,16 @@ public class Trigger</pre>
 
   <div class="entry-content"><p>Got caught out with a gotcha last night which I &#8216;solved&#8217; this morning. I hate leaving work with an annoying problem, but I knew I was too tired to get it clear in my head.  So, I was doing a direct update to an object in the database using</p>
 
-<pre>Query query = entityManager.createQuery("Update Foo f set f.value = :value where f.key = :key");
-query.executeUpdate();</pre>
-
+<pre><code>Query query = entityManager.createQuery("Update Foo f set f.value = :value where f.key = :key");
+query.executeUpdate();
+</code></pre>
 
 <p>Which works, the database gets updated. However by doing the update directly the hibernate persistence context is bypassed so although the db is sorted, hibernate is blissfully ignorant of what you&#8217;ve done. Yes, what YOU have done!</p>
 
 <p>So, one way to get around this is to ask hibernate to refresh what it knows about the object using the entity manager (by the way, the entity manager is JPA&#8217;s equivalent of the hibernate session manager).</p>
 
-<pre>entityManager.refresh(theFoo);</pre>
-
+<pre><code>entityManager.refresh(theFoo);
+</code></pre>
 
 <p>Or.. I guess you could retrieve the Foo object, update it and then save it and you wouldn&#8217;t have got in this pickle in the first place&#8230;</p>
 </div>
@@ -454,8 +458,8 @@ query.executeUpdate();</pre>
 
 <p>Instead now, I&#8217;m using HSQLDB for in memory speedy development and then today have been getting local mysql up and running. Of course, it&#8217;s easy to get the db fired up on ubuntu, where I have the block is creating a simple user who can log on to the flippin&#8217; thing. All you mysql veterans out there will be stroking your beard wondering what all the fuss is about. So, to remind my self, here&#8217;s some pimple simple stuff&#8230;</p>
 
-<pre> grant all on DATABASENAME.* to 'NEWUSERNAME'@'localhost' identified by 'NEWPASSWORD';</pre>
-
+<pre><code> grant all on DATABASENAME.* to 'NEWUSERNAME'@'localhost' identified by 'NEWPASSWORD';
+</code></pre>
 
 <p>Yeah, yeah, you could, should do a lot more with this, but for what I want, it just works&#8230;</p>
 </div>
@@ -495,19 +499,17 @@ query.executeUpdate();</pre>
 
   <div class="entry-content"><p>Should be easy this, but I made an assumption (probably on a Friday afternoon) and it&#8217;s just returned to bite my petite derriere&#8230;</p>
 
-<pre>javax.persistence.TemporalType</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">javax</span><span class="o">.</span><span class="na">persistence</span><span class="o">.</span><span class="na">TemporalType</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>is an enum which can have three values</p>
 
-<pre>DATE</pre>
-
-
-<pre>TIME</pre>
-
-
-<pre>TIMESTAMP</pre>
-
+<pre><code>DATE
+TIME
+TIMESTAMP
+</code></pre>
 
 <p>the differences being that with Date, you just get the date, no time factor at all.</p>
 
@@ -517,7 +519,7 @@ query.executeUpdate();</pre>
 
 <p>I don&#8217;t know why, but TemporalTypes make me think of Rentaghost&#8230; odd</p>
 
-<p>http://www.hibernate.org/hib_docs/ejb3-api/javax/persistence/TemporalType.html</p>
+<p><a href="http://www.hibernate.org/hib_docs/ejb3-api/javax/persistence/TemporalType.html">Temporal Type</a></p>
 </div>
   
   
@@ -559,15 +561,15 @@ query.executeUpdate();</pre>
 
 <p>To get source and javadocs simply run</p>
 
-<pre>mvn eclipse:eclipse -DdownloadSources=true  -DdownloadJavadocs=true</pre>
-
+<pre><code>mvn eclipse:eclipse -DdownloadSources=true  -DdownloadJavadocs=true
+</code></pre>
 
 <p>and go and have a cup of tea or a biscuit or both.</p>
 
 <p>You can also run this to get the sources</p>
 
-<pre>mvn -DdownloadSources=true dependency:sources</pre>
-
+<pre><code>mvn -DdownloadSources=true dependency:sources
+</code></pre>
 </div>
   
   
@@ -607,29 +609,29 @@ query.executeUpdate();</pre>
 
 <p>add the following to /etc/apt/sources.list</p>
 
-<pre>deb http://ftp.us.debian.org/debian/ etch main contrib non-free
-deb http://www.backports.org/debian etch-backports main non-free</pre>
-
+<pre><code>deb http://ftp.us.debian.org/debian/ etch main contrib non-free
+deb http://www.backports.org/debian etch-backports main non-free
+</code></pre>
 
 <p>and run</p>
 
-<pre>sudo apt-get update</pre>
-
+<pre><code>sudo apt-get update
+</code></pre>
 
 <p>before running</p>
 
-<pre>sudo apt-get install sun-java6-jdk</pre>
-
+<pre><code>sudo apt-get install sun-java6-jdk
+</code></pre>
 
 <p>now, I had a problem with the default java install (not sure how to tinker with /etc/alternatives yet) so I uninstalled</p>
 
-<pre> sudo apt-get remove sablevm</pre>
-
+<pre><code> sudo apt-get remove sablevm
+</code></pre>
 
 <p>and</p>
 
-<pre> sudo apt-get remove free-java-sdk</pre>
-
+<pre><code> sudo apt-get remove free-java-sdk
+</code></pre>
 
 <p>once I work out /etc/alternatives beyond them just being symbolic links, then that&#8217;ll be not required I guess</p>
 </div>
@@ -678,6 +680,51 @@ deb http://www.backports.org/debian etch-backports main non-free</pre>
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -689,7 +736,7 @@ deb http://www.backports.org/debian etch-backports main non-free</pre>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

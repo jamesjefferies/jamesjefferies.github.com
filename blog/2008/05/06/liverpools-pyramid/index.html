@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Liverpool&#039;s Pyramid - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Liverpool's Pyramid - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="One cold foggy Sunday night in the autumn of 1871, 68-year-old Lionel Harland, a respected Rodney Street doctor, left his surgery and walked up &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Liverpool&#039;s Pyramid</h1>
+      <h1 class="entry-title">Liverpool's Pyramid</h1>
     
     
       <p class="meta">
@@ -143,8 +143,6 @@
 <p>It was his desperate attempt to cheat the Devil out of claiming his soul. As long as McKenzie&#8217;s mortal remains are above ground, Lucifer can&#8217;t claim his soul. But because McKenzie rejected eternal rest with God, he has condemned himself to walk the night as a restless ghost until Judgement Day. </p>
 
 <p>When old Mr Brocklebank was leaving the house in Blackburne Place, Daniel Jackson said to him, &#8220;Sir, did you actually meet - you know who? Mr Madison?&#8221; Before the millionaire walked off into the jade fog, he nodded twice and with a worried look, he replied &#8220;You don&#8217;t think I accumulated my wealth through hard work do you? But I&#8217;ll have the devil to pay when my time comes.&#8221;</p>
-
-<p><img src="http://www.amsterdam-music.com/images/discography/pyramid.jpg" alt="Pyramid outside St. Andrews, Rodney Street" width="273" height="399" align="right" /></p>
 </div>
 
 
@@ -153,7 +151,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -175,7 +173,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2008/05/06/liverpools-pyramid/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2008/05/06/liverpools-pyramid/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2008/05/06/liverpools-pyramid/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2008/05/06/liverpools-pyramid/" >Tweet</a>
   
   
   
@@ -224,6 +222,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -236,7 +279,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

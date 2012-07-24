@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>So I broke the package installer - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>So I broke the package installer - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="Tinkering around with vmware server install meant that I couldn&#8217;t do any apt-get stuff. It kept on trying to remove the half installed debian &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -94,29 +94,41 @@
 
 <p>useful commands</p>
 
-<p>dpkg &#8211;list</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --list
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>gives a list of the packages installed, the ii first bit, is installed stuff, I think the half installed one was hI or something similar, it stood out anyway!</p>
 
 <p>the pre/post scripts were causing a problem. I found them here:</p>
 
-<p>/var/lib/dpkg/info</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/var/lib/dpkg/info
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>and so I nobbled the four of them:</p>
 
-<p>-rwxr-xr-x 1 root root  6772 2008-11-13 10:36 vmware-server.prerm
--rwxr-xr-x 1 root root 30474 2008-11-13 10:36 vmware-server.preinst
--rwxr-xr-x 1 root root  1510 2008-11-13 10:36 vmware-server.postrm
--rwxr-xr-x 1 root root 48652 2008-11-13 10:36 vmware-server.postinst</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>-rwxr-xr-x 1 root root  6772 2008-11-13 10:36 vmware-server.prerm
+</span><span class='line'>-rwxr-xr-x 1 root root 30474 2008-11-13 10:36 vmware-server.preinst
+</span><span class='line'>-rwxr-xr-x 1 root root  1510 2008-11-13 10:36 vmware-server.postrm
+</span><span class='line'>-rwxr-xr-x 1 root root 48652 2008-11-13 10:36 vmware-server.postinst
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>and ran this</p>
 
-<p>sudo dpkg &#8211;purge  vmware-server</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo dpkg --purge  vmware-server
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>hooray!</p>
-
-<p><code>
-</code></p>
 </div>
 
 
@@ -125,7 +137,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -147,7 +159,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2008/11/14/so-i-broke-the-package-installer-2/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2008/11/14/so-i-broke-the-package-installer-2/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2008/11/14/so-i-broke-the-package-installer-2/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2008/11/14/so-i-broke-the-package-installer-2/" >Tweet</a>
   
   
   
@@ -196,6 +208,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -208,7 +265,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Week 1 in Sheffield - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Week 1 in Sheffield - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="We&#8217;re three days in to our residency and time is already flying along. We&#8217;ve spoken to a lot of people, fixed some niggly problems in the &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -96,9 +96,9 @@
 
 <p>Site have a new Technical expert starting at the beginning of May so there is a small backlog of  outstanding techie issues for the organisation. I find it impossible to sit in the office without diving in to help when the printer doesn&#8217;t work or the wi-fi has gone screwy! Hopefully now we&#8217;ve fixed some of the more pressing issues but it is highlighted for me that I have to be careful with my time. We had decided that we would spend three days a week on-site in the office but actually it makes sense to spend a day elsewhere to allow us to focus on bigger tasks without interruption. We&#8217;ll try that next week to see how we go.</p>
 
-<p>Our bigger ideas are still fermenting, but two <a title="Arduino" href="http://arduino.cc/hu/Guide/Introduction">Arduino</a> kits arrived on Friday and as it is about 25 years since I last played with electronics in anger, I&#8217;m excited to see what we end up using them for. I think I had something like this when I was a kid&#8230; you should have heard the stylophone I made!</p>
+<p>Our bigger ideas are still fermenting, but two <a href="http://arduino.cc/hu/Guide/Introduction">Arduino</a> kits arrived on Friday and as it is about 25 years since I last played with electronics in anger, I&#8217;m excited to see what we end up using them for. I think I had something like this when I was a kid&#8230; you should have heard the stylophone I made!</p>
 
-<p><img class="alignnone" src="http://ecx.images-amazon.com/images/I/51jZKCqIj4L._SL500_AA300_.jpg" alt="" /></p>
+<p><img src="http://ecx.images-amazon.com/images/I/51jZKCqIj4L._SL500_AA300_.jpg" alt="" /></p>
 </div>
 
 
@@ -107,7 +107,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -124,12 +124,18 @@
 <time datetime="2012-04-22T16:19:47+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2012</time>
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/happenstance/'>Happenstance</a>, <a class='category' href='/blog/categories/james/'>James</a>, <a class='category' href='/blog/categories/sheffield/'>Sheffield</a>, <a class='category' href='/blog/categories/techie/'>Techie</a>
+  
+</span>
+
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield/" >Tweet</a>
   
   
   
@@ -178,6 +184,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -190,7 +241,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

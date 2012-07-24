@@ -1,16 +1,635 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.github.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-24T11:53:01+01:00</updated>
+  <updated>2012-07-24T17:00:42+01:00</updated>
   <id>http://jamesjefferies.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[James Jefferies]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  Liquid error: incompatible character encodings: ASCII-8BIT and UTF-8
+  
+  <entry>
+    <title type="html"><![CDATA[Downloading the Network Rail Schedules]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules/"/>
+    <updated>2012-07-18T17:43:39+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules</id>
+    <content type="html"><![CDATA[<p>As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon S3. The Schedule feed is an extract of train schedules from the Integration Train Planning System.</p>
+
+<p>When you have your Network Rail account you can subscribe, either to all the data, or to the Train Operators you are interested in. However, at the time of writing, the only feed which works is the one for ALL the data, the Train Operator specific downloads throw an unhelpful error</p>
+
+<blockquote><p>HTTP Status 401 - User not subscribed to CIF_HL_FULL_DAILY</p></blockquote>
+
+<p>Which is a bit rubbish really. So my advice is, at this point to subscribe to ALL the data rather than just for one TOC. You can then access the feeds and download the zip file with either:</p>
+
+<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full</a></p>
+
+<p>for the full feed or, say</p>
+
+<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon</a></p>
+
+<p>for Monday&#8217;s update.</p>
+
+<p>Note that you will need to authenticate if you haven&#8217;t already, using your username and password.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Electrified Spine (and the rest of the news)]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
+    <updated>2012-07-16T15:39:04+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
+    <content type="html"><![CDATA[<p>Today the government has announced a further set of infrastructure investment for the railways. This has to be good news, especially where electrification is concerned. Electric trains are more efficient, cleaner and perform better than their diesel (and steam I suppose!) counterparts. I appreciate that the electricity still has to come from somewhere, but in the main it is the right thing to do.</p>
+
+<h2>Already Announced</h2>
+
+<p>We know that plans to electrify the Great Western Mainline (Paddington to Cardiff, Bristol, Oxford &amp; Newbury), plus the Trans-Pennine route between Manchester &amp; York, Blackpool and Manchester to Liverpool are already underway. These are all good things, but there were some unsatisfactory omissions. The new announcement helps with some of the missing links, but not all of them.</p>
+
+<p>There is a helpful <a href="http://assets.dft.gov.uk/publications/hlos-2012/map-hlos-electrification.pdf">map</a> which shows these routes in glorious technicolour</p>
+
+<h2>New Plans - Midland Mainline</h2>
+
+<p>Hooray, the Midland Mainline, which has been electrified to Bedford for many years is to be electrified to Nottingham and Sheffield (via Derby). For those of us who regularly travel to London from Sheffield we should experience a faster service. Not necessarily more trains though, no extra track is to be laid and unless signalling is replaced, you can&#8217;t fit that many more trains on the track.</p>
+
+<p>As far as I&#8217;m aware, there has been no announcement about rolling stock either, the simple solution for East Midlands Trains (assuming they&#8217;re still running the franchise) will be to get the existing Meridian trains upgraded with an extra coach containing all of the required electrical equipment, plus pantograph for current collection etc. Easier said than done, but a lot cheaper than brand new trains. So it is likely you&#8217;ll still be sitting on the same seat.</p>
+
+<h2>Missed Opportunities - Midland Mainline</h2>
+
+<h3>Erewash Valley</h3>
+
+<p>Why or why isn&#8217;t the Erewash valley route included as part of the plans? This is the line which goes straight on at the junction for Derby and Nottingham, joining up with the Sheffield line between Clay Cross and Chesterfield - it&#8217;s the most direct route to Sheffield and is useful when engineering works close the route via Derby. Very few London bound trains use this route, most are routed via Derby from Sheffield, but electrifying it would be useful for diversions and could give the opportunity for Sheffield, Leicester, London services which don&#8217;t call at Derby, potentially shaving more time off the journey.</p>
+
+<h3>Sheffield to Leeds</h3>
+
+<p>Groan, everybody wants a better service between Leeds and Sheffield, the best being the 45 minute Cross Country packed like a sardine train which goes via Wakefield. Why not electrify that route too so that more London trains can be extended easily to Leeds? Plus get some more electrified suburban stoppers on that route. Derby to Leeds semi-fast?</p>
+
+<h3>Sheffield to Doncaster</h3>
+
+<p>Whilst we&#8217;re at it, how about the link to Doncaster too, providing more opportunities for diversions and commuter services?</p>
+
+<h2>New Plans - Oxford to Corby &amp; Nuneaton</h2>
+
+<p>This wasn&#8217;t on my radar at all, but makes a lot of sense for new cross country routes as well as faster Birmingham to London trains via Oxford. Incorporating the start of the Oxford to Cambridge route (as far as Bedford) makes sense with that re-opening. The potential for new routes, well re-establishing old routes should give that part of the country a much better service.</p>
+
+<h2>New Plans - Reading to Southampton</h2>
+
+<p>Cross country trains mainly use this route at the moment and it is partially already electrified using the Southern standard 3rd Rail system. Over the next&#8230; err.. 50 years (?) the 3rd rail system will be phased out and replaced with the standard 25kv AC overhead system. This is the beginning of that process and also good preparation for Cross Country. Birmingham to Southampton trains will be electric all the way, as might, say Sheffield to Southampton trains, routed via Oxford.</p>
+
+<h2>The Spine</h2>
+
+<p>According to the plan, the Electrified Spine is to be the Southampton to Coventry and Sheffield routes and is a piece of spin. If I had a spine looking like that I&#8217;d be worried! The only new route, as far as I can see is the already announced re-opening of the Oxford to Bedford route, everywhere else is straightforward electrification.</p>
+
+<h2>Summary</h2>
+
+<p>I&#8217;m very happy to see these extra plans announced, but would like to understand more about why some very obvious links and connections have been omitted. What to others think?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Getting started with Network Rail's datafeeds]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
+    <updated>2012-07-04T23:46:41+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/07/04/getting-started-with-network-rails-datafeeds</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I&#8217;m therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it&#8217;s what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
+
+<h2>Where do you start?</h2>
+
+<p>If you are interested in using the datafeeds yourself, you can read all about it on <a href="http://www.networkrail.co.uk/data-feeds/">Network Rail&#8217;s site</a> which also has a link to download the developer&#8217;s guide in PDF format.</p>
+
+<p>First, you need to <a href="https://datafeeds.networkrail.co.uk/ntrod/login">create an account</a> - I believe there are limited numbers of accounts going at the moment, so the sooner you do that, the better.</p>
+
+<p>There are two types of feeds available, pub/sub using the stomp protocol for real-ish time data &amp; downloads of huge files from Amazon S3 for timetables etc.</p>
+
+<p>Once your account is active, you can subscribe to any of the pub/sub datafeeds you like and away you go.</p>
+
+<h2>Receiving Messages</h2>
+
+<p>I decided that I was going to try accessing the pub/sub datafeeds using Ruby (not my usual language) and put my experimental code on to my git hub account. Feel free to <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">have a look and check it out</a>, I&#8217;ll be using it for my initial experiments, so it should get updated beyond this basic example!</p>
+
+<p>I&#8217;ve also included a sample, no error checking, very straightforward listener below. If you wish to try and run it, then you will of course need Ruby and Ruby gems installed, plus the stomp ruby gem.</p>
+
+<p>Then, you just need to ensure your username and password are set as the relevant environment variables and away you go.</p>
+
+<p>All being well, you should slowly receive updates from the topic you have selected. The example below uses Train positioning data for the East Midlands (TD_MC_EM_SIG_AREA) and assumes that you have subscribed to that feed using the <a href="https://datafeeds.networkrail.co.uk/ntrod/myFeeds">network rail control panel</a></p>
+
+<p>The updates you receive from this program are not formatted at all, it&#8217;s just sending the message straight to string. Of course, this is just helping you know you&#8217;re set up correctly. So you would get something like:</p>
+
+<p>[code]</p>
+
+<p>&lt;Stomp::Message headers={&#8220;message-id&#8221;=>&#8221;ID:blahblah&#8221;, &#8220;destination&#8221;=>&#8221;/topic/TD_MC_EM_SIG_AREA&#8221;, &#8220;timestamp&#8221;=>&#8221;1341436026840&#8221;, &#8220;expires&#8221;=>&#8221;1341436326840&#8221;, &#8220;persistent&#8221;=>&#8221;true&#8221;, &#8220;priority&#8221;=>&#8221;4&#8221;} body=&#8217;[{&#8220;CA_MSG&#8221;:{&#8220;to&#8221;:&#8221;1234&#8221;,&#8221;time&#8221;:&#8221;1341435963000&#8221;,&#8221;area_id&#8221;:&#8221;WH&#8221;,&#8221;msg_type&#8221;:&#8221;CA&#8221;,&#8221;from&#8221;:&#8221;5678&#8221;,&#8221;descr&#8221;:&#8221;1Z99&#8221;}}]&#8217; command=&#8217;MESSAGE&#8217; ></p>
+
+<p>[/code]</p>
+
+<p>Ultimately of course, you&#8217;d process the JSON from the body and do something with it.</p>
+
+<h2>Example Ruby Listener</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;stomp&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="c1"># Credentials set here as environment variables</span>
+</span><span class='line'>  <span class="vi">@user</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;DATAFEEDS_USER&quot;</span><span class="o">]</span><span class="p">;</span>
+</span><span class='line'>  <span class="vi">@password</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;DATAFEEDS_PASSWORD&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="vi">@host</span> <span class="o">=</span> <span class="s2">&quot;datafeeds.networkrail.co.uk&quot;</span>
+</span><span class='line'>  <span class="vi">@port</span> <span class="o">=</span> <span class="mi">61618</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Example destination add yours here</span>
+</span><span class='line'>  <span class="vi">@destination</span> <span class="o">=</span> <span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Connecting to datafeeds as </span><span class="si">#{</span><span class="vi">@user</span><span class="si">}</span><span class="s2"> using stomp protocol stomp://</span><span class="si">#{</span><span class="vi">@host</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="vi">@port</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="vi">@connection</span> <span class="o">=</span> <span class="no">Stomp</span><span class="o">::</span><span class="no">Connection</span><span class="o">.</span><span class="n">open</span> <span class="vi">@user</span><span class="p">,</span> <span class="vi">@password</span><span class="p">,</span> <span class="vi">@host</span><span class="p">,</span> <span class="vi">@port</span><span class="p">,</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="vi">@connection</span><span class="o">.</span><span class="n">subscribe</span> <span class="vi">@destination</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="vi">@msg</span> <span class="o">=</span> <span class="vi">@connection</span><span class="o">.</span><span class="n">receive</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="vi">@msg</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="vi">@connection</span><span class="o">.</span><span class="n">disconnect</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 10 - the end of the Happenstance]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/06/22/week-10-the-end-of-the-happenstance/"/>
+    <updated>2012-06-22T18:16:55+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/06/22/week-10-the-end-of-the-happenstance</id>
+    <content type="html"><![CDATA[<p>At our Open House yesterday we had an &#8216;In conversation&#8217; kind of thing with our mentor <a href="http://twitter.com/jamesb">James Boardwell</a> and what we thought would be a chat for 30 minutes or so, ended up being nearer to 2 hours! I knew we could talk about the last 10 weeks of Happenstance, that we had ideas and theories about what happened and why, but I hadn&#8217;t anticipated there being so much to talk about&#8230; in front of an audience!</p>
+
+<p>When I went freelance last summer and set up my company, ShedCode, I was planning on doing some client work and in between, hopefully working on some of my own ideas to see what would happen. In the end I did 99% client work and was planning, at some point, to pause and work on my stuff.</p>
+
+<p>That&#8217;s when Happenstance came along and it is fair to say that I thought at the beginning that Happenstance may have been a pleasant and interesting detour for my career as a Software Engineer/Developer and Techie. Instead of returning back to the path I was treading before Happenstance, I&#8217;ve finished the project on what feels like a completely different path, going who knows where!</p>
+
+<p>Helping an arts organisation learn new things, to be inspiring and to fix stuff is what I thought would happen. We did some of that, but also I learnt what a Technologist could be, that we could make things, real things with lives of their own which will live on after the project has finished. I&#8217;ve met new people, made friends and found out about interesting things. An interest in electronics has been rekindled, thanks to arduinos and I&#8217;ve started to pick up some Ruby and a bit of Rails. Speaking at Future Everything, TedX Sheffield and at the Open Houses has given me some confidence in public speaking.</p>
+
+<p>People have been so encouraging! Thanks to all who have had kind words to say, shared their knowledge, wisdom, contacts, experience, advice, tea and biscuits. Thanks too to those at <a href="http://sitegallery.org">Site</a> who have been incredibly open, helpful and friendly during the project, I&#8217;ve really appreciated it. Special thanks of course go to my co-resident, <a href="http://finalbullet.com">Leila</a>, who has put up with some of my more, er, random ideas, given me confidence to do stuff, been a great sounding board, co-speaker and partner in crime. She&#8217;s been so generous to me and I think we&#8217;ve been a great team (even if I say so myself!). I hope we can work together on more stuff soon!</p>
+
+<p>I wrote a couple of blog posts about what to do next, both for me in <a href="http://jamesjefferies.com/2012/05/31/whatever-next/">general</a> and <a href="http://jamesjefferies.com/2012/06/15/whatever-next-the-technical-stuff/">technically</a> and really it&#8217;s a work in progress. We&#8217;ve got debrief next week, then I&#8217;m on holiday for a couple of weeks. I think I really need a break, but I don&#8217;t want to lose the momentum I&#8217;ve built up during Happenstance. So, those who&#8217;ve become my friends over the last 10 weeks and those who&#8217;ve known me for ages, don&#8217;t let me slip in to old habits and ways &amp; please bear with me as I bounce ideas around like fleas on space hoppers. I hope that life post-Happenstance is going to get even more interesting!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Whatever next - the technical stuff]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/06/15/whatever-next-the-technical-stuff/"/>
+    <updated>2012-06-15T12:51:02+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/06/15/whatever-next-the-technical-stuff</id>
+    <content type="html"><![CDATA[<p>In recent years my main programming language has been Java, sprinkled with a bit of the usual korn/zsh scrips, SQL, HTML, JavaScript and other gubbins. The world of Java is rich with libraries, web frameworks, platforms and alternate languages. I&#8217;ve invested a lot of time in this ecosystem, knowing which tools are useful for which problems, gained expertise in various web frameworks, development environments and platforms, generally to be as productive as I&#8217;ve ever been.</p>
+
+<p>For the last couple of years though, I&#8217;ve been pondering whether to stick with what I know, or to spend time learning some new stuff. It is fair to say that I&#8217;m not a natural polyglot. I like to spend decent time getting to know a language and it&#8217;s ecosystem and I find it can be tricky switching.</p>
+
+<h3>Grails &amp; Groovy</h3>
+
+<p>At first I spent a bit of time, starting to get to know <a href="http://grails.org">Grails</a>, basically using <a href="http://groovy.codehaus.org/">Groovy</a> on the JVM (Java Virtual Machine) to build a Rails like web framework. The rest of the Grails stack is also stuff which I know very well, Spring, Hibernate etc. There is a lot I like about Grails and I&#8217;ve yet to investigate all this is new in the latest 2.0 release.</p>
+
+<p>So, there you go, something I&#8217;d like, building upon a lot which I already know. Should be the favourite right?</p>
+
+<h3>Scala &amp; Play/Lift</h3>
+
+<p>Well, I then started thinking a bit about <a href="http://www.scala-lang.org/">Scala</a>, a language which polarises opinion, especially amongst the Java community. It is either the &#8216;new&#8217; Java or it is a hodge podge of static typed semi functional programming. People complain about it&#8217;s complexity or love how doing things in a more functional fashion reduces code and maintenance and gets it all set up for multi-core CPUs. If I was planning on doing more &#8216;corporate&#8217; work, working on huge projects in London or building a twitter competitor then it&#8217;d make sense for me to have a good look at Scala.</p>
+
+<p>But I&#8217;m not, maybe ShedCode will work on an idea which will one day be huge, I think I&#8217;ll worry about that another time!</p>
+
+<h3>Clojure</h3>
+
+<p>I&#8217;d also like to learn <a href="http://clojure.org/">Clojure</a>, mainly because I think it will be good for my programming skills and good for my brain.</p>
+
+<h3>Rails &amp; Ruby</h3>
+
+<p>Then, working on <a href="http://happenstanceproject.com">Happenstance</a> has made me think again&#8230;</p>
+
+<p>In early 2008 I was going to investigate <a href="http://rubyonrails.org/">Rails</a> &amp; Ruby, one because I liked the fact it was called Rails, but then also because it seemed to be gaining a lot of momentum and interest and it was &#8216;cool&#8217;. In the end I got a job doing java, so I put it on the back burner. I also started to realise that, as is often the case where things are a bit &#8216;cool&#8217; there were quite a few.. ahem.. nobbers around who not only believed that Rails was THE framework to use but that using anything else was such a POOR substitute. I have to be honest, it did my nut. I did meet a few people who seemed ok, but the majority, I didn&#8217;t really get on with.</p>
+
+<p>Now I find that a lot of the R&amp;D web apps I&#8217;m interested in, have been built with Rails. I&#8217;ve also met some more Rails devs who are not nobbers, in fact, they are interesting, helpful, open minded people. I&#8217;d like to work with some of them, I&#8217;d like to build things on top of the work they&#8217;ve done. I&#8217;d like to explore the Rails ecosystem which has inspired so much in other languages (like Grails for example).</p>
+
+<h3>Client Side</h3>
+
+<p>Even though over the last few weeks, I&#8217;ve been thinking more about whether the classic server side MVC web framework is what I should be looking at all. There is a significant trend for using client side JavaScript frameworks for doing a lot of the hardwork in the browser, whilst having a more simple RESTful service/API set up on the server. Examples would be <a href="http://documentcloud.github.com/backbone/">Backbone.js</a>, <a href="http://emberjs.com/">Ember.js</a>, <a href="http://knockoutjs.com/">Knockout.js</a> etc. This somehow feels like a good idea, but I&#8217;m not great with JavaScript and I&#8217;m not sure this is what I want to do just yet. Obviously improving my JavaScript knowledge would be useful regardless!</p>
+
+<h3>Crossroads</h3>
+
+<p>So, I find myself at a crossroads. I&#8217;ll spend some time with Clojure, regardless of what else I do, but I&#8217;ve got some interesting projects to start in the next month or so and I need to decide whether I:</p>
+
+<ol>
+<li><p>Learn Rails and see what happens&#8230;</p></li>
+<li><p>Go with what I know a bit and build something with Grails. I know the tools, I know the libraries and I know it works (mainly)</p></li>
+<li><p>Client side JavaScript stuff</p></li>
+<li><p>Go with Scala, build on top of the Java I know and become have decent with functional languages</p></li>
+</ol>
+
+
+<p>At the moment, these are in my preferred order, but I&#8217;ll let you know what happens&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 7, 8 & 9 - summary]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/06/08/week-7-8-9-summary/"/>
+    <updated>2012-06-08T15:14:32+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/06/08/week-7-8-9-summary</id>
+    <content type="html"><![CDATA[<p>Oh dear, what happened to week 7, 8 blog posts (I hear you ask)?</p>
+
+<p>Good question. Here&#8217;s a little re-cap of what you missed (thanks <a href="http://offbott.com/">offbott</a> for the reminders!)</p>
+
+<h3>Week 7</h3>
+
+<p>This week was mainly taken up with:</p>
+
+<ul>
+<li><p>creating a test version of the site gallery website, so that we could have a good tinker with the layout</p></li>
+<li><p>investigating the building&#8217;s network wiring and working out how we could get the office in to a better shape</p></li>
+<li><p>an official rehearsal for our TedX Sheffield talk</p></li>
+</ul>
+
+
+<h3>Week 8 - the broken back week</h3>
+
+<p>I really kernackered my back on Wednesday morning, which meant that I ended up working a bit on .. ahem.. Cathy &amp; Heathcliff&#8217;s back ends from home. Thursday was a bit better and we came up with the idea of building a &#8216;who&#8217;s in the house&#8217; lighting board. Leila has been doing lots of soldering. Our IP camera arrived on Friday and we had it looking around the office with it&#8217;s spooky eye.</p>
+
+<h3>Week 9 - the TedX and Sheffield Doc/Fest Week</h3>
+
+<p>Tuesday was Sheffield TedX and we were invited to do a 10 minute talk as part of the whole shebang. We managed to get Heathcliff working by borrowing a MacMini from Site, getting it to pick up the Wi-fi in the Crucible (yes, THAT crucible in Sheffield) and share it&#8217;s ethernet connection. Attendees could then send SMS to Heathcliff and up in the refreshment area, he&#8217;s print out their messages.</p>
+
+<p>We weren&#8217;t in the main part of the Crucible, but the Crucible studio which has room for about 270 people. I will confess and say that I felt the pressure for this one. Speaking in front of 270 people is one thing, being filmed ready for the TedX channel on YouTube is something else again!</p>
+
+<p>I think we did ok and people had nice things to say about us. Hurrah! The other speakers were, in the main, fantastic! Inspiring stuff.</p>
+
+<p>Then, Wednesday was the <a href="http://www.xolabs.co.uk/2011/11/01/xo-summit-expo-2012/">XO Summit</a> as part of Doc/Fest, which I managed to&#8230; errr, attend. Bumped in to and had a chat with the Right Honourable Honor Harger and caught up with some people I&#8217;d met the day before.</p>
+
+<p>Thursday was more Cathy &amp; Heathcliff re-writing. Getting rid of the awful PHP which we&#8217;d used initially and the gmail to ifttt to twitter thing and replacing it with a bit of Ruby and Sinatra which I got running on Heroku (was it any co-incidence that Heroku had a major outage overnight afterwards? I hope so!)</p>
+
+<p>Then today.. blogging ahoy!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Whatever next?]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/31/whatever-next/"/>
+    <updated>2012-05-31T23:34:05+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/05/31/whatever-next</id>
+    <content type="html"><![CDATA[<h3>Then</h3>
+
+<p>This time last year I was in despair, I wasn’t enjoying my job and it was getting me down. Up to that point I’d spent 6 years writing software for Barclays, 5 years writing software for npower/Yorkshire Electricity, 3 years writing software for the digital agency Technophobia. I could feel myself getting stale and much as I enjoyed working with a lot of my colleagues, it felt to me like I needed a bit of a change.</p>
+
+<p>During August 2011, I left <a href="http://www.technophobia.com">Technophobia</a> and set up my own limited company ShedCode without much of an idea what to do next! Fortunately I was able to get off with a cracking start; I was able to share an office above the <a href="http://www.sitegallery.org">Site Gallery</a> in Sheffield City Centre with 3 good friends and then I was able to do some standard contracting work, 4 days a week to get some funds in the coffers.</p>
+
+<p>Having an office was key to me going freelance, I didn’t really want to work from home, too many distractions, but sharing a small office with people I like and can trust was ideal. Being at tenant at Site also meant that I started to meet people in the building, both staff &amp; other tenants. It’s a great place to work &amp; it’s also where I first heard about the <a href="http://happenstanceproject.com">Happenstance Project.</a> In a nutshell, the project is a 10 week residency for technologists in Arts Organisations of which Site was to be one of them.</p>
+
+<h2>Happenstance</h2>
+
+<p>After umming and ahhing a bit about applying, I decided to go for it, the weekend before the deadline. The actual application process was really useful for me, helping me to work out some ideas about what I wanted to do next, with my career and ShedCode. To cut a long story short, I managed to get a place as one of the residents and at the point of writing this, we’re 7 weeks into the 10 weeks.</p>
+
+<p>Time really flies when you’re having fun and learning new things and so far that sums the residency up nicely. We’ve built thermal printing sentient characters from Wuthering Heights which are mobile, tweet and respond to SMS text messages. An incredible polargraph drawing machine as well as fixing lots of technical things for the Site organisation itself. You can read more about what we’ve been up to on the <a href="http://happenstanceproject.com/blog">happenstance project blog</a> and our <a href="http://happenstancesheffield.tumblr.com/">tumblr </a>site.</p>
+
+<p>I’ve hankered after Research &amp; Development time for years and getting the odd day here or there hasn’t been enough. This residency though has been a mixture of R&amp;D and practical help for the organisation and it has seriously got me thinking. It’s one thing to have an idea, it’s something else though to have the time to actually try and get it to work. There have been nights after working on happenstance when I have not been able to sleep as my brain has been working overtime trying to solve problems&#8230; I feel a bit more alive!</p>
+
+<p>The question now though for me, is</p>
+
+<h2>Whatever next?</h2>
+
+<p>I’m pretty good, if I can blow my own trumpet for a minute, at technical problem solving. From laser printers, to wireless networks, to security, to domains, even WordPress. As a problem solver and nosy chuffer, you don’t spend 17 years working without picking up some knowledge of what your colleagues do!</p>
+
+<p>I’ve spent most of my time though writing and designing software. I’m not the best software engineer in the world, in fact there’s a lot of my code out there which other people now have to support for which I apologise most sincerely, but I’m not a bad all rounder.</p>
+
+<p>Once Happenstance finishes, at the end of June, I’d like to take some time to work on some of my own projects. I’ve got two railway related products I’d like to build, plus a project for school kids and then at least one other one which is coming together.</p>
+
+<p>Since being a Technologist in Residence though, it’s given me the hunger to get involved in other things too. It’s been a real privilege working with my fellow resident <a href="http://finalbullet.com">Leila Johnston</a>, she is a great writer, inventor and organiser of exciting events and has an incredible network of interesting people who do really interesting things.</p>
+
+<p>And as I wrote that sentence above, it’s when I thought, hang on, that’s what I’m after. I think I WANT TO BE AN INTERESTING PERSON! So that people can say, &#8220;Hey, you know who you should get in to do such and such, you could do a lot worse than hire that friendly freelancer James Jefferies!&#8221;</p>
+
+<h3></h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 6 – Polargraph working, mobile printers and Open House]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house/"/>
+    <updated>2012-05-31T23:08:12+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house</id>
+    <content type="html"><![CDATA[<p>Leila has done a top job of writing up about the Open House we held at Site Gallery on Friday. We had a great time talking about Happenstance so far to a full house (well cafe anyway).</p>
+
+<p><a href="http://jamesjefferies.com/?attachment_id=551"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/settingupopenhouse-620x465.jpg" alt="" /></a></p>
+
+<p>Having the Polargraph finally up and running on the correct voltage was great and a fantastic drawing of Lord Jarvis of Cocker appeared as the event went on.</p>
+
+<p>We also had Heathcliff Printer working (although he did conk out at one point for some unexplained reason) and Leila got her Kinnect set up doing some Minority Report style magic.</p>
+
+<p>One of our conductive <a href="http://www.bareconductive.com/paper-houses">paint houses</a> was there too, but it was too dark really to see it in action. Winter time for those I think.</p>
+
+<p>We had a little Q&amp;A after our talk and one of the questions really got me thinking about being a creative software engineer - what does that mean in practice and how can we encourage techies to embrace their creativity, smashing through the constraints of institutional methodologies. Sounds like that might be a future blog post!</p>
+
+<p>A lot of cake was eaten and a good time was had by all. Thanks to all who helped and all who came along!</p>
+
+<p><a href="http://jamesjefferies.com/?attachment_id=552"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/openhouseeatingcake-620x465.jpg" alt="" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 5 – a bit of a blur]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/31/week-5-a-bit-of-a-blur/"/>
+    <updated>2012-05-31T23:07:02+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/05/31/week-5-a-bit-of-a-blur</id>
+    <content type="html"><![CDATA[<p>The final week of Sprint 1 was all a bit of a blur. As we had the Future Everything conference on the Friday, my thoughts were on the presentation.</p>
+
+<p>We also did some work on our <a href="http://polargraph.co.uk">Polargraph</a> which was not behaving very well at all. This was disappointing as we&#8217;d hope to get it working before Future Everything. What was cool though, was that we saw some Polargraphs in action at the conference, Stuart Childs and Matt Venn had their super machines in action. Matt is doing stuff with <a href="http://www.mattvenn.net/2011/09/19/polargraph-energy-monitoring/">Energy Monitoring</a></p>
+
+<p>The Manchester Museum of Science and Industry is a great place, I especially enjoyed looking at the big steam engines and railway engines in the Power Hall. Took my mind of our talk which went OK! It was fun to see Linda and Natalia our fellow residents from Bristol and Brighton galleries respectively.</p>
+
+<p>.. and relax! (Chris the researcher, me and Natalia looking interested.. I think!)</p>
+
+<p><a href="http://jamesjefferies.com/?attachment_id=520"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/inthepub-620x465.jpg" alt="" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 4 - stutter stutter]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/11/week-4-stutter-stutter/"/>
+    <updated>2012-05-11T16:03:50+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/05/11/week-4-stutter-stutter</id>
+    <content type="html"><![CDATA[<p>This week has been a bit wonky.</p>
+
+<p><strong>Saturday</strong> was a triumph, getting Cathy and Heathcliff doing something useful as part of Bill Drummond&#8217;s sixth form workshop. It certainly warmed the cockles &amp; Leila has written some more about it on her post.</p>
+
+<p><strong>Tuesday</strong> was a day where we were part of Site&#8217;s Brand Innovation task force, looking at Site&#8217;s &#8216;Brand Promise&#8217;. This was jam packed and a bit of a brain strain, but we made a contribution and as we were observed by our illustrious researcher, we hopefully gave him something to write about!</p>
+
+<p><strong>Wednesday</strong> went a bit wonky as my daughter was poorly meaning the day was very broken up. I started having a look at Ruby, the programming language whilst thinking about how we could get Cathy &amp; Heathcliff to interact a bit more with Twitter.</p>
+
+<p><strong>Thursday</strong> was the day of working out how to get Cathy and Heathcliff mobile. A frustrating day as the components and bits and bobs we bought didn&#8217;t work or wouldn&#8217;t work how we wanted them to. We ended the day though with a 3G dongle and an ethernet to USB connector which hopefully means that if we can take a Mac, a dongle, a lead, a printer &amp; some sort of power supply then we can take them anywhere where there is a mobile signal and they&#8217;ll work.</p>
+
+<p>We also spent a fair bit of time thinking about our contribution to <a href="http://futureeverything.org/">Future Everything</a> which is next week, meep!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 3 - Cathy & Heathcliff's amazing adventures]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/"/>
+    <updated>2012-05-04T18:18:34+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures</id>
+    <content type="html"><![CDATA[<p>This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site office to get our heads down.</p>
+
+<p>The first challenge was to allow 6th Formers to send messages to Cathy &amp; Heathcliff. At first we thought of hooking them up directly to twitter accounts, but as Leila had a <a href="http://twilio.com">Twilio</a> account, it meant that we could do something clever with SMS Text messages. With a bit of PHP magic on an intermediary server (timescales demanded a quick turnaround!) we managed to get the SMS messages sent to the two printers. Hooray!</p>
+
+<p>The next step was to bypass the button on the Arduino device which you had to push each time a message arrived. We edited the C code and uploaded the new code to the devices so that instead of waiting for the button to be pushed, the green light flashed and it printed without intervention. Hooray x 2!</p>
+
+<p>Finally, we wanted to get the messages sent to Cathy and Heathcliff&#8217;s twitter accounts - @CathyPrinter @HeathcliffPrinter - initially we looked a using the PHP OAuth libraries to authenticate and send the message to twitter, but as neither of us are particularly adept at PHP, we decided on a different solution. Using <a href="http://ifttt.com">If This Then That</a> and some server side magic, we send an email from the server, via their gmail accounts to If This Then That, which then passes them on to their twitter accounts.. Hooray x 3!</p>
+
+<p>You can see us setting them up on our <a href="http://happenstancesheffield.tumblr.com">tumblr site</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 2 - how do you do]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/04/27/week-2-how-do-you-do/"/>
+    <updated>2012-04-27T18:18:59+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/04/27/week-2-how-do-you-do</id>
+    <content type="html"><![CDATA[<p>This week has all been about pairs of trousers. It has rained a lot and usually when you are equidistant from where you are going and where you want to go, the heavens open and you get absolutely soaked. I&#8217;ve been through three pairs of trousers and counting.</p>
+
+<p><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/04/rain-620x620.jpg" alt="rain" /></p>
+
+<p>So trousers.. and marketing/branding innovation labs, meeting with yet more interesting people, fixing the internet and eating flapjack.</p>
+
+<p>To distract us from the weather and all these other things we&#8217;ve had the excitement of two receipt printers which we are bringing to life. The illustrious <a href="http://twitter.com/lazyatom">James Adam</a> has written a fantastic <a href="http://gofreerange.com/hello-printer">article</a> about how to build internet enabled receipt printers. My advice would be to go away and read that, when you&#8217;re done, come back here!</p>
+
+<p>So we have been guinea pigs, taking delivery of two printers complete with special <a href="http://www.arduino.cc/">arduino</a> kits, leads and other <a href="http://uncyclopedia.wikia.com/wiki/Gubbins">gubbins</a>. Of course, all we needed to do was plug them in (following the instructions) and BOOM! The little printers would burst in to life&#8230;.</p>
+
+<p><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/04/heathcliff12-463x620.jpg" alt="" /></p>
+
+<p>&#8230; except they did not :(</p>
+
+<p>The little light flashed to say that it was talking to the internet, but the internet didn&#8217;t want to speak back. This was a blow, was it the printer, was it the lead, was it the network, was it the circuitry, was it the &#8216;sketch&#8217; (the arduino program)? So we put on our best Worzel Gummidge problem solving heads and got to work. We broke in to the server room and tried a direct connection (rather than through all the office switches and routers), fired up skype and waved the laptop in the direction of the kit whilst the illustrious one watched from afar. No joy.</p>
+
+<p>We knew that one of the other tenants in the building used a different internet connection, so we took one of the printers up there and plugged it in. It burst into life and the backlog of messages we&#8217;d sent it arrived in a semi-orderly fashion, hurrah! We knew the printer, leads and circuitry worked, but why didn&#8217;t it work on the other network?</p>
+
+<p>The next day the magic serial-USB debugging lead arrived and it was time to download the Arduino app and work out what on earth was happening. Once hooked up, the little bundle of electronic joy started telling us debug messages from the sketch.. which was nice, but it still didn&#8217;t work. Time for some coding I thought.</p>
+
+<p>I don&#8217;t think you can actually see what code is being run on the device as it is compiled in to assembler, so all I could do was add some further debugging information and upload it. I had some theories about the network too, what would happen if I put in the explicit IP address? Tweaked the URL it was using? Nothing, still didn&#8217;t work. At this point I thought we may was well upload the <a href="https://github.com/freerange/printer/blob/master/printer.ino">original sketch</a> with the relevant bits tweeted&#8230;</p>
+
+<p>AND IT ONLY WENT AND WORKED!</p>
+
+<p>Heathcliff lives&#8230;</p>
+
+<p><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/04/heathcliff31-620x620.jpg" alt="Heathcliff Lives" /></p>
+
+<p>and after lunch, we got Cathy working too!</p>
+
+<p>Next week we&#8217;ll send them off to Wuthering Heights and see what happens..</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 1 in Sheffield]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield/"/>
+    <updated>2012-04-22T16:19:47+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield</id>
+    <content type="html"><![CDATA[<p>We&#8217;re three days in to our residency and time is already flying along. We&#8217;ve spoken to a lot of people, fixed some niggly problems in the office and had some ideas which I&#8217;m sure any Technologist in Residence would be proud of!</p>
+
+<p>Our esteemed directors at Site have been storing up interesting people for us to talk to which has been great. It&#8217;s striking how we&#8217;ve met people who are passionate, not only about what they do, but about the greater tech community in Sheffield, Sheffield itself, Yorkshire and the North! This resonates with me as a Yorkshirebod and as someone who would like to see the economic balance tip in our direction.</p>
+
+<p>Site have a new Technical expert starting at the beginning of May so there is a small backlog of  outstanding techie issues for the organisation. I find it impossible to sit in the office without diving in to help when the printer doesn&#8217;t work or the wi-fi has gone screwy! Hopefully now we&#8217;ve fixed some of the more pressing issues but it is highlighted for me that I have to be careful with my time. We had decided that we would spend three days a week on-site in the office but actually it makes sense to spend a day elsewhere to allow us to focus on bigger tasks without interruption. We&#8217;ll try that next week to see how we go.</p>
+
+<p>Our bigger ideas are still fermenting, but two <a href="http://arduino.cc/hu/Guide/Introduction">Arduino</a> kits arrived on Friday and as it is about 25 years since I last played with electronics in anger, I&#8217;m excited to see what we end up using them for. I think I had something like this when I was a kid&#8230; you should have heard the stylophone I made!</p>
+
+<p><img src="http://ecx.images-amazon.com/images/I/51jZKCqIj4L._SL500_AA300_.jpg" alt="" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Something inspiring.. For Sheffield!]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/04/17/something-inspiring-for-sheffield/"/>
+    <updated>2012-04-17T17:54:52+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/04/17/something-inspiring-for-sheffield</id>
+    <content type="html"><![CDATA[<p>Sheffield is the city of Seven Hills, George Orwell wrote in &#8216;Road to Wigan Pier&#8217;</p>
+
+<blockquote><p>&#8220;The town is very hilly (said to be built on seven hills, like Rome) and everywhere streets of mean little houses blackened by smoke run up at sharp angles, paved with cobbles which are purposely set unevenly to give horses etc, a grip&#8221;</p></blockquote>
+
+<p>We don&#8217;t have many horses heading up and down hills any more, nor are our houses mean, but it does feel like we are missing a bit of a trick. The city centre has its ups and downs, steps, ramps and in one particular office block, a slide..</p>
+
+<p>http://www.youtube.com/watch?v=twA_mVMgMY8</p>
+
+<p>So if an office building can have that, how about a slide in some other parts of the city. At this point I should fire up a photo editing app with a picture of the site in the city and overlay an amazing &#8216;artist&#8217;s impression&#8217; of a slide. Maybe I&#8217;ll do that another time. For now though, here is an example of some outdoor thinking in the Netherlands at an entrance to a railway station in Utrecht</p>
+
+<p>http://www.youtube.com/watch?v=d1uurSegIH4</p>
+
+<p>This is what we want, some super duper slides installed, imagine what an economic edge it would give to Sheffield!</p>
+
+<p>In the mean time, until we do get more slides, here is one way of getting down an escalator in a hurry&#8230;</p>
+
+<p>http://www.youtube.com/watch?v=fFqQOlYE4EE</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[First-ish impressions - Site Gallery]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/04/01/first-ish-impressions-site-gallery/"/>
+    <updated>2012-04-01T18:51:55+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/04/01/first-ish-impressions-site-gallery</id>
+    <content type="html"><![CDATA[<p>Last summer, when I set up my own company, ShedCode, I was fortunate to be able share an office with 3 friends, all of whom I&#8217;d worked with before. We were able to get an office on the top floor of the Site Gallery building, so my relationship with Site was already established on a different footing, that of a happy tenant.</p>
+
+<p>That is not to say that I had any real idea what happened in the building! Sure, there was a cafe and a shop, but I was not that familiar with the rest of the space, the actual gallery. I&#8217;d have a look at each new exhibition, but it was usually a quick zoom around whilst waiting for a coffee.</p>
+
+<p>Fast forward to this week, Tuesday 27th March 2012, when the Happenstance induction began and ignorance would no longer be an excuse! Leila (my co-technologist-in-residence) &amp; I spent a couple of days finding out much more about our place of work for the 10 weeks. We had many chats with the two directors, Laura Sillars and Judith Harry, sat in a staff meeting, had a tour around the secret rooms of the gallery, unearthed old AV kit, basked in the sun on one of the balconies, met our amazing mentor, James Boardwell, met our friendly researcher, Chris Bilton, went to our fantastic local pub, The Rutland Arms and visited some of the art spaces within a 10 minute walk of the Site.</p>
+
+<p>Now we have a much better idea of where Site Gallery sits in relation to the city of Sheffield, the UK and Internationally. The gallery is located a few minutes from the Railway Station, in the middle of a real creative area of the city. Apparently there are over 300 studio spaces within 10 minutes walk! We were fortunate to be able to have a sneak peak in some of these places, Yorkshire Art Space, Access Space, the Archipelago Works, Bloc and S1 Artspace. Many of these buildings I would walk past each day on the way to work, without realising that behind the walls, doors and windows, incredible things were taking place.</p>
+
+<p>As for Happenstance, well, I&#8217;m looking forward to working with Leila, we have different, yet hopefully, complementary skill sets and I feel I have a lot to learn from her. We&#8217;ve discussed some of the challenges that appeal to problem solving techies and we have a few ideas which we&#8217;ll be looking to explore further when we start officially after Easter. The Gallery itself has recently been going through a period of organisational and strategic change. Laura and Judith have been able to look, with fresh eyes, at the potential for growth of the organisation and it&#8217;s role as a connector within the city. I hope we can help!</p>
+
+<p>The first <em>real</em> impression I remember being able to do was Windy Miller from Camberwick Green. Well actually, it was Windy Miller&#8217;s windmill, but you know what I mean&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Happenstance Project - Technologist In Residence]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/03/11/happenstance-project-technologist-in-residence/"/>
+    <updated>2012-03-11T18:24:14+00:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/03/11/happenstance-project-technologist-in-residence</id>
+    <content type="html"><![CDATA[<p>I&#8217;m really chuffed to say that I&#8217;ve been successful in applying for a residency with the <a href="http://happenstanceproject.com">Happenstance Project</a>. When I first heard about it, I thought it sounded interesting but, I didn&#8217;t consider my chances of getting a place were very high.</p>
+
+<p>Filling in the application form was a great way to help me think through what I could offer and also helped me to realise that it was exactly the sort of thing I should try with my new found freelance freedom. So, some time later, I submitted the form to see what would happen. In all I think 60 odd people applied, so I was excited to find that I&#8217;d been invited to the sandpit day at <a href="http://www.nesta.org.uk/">NESTA</a> (The National Endowment for Science, Technology and the Arts) for a selection workshop and interview.</p>
+
+<p>The day came and I zipped down to the big smoke on the train. Candidates were seen 6 at a time and my group including some strong candidates, including <a href="http://finalbullet.com">Leila Johnston</a> who will be my partner in crime for the project up at <a href="http://sitegallery.org">Site Gallery</a> in sunny Sheffield.</p>
+
+<p>After all that, I was offered a place, hurrah!</p>
+
+<p>So you may ask what I&#8217;ll be doing - well, that&#8217;s a very good question. From the project site:</p>
+
+<blockquote><p>As a resident, you will be expected to:</p>
+
+<h3>Complete Two Projects</h3>
+
+<p><em>The main body of the residencies will be split into two short five-week sprints. Each resident, or pair of residents, will complete one small project or one prototype in each sprint. The first project will be based upon the idea that you submit in your application, which will be further refined during the Sandpit Day in February; the second will be based upon your observations while resident in the organisation.</em></p>
+
+<h3>Share Your Work</h3>
+
+<p><em>You will be asked to document your work on a weekly basis, via a project blog, and also participate in three ‘Open House’ events, where you will have the opportunity to present your work, talk through your process and discuss any wider themes or implications. During the residencies, you will have the opportunity to work with both a mentor and a project manager.</em></p></blockquote>
+
+<p>My fellow Technologist In Residence, Leila, has written a good blog post about the kind of stuff we may end up doing. <a href="http://finalbullet.com/2012/03/10/im-going-to-sheffield/">Deffo worth a read</a>!</p>
+
+<p>I&#8217;ll hopefully blog and tweet as I go with the project, as well as the official blog posts which will be part of my &#8216;write up&#8217; - not sure where that will be yet!</p>
+
+<p>Hurrah!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Running Eclipse under the Unity interface]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface/"/>
+    <updated>2011-09-09T10:00:36+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface</id>
+    <content type="html"><![CDATA[<p>Unity eh? Love it or hate it the version in Ubuntu 11.04 seems not quite complete. Also other applications sometimes will not play nicely.</p>
+
+<p>Eclipse is one of them, your menu items can go walk about. I found this <a href="http://blog.matto1990.com/2011/04/using-eclipse-under-ubuntu-11-04-natty/">blog post</a> which has a helpful hint. Unsetting UBUNTU_MENUPROXY for the application does the trick</p>
+
+<pre><code>#!/bin/bash
+unset UBUNTU_MENUPROXY
+path/to/eclipse/here
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Disabling liquibase when running unit tests]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2011/08/25/disabling-liquibase-when-running-unit-tests/"/>
+    <updated>2011-08-25T10:33:44+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2011/08/25/disabling-liquibase-when-running-unit-tests</id>
+    <content type="html"><![CDATA[<p>If you&#8217;re running Liquibase, configured by Spring (or whatever) and you don&#8217;t want it to run it&#8217;s checks when running unit tests, you can disable it from running by setting a system property.</p>
+
+<p>Whilst running a single unit test class many times, you might want to add a system set property call before any of the tests are run. Hence:</p>
+
+<pre><code> @BeforeClass
+    public static void switchOffLiquibase() {
+        System.setProperty(Liquibase.SHOULD_RUN_SYSTEM_PROPERTY, "false");
+    }
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Flickr and the missing images]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2011/08/18/flickr-and-the-missing-images/"/>
+    <updated>2011-08-18T17:10:08+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2011/08/18/flickr-and-the-missing-images</id>
+    <content type="html"><![CDATA[<p>A client got in touch with a weird problem, when logging in to flickr, some images wouldn&#8217;t download, the placeholders would be there with the classic little red cross indicating a problem.</p>
+
+<h3>Idea 1 - funny URLs</h3>
+
+<p>Thinking that something must be going wrong with the content delivery for those pictures, the farm was down or whatever, I asked him to send through the direct URL, plus to try accessing it himself. Well, usually it didn&#8217;t work, but sometimes, if he right clicked and asked the browser to download the image it did. Curious.</p>
+
+<h3>Idea 2 - browsers</h3>
+
+<p>Ok, well, maybe it&#8217;s just the browser messing up with its security levels. Nope, still the same on Safari, Chrome &amp; Firefox.</p>
+
+<h3>Idea 3 - DNS</h3>
+
+<p>Maybe the DNS is being bodged up for those server farms. Try google DNS - no joy. Try flushing Windows DNS cache - no joy.</p>
+
+<h3>Idea 4 - Firefox&#8217;s exception list</h3>
+
+<p>This is where I found out about <a href="http://www.flickr.com/help/test">Flickr&#8217;s test page </a> which is useful for trouble shooting this stuff. Apparently all the global column didn&#8217;t load on a clean firefox install. So we added farm1 to firefox&#8217;s image exception list. Boom, they all came back.. bizarre.</p>
+
+<h3>Idea 5 - Conflict with security software</h3>
+
+<p>The machine was XP SP 3 with AVG internet security installed. After a further prod around, Ad-aware was on there, as was McAfee. So, here&#8217;s an idea, boot in to safe mode with networking and see if that works&#8230; Hmm, nope.</p>
+
+<h3>Idea 6 - Must be unrelated to the computer, belkin router anyone?</h3>
+
+<p>Surely the ISP wouldn&#8217;t be messing about here&#8230; but what about the router. A belkin apparently, which is when I found a <a href="http://www.flickr.com/help/forum/72157627085259789/">flickr forum thread</a> of people with the same problem. Ah, belkin routers - this is starting to make sense. Believe it or not, switching off the router firewall (whilst maintaining a software firewall on the PC) meant that the images downloaded without a problem. Argh! It was the router all along. It seemed so obscure.</p>
+
+<h3>In a nutshell</h3>
+
+<p>If you are having problems with flickr (or other image intensive sites) and you have a belkin router with the firewall switched on. SWITCH it off and see if it fixes it. If it does - bingo!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL and Foreign Keys]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2011/06/29/mysql-and-foreign-keys/"/>
+    <updated>2011-06-29T23:25:40+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2011/06/29/mysql-and-foreign-keys</id>
+    <content type="html"><![CDATA[<p>This is to remind me next time that MySQL isn’t as clever as you think it might be.</p>
+
+<p>If you have Table A, with column 1, 2, 3 and Table B with columns 4, 5, 6 – Primary keys are columns 1 &amp; 4 respectively.</p>
+
+<p>Now you want to add a foreign key to table B, column 6, referencing column 1 in table A. No problem:</p>
+
+<p><code>ALTER TABLE tableB ADD CONSTRAINT fk_column_1 FOREIGN KEY (column6) REFERENCES tableA (column1);</code></p>
+
+<p>oh dear, fails with something like</p>
+
+<p><code>ERROR 1005 (HY000): Can't create table './databasename/#sql-55d1_b07.frm' (errno: 150)</code></p>
+
+<p>This fails because creating the primary key on columns 1 and 4 don’t automatically create indexes on those columns, and adding a foreign key requires there to be an index on the column you are referencing. Boom!</p>
+]]></content>
+  </entry>
+  
 </feed>

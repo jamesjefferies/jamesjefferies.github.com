@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Getting hibernate and mysql to work properly - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Getting hibernate and mysql to work properly - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="When you have a problem with hibernate and mysql, namely mysql dropping the connection before hibernate does, then you need to configure the c3p0 &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -92,25 +92,30 @@
 
 <div class="entry-content"><p>When you have a problem with hibernate and mysql, namely mysql dropping the connection before hibernate does, then you need to configure the c3p0 connection pooling functionality. There are two main things which need setting, plus one which actually switches it on, helpfully badly documented!</p>
 
-<p>&lt;property name=&#8221;c3p0.idle_test_period&#8221;&gt;5&lt;/property&gt;
-&lt;property name=&#8221;c3p0.timeout&#8221;&gt;100&lt;/property&gt;
-&lt;property name=&#8221;c3p0.max_size&#8221;&gt;100&lt;/property&gt;</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;c3p0.idle_test_period&quot;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;c3p0.timeout&quot;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;c3p0.max_size&quot;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/property&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <p>The max size property actually switches connection pooling on and in this case sets it to a maximum of 100 connections in the pool. Then the other two come in to play.</p>
 
-<p>Idle test period is how many seconds between hibernate testing the unused connections in the pool to make sure they&#8217;re ok. You want this to be set less than mysql&#8217;s timeout.</p>
+<p>idle_test_period is how many seconds between hibernate testing the unused connections in the pool to make sure they are still alive. You want this to be set to less than mysql&#8217;s timeout.</p>
 
 <p>timeout is how long an open connection will stay open before it times out.</p>
 
-<p>So, as long as idle test period is less than the mysql timeout, you should be ok. But don&#8217;t forget the max_size otherwise it isn&#8217;t switched on at all!</p>
+<p>So, as long as the idle_test_period is less than the mysql timeout, you should be ok. But don&#8217;t forget the max_size, otherwise it isn&#8217;t switched on at all!</p>
 
 <p>You&#8217;ll also need to add c3p0 as a maven dependency and include it in your package.</p>
 
-<p>http://www.codefin.net/2007/05/hibernate-and-mysql-connection-timeouts.html</p>
-
-<p>http://www.hibernate.org/214.html</p>
-
-<p>http://www.mchange.com/projects/c3p0/index.html#hibernate-specific</p>
+<p><a href="http://www.codefin.net/2007/05/hibernate-and-mysql-connection-timeouts.html">codefin</a>
+<a href="http://www.hibernate.org/214.html">hibernate docs</a>
+<a href="http://www.mchange.com/projects/c3p0/index.html#hibernate-specific">c3p0</a></p>
 </div>
 
 
@@ -119,7 +124,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -141,7 +146,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2008/04/15/getting-hibernate-and-mysql-to-work-properly/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2008/04/15/getting-hibernate-and-mysql-to-work-properly/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2008/04/15/getting-hibernate-and-mysql-to-work-properly/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2008/04/15/getting-hibernate-and-mysql-to-work-properly/" >Tweet</a>
   
   
   
@@ -190,6 +195,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -202,7 +252,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

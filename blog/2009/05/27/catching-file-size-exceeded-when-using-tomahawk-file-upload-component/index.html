@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Catching &#039;file size exceeded&#039; when using Tomahawk file upload component - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Catching 'file size exceeded' when using Tomahawk file upload component - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="When using Tomahawk&#8217;s file upload component it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Catching &#039;file Size Exceeded&#039; When Using Tomahawk File Upload Component</h1>
+      <h1 class="entry-title">Catching 'File Size Exceeded' When Using Tomahawk File Upload Component</h1>
     
     
       <p class="meta">
@@ -92,33 +92,41 @@
 
 <div class="entry-content"><p>When using T<a href="http://myfaces.apache.org/tomahawk-project/tomahawk12/tagdoc/t_inputFileUpload.html">omahawk&#8217;s file upload component</a> it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit is set in the web.xml configuration for Tomahawk, i.e.</p>
 
-
-<p><code>  &lt;filter&gt;
-&lt;filter-name&gt;extensionsFilter&lt;/filter-name&gt;
-&lt;filter-class&gt;org.apache.myfaces.webapp.filter.ExtensionsFilter&lt;/filter-class&gt;
-&lt;init-param&gt;
-&lt;description&gt;</p>
+<p>`  <filter>
+<filter-name>extensionsFilter</filter-name>
+<filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+<init-param>
+<description></p>
 
 <pre><code>Set the size limit for uploaded files. Format: 10 - 10
 bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
 </code></pre>
 
-<p>&lt;/description&gt;
-&lt;param-name&gt;uploadMaxFileSize&lt;/param-name&gt;
-&lt;param-value&gt;10m&lt;/param-value&gt;
-&lt;/init-param&gt;</p>
+<p></description>
+<param-name>uploadMaxFileSize</param-name>
+<param-value>10m</param-value>
+</init-param></p>
 
 <pre><code>.....
 </code></pre>
 
-<p>&lt;/filter&gt;</code></p>
+<p></filter>`</p>
 
 <p>Here you can see the limit is set to 10 meg.</p>
 
+<p>So by default, if you blow the limit, the component fails silently.. or does it?</p>
 
-<p> <p>So by default, if you blow the limit, the component fails silently.. or does it?</p> <p>Well, the component actually adds a couple of attributes to the request when refreshing the page (following the click of the upload button). The attributes are:</p> <pre><span>org.apache.myfaces.custom.fileupload.exception</span><span>
-org.apache.myfaces.custom.fileupload.maxSize</span></pre><p>by checking the request (during the page render) you can grab these attributes, if set, and display something meaningful to the user. You could have a little render tag at the top of the page to ensure the attributes are checked. Whilst this is a bit cronky, it is one of the jsf workarounds which does work.. in a fashion.</p> <p>If they are present and you want to display the max size to the user, then apache commons FileUtils comes along to save the day</p>
-<code><a href="http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize(long)">org.apache.commons.io.FileUtils.byteCountToDisplaySize</a>(new Long(maxSizeFromRequestAttribute));</code></p>
+<p>Well, the component actually adds a couple of attributes to the request when refreshing the page (following the click of the upload button). The attributes are:</p>
+
+<pre><code>&lt;span&gt;org.apache.myfaces.custom.fileupload.exception&lt;/span&gt;&lt;span&gt;
+org.apache.myfaces.custom.fileupload.maxSize&lt;/span&gt;
+</code></pre>
+
+<p>by checking the request (during the page render) you can grab these attributes, if set, and display something meaningful to the user. You could have a little render tag at the top of the page to ensure the attributes are checked. Whilst this is a bit cronky, it is one of the jsf workarounds which does work.. in a fashion.</p>
+
+<p>If they are present and you want to display the max size to the user, then apache commons FileUtils comes along to save the day</p>
+
+<p><code>[org.apache.commons.io.FileUtils.byteCountToDisplaySize](http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize(long))(new Long(maxSizeFromRequestAttribute));</code></p>
 </div>
 
 
@@ -127,7 +135,7 @@ org.apache.myfaces.custom.fileupload.maxSize</span></pre><p>by checking the requ
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -149,7 +157,7 @@ org.apache.myfaces.custom.fileupload.maxSize</span></pre><p>by checking the requ
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/" >Tweet</a>
   
   
   
@@ -198,6 +206,51 @@ org.apache.myfaces.custom.fileupload.maxSize</span></pre><p>by checking the requ
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -210,7 +263,7 @@ org.apache.myfaces.custom.fileupload.maxSize</span></pre><p>by checking the requ
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

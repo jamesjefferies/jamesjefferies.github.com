@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="So traditionally, using cron on a server, calling a java method would be the default way of running some java code on a regular basis. Usually though &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -99,36 +99,53 @@
 
 <p>and there is! One option is to use the built in java.timer functions in the jdk. However, a better option might be to use Quartz.</p>
 
-<p><a title="Quartz" href="http://www.opensymphony.com/quartz/">Quartz</a> is a job scheduling system, encapuslated in a java library. You can do all sorts of funky stuff, including using cron like scheduling configuration. Everybody&#8217;s happy.</p>
+<p><a href="http://www.opensymphony.com/quartz/">Quartz</a> is a job scheduling system, encapuslated in a java library. You can do all sorts of funky stuff, including using cron like scheduling configuration. Everybody&#8217;s happy.</p>
 
 <p>To get it integrated though with your java app is made very easy if you are using <a href="http://www.springsource.org/">Spring</a>. We&#8217;re using Spring 2.5 for this example, you can find out more here: <a href="http://static.springframework.org/spring/docs/2.5.x/reference/scheduling.html">Spring Scheduling</a></p>
 
-<pre>   &lt;bean id="jobYouWantToRun" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"&gt;
-        &lt;property name="targetObject" ref="thisIsAReferenceToTheSpringBeanWithTheMethod" /&gt;
-        &lt;property name="targetMethod" value="thisIsTheMethodName" /&gt;
-        &lt;property name="concurrent" value="false" /&gt;
-    &lt;/bean&gt;</pre>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>      <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;jobYouWantToRun&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;targetObject&quot;</span> <span class="na">ref=</span><span class="s">&quot;thisIsAReferenceToTheSpringBeanWithTheMethod&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;targetMethod&quot;</span> <span class="na">value=</span><span class="s">&quot;thisIsTheMethodName&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;concurrent&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>So the config above sets up a job bean of type MethodInvoking blah - this takes a reference to a Spring Managed bean (one of your beans) and a method name, which is the method you want to run on a specific schedule.</p>
 
-<pre>   &lt;bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"&gt;
-        &lt;property name="triggers"&gt;
-            &lt;list&gt;
-                &lt;ref bean="cronTriggerForOurJob" /&gt;
-            &lt;/list&gt;
-        &lt;/property&gt;
-    &lt;/bean&gt;</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&quot;org.springframework.scheduling.quartz.SchedulerFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;triggers&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;ref</span> <span class="na">bean=</span><span class="s">&quot;cronTriggerForOurJob&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Here we set up the actual scheduler. We&#8217;ve only put one trigger in the list for example purposes. You can have simple triggers, for example, run every 100 seconds, or cron based triggers, which is what we&#8217;ve set up below.</p>
 
-<pre>   &lt;bean id="cronTriggerForOurJob" class="org.springframework.scheduling.quartz.CronTriggerBean"&gt;
-        &lt;property name="jobDetail" ref="jobYouWantToRun" /&gt;
-        &lt;property name="cronExpression" value="* 10 * ? * *" /&gt;</pre>
-
-
-<pre>   &lt;/bean&gt;</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;cronTriggerForOurJob&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.scheduling.quartz.CronTriggerBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;jobDetail&quot;</span> <span class="na">ref=</span><span class="s">&quot;jobYouWantToRun&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;cronExpression&quot;</span> <span class="na">value=</span><span class="s">&quot;* 10 * ? * *&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>The cron expression can be set up how you want, for <a href="http://quartz.sourceforge.net/javadoc/org/quartz/CronTrigger.html">more details</a></p>
@@ -175,10 +192,12 @@
 
 <p>Simple search button on a page using Tomahawk Data Table to render the output. Page would render first time out, but then using the search button resulted in the following error</p>
 
-<pre><code>java.lang.NoSuchMethodError: org.apache.myfaces.component.html.ext.HtmlDataTable.refresh(Ljavax/faces/context/FacesContext;)
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">NoSuchMethodError</span><span class="o">:</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">myfaces</span><span class="o">.</span><span class="na">component</span><span class="o">.</span><span class="na">html</span><span class="o">.</span><span class="na">ext</span><span class="o">.</span><span class="na">HtmlDataTable</span><span class="o">.</span><span class="na">refresh</span><span class="o">(</span><span class="n">Ljavax</span><span class="o">/</span><span class="n">faces</span><span class="o">/</span><span class="n">context</span><span class="o">/</span><span class="n">FacesContext</span><span class="o">;)</span>
+</span></code></pre></td></tr></table></div></figure>
 
-</code></pre>
 
+<p></p>
 
 <p>Looks like there might be a problem rendering the data table doesn&#8217;t it. Well, I thought I&#8217;d made a chimpolata mistake somewhere down the line&#8230; and I had, but nothing to do with the table&#8230;.</p>
 
@@ -186,19 +205,10 @@
 
 <p>Consequently, rather than saying something like</p>
 
-<pre>Navigation failure you numpty, couldn't find "list-applicants"</pre>
-
+<pre><code>Navigation failure you numpty, couldn't find "list-applicants"
+</code></pre>
 
 <p>it came up with the other error&#8230; Thanks MyFaces, you&#8217;re really helpful</p>
-
-<pre></pre>
-
-
-<pre></pre>
-
-
-<pre></pre>
-
 </div>
   
   
@@ -238,29 +248,41 @@
 
 <p>useful commands</p>
 
-<p>dpkg &#8211;list</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --list
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>gives a list of the packages installed, the ii first bit, is installed stuff, I think the half installed one was hI or something similar, it stood out anyway!</p>
 
 <p>the pre/post scripts were causing a problem. I found them here:</p>
 
-<p>/var/lib/dpkg/info</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/var/lib/dpkg/info
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>and so I nobbled the four of them:</p>
 
-<p>-rwxr-xr-x 1 root root  6772 2008-11-13 10:36 vmware-server.prerm
--rwxr-xr-x 1 root root 30474 2008-11-13 10:36 vmware-server.preinst
--rwxr-xr-x 1 root root  1510 2008-11-13 10:36 vmware-server.postrm
--rwxr-xr-x 1 root root 48652 2008-11-13 10:36 vmware-server.postinst</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>-rwxr-xr-x 1 root root  6772 2008-11-13 10:36 vmware-server.prerm
+</span><span class='line'>-rwxr-xr-x 1 root root 30474 2008-11-13 10:36 vmware-server.preinst
+</span><span class='line'>-rwxr-xr-x 1 root root  1510 2008-11-13 10:36 vmware-server.postrm
+</span><span class='line'>-rwxr-xr-x 1 root root 48652 2008-11-13 10:36 vmware-server.postinst
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>and ran this</p>
 
-<p>sudo dpkg &#8211;purge  vmware-server</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo dpkg --purge  vmware-server
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>hooray!</p>
-
-<p><code>
-</code></p>
 </div>
   
   
@@ -379,7 +401,7 @@ var_dump($_SERVER);</p>
   </header>
 
 
-  <div class="entry-content"><p>wondering what tomcat is doing? kill -QUIT &lt;pid&gt; will do a thread dump to $TOMCAT_HOME/logs/catalina.out - very interesting!</p>
+  <div class="entry-content"><p>wondering what tomcat is doing? kill -QUIT <pid> will do a thread dump to $TOMCAT_HOME/logs/catalina.out - very interesting!</p>
 </div>
   
   
@@ -453,10 +475,7 @@ var_dump($_SERVER);</p>
   </header>
 
 
-  <div class="entry-content"><div>
-
-run kill -QUIT &lt;pid&gt; for the jvm and it&#8217;ll give you a useful summary of threads which are running, plus how much memory is being used!</div>
-
+  <div class="entry-content"><p>run kill -QUIT <pid> for the jvm and it&#8217;ll give you a useful summary of threads which are running, plus how much memory is being used!</p>
 </div>
   
   
@@ -581,6 +600,51 @@ run kill -QUIT &lt;pid&gt; for the jvm and it&#8217;ll give you a useful summary
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -592,7 +656,7 @@ run kill -QUIT &lt;pid&gt; for the jvm and it&#8217;ll give you a useful summary
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

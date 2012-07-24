@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Gotcha with auto DDL generation and hibernate - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Gotcha with auto DDL generation and hibernate - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="During project development, we&#8217;re auto creating our database when the application initiates. This is superuseful initially, especially when the &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -102,7 +102,7 @@
 
 <p>for completeness, here is the configuration for a entity manager, with the generate DDL parameter switching the ddl generation on and off, and the hibernate.hbm2ddl.auto parameter determining whether you do a create each time or an update or whatever.</p>
 
-<pre>&lt;bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"&gt;
+<pre><code>&lt;bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"&gt;
         &lt;property name="loadTimeWeaver"&gt;
             &lt;bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" /&gt;
         &lt;/property&gt;
@@ -117,7 +117,7 @@
                 &lt;entry key="hibernate.cache.use_structured_entries" value="true" /&gt;
                 &lt;entry key="hibernate.jdbc.batch_size" value="0" /&gt;
             &lt;entry key="hibernate.default_batch_fetch_size" value="20"/&gt;
-            <span style="color: #ff0000">&lt;entry key="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}" /&gt;</span>
+            &lt;span style="color: #ff0000"&gt;&lt;entry key="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}" /&gt;&lt;/span&gt;
             &lt;/map&gt;
         &lt;/property&gt;
 
@@ -126,12 +126,12 @@
            &lt;bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"&gt;
                 &lt;property name="database" value="${hibernate.database}" /&gt;
                 &lt;property name="showSql" value="${hibernate.show_sql}" /&gt;
-                <span style="color: #ff0000">&lt;property name="generateDdl" value="${hibernate.generate_ddl}" /&gt;</span>
+                &lt;span style="color: #ff0000"&gt;&lt;property name="generateDdl" value="${hibernate.generate_ddl}" /&gt;&lt;/span&gt;
                 &lt;property name="databasePlatform" value="${hibernate.dialect}" /&gt;
             &lt;/bean&gt;          
         &lt;/property&gt;
-    &lt;/bean&gt;</pre>
-
+    &lt;/bean&gt;
+</code></pre>
 </div>
 
 
@@ -140,7 +140,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -162,7 +162,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/04/14/gotcha-with-auto-ddl-generation-and-hibernate/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2009/04/14/gotcha-with-auto-ddl-generation-and-hibernate/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/04/14/gotcha-with-auto-ddl-generation-and-hibernate/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2009/04/14/gotcha-with-auto-ddl-generation-and-hibernate/" >Tweet</a>
   
   
   
@@ -211,6 +211,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -223,7 +268,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

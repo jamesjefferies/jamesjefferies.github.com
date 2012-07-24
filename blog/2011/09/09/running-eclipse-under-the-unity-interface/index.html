@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Running Eclipse under the Unity interface - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Running Eclipse under the Unity interface - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="Unity eh? Love it or hate it the version in Ubuntu 11.04 seems not quite complete. Also other applications sometimes will not play nicely. Eclipse is &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -94,12 +94,10 @@
 
 <p>Eclipse is one of them, your menu items can go walk about. I found this <a href="http://blog.matto1990.com/2011/04/using-eclipse-under-ubuntu-11-04-natty/">blog post</a> which has a helpful hint. Unsetting UBUNTU_MENUPROXY for the application does the trick</p>
 
-<pre class="brush: java;">#!/bin/bash
+<pre><code>#!/bin/bash
 unset UBUNTU_MENUPROXY
-path/to/eclipse/here</pre>
-
-
-<p>&nbsp;</p>
+path/to/eclipse/here
+</code></pre>
 </div>
 
 
@@ -108,7 +106,7 @@ path/to/eclipse/here</pre>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -125,12 +123,18 @@ path/to/eclipse/here</pre>
 <time datetime="2011-09-09T10:00:36+01:00" pubdate data-updated="true">Sep 9<span>th</span>, 2011</time>
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/techie/'>Techie</a>, <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
+
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface/" >Tweet</a>
   
   
   
@@ -179,6 +183,51 @@ path/to/eclipse/here</pre>
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -191,7 +240,7 @@ path/to/eclipse/here</pre>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

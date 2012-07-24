@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Techie | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.github.com/blog/categories/techie/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.github.com/"/>
+  <updated>2012-07-24T17:00:42+01:00</updated>
+  <id>http://jamesjefferies.github.com/</id>
+  <author>
+    <name><![CDATA[James Jefferies]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Downloading the Network Rail Schedules]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules/"/>
+    <updated>2012-07-18T17:43:39+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules</id>
+    <content type="html"><![CDATA[<p>As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon S3. The Schedule feed is an extract of train schedules from the Integration Train Planning System.</p>
+
+<p>When you have your Network Rail account you can subscribe, either to all the data, or to the Train Operators you are interested in. However, at the time of writing, the only feed which works is the one for ALL the data, the Train Operator specific downloads throw an unhelpful error</p>
+
+<blockquote><p>HTTP Status 401 - User not subscribed to CIF_HL_FULL_DAILY</p></blockquote>
+
+<p>Which is a bit rubbish really. So my advice is, at this point to subscribe to ALL the data rather than just for one TOC. You can then access the feeds and download the zip file with either:</p>
+
+<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full</a></p>
+
+<p>for the full feed or, say</p>
+
+<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon</a></p>
+
+<p>for Monday's update.</p>
+
+<p>Note that you will need to authenticate if you haven't already, using your username and password.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Getting started with Network Rail's datafeeds]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
+    <updated>2012-07-04T23:46:41+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/07/04/getting-started-with-network-rails-datafeeds</id>
+    <content type="html"><![CDATA[<p>I've had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I'm therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it's what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
+
+<h2>Where do you start?</h2>
+
+<p>If you are interested in using the datafeeds yourself, you can read all about it on <a href="http://www.networkrail.co.uk/data-feeds/">Network Rail's site</a> which also has a link to download the developer's guide in PDF format.</p>
+
+<p>First, you need to <a href="https://datafeeds.networkrail.co.uk/ntrod/login">create an account</a> - I believe there are limited numbers of accounts going at the moment, so the sooner you do that, the better.</p>
+
+<p>There are two types of feeds available, pub/sub using the stomp protocol for real-ish time data &amp; downloads of huge files from Amazon S3 for timetables etc.</p>
+
+<p>Once your account is active, you can subscribe to any of the pub/sub datafeeds you like and away you go.</p>
+
+<h2>Receiving Messages</h2>
+
+<p>I decided that I was going to try accessing the pub/sub datafeeds using Ruby (not my usual language) and put my experimental code on to my git hub account. Feel free to <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">have a look and check it out</a>, I'll be using it for my initial experiments, so it should get updated beyond this basic example!</p>
+
+<p>I've also included a sample, no error checking, very straightforward listener below. If you wish to try and run it, then you will of course need Ruby and Ruby gems installed, plus the stomp ruby gem.</p>
+
+<p>Then, you just need to ensure your username and password are set as the relevant environment variables and away you go.</p>
+
+<p>All being well, you should slowly receive updates from the topic you have selected. The example below uses Train positioning data for the East Midlands (TD_MC_EM_SIG_AREA) and assumes that you have subscribed to that feed using the <a href="https://datafeeds.networkrail.co.uk/ntrod/myFeeds">network rail control panel</a></p>
+
+<p>The updates you receive from this program are not formatted at all, it's just sending the message straight to string. Of course, this is just helping you know you're set up correctly. So you would get something like:</p>
+
+<p>[code]</p>
+
+<p>&lt;Stomp::Message headers={"message-id"=>"ID:blahblah", "destination"=>"/topic/TD_MC_EM_SIG_AREA", "timestamp"=>"1341436026840", "expires"=>"1341436326840", "persistent"=>"true", "priority"=>"4"} body='[{"CA_MSG":{"to":"1234","time":"1341435963000","area_id":"WH","msg_type":"CA","from":"5678","descr":"1Z99"}}]' command='MESSAGE' ></p>
+
+<p>[/code]</p>
+
+<p>Ultimately of course, you'd process the JSON from the body and do something with it.</p>
+
+<h2>Example Ruby Listener</h2>
+
+<p>``` ruby
+require 'rubygems'
+require 'stomp'</p>
+
+<p>begin
+  # Credentials set here as environment variables
+  @user = ENV["DATAFEEDS_USER"];
+  @password = ENV["DATAFEEDS_PASSWORD"]
+  @host = "datafeeds.networkrail.co.uk"
+  @port = 61618</p>
+
+<p>  # Example destination add yours here
+  @destination = "/topic/TD_MC_EM_SIG_AREA"</p>
+
+<p>  puts "Connecting to datafeeds as #{@user} using stomp protocol stomp://#{@host}:#{@port}\n"
+  @connection = Stomp::Connection.open @user, @password, @host, @port, true
+  @connection.subscribe @destination</p>
+
+<p>  while true</p>
+
+<pre><code>@msg = @connection.receive
+puts @msg
+</code></pre>
+
+<p>  end
+  @connection.disconnect
+rescue
+end
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Whatever next - the technical stuff]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/06/15/whatever-next-the-technical-stuff/"/>
+    <updated>2012-06-15T12:51:02+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/06/15/whatever-next-the-technical-stuff</id>
+    <content type="html"><![CDATA[<p>In recent years my main programming language has been Java, sprinkled with a bit of the usual korn/zsh scrips, SQL, HTML, JavaScript and other gubbins. The world of Java is rich with libraries, web frameworks, platforms and alternate languages. I've invested a lot of time in this ecosystem, knowing which tools are useful for which problems, gained expertise in various web frameworks, development environments and platforms, generally to be as productive as I've ever been.</p>
+
+<p>For the last couple of years though, I've been pondering whether to stick with what I know, or to spend time learning some new stuff. It is fair to say that I'm not a natural polyglot. I like to spend decent time getting to know a language and it's ecosystem and I find it can be tricky switching.</p>
+
+<h3>Grails &amp; Groovy</h3>
+
+<p>At first I spent a bit of time, starting to get to know <a href="http://grails.org">Grails</a>, basically using <a href="http://groovy.codehaus.org/">Groovy</a> on the JVM (Java Virtual Machine) to build a Rails like web framework. The rest of the Grails stack is also stuff which I know very well, Spring, Hibernate etc. There is a lot I like about Grails and I've yet to investigate all this is new in the latest 2.0 release.</p>
+
+<p>So, there you go, something I'd like, building upon a lot which I already know. Should be the favourite right?</p>
+
+<h3>Scala &amp; Play/Lift</h3>
+
+<p>Well, I then started thinking a bit about <a href="http://www.scala-lang.org/">Scala</a>, a language which polarises opinion, especially amongst the Java community. It is either the 'new' Java or it is a hodge podge of static typed semi functional programming. People complain about it's complexity or love how doing things in a more functional fashion reduces code and maintenance and gets it all set up for multi-core CPUs. If I was planning on doing more 'corporate' work, working on huge projects in London or building a twitter competitor then it'd make sense for me to have a good look at Scala.</p>
+
+<p>But I'm not, maybe ShedCode will work on an idea which will one day be huge, I think I'll worry about that another time!</p>
+
+<h3>Clojure</h3>
+
+<p>I'd also like to learn <a href="http://clojure.org/">Clojure</a>, mainly because I think it will be good for my programming skills and good for my brain.</p>
+
+<h3>Rails &amp; Ruby</h3>
+
+<p>Then, working on <a href="http://happenstanceproject.com">Happenstance</a> has made me think again...</p>
+
+<p>In early 2008 I was going to investigate <a href="http://rubyonrails.org/">Rails</a> &amp; Ruby, one because I liked the fact it was called Rails, but then also because it seemed to be gaining a lot of momentum and interest and it was 'cool'. In the end I got a job doing java, so I put it on the back burner. I also started to realise that, as is often the case where things are a bit 'cool' there were quite a few.. ahem.. nobbers around who not only believed that Rails was THE framework to use but that using anything else was such a POOR substitute. I have to be honest, it did my nut. I did meet a few people who seemed ok, but the majority, I didn't really get on with.</p>
+
+<p>Now I find that a lot of the R&amp;D web apps I'm interested in, have been built with Rails. I've also met some more Rails devs who are not nobbers, in fact, they are interesting, helpful, open minded people. I'd like to work with some of them, I'd like to build things on top of the work they've done. I'd like to explore the Rails ecosystem which has inspired so much in other languages (like Grails for example).</p>
+
+<h3>Client Side</h3>
+
+<p>Even though over the last few weeks, I've been thinking more about whether the classic server side MVC web framework is what I should be looking at all. There is a significant trend for using client side JavaScript frameworks for doing a lot of the hardwork in the browser, whilst having a more simple RESTful service/API set up on the server. Examples would be <a href="http://documentcloud.github.com/backbone/">Backbone.js</a>, <a href="http://emberjs.com/">Ember.js</a>, <a href="http://knockoutjs.com/">Knockout.js</a> etc. This somehow feels like a good idea, but I'm not great with JavaScript and I'm not sure this is what I want to do just yet. Obviously improving my JavaScript knowledge would be useful regardless!</p>
+
+<h3>Crossroads</h3>
+
+<p>So, I find myself at a crossroads. I'll spend some time with Clojure, regardless of what else I do, but I've got some interesting projects to start in the next month or so and I need to decide whether I:</p>
+
+<ol>
+<li><p>Learn Rails and see what happens...</p></li>
+<li><p>Go with what I know a bit and build something with Grails. I know the tools, I know the libraries and I know it works (mainly)</p></li>
+<li><p>Client side JavaScript stuff</p></li>
+<li><p>Go with Scala, build on top of the Java I know and become have decent with functional languages</p></li>
+</ol>
+
+
+<p>At the moment, these are in my preferred order, but I'll let you know what happens...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 3 - Cathy & Heathcliff's amazing adventures]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/"/>
+    <updated>2012-05-04T18:18:34+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures</id>
+    <content type="html"><![CDATA[<p>This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site office to get our heads down.</p>
+
+<p>The first challenge was to allow 6th Formers to send messages to Cathy &amp; Heathcliff. At first we thought of hooking them up directly to twitter accounts, but as Leila had a <a href="http://twilio.com">Twilio</a> account, it meant that we could do something clever with SMS Text messages. With a bit of PHP magic on an intermediary server (timescales demanded a quick turnaround!) we managed to get the SMS messages sent to the two printers. Hooray!</p>
+
+<p>The next step was to bypass the button on the Arduino device which you had to push each time a message arrived. We edited the C code and uploaded the new code to the devices so that instead of waiting for the button to be pushed, the green light flashed and it printed without intervention. Hooray x 2!</p>
+
+<p>Finally, we wanted to get the messages sent to Cathy and Heathcliff's twitter accounts - @CathyPrinter @HeathcliffPrinter - initially we looked a using the PHP OAuth libraries to authenticate and send the message to twitter, but as neither of us are particularly adept at PHP, we decided on a different solution. Using <a href="http://ifttt.com">If This Then That</a> and some server side magic, we send an email from the server, via their gmail accounts to If This Then That, which then passes them on to their twitter accounts.. Hooray x 3!</p>
+
+<p>You can see us setting them up on our <a href="http://happenstancesheffield.tumblr.com">tumblr site</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 1 in Sheffield]]></title>
+    <link href="http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield/"/>
+    <updated>2012-04-22T16:19:47+01:00</updated>
+    <id>http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield</id>
+    <content type="html"><![CDATA[<p>We're three days in to our residency and time is already flying along. We've spoken to a lot of people, fixed some niggly problems in the office and had some ideas which I'm sure any Technologist in Residence would be proud of!</p>
+
+<p>Our esteemed directors at Site have been storing up interesting people for us to talk to which has been great. It's striking how we've met people who are passionate, not only about what they do, but about the greater tech community in Sheffield, Sheffield itself, Yorkshire and the North! This resonates with me as a Yorkshirebod and as someone who would like to see the economic balance tip in our direction.</p>
+
+<p>Site have a new Technical expert starting at the beginning of May so there is a small backlog of  outstanding techie issues for the organisation. I find it impossible to sit in the office without diving in to help when the printer doesn't work or the wi-fi has gone screwy! Hopefully now we've fixed some of the more pressing issues but it is highlighted for me that I have to be careful with my time. We had decided that we would spend three days a week on-site in the office but actually it makes sense to spend a day elsewhere to allow us to focus on bigger tasks without interruption. We'll try that next week to see how we go.</p>
+
+<p>Our bigger ideas are still fermenting, but two <a href="http://arduino.cc/hu/Guide/Introduction">Arduino</a> kits arrived on Friday and as it is about 25 years since I last played with electronics in anger, I'm excited to see what we end up using them for. I think I had something like this when I was a kid... you should have heard the stylophone I made!</p>
+
+<p><img src="http://ecx.images-amazon.com/images/I/51jZKCqIj4L._SL500_AA300_.jpg" alt="" /></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Migrating packages from old machine to new - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Migrating packages from old machine to new - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="Before switching off your old ubuntu machine for good, run dpkg --get-selections &gt; Packages.lst which will output all the stuff you&#8217;ve &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -92,25 +92,25 @@
 
 <div class="entry-content"><p>Before switching off your old ubuntu machine for good, run</p>
 
-<pre>dpkg --get-selections &gt; Packages.lst</pre>
-
+<pre><code>dpkg --get-selections &gt; Packages.lst
+</code></pre>
 
 <p>which will output all the stuff you&#8217;ve installed using the package manager to a flat file (Packages.lst). Copy this file to your new machine.</p>
 
-<pre>dpkg --set-selections &lt; Packages.lst</pre>
-
+<pre><code>dpkg --set-selections &lt; Packages.lst
+</code></pre>
 
 <p>will then set all those packages ready for install on your new machine.</p>
 
 <p>Martin reckons run this first as a dry-run</p>
 
-<pre>sudo apt-get -s dselect-upgrade</pre>
-
+<pre><code>sudo apt-get -s dselect-upgrade
+</code></pre>
 
 <p>and then when you are feeling brave</p>
 
-<pre>sudo apt-get dselect-upgrade</pre>
-
+<pre><code>sudo apt-get dselect-upgrade
+</code></pre>
 
 <p>will install them for you&#8230;hopefully!</p>
 
@@ -123,7 +123,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -145,7 +145,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/04/09/migrating-packages-from-old-machine-to-new/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2009/04/09/migrating-packages-from-old-machine-to-new/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2009/04/09/migrating-packages-from-old-machine-to-new/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2009/04/09/migrating-packages-from-old-machine-to-new/" >Tweet</a>
   
   
   
@@ -194,6 +194,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -206,7 +251,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

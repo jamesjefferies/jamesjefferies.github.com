@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Week 3 - Cathy &amp; Heathcliff's amazing adventures - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Week 3 - Cathy & Heathcliff's amazing adventures - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Week 3 - Cathy &amp; Heathcliff's Amazing Adventures</h1>
+      <h1 class="entry-title">Week 3 - Cathy & Heathcliff's Amazing Adventures</h1>
     
     
       <p class="meta">
@@ -92,13 +92,13 @@
 
 <div class="entry-content"><p>This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site office to get our heads down.</p>
 
-<p>The first challenge was to allow 6th Formers to send messages to Cathy &amp; Heathcliff. At first we thought of hooking them up directly to twitter accounts, but as Leila had a <a title="Twilio" href="http://twilio.com">Twilio</a> account, it meant that we could do something clever with SMS Text messages. With a bit of PHP magic on an intermediary server (timescales demanded a quick turnaround!) we managed to get the SMS messages sent to the two printers. Hooray!</p>
+<p>The first challenge was to allow 6th Formers to send messages to Cathy &amp; Heathcliff. At first we thought of hooking them up directly to twitter accounts, but as Leila had a <a href="http://twilio.com">Twilio</a> account, it meant that we could do something clever with SMS Text messages. With a bit of PHP magic on an intermediary server (timescales demanded a quick turnaround!) we managed to get the SMS messages sent to the two printers. Hooray!</p>
 
 <p>The next step was to bypass the button on the Arduino device which you had to push each time a message arrived. We edited the C code and uploaded the new code to the devices so that instead of waiting for the button to be pushed, the green light flashed and it printed without intervention. Hooray x 2!</p>
 
 <p>Finally, we wanted to get the messages sent to Cathy and Heathcliff&#8217;s twitter accounts - @CathyPrinter @HeathcliffPrinter - initially we looked a using the PHP OAuth libraries to authenticate and send the message to twitter, but as neither of us are particularly adept at PHP, we decided on a different solution. Using <a href="http://ifttt.com">If This Then That</a> and some server side magic, we send an email from the server, via their gmail accounts to If This Then That, which then passes them on to their twitter accounts.. Hooray x 3!</p>
 
-<p>You can see us setting them up on our <a title="Happenstance Sheffield" href="http://happenstancesheffield.tumblr.com">tumblr site</a>.</p>
+<p>You can see us setting them up on our <a href="http://happenstancesheffield.tumblr.com">tumblr site</a>.</p>
 </div>
 
 
@@ -107,7 +107,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -124,12 +124,18 @@
 <time datetime="2012-05-04T18:18:34+01:00" pubdate data-updated="true">May 4<span>th</span>, 2012</time>
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/happenstance/'>Happenstance</a>, <a class='category' href='/blog/categories/sheffield/'>Sheffield</a>, <a class='category' href='/blog/categories/techie/'>Techie</a>
+  
+</span>
+
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/" >Tweet</a>
   
   
   
@@ -178,6 +184,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -190,7 +241,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

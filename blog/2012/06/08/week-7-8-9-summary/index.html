@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Week 7, 8 &amp; 9 - summary - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Week 7, 8 & 9 - summary - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="Oh dear, what happened to week 7, 8 blog posts (I hear you ask)? Good question. Here&#8217;s a little re-cap of what you missed (thanks offbott for &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Week 7, 8 &amp; 9 - Summary</h1>
+      <h1 class="entry-title">Week 7, 8 & 9 - Summary</h1>
     
     
       <p class="meta">
@@ -96,23 +96,20 @@
 
 <h3>Week 7</h3>
 
-
 <p>This week was mainly taken up with:</p>
 
 <ul>
-    <li>creating a test version of the site gallery website, so that we could have a good tinker with the layout</li>
-    <li>investigating the building&#8217;s network wiring and working out how we could get the office in to a better shape</li>
-    <li>an official rehearsal for our TedX Sheffield talk</li>
+<li><p>creating a test version of the site gallery website, so that we could have a good tinker with the layout</p></li>
+<li><p>investigating the building&#8217;s network wiring and working out how we could get the office in to a better shape</p></li>
+<li><p>an official rehearsal for our TedX Sheffield talk</p></li>
 </ul>
 
 
 <h3>Week 8 - the broken back week</h3>
 
-
 <p>I really kernackered my back on Wednesday morning, which meant that I ended up working a bit on .. ahem.. Cathy &amp; Heathcliff&#8217;s back ends from home. Thursday was a bit better and we came up with the idea of building a &#8216;who&#8217;s in the house&#8217; lighting board. Leila has been doing lots of soldering. Our IP camera arrived on Friday and we had it looking around the office with it&#8217;s spooky eye.</p>
 
 <h3>Week 9 - the TedX and Sheffield Doc/Fest Week</h3>
-
 
 <p>Tuesday was Sheffield TedX and we were invited to do a 10 minute talk as part of the whole shebang. We managed to get Heathcliff working by borrowing a MacMini from Site, getting it to pick up the Wi-fi in the Crucible (yes, THAT crucible in Sheffield) and share it&#8217;s ethernet connection. Attendees could then send SMS to Heathcliff and up in the refreshment area, he&#8217;s print out their messages.</p>
 
@@ -133,7 +130,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -155,7 +152,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2012/06/08/week-7-8-9-summary/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2012/06/08/week-7-8-9-summary/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2012/06/08/week-7-8-9-summary/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2012/06/08/week-7-8-9-summary/" >Tweet</a>
   
   
   
@@ -204,6 +201,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -216,7 +258,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

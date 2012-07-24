@@ -5,8 +5,8 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Downloading the Network Rail Schedules - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Downloading the Network Rail Schedules - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
 
   
   <meta name="description" content="As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon &hellip;">
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>The world of James and ShedCode</h2>
   
 </hgroup>
 
@@ -94,8 +94,7 @@
 
 <p>When you have your Network Rail account you can subscribe, either to all the data, or to the Train Operators you are interested in. However, at the time of writing, the only feed which works is the one for ALL the data, the Train Operator specific downloads throw an unhelpful error</p>
 
-<blockquote>HTTP Status 401 - User not subscribed to CIF_HL_FULL_DAILY</blockquote>
-
+<blockquote><p>HTTP Status 401 - User not subscribed to CIF_HL_FULL_DAILY</p></blockquote>
 
 <p>Which is a bit rubbish really. So my advice is, at this point to subscribe to ALL the data rather than just for one TOC. You can then access the feeds and download the zip file with either:</p>
 
@@ -116,7 +115,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
 
       
 
@@ -133,12 +132,18 @@
 <time datetime="2012-07-18T17:43:39+01:00" pubdate data-updated="true">Jul 18<span>th</span>, 2012</time>
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/railways/'>Railways</a>, <a class='category' href='/blog/categories/techie/'>Techie</a>
+  
+</span>
+
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules/" data-via="" data-counturl="http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules/" >Tweet</a>
   
   
   
@@ -185,6 +190,51 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
 
 
 
@@ -197,7 +247,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Your Name -
+  Copyright &copy; 2012 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

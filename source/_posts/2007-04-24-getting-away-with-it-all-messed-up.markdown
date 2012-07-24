@@ -1,12 +1,15 @@
 ---
+comments: false
+date: 2007-04-24 10:32:55
 layout: post
-title: !binary |-
-  R2V0dGluZyBhd2F5IHdpdGggaXQgKGFsbCBtZXNzZWQgdXApLi4u
+slug: getting-away-with-it-all-messed-up
+title: Getting away with it (all messed up)...
 wordpress_id: 45
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzYW5kY2xhcmUubmV0L2xpZmUvP3A9NA==
-date: 2007-04-24 10:32:55.000000000 +00:00
+categories:
+- James
+- Music
 ---
+
 Went to see James last night, who've recently reformed with one of their classic line ups. The venue was the Newcastle Academy and John and I drove up after work in fast mini, via the chippy in Thirsk. We missed the support band, but got there in time to fight our way to the queue for the lav, then the queue for the bar, then down to a good position to the left of the stage about half way down.
 
 There was a real sense of anticipation for the band coming on stage and the whole place (2000 people) erupted when they did, starting the set with the classic song 'Come Home'.

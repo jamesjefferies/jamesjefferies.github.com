@@ -1,12 +1,17 @@
 ---
+comments: true
+date: 2009-12-06 20:59:03
 layout: post
-title: !binary |-
-  TWF2ZW4gcmVsb2FkZWQgKGZyb20gZGV2b3h4KQ==
+slug: maven-reloaded-from-devoxx
+title: Maven reloaded (from devoxx)
 wordpress_id: 265
-wordpress_url: !binary |-
-  aHR0cDovL3d3dy5qYW1lc2FuZGNsYXJlLm5ldC8/cD0yNjU=
-date: 2009-12-06 20:59:03.000000000 +00:00
+categories:
+- java
+- Techie
+tags:
+- linkedin
 ---
+
 Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other things. The points below are highlight points from his talk at devoxx.
 
 It was acknowledged that many things were wrong with maven 2.0 and version 3.0 is a chance to put those things right - adding extras like support for m2eclipse and osgi.

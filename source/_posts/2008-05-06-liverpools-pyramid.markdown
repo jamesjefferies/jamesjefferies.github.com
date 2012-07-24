@@ -1,12 +1,12 @@
 ---
+comments: false
+date: 2008-05-06 21:03:39
 layout: post
-title: !binary |-
-  TGl2ZXJwb29sJiMwMzk7cyBQeXJhbWlk
+slug: liverpools-pyramid
+title: Liverpool's Pyramid
 wordpress_id: 25
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzYW5kY2xhcmUubmV0L2xpZmUvP3A9MjU=
-date: 2008-05-06 21:03:39.000000000 +00:00
 ---
+
 One cold foggy Sunday night in the autumn of 1871, 68-year-old Lionel Harland, a respected Rodney Street doctor, left his surgery and walked up Liverpool's Maryland Street, when he heard footsteps approaching. The shadowy figure of a tall wiry man wearing a top hat and a flowing cape was emerging from the swirling fog, a hundred yards ahead. 
 
 Dr Harland hesitated at the corner of Maryland and Rodney Street and felt a shiver run up his spine, even though he wore a heavy fur coat on this chilly September night. 
@@ -61,4 +61,4 @@ It was his desperate attempt to cheat the Devil out of claiming his soul. As lon
 
 When old Mr Brocklebank was leaving the house in Blackburne Place, Daniel Jackson said to him, "Sir, did you actually meet - you know who? Mr Madison?" Before the millionaire walked off into the jade fog, he nodded twice and with a worried look, he replied "You don't think I accumulated my wealth through hard work do you? But I'll have the devil to pay when my time comes."
 
-<img src="http://www.amsterdam-music.com/images/discography/pyramid.jpg" alt="Pyramid outside St. Andrews, Rodney Street" width="273" height="399" align="right" />
+![Pyramid outside St. Andrews, Rodney Street](http://www.amsterdam-music.com/images/discography/pyramid.jpg)

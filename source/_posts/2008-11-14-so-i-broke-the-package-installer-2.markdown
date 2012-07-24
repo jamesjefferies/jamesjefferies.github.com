@@ -1,13 +1,12 @@
 ---
+comments: false
+date: 2008-11-14 13:58:47
 layout: post
-title: !binary |-
-  U28gSSBicm9rZSB0aGUgcGFja2FnZSBpbnN0YWxsZXI=
+slug: so-i-broke-the-package-installer-2
+title: So I broke the package installer
 wordpress_id: 127
-wordpress_url: !binary |-
-  aHR0cDovL2Jsb2dzLnRlY2hub3Bob2JpYS5pbnQvamplZmZlcmllcy8/cD00
-  OQ==
-date: 2008-11-14 13:58:47.000000000 +00:00
 ---
+
 Tinkering around with vmware server install meant that I couldn't do any apt-get stuff. It kept on trying to remove the half installed debian package, failing when running the scripts.
 
 useful commands
@@ -33,5 +32,5 @@ sudo dpkg --purge  vmware-server
 
 hooray!
 
-<code>
-</code>
+`
+`

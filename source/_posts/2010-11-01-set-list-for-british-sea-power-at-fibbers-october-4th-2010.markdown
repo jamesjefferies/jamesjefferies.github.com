@@ -1,14 +1,13 @@
 ---
+comments: true
+date: 2010-11-01 22:06:24
 layout: post
-title: !binary |-
-  U2V0IGxpc3QgZm9yIEJyaXRpc2ggU2VhIFBvd2VyIGF0IEZpYmJlcnMgLSBP
-  Y3RvYmVyIDR0aCAyMDEw
+slug: set-list-for-british-sea-power-at-fibbers-october-4th-2010
+title: Set list for British Sea Power at Fibbers - October 4th 2010
 wordpress_id: 320
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzamVmZmVyaWVzLmNvbS8/cD0zMjA=
-date: 2010-11-01 22:06:24.000000000 +00:00
 ---
-<!-- p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 18.0px; font: 12.0px 'Lucida Grande'; color: #333233; background-color: #ebeadd} -->Lights Out For Darker Skies
+
+Lights Out For Darker Skies
 
 Remember me
 

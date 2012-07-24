@@ -1,17 +1,17 @@
 ---
+comments: false
+date: 2008-04-15 17:55:44
 layout: post
-title: !binary |-
-  R2V0dGluZyBoaWJlcm5hdGUgYW5kIG15c3FsIHRvIHdvcmsgcHJvcGVybHk=
+slug: getting-hibernate-and-mysql-to-work-properly
+title: Getting hibernate and mysql to work properly
 wordpress_id: 13
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzYW5kY2xhcmUubmV0L2xpZmUvP3A9MTM=
-date: 2008-04-15 17:55:44.000000000 +00:00
 ---
+
 When you have a problem with hibernate and mysql, namely mysql dropping the connection before hibernate does, then you need to configure the c3p0 connection pooling functionality. There are two main things which need setting, plus one which actually switches it on, helpfully badly documented!
 
-&lt;property name="c3p0.idle_test_period"&gt;5&lt;/property&gt;
-&lt;property name="c3p0.timeout"&gt;100&lt;/property&gt;
-&lt;property name="c3p0.max_size"&gt;100&lt;/property&gt;
+<property name="c3p0.idle_test_period">5</property>
+<property name="c3p0.timeout">100</property>
+<property name="c3p0.max_size">100</property>
 
 The max size property actually switches connection pooling on and in this case sets it to a maximum of 100 connections in the pool. Then the other two come in to play.
 

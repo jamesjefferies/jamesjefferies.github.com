@@ -1,12 +1,14 @@
 ---
+comments: false
+date: 2009-11-16 19:21:44
 layout: post
-title: !binary |-
-  RGV2b3ggMjAwOSDigJMgQW50d2VycA==
+slug: devox-2009-antwerp
+title: Devox 2009 – Antwerp
 wordpress_id: 249
-wordpress_url: !binary |-
-  aHR0cDovL3d3dy5qYW1lc2FuZGNsYXJlLm5ldC8/cD0yNDk=
-date: 2009-11-16 19:21:44.000000000 +00:00
+tags:
+- linkedin
 ---
+
 I'm really pleased to be at Devoxx this year which is the biggest Java conference in Europe. Today around 3000 people turned up for day 1 of the university sessions. I ended up going to the following sessions
 
 1) Kanban methodology in the morning

@@ -1,14 +1,16 @@
 ---
+comments: false
+date: 2010-04-15 21:36:29
 layout: post
-title: !binary |-
-  RWxlY3Rpb24gUG9zdGVycz8=
+slug: '290'
+title: Election Posters?
 wordpress_id: 290
-wordpress_url: !binary |-
-  aHR0cDovL3d3dy5qYW1lc2FuZGNsYXJlLm5ldC8yMDEwLzA0LzE1LzI5MC8=
-date: 2010-04-15 21:36:29.000000000 +00:00
+categories:
+- Fun!
 ---
+
 There is just something about these two posters.. the style maybe, makes me wonder if there is a connection....
 
-[caption id="attachment_288" align="alignnone" width="300" caption="A Future Fair For All"]<a href="http://jamesjefferies.com/wordpress/wp-content/uploads/2010/04/picture1.png"><img class="size-medium wp-image-288" title="picture1" src="http://www.jamesandclare.net/wp-content/uploads/2010/04/picture1-300x247.png" alt="A Future Fair For All" width="300" height="247" /></a>[/caption]
+[caption id="attachment_288" align="alignnone" width="300" caption="A Future Fair For All"][![A Future Fair For All](http://www.jamesandclare.net/wp-content/uploads/2010/04/picture1-300x247.png)](http://jamesjefferies.com/wordpress/wp-content/uploads/2010/04/picture1.png)[/caption]
 
-[caption id="attachment_289" align="alignnone" width="222" caption="To Victory"]<a href="http://jamesjefferies.com/wordpress/wp-content/uploads/2010/04/picture2.png"><img class="size-medium wp-image-289" title="picture2" src="http://www.jamesandclare.net/wp-content/uploads/2010/04/picture2-222x300.png" alt="To Victory" width="222" height="300" /></a>[/caption]
+[caption id="attachment_289" align="alignnone" width="222" caption="To Victory"][![To Victory](http://www.jamesandclare.net/wp-content/uploads/2010/04/picture2-222x300.png)](http://jamesjefferies.com/wordpress/wp-content/uploads/2010/04/picture2.png)[/caption]

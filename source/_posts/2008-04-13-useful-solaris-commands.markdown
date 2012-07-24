@@ -1,16 +1,18 @@
 ---
+comments: false
+date: 2008-04-13 15:28:55
 layout: post
-title: !binary |-
-  VXNlZnVsIHNvbGFyaXMgY29tbWFuZHM=
+slug: useful-solaris-commands
+title: Useful solaris commands
 wordpress_id: 11
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzYW5kY2xhcmUubmV0L2xpZmUvP3A9MTE=
-date: 2008-04-13 15:28:55.000000000 +00:00
+tags:
+- unix
 ---
-<strong>Gives info about the os installed</strong>
+
+**Gives info about the os installed**
 
 uname -a
 
-<strong>32 or 64 bit kernel</strong>
+**32 or 64 bit kernel**
 
 isainfo -bv (64 or 32 bit)

@@ -1,18 +1,25 @@
 ---
+comments: true
+date: 2010-06-08 13:44:01
 layout: post
-title: !binary |-
-  V2h5IGhhcyBteSBKU0YgYnV0dG9uIHN0b3BwZWQgd29ya2luZy4u
+slug: why-has-my-jsf-button-stopped-working
+title: Why has my JSF button stopped working..
 wordpress_id: 388
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzamVmZmVyaWVzLmNvbS8/cD0zODg=
-date: 2010-06-08 13:44:01.000000000 +00:00
+tags:
+- java
+- jsf
 ---
+
 I've asked this a number of times in the past, but I think I've  finally found the answer!
 
 Often with JSF you may have a command  button wrapped in a div or subview rendered only in certain  circumstances.
-<pre>&lt;f:subview id="show-the-button" rendered="#{managedBean.shouldButtonBeRendered}"&gt;
-    &lt;h:commandButton action="#{managedBean.doSomething}" value="Do Something" /&gt;
-&lt;/f:subview&gt;</pre>
+
+    
+    <f:subview id="show-the-button" rendered="#{managedBean.shouldButtonBeRendered}">
+        <h:commandButton action="#{managedBean.doSomething}" value="Do Something" />
+    </f:subview>
+
+
 Ok, you might have some extra mark up in there, id etc, but this is  just to keep things simple for this example.
 
 Now, for the button  to be rendered, the value of  managedBean.shouldButtonBeRendered should  be true when the page is being rendered, then the button appears.
@@ -21,4 +28,4 @@ However,  if between the page loading and the button being clicked, the value of
 
 So, if you have a button which stops working under certain circumstances, check any rendering on the component or parent components!
 
-More info can be found on the <a href="http://forums.sun.com/thread.jspa?threadID=5410200">sun forums</a> and on <a href="http://balusc.blogspot.com/2010/06/benefits-and-pitfalls-of-viewscoped.html">BalusC's</a> useful site
+More info can be found on the [sun forums](http://forums.sun.com/thread.jspa?threadID=5410200) and on [BalusC's](http://balusc.blogspot.com/2010/06/benefits-and-pitfalls-of-viewscoped.html) useful site

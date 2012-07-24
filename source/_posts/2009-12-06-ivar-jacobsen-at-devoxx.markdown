@@ -1,13 +1,17 @@
 ---
+comments: true
+date: 2009-12-06 21:00:25
 layout: post
-title: !binary |-
-  SXZhciBKYWNvYnNvbiBhdCBEZXZveHg=
+slug: ivar-jacobsen-at-devoxx
+title: Ivar Jacobson at Devoxx
 wordpress_id: 267
-wordpress_url: !binary |-
-  aHR0cDovL3d3dy5qYW1lc2FuZGNsYXJlLm5ldC8/cD0yNjc=
-date: 2009-12-06 21:00:25.000000000 +00:00
+categories:
+- Techie
+tags:
+- linkedin
 ---
-<a href="http://www.ivarjacobson.com/">Ivar Jacobson</a> is one of the architects of Rational Unified Process (RUP) and use cases and all that stuff. He gave a keynote talk at Devoxx on the state of the software engineering profession. His opening line was 'Everyone knows how to develop software, but as an industry we don't' which is a good line to start to a conference full of developers. His set up was
+
+[Ivar Jacobson](http://www.ivarjacobson.com/) is one of the architects of Rational Unified Process (RUP) and use cases and all that stuff. He gave a keynote talk at Devoxx on the state of the software engineering profession. His opening line was 'Everyone knows how to develop software, but as an industry we don't' which is a good line to start to a conference full of developers. His set up was
 
 * Fashions - our industry follows fashions, how often do we do a project the same way as one previously. Obviously some clients prefer to work in certain ways, but having worked on three major projects recently, they have all done things in different ways. We've gone from OO through components through UML through Unified Process, RUP, CIMMI, 3 years ago XP, now scrum is the flavour of the month. He gave an example of meeting someone who's business card had Phd and Certified Scrum master on it. How can you compare a two day course without any kind of test and 3+ years of research and writing! He wasn't knocking scrum in it self, but the way in which methodologies seem to change whenever the wind blows.
 

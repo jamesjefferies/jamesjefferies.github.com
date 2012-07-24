@@ -1,14 +1,26 @@
 ---
+comments: true
+date: 2012-04-17 16:54:52
 layout: post
-title: !binary |-
-  U29tZXRoaW5nIGluc3BpcmluZy4uIEZvciBTaGVmZmllbGQh
+slug: something-inspiring-for-sheffield
+title: Something inspiring.. For Sheffield!
 wordpress_id: 458
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzamVmZmVyaWVzLmNvbS8/cD00NTg=
-date: 2012-04-17 16:54:52.000000000 +00:00
+categories:
+- Happenstance
+- James
+- Sheffield
+tags:
+- Digital R&amp;D
+- Happenstance
+- Nesta
 ---
+
 Sheffield is the city of Seven Hills, George Orwell wrote in 'Road to Wigan Pier'
-<blockquote>"The town is very hilly (said to be built on seven hills, like Rome) and everywhere streets of mean little houses blackened by smoke run up at sharp angles, paved with cobbles which are purposely set unevenly to give horses etc, a grip"</blockquote>
+
+
+> "The town is very hilly (said to be built on seven hills, like Rome) and everywhere streets of mean little houses blackened by smoke run up at sharp angles, paved with cobbles which are purposely set unevenly to give horses etc, a grip"
+
+
 We don't have many horses heading up and down hills any more, nor are our houses mean, but it does feel like we are missing a bit of a trick. The city centre has its ups and downs, steps, ramps and in one particular office block, a slide..
 
 http://www.youtube.com/watch?v=twA_mVMgMY8

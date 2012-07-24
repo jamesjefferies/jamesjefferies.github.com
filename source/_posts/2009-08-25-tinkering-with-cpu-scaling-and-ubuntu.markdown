@@ -1,12 +1,12 @@
 ---
+comments: false
+date: 2009-08-25 17:06:55
 layout: post
-title: !binary |-
-  VGlua2VyaW5nIHdpdGggQ1BVIHNjYWxpbmcgYW5kIFVidW50dQ==
+slug: tinkering-with-cpu-scaling-and-ubuntu
+title: Tinkering with CPU scaling and Ubuntu
 wordpress_id: 241
-wordpress_url: !binary |-
-  aHR0cDovL3d3dy5qYW1lc2FuZGNsYXJlLm5ldC8/cD0yNDE=
-date: 2009-08-25 17:06:55.000000000 +00:00
 ---
+
 I have a little gnome applet running which tells me how fast my CPUs are running. Annoyingly, they seem to be lazing about at 2.0Ghz, saving energy and all that, speeding up (allegedly) when required.
 
 This seemed like a bit of cop out to me, I want them running at 2.3Ghz, their max speed, when I'm compiling and running apps! I'm all for saving energy, but I want the control.

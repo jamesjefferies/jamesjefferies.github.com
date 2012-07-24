@@ -1,12 +1,16 @@
 ---
+comments: false
+date: 2007-04-19 14:09:25
 layout: post
-title: !binary |-
-  T3JhY2xlIDEwZw==
+slug: oracle-10g
+title: Oracle 10g
 wordpress_id: 44
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzYW5kY2xhcmUubmV0L2xpZmUvP3A9Mw==
-date: 2007-04-19 14:09:25.000000000 +00:00
+categories:
+- Grumble
+- Oracle
+- Techie
 ---
+
 How come Oracle 10g comes with so many nice things which are advertised as working 'out of the box' but actually a licence fee is paid. This wouldn't be so bad if the company refuses to pay the extra licences to access all of the performance tweaking goodies we need!
 
 Honestly, I tear my hear out :(

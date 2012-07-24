@@ -1,13 +1,12 @@
 ---
+comments: false
+date: 2008-11-12 10:49:09
 layout: post
-title: !binary |-
-  Q3JlYXRlIHZpcnR1YWwgbWFjaGluZSBvbiB1YnVudHUgYW5kIGluc3RhbGwg
-  d2luZG93cw==
+slug: create-virtual-machine-on-ubuntu-and-install-windows
+title: Create virtual machine on ubuntu and install windows
 wordpress_id: 38
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzYW5kY2xhcmUubmV0L2xpZmUvP3A9Mzg=
-date: 2008-11-12 10:49:09.000000000 +00:00
 ---
+
 Ok, I've tried doing this a number of ways, but here's my favourite
 
 1) Use http://www.easyvmx.com/ to create the initial machine, it's a breeze

@@ -1,12 +1,18 @@
 ---
+comments: true
+date: 2012-04-01 17:51:55
 layout: post
-title: !binary |-
-  Rmlyc3QtaXNoIGltcHJlc3Npb25zIC0gU2l0ZSBHYWxsZXJ5
+slug: first-ish-impressions-site-gallery
+title: First-ish impressions - Site Gallery
 wordpress_id: 455
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzamVmZmVyaWVzLmNvbS8/cD00NTU=
-date: 2012-04-01 17:51:55.000000000 +00:00
+categories:
+- Happenstance
+tags:
+- Digital R&amp;D
+- Happenstance
+- Nesta
 ---
+
 Last summer, when I set up my own company, ShedCode, I was fortunate to be able share an office with 3 friends, all of whom I'd worked with before. We were able to get an office on the top floor of the Site Gallery building, so my relationship with Site was already established on a different footing, that of a happy tenant.
 
 That is not to say that I had any real idea what happened in the building! Sure, there was a cafe and a shop, but I was not that familiar with the rest of the space, the actual gallery. I'd have a look at each new exhibition, but it was usually a quick zoom around whilst waiting for a coffee.

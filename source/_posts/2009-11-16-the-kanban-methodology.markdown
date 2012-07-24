@@ -1,12 +1,14 @@
 ---
+comments: false
+date: 2009-11-16 19:27:38
 layout: post
-title: !binary |-
-  VGhlIEthbmJhbiBNZXRob2RvbG9neQ==
+slug: the-kanban-methodology
+title: The Kanban Methodology
 wordpress_id: 252
-wordpress_url: !binary |-
-  aHR0cDovL3d3dy5qYW1lc2FuZGNsYXJlLm5ldC8/cD0yNTI=
-date: 2009-11-16 19:27:38.000000000 +00:00
+tags:
+- linkedin
 ---
+
 Now I've had some experience of working in a scrum environment, I was keen to find about other similiar methodologies. Kanban (which literally means - visual card) is a methodology direct from manufacturing, specifically in Japan. Limits and constraints are embraced to allow the smooth flow of tasks.
 
 A board is used to map flow of tasks, but generally with extra steps compared to a scrum board. Some of these steps are buffers, indicating that there may be inefficiencies or constraints which are hindering the flow, i.e. tasks which are in the 'awaiting uploading' stage indicates that the uploading stage may have inefficiencies which constrain the throughput.

@@ -1,12 +1,14 @@
 ---
+comments: false
+date: 2007-05-01 11:12:37
 layout: post
-title: !binary |-
-  RmlyZSBEcmFtYQ==
+slug: fire-drama
+title: Fire Drama
 wordpress_id: 9
-wordpress_url: !binary |-
-  aHR0cDovL2phbWVzYW5kY2xhcmUubmV0L2xpZmUvP3A9OQ==
-date: 2007-05-01 11:12:37.000000000 +00:00
+categories:
+- Drama
 ---
+
 This morning I was woken by an explosion around 5am - when I looked up, I could see red flickering reflecting on the ceiling, consequently I jumped out of bed, put my specs on and looked out of the window. There was a car, on fire opposite my house!
 
 Immediately I phoned the fire brigade and was slightly off put by a voice reading out my mobile phone number, I suspect for the recording. I said there was a car on fire and gave the name of my street, but forget to tell them the city! Once they sorted that out, they said a fire engine would be on it's way.

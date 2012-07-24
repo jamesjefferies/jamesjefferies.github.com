@@ -387,14 +387,16 @@
         <lastmod>2012-07-24T21:55:56+01:00</lastmod>
     </url>
     <url>
-        <loc>http://jamesjefferies.github.com/2011/01/06/356/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <loc>
+            http://jamesjefferies.github.com/2011/01/06/testing-the-grails-spring-security-ldap-combo/
+        </loc>
+        <lastmod>2012-07-24T22:10:28+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://jamesjefferies.github.com/2011/03/09/using-constants-in-spring-configuration/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T22:02:20+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2011/04/06/the-scala-momentum-builds/</loc>
@@ -438,7 +440,7 @@
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2012/04/17/something-inspiring-for-sheffield/</loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T22:06:25+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/2012/04/22/week-1-in-sheffield/</loc>
@@ -490,7 +492,7 @@
         <loc>
             http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/
         </loc>
-        <lastmod>2012-07-24T21:07:53+01:00</lastmod>
+        <lastmod>2012-07-24T22:08:33+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -506,14 +508,14 @@
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/blog/archives/</loc>
-        <lastmod>2012-07-24T21:55:56+01:00</lastmod>
+        <lastmod>2012-07-24T22:10:28+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/blog/arsiv/</loc>
-        <lastmod>2012-07-24T21:55:56+01:00</lastmod>
+        <lastmod>2012-07-24T22:10:28+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.github.com/</loc>
-        <lastmod>2012-07-24T21:55:56+01:00</lastmod>
+        <lastmod>2012-07-24T22:10:28+01:00</lastmod>
     </url>
 </urlset>

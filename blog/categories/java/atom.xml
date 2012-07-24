@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-24T21:57:22+01:00</updated>
+  <updated>2012-07-24T22:10:38+01:00</updated>
   <id>http://jamesjefferies.github.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -132,12 +132,14 @@ public static void switchOffLiquibase() {</p>
   
   <entry>
     <title type="html"><![CDATA[Testing the Grails, Spring Security, LDAP combo]]></title>
-    <link href="http://jamesjefferies.github.com/2011/01/06/356/"/>
+    <link href="http://jamesjefferies.github.com/2011/01/06/testing-the-grails-spring-security-ldap-combo/"/>
     <updated>2011-01-06T16:00:46+00:00</updated>
-    <id>http://jamesjefferies.github.com/2011/01/06/356</id>
+    <id>http://jamesjefferies.github.com/2011/01/06/testing-the-grails-spring-security-ldap-combo</id>
     <content type="html"><![CDATA[<p>For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you're working remotely, or because you want a disposable directory to throw away after you've run your tests. Well, there is a <a href="http://www.grails.org/plugin/ldap-server">grails plugin</a> which adds an embedded LDAP directory (ApacheDS) to your application which can be fired up as/when required.</p>
 
 <p>After installing the plugin, it requires a bit of configuration, so in your Config.groovy:</p>
+
+<p>``` groovy</p>
 
 <pre><code>environments {
     development {       
@@ -154,9 +156,13 @@ public static void switchOffLiquibase() {</p>
     ....
 </code></pre>
 
+<p>```</p>
+
 <p>So now, when the app is instantiated in the development environment, you have an ldap directory running on localhost, post 10389. You might want to change what is indexed depending on what details you actually want indexing!</p>
 
 <p>If you wanted some default data loaded when the ldap server starts, simply add an ldif file to the grails-app/ldap-servers/d1/data directory. This gets auto loaded:</p>
+
+<p>```</p>
 
 <pre><code>dn: ou=group,dc=people,dc=companyname,dc=int
 objectClass: top
@@ -175,10 +181,14 @@ objectClass: person
 objectClass: organizationalPerson
 cn: James Jefferies
 sn: Jefferies
-userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
+userPassword: {SHA}ERnP637iUzV+A0oI2ETuol9v0g8=
 </code></pre>
 
+<p>```</p>
+
 <p>To run unit tests against it, a reference to the server get's injected in to your test class and then you can run some tests against it:</p>
+
+<p>``` groovy</p>
 
 <pre><code>class LdapTests extends GroovyTestCase {
 
@@ -194,6 +204,8 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
     }
 }
 </code></pre>
+
+<p>```</p>
 
 <p>If you're doing the full spring security with custom rolled retrieval of Roles and you want to test it, then you need to make sure you've bootstrapped those users too, so that the roles are retrieved as well as the user being authenticated.</p>
 ]]></content>

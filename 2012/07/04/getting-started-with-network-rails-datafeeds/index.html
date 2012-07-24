@@ -114,11 +114,10 @@
 
 <p>The updates you receive from this program are not formatted at all, it&#8217;s just sending the message straight to string. Of course, this is just helping you know you&#8217;re set up correctly. So you would get something like:</p>
 
-<p>[code]</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="no">Stomp</span><span class="o">::</span><span class="no">Message</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message-id&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ID:blahblah&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436026840&quot;</span><span class="p">,</span> <span class="s2">&quot;expires&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436326840&quot;</span><span class="p">,</span> <span class="s2">&quot;persistent&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;priority&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;4&quot;</span><span class="p">}</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;[{&quot;CA_MSG&quot;:{&quot;to&quot;:&quot;1234&quot;,&quot;time&quot;:&quot;1341435963000&quot;,&quot;area_id&quot;:&quot;WH&quot;,&quot;msg_type&quot;:&quot;CA&quot;,&quot;from&quot;:&quot;5678&quot;,&quot;descr&quot;:&quot;1Z99&quot;}}]&#39;</span> <span class="n">command</span><span class="o">=</span><span class="s1">&#39;MESSAGE&#39;</span> <span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>&lt;Stomp::Message headers={&#8220;message-id&#8221;=>&#8221;ID:blahblah&#8221;, &#8220;destination&#8221;=>&#8221;/topic/TD_MC_EM_SIG_AREA&#8221;, &#8220;timestamp&#8221;=>&#8221;1341436026840&#8221;, &#8220;expires&#8221;=>&#8221;1341436326840&#8221;, &#8220;persistent&#8221;=>&#8221;true&#8221;, &#8220;priority&#8221;=>&#8221;4&#8221;} body=&#8217;[{&#8220;CA_MSG&#8221;:{&#8220;to&#8221;:&#8221;1234&#8221;,&#8221;time&#8221;:&#8221;1341435963000&#8221;,&#8221;area_id&#8221;:&#8221;WH&#8221;,&#8221;msg_type&#8221;:&#8221;CA&#8221;,&#8221;from&#8221;:&#8221;5678&#8221;,&#8221;descr&#8221;:&#8221;1Z99&#8221;}}]&#8217; command=&#8217;MESSAGE&#8217; ></p>
-
-<p>[/code]</p>
 
 <p>Ultimately of course, you&#8217;d process the JSON from the body and do something with it.</p>
 

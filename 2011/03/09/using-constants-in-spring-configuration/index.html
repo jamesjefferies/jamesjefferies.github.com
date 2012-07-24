@@ -94,20 +94,35 @@
 
 <p>Add the util schema to your bean configuration xml</p>
 
-<pre><code>beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:util="http://www.springframework.org/schema/util"
-xsi:schemaLocation="
-http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-http://www.springframework.org/schema/util
-http://www.springframework.org/schema/util/spring-util-3.0.xsd"
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>    <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+</span><span class='line'>    <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>    <span class="na">xmlns:util=</span><span class="s">&quot;http://www.springframework.org/schema/util&quot;</span>
+</span><span class='line'>    <span class="na">xsi:schemaLocation=</span><span class="s">&quot;</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/beans</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/util</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/util/spring-util-3.0.xsd&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <p>and then you can just reference your constants as follows:&#8220;</p>
 
-<pre><code>util:constant static-field="com.foo.bar.RATE_2000_2950"
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;util:constant</span> <span class="na">static-field=</span><span class="s">&quot;com.foo.bar.RATE_2000_2950&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 </div>
 
 
@@ -147,7 +162,7 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2011/01/06/356/" title="Previous Post: Testing the Grails, Spring Security, LDAP combo">&laquo; Testing the Grails, Spring Security, LDAP combo</a>
+        <a class="basic-alignment left" href="/2011/01/06/testing-the-grails-spring-security-ldap-combo/" title="Previous Post: Testing the Grails, Spring Security, LDAP combo">&laquo; Testing the Grails, Spring Security, LDAP combo</a>
       
       
         <a class="basic-alignment right" href="/2011/04/06/the-scala-momentum-builds/" title="Next Post: The Scala Momentum builds...">The Scala Momentum builds... &raquo;</a>

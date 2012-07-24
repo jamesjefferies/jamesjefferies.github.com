@@ -1,0 +1,20 @@
+---
+layout: post
+title: !binary |-
+  Rmlyc3QtaXNoIGltcHJlc3Npb25zIC0gU2l0ZSBHYWxsZXJ5
+wordpress_id: 455
+wordpress_url: !binary |-
+  aHR0cDovL2phbWVzamVmZmVyaWVzLmNvbS8/cD00NTU=
+date: 2012-04-01 17:51:55.000000000 +00:00
+---
+Last summer, when I set up my own company, ShedCode, I was fortunate to be able share an office with 3 friends, all of whom I'd worked with before. We were able to get an office on the top floor of the Site Gallery building, so my relationship with Site was already established on a different footing, that of a happy tenant.
+
+That is not to say that I had any real idea what happened in the building! Sure, there was a cafe and a shop, but I was not that familiar with the rest of the space, the actual gallery. I'd have a look at each new exhibition, but it was usually a quick zoom around whilst waiting for a coffee.
+
+Fast forward to this week, Tuesday 27th March 2012, when the Happenstance induction began and ignorance would no longer be an excuse! Leila (my co-technologist-in-residence) & I spent a couple of days finding out much more about our place of work for the 10 weeks. We had many chats with the two directors, Laura Sillars and Judith Harry, sat in a staff meeting, had a tour around the secret rooms of the gallery, unearthed old AV kit, basked in the sun on one of the balconies, met our amazing mentor, James Boardwell, met our friendly researcher, Chris Bilton, went to our fantastic local pub, The Rutland Arms and visited some of the art spaces within a 10 minute walk of the Site.
+
+Now we have a much better idea of where Site Gallery sits in relation to the city of Sheffield, the UK and Internationally. The gallery is located a few minutes from the Railway Station, in the middle of a real creative area of the city. Apparently there are over 300 studio spaces within 10 minutes walk! We were fortunate to be able to have a sneak peak in some of these places, Yorkshire Art Space, Access Space, the Archipelago Works, Bloc and S1 Artspace. Many of these buildings I would walk past each day on the way to work, without realising that behind the walls, doors and windows, incredible things were taking place.
+
+As for Happenstance, well, I'm looking forward to working with Leila, we have different, yet hopefully, complementary skill sets and I feel I have a lot to learn from her. We've discussed some of the challenges that appeal to problem solving techies and we have a few ideas which we'll be looking to explore further when we start officially after Easter. The Gallery itself has recently been going through a period of organisational and strategic change. Laura and Judith have been able to look, with fresh eyes, at the potential for growth of the organisation and it's role as a connector within the city. I hope we can help!
+
+The first *real* impression I remember being able to do was Windy Miller from Camberwick Green. Well actually, it was Windy Miller's windmill, but you know what I mean...

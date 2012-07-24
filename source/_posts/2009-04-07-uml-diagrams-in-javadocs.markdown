@@ -17,7 +17,7 @@ So, this requires two steps. The first is to install graphviz which the plug in 
 
 The second is adding the following configuration to the pom...
 
-    
+``` java    
     	<plugin>
             <artifactId>maven-javadoc-plugin</artifactId>
             <configuration>
@@ -37,6 +37,6 @@ The second is adding the following configuration to the pom...
               </additionalparam>
             </configuration>
           </plugin>
-
+```
 
 now, when you build the maven site you get nice UML diagrams in your javadocs

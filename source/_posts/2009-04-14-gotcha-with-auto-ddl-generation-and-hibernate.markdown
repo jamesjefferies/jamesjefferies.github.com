@@ -19,7 +19,7 @@ create will empty the database, whereas create-drop will properly drop it...
 
 for completeness, here is the configuration for a entity manager, with the generate DDL parameter switching the ddl generation on and off, and the hibernate.hbm2ddl.auto parameter determining whether you do a create each time or an update or whatever.
 
-    
+``` xml    
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
             <property name="loadTimeWeaver">
                 <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
@@ -49,3 +49,4 @@ for completeness, here is the configuration for a entity manager, with the gener
                 </bean>          
             </property>
         </bean>
+```

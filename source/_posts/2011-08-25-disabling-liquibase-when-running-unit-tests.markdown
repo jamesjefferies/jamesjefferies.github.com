@@ -17,8 +17,9 @@ If you're running Liquibase, configured by Spring (or whatever) and you don't wa
 
 Whilst running a single unit test class many times, you might want to add a system set property call before any of the tests are run. Hence:
 
-    
-     @BeforeClass
-        public static void switchOffLiquibase() {
-            System.setProperty(Liquibase.SHOULD_RUN_SYSTEM_PROPERTY, "false");
-        }
+``` java    
+@BeforeClass
+public static void switchOffLiquibase() {
+	System.setProperty(Liquibase.SHOULD_RUN_SYSTEM_PROPERTY, "false");
+}
+```

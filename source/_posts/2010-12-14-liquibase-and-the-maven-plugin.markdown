@@ -18,40 +18,36 @@ Liquibase is a Database Change Management system - as they say "You never develo
 
 However, in classic Open Source fashion, the documentation leaves something to be desired. So when I found myself trusting the documentation and getting the error:
 
-    
+``` sh    
     The driver has not been specified either as a parameter or in a properties file
-
+```
 
 when it was specified in both properties and as a parameter I should have realised that it was the documentation which was wrong, not me. I'm far too trusting....
 
 So, when you set up the maven plugin in and they recommend doing this:
 
 ``` xml 
-            <plugin>
-              <groupid>org.liquibase</groupid>
-              <artifactid>liquibase-plugin</artifactid>
-              <version>1.6.1.0</version>
-              <executions>
-                <execution>
-                  <phase>process-resources</phase>
-                  <configuration>
-                    <propertyfile>src/main/resources/liquibase.properties</propertyfile>
-                  </configuration>
-                  <goals>
-                    <goal>update</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
+<plugin>
+	<groupid>org.liquibase</groupid>
+        <artifactid>liquibase-plugin</artifactid>
+        <version>1.6.1.0</version>
+        <executions>
+        	<execution>
+                	<phase>process-resources</phase>
+                  	<configuration>
+                    		<propertyfile>src/main/resources/liquibase.properties</propertyfile>
+                  	</configuration>
+                  	<goals>
+                    		<goal>update</goal>
+                  	</goals>
+               	</execution>
+        </executions>
+</plugin>
 ```    
-
-
 
 you just ignore them as the configuration is only set for that particular phase - whereas you want the configuration for all phases.. so you should set it up like this instead, makes a lot of sense really.
 
-
-    
-  ``` xml 
+``` xml 
             <plugin>
                 <groupid>org.liquibase</groupid>
                 <artifactid>liquibase-plugin</artifactid>
@@ -73,9 +69,6 @@ you just ignore them as the configuration is only set for that particular phase 
                     </execution>
                 </executions>
             </plugin>
-   ``` 
-    
-
-
+``` 
 
 hurrah.

@@ -11,4 +11,6 @@ categories:
 
 Goodness me, how have I managed for the last 19 years without sed editing inplace...
 
+``` sh
 sed -i 's/old-fogey/new-fangled/g' *.james.documents.txt
+```

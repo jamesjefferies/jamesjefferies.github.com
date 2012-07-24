@@ -13,7 +13,9 @@ This seemed like a bit of cop out to me, I want them running at 2.3Ghz, their ma
 
 Well, now I have it thanks to a bit of reconfiguring..
 
+``` sh
 sudo dpkg-reconfigure gnome-applets
+```
 
 Running this allows the CPU speed applet to change the settings (with root permission). So, I have changed it from On Demand to Performance. Hurrah!
 

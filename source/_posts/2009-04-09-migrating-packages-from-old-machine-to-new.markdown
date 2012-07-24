@@ -9,29 +9,27 @@ wordpress_id: 150
 
 Before switching off your old ubuntu machine for good, run
 
-    
+``` sh    
     dpkg --get-selections > Packages.lst
-
+```
 
 which will output all the stuff you've installed using the package manager to a flat file (Packages.lst). Copy this file to your new machine.
 
-    
+``` sh  
     dpkg --set-selections < Packages.lst
-
+```
 
 will then set all those packages ready for install on your new machine.
 
-Martin reckons run this first as a dry-run
-
-    
+``` sh  
     sudo apt-get -s dselect-upgrade
-
+```
 
 and then when you are feeling brave
 
-    
+``` sh  
     sudo apt-get dselect-upgrade
-
+```
 
 will install them for you...hopefully!
 

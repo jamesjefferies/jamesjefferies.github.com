@@ -14,11 +14,11 @@ I've asked this a number of times in the past, but I think I've  finally found t
 
 Often with JSF you may have a command  button wrapped in a div or subview rendered only in certain  circumstances.
 
-    
+``` xml    
     <f:subview id="show-the-button" rendered="#{managedBean.shouldButtonBeRendered}">
         <h:commandButton action="#{managedBean.doSomething}" value="Do Something" />
     </f:subview>
-
+```
 
 Ok, you might have some extra mark up in there, id etc, but this is  just to keep things simple for this example.
 

@@ -9,11 +9,16 @@ wordpress_id: 24
 
 in the form view:
 
+``` xml
 <h:messages></h:messages>
+```
+
 
 and in web.xml - switch facelets development on...
 
+``` xml
 <context-param>
 <param-name>facelets.DEVELOPMENT</param-name>
 <param-value>true</param-value>
 </context-param>
+```

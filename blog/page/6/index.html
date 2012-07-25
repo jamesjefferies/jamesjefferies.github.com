@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+
+  
+  <meta name="description" content="Standard practice with tomcat is that the application is deployed under a directory which is derived from the name of the war file archive which is &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/blog/page/6/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/05/01/deploying-applications-to-tomcat-running-under/">Deploying Applications to Tomcat Running Under /</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-01T11:22:15+01:00" pubdate data-updated="true">May 1<span>st</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Standard practice with tomcat is that the application is deployed under a directory which is derived from the name of the war file archive which is deployed.</p>
+
+<p>i.e. foo.war will be deployed to the foo directory and will be accessed with the URL http://application-server-url/foo</p>
+
+<p>All well and good, but what if you want to access it as http://app-server-url/   ?</p>
+
+<p>a number of approaches were tried, none of which worked 100%, they part worked or ended up with the application being deployed twice. Pain, pain, pain.</p>
+
+<p>Trying to use docbase in the server.xml, i.e.</p>
+
+<p><code>&lt;Context path="" docBase="foo" debug="1"/&gt;</code></p>
+
+<p>will result in the application being deployed to / and /foo - not good, we only want it deployed once.</p>
+
+<p>So, take a step back. Only one application can be deployed under / and for tomcat, this defaults to one called ROOT.war, so rather than creating and deploying foo.war, call it ROOT.war and it will deploy to /, once and everyone is happy.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/30/what-is-an-expert/">What Is an Expert and Top Ten Reasons Managers Become Great - Links</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-30T12:24:35+01:00" pubdate data-updated="true">Apr 30<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>You&#8217;re not going to find the answer here (arf), but I love this <a href="http://softwarecreation.org/2009/how-to-become-an-expert-top-7-qualities/">article</a> on what it takes to become an expert. This point I find particularly interesting:</p>
+
+<blockquote><p>tacit knowledge: automatic, unexpressed knowledge that provides context for people, places, ideas, and experiences. Tacit knowledge is not easily shared. As Polanyi said: “We know more than we can tell.”</p></blockquote>
+
+<p>I like <a href="http://www.scottberkun.com/blog/2009/top-ten-reasons-managers-become-great/">this</a> too, especially the point that managers become great if they are self aware - they know their weaknesses and they make sure someone is covering their back.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/">Hibernate Search, Lucene and Greenwich Mean Time</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-22T11:20:05+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Aww, what a gotcha this morning. Felt stoopid when I realised what was going on.</p>
+
+<p>There are a number of ways to use dates with Lucene and specifically with Hibernate Search, which is what I&#8217;m using at the moment for providing a wrapper around Lucene. I wanted to search for a certain date range on a field.. which has been set to midnight. You can probably guess what&#8217;s coming here. Now we&#8217;re in British Summer Time our clocks are forward, but of course, the date is stored by Lucene as GMT, consequently, without a bit of cleverness, something saved at 12:01 AM on the 2nd April BST, is actually 11:01 PM on the 1st April GMT.</p>
+
+<p>Throw in a date range search looking for stuff from the 2nd April onwards and things start going a bit wonky!</p>
+
+<p>By the way, here is how it now woorks, still may not be the best way to do it, but it&#8217;s working for now.</p>
+
+<p><code>@Field(index = Index.UN_TOKENIZED)
+@DateBridge(resolution = Resolution.HOUR)
+@Temporal(TemporalType.DATE)
+private Date startDate;</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/14/gotcha-with-auto-ddl-generation-and-hibernate/">Gotcha With Auto DDL Generation and Hibernate</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-14T12:41:31+01:00" pubdate data-updated="true">Apr 14<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>During project development, we&#8217;re auto creating our database when the application initiates. This is superuseful initially, especially when the database is based on the domain objects rather than the other way around. Since switching to MySQL and a &#8216;real&#8217; database, rather than one in memory, there are a few gotchas. The one which caught me out this morning, for a few hours, involved adding and removing foreign keys automagically&#8230; it doesn&#8217;t really work!</p>
+
+<p>this is useful by the way for <a href="http://www.hibernate.org/hib_docs/reference/en/html/configuration-optional.html">hibernate config</a> as is <a href="http://www.jroller.com/eyallupu/entry/hibernate_s_hbm2ddl_tool">this</a></p>
+
+<p>anyway, we were set - <code>hibernate.hbm2ddl.auto=create</code></p>
+
+<p>when actually, we should have used create-drop.</p>
+
+<p>create will empty the database, whereas create-drop will properly drop it&#8230;</p>
+
+<p>for completeness, here is the configuration for a entity manager, with the generate DDL parameter switching the ddl generation on and off, and the hibernate.hbm2ddl.auto parameter determining whether you do a create each time or an update or whatever.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;entityManagerFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;loadTimeWeaver&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&quot;org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;persistenceUnitName&quot;</span> <span class="na">value=</span><span class="s">&quot;projectNamePU&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;jpaPropertyMap&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;map&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;hibernate.search.default.directory_provider&quot;</span> <span class="na">value=</span><span class="s">&quot;org.hibernate.search.store.RAMDirectoryProvider&quot;</span><span class="err"> </span> <span class="nt">/&gt;</span>   
+</span><span class='line'>                <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;hibernate.cache.provider_class&quot;</span> <span class="na">value=</span><span class="s">&quot;net.sf.ehcache.hibernate.SingletonEhCacheProvider&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;hibernate.cache.provider_configuration&quot;</span> <span class="na">value=</span><span class="s">&quot;classpath:ehCache.xml&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;hibernate.cache.use_second_level_cache&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;hibernate.generate_statistics&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;hibernate.cache.use_structured_entries&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;hibernate.jdbc.batch_size&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;hibernate.default_batch_fetch_size&quot;</span> <span class="na">value=</span><span class="s">&quot;20&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;color: #ff0000&quot;</span><span class="nt">&gt;&lt;entry</span> <span class="na">key=</span><span class="s">&quot;hibernate.hbm2ddl.auto&quot;</span> <span class="na">value=</span><span class="s">&quot;${hibernate.hbm2ddl.auto}&quot;</span> <span class="nt">/&gt;&lt;/span&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/map&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dataSource&quot;</span> <span class="na">ref=</span><span class="s">&quot;dataSource&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;jpaVendorAdapter&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>           <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&quot;org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;database&quot;</span> <span class="na">value=</span><span class="s">&quot;${hibernate.database}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;showSql&quot;</span> <span class="na">value=</span><span class="s">&quot;${hibernate.show_sql}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;color: #ff0000&quot;</span><span class="nt">&gt;&lt;property</span> <span class="na">name=</span><span class="s">&quot;generateDdl&quot;</span> <span class="na">value=</span><span class="s">&quot;${hibernate.generate_ddl}&quot;</span> <span class="nt">/&gt;&lt;/span&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;databasePlatform&quot;</span> <span class="na">value=</span><span class="s">&quot;${hibernate.dialect}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/bean&gt;</span>          
+</span><span class='line'>        <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/14/java-dates-and-times/">Java Dates and Times&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-14T10:38:17+01:00" pubdate data-updated="true">Apr 14<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>.. have always been a bit of a crock. Lumpy and confusing. Apache common date utils have helped, but still you end up witing unintuitive code.</p>
+
+<p>Many in the java community were hoping that JSR 310 was going to save the day, but it is looking more and more likely that it will not now make the cut for JDK 7. So, where does that leave us?</p>
+
+<p>Hello <a href="http://joda-time.sourceforge.net/">Joda-Time</a>!</p>
+
+<p>So, the drive behind JSR 310 was really incorporating Joda-Time in to the java specification. I&#8217;ve only just discovered Joda-Time and haven&#8217;t used it in anger, but I really wish I&#8217;d found it sooner and will be looking to take it out for a spin at the earliest opportunity.</p>
+
+<p>this, from the overview page gives you a tast of what Joda-Time gives you&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAfterPayDay</span><span class="o">(</span><span class="n">DateTime</span> <span class="n">datetime</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="k">if</span> <span class="o">(</span><span class="n">datetime</span><span class="o">.</span><span class="na">getMonthOfYear</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>   <span class="c1">// February is month 2!!</span>
+</span><span class='line'><span class="err"> </span>   <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">26</span><span class="o">;</span>
+</span><span class='line'><span class="err"> </span> <span class="o">}</span>
+</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">28</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="n">Days</span> <span class="nf">daysToNewYear</span><span class="o">(</span><span class="n">LocalDate</span> <span class="n">fromDate</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err"> </span> <span class="n">LocalDate</span> <span class="n">newYear</span> <span class="o">=</span> <span class="n">fromDate</span><span class="o">.</span><span class="na">plusYears</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="na">withDayOfYear</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">Days</span><span class="o">.</span><span class="na">daysBetween</span><span class="o">(</span><span class="n">fromDate</span><span class="o">,</span> <span class="n">newYear</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isRentalOverdue</span><span class="o">(</span><span class="n">DateTime</span> <span class="n">datetimeRented</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err"> </span> <span class="n">Period</span> <span class="n">rentalPeriod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Period</span><span class="o">().</span><span class="na">withDays</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="na">withHours</span><span class="o">(</span><span class="mi">12</span><span class="o">);</span>
+</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">datetimeRented</span><span class="o">.</span><span class="na">plus</span><span class="o">(</span><span class="n">rentalPeriod</span><span class="o">).</span><span class="na">isBeforeNow</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">getBirthMonthText</span><span class="o">(</span><span class="n">LocalDate</span> <span class="n">dateOfBirth</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">dateOfBirth</span><span class="o">.</span><span class="na">monthOfYear</span><span class="o">().</span><span class="na">getAsText</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/09/migrating-packages-from-old-machine-to-new/">Migrating Packages From Old Machine to New</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-09T12:41:31+01:00" pubdate data-updated="true">Apr 9<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Before switching off your old ubuntu machine for good, run</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --get-selections &gt; Packages.lst
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which will output all the stuff you&#8217;ve installed using the package manager to a flat file (Packages.lst). Copy this file to your new machine.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --set-selections &lt; Packages.lst
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will then set all those packages ready for install on your new machine.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get -s dselect-upgrade
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and then when you are feeling brave</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get dselect-upgrade
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will install them for you&#8230;hopefully!</p>
+
+<p>oh and watch out for things you <em>don&#8217;t</em> want to install on the new machine, like gfx drivers. You can remove them from Packages.lst</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/07/fed-up-with-your-iphone-opening-iphoto/">Fed Up With Your iPhone Opening iPhoto?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-07T21:21:02+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Then nip it in the bud by opening Image Capture and setting it not to open anything in the preferences (not in the app, but from the menu).. hurrah!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/07/uml-diagrams-in-javadocs/">UML Diagrams in Javadocs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-07T12:48:37+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ok, so after all that excitement about javadocs, now we can really push the boat out by getting a maven plugin to also auto create UML diagrams. &#8220;Diagrams&#8221; I hear you ask, yes diagrams. Useful for people like me who like pictures.</p>
+
+<p>So, this requires two steps. The first is to install graphviz which the plug in uses to create the pictures. A simple process on a linux box with apt-get.</p>
+
+<p>The second is adding the following configuration to the pom&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="o">&lt;</span><span class="n">plugin</span><span class="o">&gt;</span>
+</span><span class='line'>        <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">maven</span><span class="o">-</span><span class="n">javadoc</span><span class="o">-</span><span class="n">plugin</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+</span><span class='line'>        <span class="o">&lt;</span><span class="n">configuration</span><span class="o">&gt;</span>
+</span><span class='line'>          <span class="o">&lt;</span><span class="n">source</span><span class="o">&gt;</span><span class="mf">1.6</span><span class="o">&lt;/</span><span class="n">source</span><span class="o">&gt;</span>
+</span><span class='line'>          <span class="o">&lt;</span><span class="n">aggregate</span><span class="o">&gt;</span><span class="kc">true</span><span class="o">&lt;/</span><span class="n">aggregate</span><span class="o">&gt;</span>
+</span><span class='line'>          <span class="o">&lt;</span><span class="n">doclet</span><span class="o">&gt;</span><span class="n">gr</span><span class="o">.</span><span class="na">spinellis</span><span class="o">.</span><span class="na">umlgraph</span><span class="o">.</span><span class="na">doclet</span><span class="o">.</span><span class="na">UmlGraphDoc</span><span class="o">&lt;/</span><span class="n">doclet</span><span class="o">&gt;</span>
+</span><span class='line'>          <span class="o">&lt;</span><span class="n">docletArtifact</span><span class="o">&gt;</span>
+</span><span class='line'>            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">gr</span><span class="o">.</span><span class="na">spinellis</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+</span><span class='line'>            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">UmlGraph</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+</span><span class='line'>            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mf">4.6</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+</span><span class='line'>          <span class="o">&lt;/</span><span class="n">docletArtifact</span><span class="o">&gt;</span>
+</span><span class='line'>          <span class="o">&lt;</span><span class="n">additionalparam</span><span class="o">&gt;</span>
+</span><span class='line'>            <span class="o">-</span><span class="n">inferrel</span> <span class="o">-</span><span class="n">inferdep</span> <span class="o">-</span><span class="n">quiet</span> <span class="o">-</span><span class="n">hide</span> <span class="n">java</span><span class="o">.*</span>
+</span><span class='line'>            <span class="o">-</span><span class="n">collpackages</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.*</span> <span class="o">-</span><span class="n">qualify</span>
+</span><span class='line'>            <span class="o">-</span><span class="n">postfixpackage</span> <span class="o">-</span><span class="n">nodefontsize</span> <span class="mi">9</span>
+</span><span class='line'>            <span class="o">-</span><span class="n">nodefontpackagesize</span> <span class="mi">7</span>
+</span><span class='line'>          <span class="o">&lt;/</span><span class="n">additionalparam</span><span class="o">&gt;</span>
+</span><span class='line'>        <span class="o">&lt;/</span><span class="n">configuration</span><span class="o">&gt;</span>
+</span><span class='line'>      <span class="o">&lt;/</span><span class="n">plugin</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>now, when you build the maven site you get nice UML diagrams in your javadocs</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/07/asking-maven-to-produce-your-javadocs/">Asking Maven to Produce Your Javadocs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-07T10:33:11+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Javadocs are the java platforms standard way of producing code documentation, comments about what the class is for, which methods are provided and all that kind of stuff. It feels a bit old school now, but they are really useful if kept up to date.</p>
+
+<p>As we are building our project using maven, we can ask maven to build a &#8216;site&#8217; for our project. This pulls in various bits of information about the project, including dependencies on other libraries (and their licencing models) and all kinds of interesting stuff.</p>
+
+<p>One of the maven plugins generates the javadocs for your project and it&#8217;s very straightforward to set up, just add this to the reporting section of your pom file (for maven) and when you do a mvn site it automatically builds your javadocs.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>maven-javadoc-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/03/19/escaping-special-characters-with-lucene/">Escaping Special Characters With Lucene</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-19T12:10:57+00:00" pubdate data-updated="true">Mar 19<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you&#8217;re using Lucene queries then there are some special characters which do magic things. Of course you might not want any wild card / range magic going on and you&#8217;d rather the searcher could look up ] without everything blowing up.</p>
+
+<p>Well, you can escape those special characters simply by passing the query through the escape method of the QueryParser.. like so</p>
+
+<pre><code>searchTerm = QueryParser.escape(searchTerm);
+</code></pre>
+
+<p>of course this will nobble any asterixes or similar in there, so if you do want any wildcard stuff going on, add after the escaping.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/7/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/5/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

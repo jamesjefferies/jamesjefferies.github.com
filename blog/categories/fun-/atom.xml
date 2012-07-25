@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Fun! | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.github.com/blog/categories/fun-/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.github.com/"/>
+  <updated>2012-07-24T22:11:30+01:00</updated>
+  <id>http://jamesjefferies.github.com/</id>
+  <author>
+    <name><![CDATA[James Jefferies]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Water Fight]]></title>
+    <link href="http://jamesjefferies.github.com/2007/05/01/water-fight/"/>
+    <updated>2007-05-01T12:12:44+01:00</updated>
+    <id>http://jamesjefferies.github.com/2007/05/01/water-fight</id>
+    <content type="html"><![CDATA[<p>On Sunday afternoon I was chatting to my neighbour Nikki with her young lad Sunny. He was armed with a water pistol and before I knew it, I was engaged in full scale water battle! It was hilarious and reminded me what a child I am at heart! Both of us ended up wet but happy...</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Railways | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.github.com/blog/categories/railways/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.github.com/"/>
+  <updated>2012-07-24T22:11:30+01:00</updated>
+  <id>http://jamesjefferies.github.com/</id>
+  <author>
+    <name><![CDATA[James Jefferies]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Downloading the Network Rail Schedules]]></title>
+    <link href="http://jamesjefferies.github.com/2012/07/18/downloading-the-network-rail-schedules/"/>
+    <updated>2012-07-18T17:43:39+01:00</updated>
+    <id>http://jamesjefferies.github.com/2012/07/18/downloading-the-network-rail-schedules</id>
+    <content type="html"><![CDATA[<p>As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon S3. The Schedule feed is an extract of train schedules from the Integration Train Planning System.</p>
+
+<p>When you have your Network Rail account you can subscribe, either to all the data, or to the Train Operators you are interested in. However, at the time of writing, the only feed which works is the one for ALL the data, the Train Operator specific downloads throw an unhelpful error</p>
+
+<blockquote><p>HTTP Status 401 - User not subscribed to CIF_HL_FULL_DAILY</p></blockquote>
+
+<p>Which is a bit rubbish really. So my advice is, at this point to subscribe to ALL the data rather than just for one TOC. You can then access the feeds and download the zip file with either:</p>
+
+<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full</a></p>
+
+<p>for the full feed or, say</p>
+
+<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon</a></p>
+
+<p>for Monday's update.</p>
+
+<p>Note that you will need to authenticate if you haven't already, using your username and password.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Electrified Spine (and the rest of the news)]]></title>
+    <link href="http://jamesjefferies.github.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
+    <updated>2012-07-16T15:39:04+01:00</updated>
+    <id>http://jamesjefferies.github.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
+    <content type="html"><![CDATA[<p>Today the government has announced a further set of infrastructure investment for the railways. This has to be good news, especially where electrification is concerned. Electric trains are more efficient, cleaner and perform better than their diesel (and steam I suppose!) counterparts. I appreciate that the electricity still has to come from somewhere, but in the main it is the right thing to do.</p>
+
+<h2>Already Announced</h2>
+
+<p>We know that plans to electrify the Great Western Mainline (Paddington to Cardiff, Bristol, Oxford &amp; Newbury), plus the Trans-Pennine route between Manchester &amp; York, Blackpool and Manchester to Liverpool are already underway. These are all good things, but there were some unsatisfactory omissions. The new announcement helps with some of the missing links, but not all of them.</p>
+
+<p>There is a helpful <a href="http://assets.dft.gov.uk/publications/hlos-2012/map-hlos-electrification.pdf">map</a> which shows these routes in glorious technicolour</p>
+
+<h2>New Plans - Midland Mainline</h2>
+
+<p>Hooray, the Midland Mainline, which has been electrified to Bedford for many years is to be electrified to Nottingham and Sheffield (via Derby). For those of us who regularly travel to London from Sheffield we should experience a faster service. Not necessarily more trains though, no extra track is to be laid and unless signalling is replaced, you can't fit that many more trains on the track.</p>
+
+<p>As far as I'm aware, there has been no announcement about rolling stock either, the simple solution for East Midlands Trains (assuming they're still running the franchise) will be to get the existing Meridian trains upgraded with an extra coach containing all of the required electrical equipment, plus pantograph for current collection etc. Easier said than done, but a lot cheaper than brand new trains. So it is likely you'll still be sitting on the same seat.</p>
+
+<h2>Missed Opportunities - Midland Mainline</h2>
+
+<h3>Erewash Valley</h3>
+
+<p>Why or why isn't the Erewash valley route included as part of the plans? This is the line which goes straight on at the junction for Derby and Nottingham, joining up with the Sheffield line between Clay Cross and Chesterfield - it's the most direct route to Sheffield and is useful when engineering works close the route via Derby. Very few London bound trains use this route, most are routed via Derby from Sheffield, but electrifying it would be useful for diversions and could give the opportunity for Sheffield, Leicester, London services which don't call at Derby, potentially shaving more time off the journey.</p>
+
+<h3>Sheffield to Leeds</h3>
+
+<p>Groan, everybody wants a better service between Leeds and Sheffield, the best being the 45 minute Cross Country packed like a sardine train which goes via Wakefield. Why not electrify that route too so that more London trains can be extended easily to Leeds? Plus get some more electrified suburban stoppers on that route. Derby to Leeds semi-fast?</p>
+
+<h3>Sheffield to Doncaster</h3>
+
+<p>Whilst we're at it, how about the link to Doncaster too, providing more opportunities for diversions and commuter services?</p>
+
+<h2>New Plans - Oxford to Corby &amp; Nuneaton</h2>
+
+<p>This wasn't on my radar at all, but makes a lot of sense for new cross country routes as well as faster Birmingham to London trains via Oxford. Incorporating the start of the Oxford to Cambridge route (as far as Bedford) makes sense with that re-opening. The potential for new routes, well re-establishing old routes should give that part of the country a much better service.</p>
+
+<h2>New Plans - Reading to Southampton</h2>
+
+<p>Cross country trains mainly use this route at the moment and it is partially already electrified using the Southern standard 3rd Rail system. Over the next... err.. 50 years (?) the 3rd rail system will be phased out and replaced with the standard 25kv AC overhead system. This is the beginning of that process and also good preparation for Cross Country. Birmingham to Southampton trains will be electric all the way, as might, say Sheffield to Southampton trains, routed via Oxford.</p>
+
+<h2>The Spine</h2>
+
+<p>According to the plan, the Electrified Spine is to be the Southampton to Coventry and Sheffield routes and is a piece of spin. If I had a spine looking like that I'd be worried! The only new route, as far as I can see is the already announced re-opening of the Oxford to Bedford route, everywhere else is straightforward electrification.</p>
+
+<h2>Summary</h2>
+
+<p>I'm very happy to see these extra plans announced, but would like to understand more about why some very obvious links and connections have been omitted. What to others think?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Getting started with Network Rail's datafeeds]]></title>
+    <link href="http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
+    <updated>2012-07-04T23:46:41+01:00</updated>
+    <id>http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
+    <content type="html"><![CDATA[<p>I've had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I'm therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it's what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
+
+<h2>Where do you start?</h2>
+
+<p>If you are interested in using the datafeeds yourself, you can read all about it on <a href="http://www.networkrail.co.uk/data-feeds/">Network Rail's site</a> which also has a link to download the developer's guide in PDF format.</p>
+
+<p>First, you need to <a href="https://datafeeds.networkrail.co.uk/ntrod/login">create an account</a> - I believe there are limited numbers of accounts going at the moment, so the sooner you do that, the better.</p>
+
+<p>There are two types of feeds available, pub/sub using the stomp protocol for real-ish time data &amp; downloads of huge files from Amazon S3 for timetables etc.</p>
+
+<p>Once your account is active, you can subscribe to any of the pub/sub datafeeds you like and away you go.</p>
+
+<h2>Receiving Messages</h2>
+
+<p>I decided that I was going to try accessing the pub/sub datafeeds using Ruby (not my usual language) and put my experimental code on to my git hub account. Feel free to <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">have a look and check it out</a>, I'll be using it for my initial experiments, so it should get updated beyond this basic example!</p>
+
+<p>I've also included a sample, no error checking, very straightforward listener below. If you wish to try and run it, then you will of course need Ruby and Ruby gems installed, plus the stomp ruby gem.</p>
+
+<p>Then, you just need to ensure your username and password are set as the relevant environment variables and away you go.</p>
+
+<p>All being well, you should slowly receive updates from the topic you have selected. The example below uses Train positioning data for the East Midlands (TD_MC_EM_SIG_AREA) and assumes that you have subscribed to that feed using the <a href="https://datafeeds.networkrail.co.uk/ntrod/myFeeds">network rail control panel</a></p>
+
+<p>The updates you receive from this program are not formatted at all, it's just sending the message straight to string. Of course, this is just helping you know you're set up correctly. So you would get something like:</p>
+
+<p><code>ruby
+&lt;Stomp::Message headers={"message-id"=&gt;"ID:blahblah", "destination"=&gt;"/topic/TD_MC_EM_SIG_AREA", "timestamp"=&gt;"1341436026840", "expires"=&gt;"1341436326840", "persistent"=&gt;"true", "priority"=&gt;"4"} body='[{"CA_MSG":{"to":"1234","time":"1341435963000","area_id":"WH","msg_type":"CA","from":"5678","descr":"1Z99"}}]' command='MESSAGE' &gt;
+</code></p>
+
+<p>Ultimately of course, you'd process the JSON from the body and do something with it.</p>
+
+<h2>Example Ruby Listener</h2>
+
+<p>``` ruby
+require 'rubygems'
+require 'stomp'</p>
+
+<p>begin
+  # Credentials set here as environment variables
+  @user = ENV["DATAFEEDS_USER"];
+  @password = ENV["DATAFEEDS_PASSWORD"]
+  @host = "datafeeds.networkrail.co.uk"
+  @port = 61618</p>
+
+<p>  # Example destination add yours here
+  @destination = "/topic/TD_MC_EM_SIG_AREA"</p>
+
+<p>  puts "Connecting to datafeeds as #{@user} using stomp protocol stomp://#{@host}:#{@port}\n"
+  @connection = Stomp::Connection.open @user, @password, @host, @port, true
+  @connection.subscribe @destination</p>
+
+<p>  while true</p>
+
+<pre><code>@msg = @connection.receive
+puts @msg
+</code></pre>
+
+<p>  end
+  @connection.disconnect
+rescue
+end
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

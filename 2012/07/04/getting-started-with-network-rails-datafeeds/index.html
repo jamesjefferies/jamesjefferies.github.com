@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Getting started with Network Rail's datafeeds - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+
+  
+  <meta name="description" content="I&#8217;ve had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Getting Started With Network Rail's Datafeeds</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-04T23:46:41+01:00" pubdate data-updated="true">Jul 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I&#8217;m therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it&#8217;s what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
+
+<h2>Where do you start?</h2>
+
+<p>If you are interested in using the datafeeds yourself, you can read all about it on <a href="http://www.networkrail.co.uk/data-feeds/">Network Rail&#8217;s site</a> which also has a link to download the developer&#8217;s guide in PDF format.</p>
+
+<p>First, you need to <a href="https://datafeeds.networkrail.co.uk/ntrod/login">create an account</a> - I believe there are limited numbers of accounts going at the moment, so the sooner you do that, the better.</p>
+
+<p>There are two types of feeds available, pub/sub using the stomp protocol for real-ish time data &amp; downloads of huge files from Amazon S3 for timetables etc.</p>
+
+<p>Once your account is active, you can subscribe to any of the pub/sub datafeeds you like and away you go.</p>
+
+<h2>Receiving Messages</h2>
+
+<p>I decided that I was going to try accessing the pub/sub datafeeds using Ruby (not my usual language) and put my experimental code on to my git hub account. Feel free to <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">have a look and check it out</a>, I&#8217;ll be using it for my initial experiments, so it should get updated beyond this basic example!</p>
+
+<p>I&#8217;ve also included a sample, no error checking, very straightforward listener below. If you wish to try and run it, then you will of course need Ruby and Ruby gems installed, plus the stomp ruby gem.</p>
+
+<p>Then, you just need to ensure your username and password are set as the relevant environment variables and away you go.</p>
+
+<p>All being well, you should slowly receive updates from the topic you have selected. The example below uses Train positioning data for the East Midlands (TD_MC_EM_SIG_AREA) and assumes that you have subscribed to that feed using the <a href="https://datafeeds.networkrail.co.uk/ntrod/myFeeds">network rail control panel</a></p>
+
+<p>The updates you receive from this program are not formatted at all, it&#8217;s just sending the message straight to string. Of course, this is just helping you know you&#8217;re set up correctly. So you would get something like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="no">Stomp</span><span class="o">::</span><span class="no">Message</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message-id&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ID:blahblah&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436026840&quot;</span><span class="p">,</span> <span class="s2">&quot;expires&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436326840&quot;</span><span class="p">,</span> <span class="s2">&quot;persistent&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;priority&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;4&quot;</span><span class="p">}</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;[{&quot;CA_MSG&quot;:{&quot;to&quot;:&quot;1234&quot;,&quot;time&quot;:&quot;1341435963000&quot;,&quot;area_id&quot;:&quot;WH&quot;,&quot;msg_type&quot;:&quot;CA&quot;,&quot;from&quot;:&quot;5678&quot;,&quot;descr&quot;:&quot;1Z99&quot;}}]&#39;</span> <span class="n">command</span><span class="o">=</span><span class="s1">&#39;MESSAGE&#39;</span> <span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ultimately of course, you&#8217;d process the JSON from the body and do something with it.</p>
+
+<h2>Example Ruby Listener</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;stomp&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="c1"># Credentials set here as environment variables</span>
+</span><span class='line'>  <span class="vi">@user</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;DATAFEEDS_USER&quot;</span><span class="o">]</span><span class="p">;</span>
+</span><span class='line'>  <span class="vi">@password</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;DATAFEEDS_PASSWORD&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="vi">@host</span> <span class="o">=</span> <span class="s2">&quot;datafeeds.networkrail.co.uk&quot;</span>
+</span><span class='line'>  <span class="vi">@port</span> <span class="o">=</span> <span class="mi">61618</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Example destination add yours here</span>
+</span><span class='line'>  <span class="vi">@destination</span> <span class="o">=</span> <span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Connecting to datafeeds as </span><span class="si">#{</span><span class="vi">@user</span><span class="si">}</span><span class="s2"> using stomp protocol stomp://</span><span class="si">#{</span><span class="vi">@host</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="vi">@port</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="vi">@connection</span> <span class="o">=</span> <span class="no">Stomp</span><span class="o">::</span><span class="no">Connection</span><span class="o">.</span><span class="n">open</span> <span class="vi">@user</span><span class="p">,</span> <span class="vi">@password</span><span class="p">,</span> <span class="vi">@host</span><span class="p">,</span> <span class="vi">@port</span><span class="p">,</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="vi">@connection</span><span class="o">.</span><span class="n">subscribe</span> <span class="vi">@destination</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">while</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="vi">@msg</span> <span class="o">=</span> <span class="vi">@connection</span><span class="o">.</span><span class="n">receive</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="vi">@msg</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="vi">@connection</span><span class="o">.</span><span class="n">disconnect</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-04T23:46:41+01:00" pubdate data-updated="true">Jul 4<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/railways/'>Railways</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/techie/'>Techie</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/06/22/week-10-the-end-of-the-happenstance/" title="Previous Post: Week 10 - the end of the Happenstance">&laquo; Week 10 - the end of the Happenstance</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/" title="Next Post: The Electrified Spine (and the rest of the news)">The Electrified Spine (and the rest of the news) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

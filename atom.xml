@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.github.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-24T22:11:30+01:00</updated>
+  <updated>2012-07-26T12:29:44+01:00</updated>
   <id>http://jamesjefferies.github.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Downloading the Network Rail Schedules]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/18/downloading-the-network-rail-schedules/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules/"/>
     <updated>2012-07-18T17:43:39+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/18/downloading-the-network-rail-schedules</id>
+    <id>http://jamesjefferies.github.com/blog/2012/07/18/downloading-the-network-rail-schedules</id>
     <content type="html"><![CDATA[<p>As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon S3. The Schedule feed is an extract of train schedules from the Integration Train Planning System.</p>
 
 <p>When you have your Network Rail account you can subscribe, either to all the data, or to the Train Operators you are interested in. However, at the time of writing, the only feed which works is the one for ALL the data, the Train Operator specific downloads throw an unhelpful error</p>
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Electrified Spine (and the rest of the news)]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
     <updated>2012-07-16T15:39:04+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
+    <id>http://jamesjefferies.github.com/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
     <content type="html"><![CDATA[<p>Today the government has announced a further set of infrastructure investment for the railways. This has to be good news, especially where electrification is concerned. Electric trains are more efficient, cleaner and perform better than their diesel (and steam I suppose!) counterparts. I appreciate that the electricity still has to come from somewhere, but in the main it is the right thing to do.</p>
 
 <h2>Already Announced</h2>
@@ -91,9 +91,9 @@
   
   <entry>
     <title type="html"><![CDATA[Getting started with Network Rail's datafeeds]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
     <updated>2012-07-04T23:46:41+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
+    <id>http://jamesjefferies.github.com/blog/2012/07/04/getting-started-with-network-rails-datafeeds</id>
     <content type="html"><![CDATA[<p>I&#8217;ve had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I&#8217;m therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it&#8217;s what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
 
 <h2>Where do you start?</h2>
@@ -118,10 +118,11 @@
 
 <p>The updates you receive from this program are not formatted at all, it&#8217;s just sending the message straight to string. Of course, this is just helping you know you&#8217;re set up correctly. So you would get something like:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="no">Stomp</span><span class="o">::</span><span class="no">Message</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message-id&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ID:blahblah&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436026840&quot;</span><span class="p">,</span> <span class="s2">&quot;expires&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436326840&quot;</span><span class="p">,</span> <span class="s2">&quot;persistent&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;priority&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;4&quot;</span><span class="p">}</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;[{&quot;CA_MSG&quot;:{&quot;to&quot;:&quot;1234&quot;,&quot;time&quot;:&quot;1341435963000&quot;,&quot;area_id&quot;:&quot;WH&quot;,&quot;msg_type&quot;:&quot;CA&quot;,&quot;from&quot;:&quot;5678&quot;,&quot;descr&quot;:&quot;1Z99&quot;}}]&#39;</span> <span class="n">command</span><span class="o">=</span><span class="s1">&#39;MESSAGE&#39;</span> <span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>[code]</p>
 
+<p>&lt;Stomp::Message headers={&#8220;message-id&#8221;=>&#8221;ID:blahblah&#8221;, &#8220;destination&#8221;=>&#8221;/topic/TD_MC_EM_SIG_AREA&#8221;, &#8220;timestamp&#8221;=>&#8221;1341436026840&#8221;, &#8220;expires&#8221;=>&#8221;1341436326840&#8221;, &#8220;persistent&#8221;=>&#8221;true&#8221;, &#8220;priority&#8221;=>&#8221;4&#8221;} body=&#8217;[{&#8220;CA_MSG&#8221;:{&#8220;to&#8221;:&#8221;1234&#8221;,&#8221;time&#8221;:&#8221;1341435963000&#8221;,&#8221;area_id&#8221;:&#8221;WH&#8221;,&#8221;msg_type&#8221;:&#8221;CA&#8221;,&#8221;from&#8221;:&#8221;5678&#8221;,&#8221;descr&#8221;:&#8221;1Z99&#8221;}}]&#8217; command=&#8217;MESSAGE&#8217; ></p>
+
+<p>[/code]</p>
 
 <p>Ultimately of course, you&#8217;d process the JSON from the body and do something with it.</p>
 
@@ -182,9 +183,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 10 - the end of the Happenstance]]></title>
-    <link href="http://jamesjefferies.github.com/2012/06/22/week-10-the-end-of-the-happenstance/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/06/22/week-10-the-end-of-the-happenstance/"/>
     <updated>2012-06-22T18:16:55+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/06/22/week-10-the-end-of-the-happenstance</id>
+    <id>http://jamesjefferies.github.com/blog/2012/06/22/week-10-the-end-of-the-happenstance</id>
     <content type="html"><![CDATA[<p>At our Open House yesterday we had an &#8216;In conversation&#8217; kind of thing with our mentor <a href="http://twitter.com/jamesb">James Boardwell</a> and what we thought would be a chat for 30 minutes or so, ended up being nearer to 2 hours! I knew we could talk about the last 10 weeks of Happenstance, that we had ideas and theories about what happened and why, but I hadn&#8217;t anticipated there being so much to talk about&#8230; in front of an audience!</p>
 
 <p>When I went freelance last summer and set up my company, ShedCode, I was planning on doing some client work and in between, hopefully working on some of my own ideas to see what would happen. In the end I did 99% client work and was planning, at some point, to pause and work on my stuff.</p>
@@ -201,9 +202,9 @@
   
   <entry>
     <title type="html"><![CDATA[Whatever next - the technical stuff]]></title>
-    <link href="http://jamesjefferies.github.com/2012/06/15/whatever-next-the-technical-stuff/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/06/15/whatever-next-the-technical-stuff/"/>
     <updated>2012-06-15T12:51:02+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/06/15/whatever-next-the-technical-stuff</id>
+    <id>http://jamesjefferies.github.com/blog/2012/06/15/whatever-next-the-technical-stuff</id>
     <content type="html"><![CDATA[<p>In recent years my main programming language has been Java, sprinkled with a bit of the usual korn/zsh scrips, SQL, HTML, JavaScript and other gubbins. The world of Java is rich with libraries, web frameworks, platforms and alternate languages. I&#8217;ve invested a lot of time in this ecosystem, knowing which tools are useful for which problems, gained expertise in various web frameworks, development environments and platforms, generally to be as productive as I&#8217;ve ever been.</p>
 
 <p>For the last couple of years though, I&#8217;ve been pondering whether to stick with what I know, or to spend time learning some new stuff. It is fair to say that I&#8217;m not a natural polyglot. I like to spend decent time getting to know a language and it&#8217;s ecosystem and I find it can be tricky switching.</p>
@@ -254,9 +255,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 7, 8 & 9 - summary]]></title>
-    <link href="http://jamesjefferies.github.com/2012/06/08/week-7-8-9-summary/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/06/08/week-7-8-9-summary/"/>
     <updated>2012-06-08T15:14:32+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/06/08/week-7-8-9-summary</id>
+    <id>http://jamesjefferies.github.com/blog/2012/06/08/week-7-8-9-summary</id>
     <content type="html"><![CDATA[<p>Oh dear, what happened to week 7, 8 blog posts (I hear you ask)?</p>
 
 <p>Good question. Here&#8217;s a little re-cap of what you missed (thanks <a href="http://offbott.com/">offbott</a> for the reminders!)</p>
@@ -294,9 +295,9 @@
   
   <entry>
     <title type="html"><![CDATA[Whatever next?]]></title>
-    <link href="http://jamesjefferies.github.com/2012/05/31/whatever-next/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/31/whatever-next/"/>
     <updated>2012-05-31T23:34:05+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/05/31/whatever-next</id>
+    <id>http://jamesjefferies.github.com/blog/2012/05/31/whatever-next</id>
     <content type="html"><![CDATA[<h3>Then</h3>
 
 <p>This time last year I was in despair, I wasn’t enjoying my job and it was getting me down. Up to that point I’d spent 6 years writing software for Barclays, 5 years writing software for npower/Yorkshire Electricity, 3 years writing software for the digital agency Technophobia. I could feel myself getting stale and much as I enjoyed working with a lot of my colleagues, it felt to me like I needed a bit of a change.</p>
@@ -333,9 +334,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 6 – Polargraph working, mobile printers and Open House]]></title>
-    <link href="http://jamesjefferies.github.com/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house/"/>
     <updated>2012-05-31T23:08:12+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house</id>
+    <id>http://jamesjefferies.github.com/blog/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house</id>
     <content type="html"><![CDATA[<p>Leila has done a top job of writing up about the Open House we held at Site Gallery on Friday. We had a great time talking about Happenstance so far to a full house (well cafe anyway).</p>
 
 <p><a href="http://jamesjefferies.com/?attachment_id=551"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/settingupopenhouse-620x465.jpg" alt="" /></a></p>
@@ -356,9 +357,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 5 – a bit of a blur]]></title>
-    <link href="http://jamesjefferies.github.com/2012/05/31/week-5-a-bit-of-a-blur/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/31/week-5-a-bit-of-a-blur/"/>
     <updated>2012-05-31T23:07:02+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/05/31/week-5-a-bit-of-a-blur</id>
+    <id>http://jamesjefferies.github.com/blog/2012/05/31/week-5-a-bit-of-a-blur</id>
     <content type="html"><![CDATA[<p>The final week of Sprint 1 was all a bit of a blur. As we had the Future Everything conference on the Friday, my thoughts were on the presentation.</p>
 
 <p>We also did some work on our <a href="http://polargraph.co.uk">Polargraph</a> which was not behaving very well at all. This was disappointing as we&#8217;d hope to get it working before Future Everything. What was cool though, was that we saw some Polargraphs in action at the conference, Stuart Childs and Matt Venn had their super machines in action. Matt is doing stuff with <a href="http://www.mattvenn.net/2011/09/19/polargraph-energy-monitoring/">Energy Monitoring</a></p>
@@ -373,9 +374,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 4 - stutter stutter]]></title>
-    <link href="http://jamesjefferies.github.com/2012/05/11/week-4-stutter-stutter/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/11/week-4-stutter-stutter/"/>
     <updated>2012-05-11T16:03:50+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/05/11/week-4-stutter-stutter</id>
+    <id>http://jamesjefferies.github.com/blog/2012/05/11/week-4-stutter-stutter</id>
     <content type="html"><![CDATA[<p>This week has been a bit wonky.</p>
 
 <p><strong>Saturday</strong> was a triumph, getting Cathy and Heathcliff doing something useful as part of Bill Drummond&#8217;s sixth form workshop. It certainly warmed the cockles &amp; Leila has written some more about it on her post.</p>
@@ -392,9 +393,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 3 - Cathy & Heathcliff's amazing adventures]]></title>
-    <link href="http://jamesjefferies.github.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/"/>
     <updated>2012-05-04T18:18:34+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures</id>
+    <id>http://jamesjefferies.github.com/blog/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures</id>
     <content type="html"><![CDATA[<p>This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site office to get our heads down.</p>
 
 <p>The first challenge was to allow 6th Formers to send messages to Cathy &amp; Heathcliff. At first we thought of hooking them up directly to twitter accounts, but as Leila had a <a href="http://twilio.com">Twilio</a> account, it meant that we could do something clever with SMS Text messages. With a bit of PHP magic on an intermediary server (timescales demanded a quick turnaround!) we managed to get the SMS messages sent to the two printers. Hooray!</p>
@@ -409,9 +410,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 2 - how do you do]]></title>
-    <link href="http://jamesjefferies.github.com/2012/04/27/week-2-how-do-you-do/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/04/27/week-2-how-do-you-do/"/>
     <updated>2012-04-27T18:18:59+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/04/27/week-2-how-do-you-do</id>
+    <id>http://jamesjefferies.github.com/blog/2012/04/27/week-2-how-do-you-do</id>
     <content type="html"><![CDATA[<p>This week has all been about pairs of trousers. It has rained a lot and usually when you are equidistant from where you are going and where you want to go, the heavens open and you get absolutely soaked. I&#8217;ve been through three pairs of trousers and counting.</p>
 
 <p><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/04/rain-620x620.jpg" alt="rain" /></p>
@@ -448,9 +449,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 1 in Sheffield]]></title>
-    <link href="http://jamesjefferies.github.com/2012/04/22/week-1-in-sheffield/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield/"/>
     <updated>2012-04-22T16:19:47+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/04/22/week-1-in-sheffield</id>
+    <id>http://jamesjefferies.github.com/blog/2012/04/22/week-1-in-sheffield</id>
     <content type="html"><![CDATA[<p>We&#8217;re three days in to our residency and time is already flying along. We&#8217;ve spoken to a lot of people, fixed some niggly problems in the office and had some ideas which I&#8217;m sure any Technologist in Residence would be proud of!</p>
 
 <p>Our esteemed directors at Site have been storing up interesting people for us to talk to which has been great. It&#8217;s striking how we&#8217;ve met people who are passionate, not only about what they do, but about the greater tech community in Sheffield, Sheffield itself, Yorkshire and the North! This resonates with me as a Yorkshirebod and as someone who would like to see the economic balance tip in our direction.</p>
@@ -465,34 +466,34 @@
   
   <entry>
     <title type="html"><![CDATA[Something inspiring.. For Sheffield!]]></title>
-    <link href="http://jamesjefferies.github.com/2012/04/17/something-inspiring-for-sheffield/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/04/17/something-inspiring-for-sheffield/"/>
     <updated>2012-04-17T17:54:52+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/04/17/something-inspiring-for-sheffield</id>
+    <id>http://jamesjefferies.github.com/blog/2012/04/17/something-inspiring-for-sheffield</id>
     <content type="html"><![CDATA[<p>Sheffield is the city of Seven Hills, George Orwell wrote in &#8216;Road to Wigan Pier&#8217;</p>
 
 <blockquote><p>&#8220;The town is very hilly (said to be built on seven hills, like Rome) and everywhere streets of mean little houses blackened by smoke run up at sharp angles, paved with cobbles which are purposely set unevenly to give horses etc, a grip&#8221;</p></blockquote>
 
 <p>We don&#8217;t have many horses heading up and down hills any more, nor are our houses mean, but it does feel like we are missing a bit of a trick. The city centre has its ups and downs, steps, ramps and in one particular office block, a slide..</p>
 
-<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=twA_mVMgMY8' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+<p>http://www.youtube.com/watch?v=twA_mVMgMY8</p>
 
 <p>So if an office building can have that, how about a slide in some other parts of the city. At this point I should fire up a photo editing app with a picture of the site in the city and overlay an amazing &#8216;artist&#8217;s impression&#8217; of a slide. Maybe I&#8217;ll do that another time. For now though, here is an example of some outdoor thinking in the Netherlands at an entrance to a railway station in Utrecht</p>
 
-<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=d1uurSegIH4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+<p>http://www.youtube.com/watch?v=d1uurSegIH4</p>
 
 <p>This is what we want, some super duper slides installed, imagine what an economic edge it would give to Sheffield!</p>
 
 <p>In the mean time, until we do get more slides, here is one way of getting down an escalator in a hurry&#8230;</p>
 
-<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=fFqQOlYE4EE' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+<p>http://www.youtube.com/watch?v=fFqQOlYE4EE</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[First-ish impressions - Site Gallery]]></title>
-    <link href="http://jamesjefferies.github.com/2012/04/01/first-ish-impressions-site-gallery/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/04/01/first-ish-impressions-site-gallery/"/>
     <updated>2012-04-01T18:51:55+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/04/01/first-ish-impressions-site-gallery</id>
+    <id>http://jamesjefferies.github.com/blog/2012/04/01/first-ish-impressions-site-gallery</id>
     <content type="html"><![CDATA[<p>Last summer, when I set up my own company, ShedCode, I was fortunate to be able share an office with 3 friends, all of whom I&#8217;d worked with before. We were able to get an office on the top floor of the Site Gallery building, so my relationship with Site was already established on a different footing, that of a happy tenant.</p>
 
 <p>That is not to say that I had any real idea what happened in the building! Sure, there was a cafe and a shop, but I was not that familiar with the rest of the space, the actual gallery. I&#8217;d have a look at each new exhibition, but it was usually a quick zoom around whilst waiting for a coffee.</p>
@@ -509,9 +510,9 @@
   
   <entry>
     <title type="html"><![CDATA[Happenstance Project - Technologist In Residence]]></title>
-    <link href="http://jamesjefferies.github.com/2012/03/11/happenstance-project-technologist-in-residence/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/03/11/happenstance-project-technologist-in-residence/"/>
     <updated>2012-03-11T18:24:14+00:00</updated>
-    <id>http://jamesjefferies.github.com/2012/03/11/happenstance-project-technologist-in-residence</id>
+    <id>http://jamesjefferies.github.com/blog/2012/03/11/happenstance-project-technologist-in-residence</id>
     <content type="html"><![CDATA[<p>I&#8217;m really chuffed to say that I&#8217;ve been successful in applying for a residency with the <a href="http://happenstanceproject.com">Happenstance Project</a>. When I first heard about it, I thought it sounded interesting but, I didn&#8217;t consider my chances of getting a place were very high.</p>
 
 <p>Filling in the application form was a great way to help me think through what I could offer and also helped me to realise that it was exactly the sort of thing I should try with my new found freelance freedom. So, some time later, I submitted the form to see what would happen. In all I think 60 odd people applied, so I was excited to find that I&#8217;d been invited to the sandpit day at <a href="http://www.nesta.org.uk/">NESTA</a> (The National Endowment for Science, Technology and the Arts) for a selection workshop and interview.</p>
@@ -542,9 +543,9 @@
   
   <entry>
     <title type="html"><![CDATA[Running Eclipse under the Unity interface]]></title>
-    <link href="http://jamesjefferies.github.com/2011/09/09/running-eclipse-under-the-unity-interface/"/>
+    <link href="http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface/"/>
     <updated>2011-09-09T10:00:36+01:00</updated>
-    <id>http://jamesjefferies.github.com/2011/09/09/running-eclipse-under-the-unity-interface</id>
+    <id>http://jamesjefferies.github.com/blog/2011/09/09/running-eclipse-under-the-unity-interface</id>
     <content type="html"><![CDATA[<p>Unity eh? Love it or hate it the version in Ubuntu 11.04 seems not quite complete. Also other applications sometimes will not play nicely.</p>
 
 <p>Eclipse is one of them, your menu items can go walk about. I found this <a href="http://blog.matto1990.com/2011/04/using-eclipse-under-ubuntu-11-04-natty/">blog post</a> which has a helpful hint. Unsetting UBUNTU_MENUPROXY for the application does the trick</p>
@@ -558,9 +559,9 @@ path/to/eclipse/here
   
   <entry>
     <title type="html"><![CDATA[Disabling liquibase when running unit tests]]></title>
-    <link href="http://jamesjefferies.github.com/2011/08/25/disabling-liquibase-when-running-unit-tests/"/>
+    <link href="http://jamesjefferies.github.com/blog/2011/08/25/disabling-liquibase-when-running-unit-tests/"/>
     <updated>2011-08-25T10:33:44+01:00</updated>
-    <id>http://jamesjefferies.github.com/2011/08/25/disabling-liquibase-when-running-unit-tests</id>
+    <id>http://jamesjefferies.github.com/blog/2011/08/25/disabling-liquibase-when-running-unit-tests</id>
     <content type="html"><![CDATA[<p>If you&#8217;re running Liquibase, configured by Spring (or whatever) and you don&#8217;t want it to run it&#8217;s checks when running unit tests, you can disable it from running by setting a system property.</p>
 
 <p>Whilst running a single unit test class many times, you might want to add a system set property call before any of the tests are run. Hence:</p>
@@ -580,9 +581,9 @@ path/to/eclipse/here
   
   <entry>
     <title type="html"><![CDATA[Flickr and the missing images]]></title>
-    <link href="http://jamesjefferies.github.com/2011/08/18/flickr-and-the-missing-images/"/>
+    <link href="http://jamesjefferies.github.com/blog/2011/08/18/flickr-and-the-missing-images/"/>
     <updated>2011-08-18T17:10:08+01:00</updated>
-    <id>http://jamesjefferies.github.com/2011/08/18/flickr-and-the-missing-images</id>
+    <id>http://jamesjefferies.github.com/blog/2011/08/18/flickr-and-the-missing-images</id>
     <content type="html"><![CDATA[<p>A client got in touch with a weird problem, when logging in to flickr, some images wouldn&#8217;t download, the placeholders would be there with the classic little red cross indicating a problem.</p>
 
 <h3>Idea 1 - funny URLs</h3>
@@ -617,9 +618,9 @@ path/to/eclipse/here
   
   <entry>
     <title type="html"><![CDATA[MySQL and Foreign Keys]]></title>
-    <link href="http://jamesjefferies.github.com/2011/06/29/mysql-and-foreign-keys/"/>
+    <link href="http://jamesjefferies.github.com/blog/2011/06/29/mysql-and-foreign-keys/"/>
     <updated>2011-06-29T23:25:40+01:00</updated>
-    <id>http://jamesjefferies.github.com/2011/06/29/mysql-and-foreign-keys</id>
+    <id>http://jamesjefferies.github.com/blog/2011/06/29/mysql-and-foreign-keys</id>
     <content type="html"><![CDATA[<p>This is to remind me next time that MySQL isn’t as clever as you think it might be.</p>
 
 <p>If you have Table A, with column 1, 2, 3 and Table B with columns 4, 5, 6 – Primary keys are columns 1 &amp; 4 respectively.</p>

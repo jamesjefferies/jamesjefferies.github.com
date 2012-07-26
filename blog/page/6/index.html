@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Standard practice with tomcat is that the application is deployed under a directory which is derived from the name of the war file archive which is &hellip;">
+  <meta name="description" content="Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230; 1
+javap - &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +71,134 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/05/01/deploying-applications-to-tomcat-running-under/">Deploying Applications to Tomcat Running Under /</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/06/10/how-do-i-find-the-version-of-java-my-class-was-compiled-against/">How Do I Find the Version of Java My Class Was Compiled Against?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-10T18:03:20+01:00" pubdate data-updated="true">Jun 10<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>javap -verbose Classname
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where Classname is your class, will give you loads of information, including major and minor java version numbers. Handy huh?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/">Catching &#8216;File Size Exceeded&#8217; When Using Tomahawk File Upload Component</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-27T11:22:40+01:00" pubdate data-updated="true">May 27<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When using <a href="http://myfaces.apache.org/tomahawk-project/tomahawk12/tagdoc/t_inputFileUpload.html">Tomahawk&#8217;s file upload component</a> it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit is set in the web.xml configuration for Tomahawk, i.e.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter&gt;</span>
+</span><span class='line'><span class="nt">&lt;filter-name&gt;</span>extensionsFilter<span class="nt">&lt;/filter-name&gt;</span>
+</span><span class='line'><span class="nt">&lt;filter-class&gt;</span>org.apache.myfaces.webapp.filter.ExtensionsFilter<span class="nt">&lt;/filter-class&gt;</span>
+</span><span class='line'><span class="nt">&lt;init-param&gt;</span>
+</span><span class='line'><span class="nt">&lt;description&gt;</span>
+</span><span class='line'>  Set the size limit for uploaded files. Format: 10 - 10
+</span><span class='line'>  bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
+</span><span class='line'><span class="nt">&lt;/description&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-name&gt;</span>uploadMaxFileSize<span class="nt">&lt;/param-name&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-value&gt;</span>10m<span class="nt">&lt;/param-value&gt;</span>
+</span><span class='line'><span class="nt">&lt;/init-param&gt;</span>
+</span><span class='line'>    .....
+</span><span class='line'><span class="nt">&lt;/filter&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here you can see the limit is set to 10 meg.</p>
+
+<p>So by default, if you blow the limit, the component fails silently.. or does it?</p>
+
+<p>Well, the component actually adds a couple of attributes to the request when refreshing the page (following the click of the upload button). The attributes are:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;span&gt;</span>org.apache.myfaces.custom.fileupload.exception<span class="nt">&lt;/span&gt;&lt;span&gt;</span>
+</span><span class='line'>org.apache.myfaces.custom.fileupload.maxSize<span class="nt">&lt;/span&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>by checking the request (during the page render) you can grab these attributes, if set, and display something meaningful to the user. You could have a little render tag at the top of the page to ensure the attributes are checked. Whilst this is a bit cronky, it is one of the jsf workarounds which does work.. in a fashion.</p>
+
+<p>If they are present and you want to display the max size to the user, then apache commons FileUtils comes along to save the day</p>
+
+<p><a href="http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize">org.apache.commons.io.FileUtils.byteCountToDisplaySize</a>;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/05/01/deploying-applications-to-tomcat-running-under/">Deploying Applications to Tomcat Running Under /</a></h1>
     
     
       <p class="meta">
@@ -120,7 +248,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/04/30/what-is-an-expert/">What Is an Expert and Top Ten Reasons Managers Become Great - Links</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/30/what-is-an-expert/">What Is an Expert and Top Ten Reasons Managers Become Great - Links</a></h1>
     
     
       <p class="meta">
@@ -160,7 +288,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/">Hibernate Search, Lucene and Greenwich Mean Time</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/">Hibernate Search, Lucene and Greenwich Mean Time</a></h1>
     
     
       <p class="meta">
@@ -207,7 +335,7 @@ private Date startDate;</code></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/04/14/gotcha-with-auto-ddl-generation-and-hibernate/">Gotcha With Auto DDL Generation and Hibernate</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/14/gotcha-with-auto-ddl-generation-and-hibernate/">Gotcha With Auto DDL Generation and Hibernate</a></h1>
     
     
       <p class="meta">
@@ -314,7 +442,7 @@ private Date startDate;</code></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/04/14/java-dates-and-times/">Java Dates and Times&#8230;</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/14/java-dates-and-times/">Java Dates and Times&#8230;</a></h1>
     
     
       <p class="meta">
@@ -403,7 +531,7 @@ private Date startDate;</code></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/04/09/migrating-packages-from-old-machine-to-new/">Migrating Packages From Old Machine to New</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/09/migrating-packages-from-old-machine-to-new/">Migrating Packages From Old Machine to New</a></h1>
     
     
       <p class="meta">
@@ -469,7 +597,7 @@ private Date startDate;</code></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/04/07/fed-up-with-your-iphone-opening-iphoto/">Fed Up With Your iPhone Opening iPhoto?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/07/fed-up-with-your-iphone-opening-iphoto/">Fed Up With Your iPhone Opening iPhoto?</a></h1>
     
     
       <p class="meta">
@@ -505,7 +633,7 @@ private Date startDate;</code></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/04/07/uml-diagrams-in-javadocs/">UML Diagrams in Javadocs</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/07/uml-diagrams-in-javadocs/">UML Diagrams in Javadocs</a></h1>
     
     
       <p class="meta">
@@ -583,100 +711,6 @@ private Date startDate;</code></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/07/asking-maven-to-produce-your-javadocs/">Asking Maven to Produce Your Javadocs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-07T10:33:11+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Javadocs are the java platforms standard way of producing code documentation, comments about what the class is for, which methods are provided and all that kind of stuff. It feels a bit old school now, but they are really useful if kept up to date.</p>
-
-<p>As we are building our project using maven, we can ask maven to build a &#8216;site&#8217; for our project. This pulls in various bits of information about the project, including dependencies on other libraries (and their licencing models) and all kinds of interesting stuff.</p>
-
-<p>One of the maven plugins generates the javadocs for your project and it&#8217;s very straightforward to set up, just add this to the reporting section of your pom file (for maven) and when you do a mvn site it automatically builds your javadocs.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>maven-javadoc-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/19/escaping-special-characters-with-lucene/">Escaping Special Characters With Lucene</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-19T12:10:57+00:00" pubdate data-updated="true">Mar 19<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you&#8217;re using Lucene queries then there are some special characters which do magic things. Of course you might not want any wild card / range magic going on and you&#8217;d rather the searcher could look up ] without everything blowing up.</p>
-
-<p>Well, you can escape those special characters simply by passing the query through the escape method of the QueryParser.. like so</p>
-
-<pre><code>searchTerm = QueryParser.escape(searchTerm);
-</code></pre>
-
-<p>of course this will nobble any asterixes or similar in there, so if you do want any wildcard stuff going on, add after the escaping.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -694,23 +728,23 @@ private Date startDate;</code></p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+        <a href="/blog/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+        <a href="/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
+        <a href="/blog/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
       </li>
     
       <li class="post">
-        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+        <a href="/blog/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
       </li>
     
       <li class="post">
-        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+        <a href="/blog/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
       </li>
     
   </ul>

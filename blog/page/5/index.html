@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="JPA (Java Persistence API) is the standard implementation for persistence in the Java world. Although most people would probably use Hibernate (which &hellip;">
+  <meta name="description" content="Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +70,133 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/11/24/jpa-and-hades/">JPA and Hades</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/12/06/maven-reloaded-from-devoxx/">Maven Reloaded (From Devoxx)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T20:59:03+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other things. The points below are highlight points from his talk at devoxx.</p>
+
+<p>It was acknowledged that many things were wrong with maven 2.0 and version 3.0 is a chance to put those things right - adding extras like support for m2eclipse and osgi.</p>
+
+<p>Maven has moved from where it originally was set up. The main driver for changes are &#8216;desire lines&#8217; - difference between how things were intended and how people used things. Responding to invitations for improvement. How people check out whole source trees, mis use of the release plugin. Responding to under utilization of what exists.</p>
+
+<p>Maven 3 should be backwards compatible with maven 2, so we should be good to go with maven 3 - performance benefits?</p>
+
+<p>Pluggable modelreader for project builder (which has been refactored). mixins for poms, composition for poms. Keep hold of non-mutated model and track contributions to pom. Might have a &#8216;spring mixin&#8217; or &#8216;tomcat depoy mixin&#8217; or whatever, these can be stored in the reposoitory.</p>
+
+<p>More extension points on maven 3, decorate the lifecycle. DSLs can do all this, in groovy, ruby, scala, python.</p>
+
+<p>The queryable lifecycle. Can query the execution plan before it happens (which is what M2Eclipse now does). Big performance increase now in eclipse.</p>
+
+<p>Incremental build support. in M2 loads of stuff has been delegated to eclipse.</p>
+
+<p>Lifecycle extension points Tycho - maven plugins delegates stuff to OSGI/Eclipse stuff.</p>
+
+<p>Aggregator problems with maven 2, in 3, the post build works properly so report aggregation should work correctly.</p>
+
+<p>Tycho is the complete replacement for PDE headless build, buckminster and everything else that attmeptes to builf OSGI.</p>
+
+<p>Maven 3 used in hudson, M2Eclipse and netbeans already&#8230;</p>
+
+<p>Maven shell looks brilliant, a make-like reactor, the shell caches the poms and all sorts of stuff.</p>
+
+<p>Better error and inntegrity reporting. Lots of problems have a link to a wiki entry in confluence. Catalog to read about it. In the shell or m2eclipse, that data can be pulled in. Don&#8217;t allow builds where versions come from profiles which have to be activated manually.</p>
+
+<p>Plugin manager, switched over to OSGI runtime, conceierge, guice and peaberry. Creating isolated classloader and stuff, but decided to switch to OSGI instead. Hudson will be switched across to OSGI as well. Plexus going in maven 3.1, replaced by Guice.</p>
+
+<p>Plugin extension points, will be in 3.1 - rip off of Eclipse plugin.</p>
+
+<p>Replace HTTP stuff with jetty client. SSL, PGP SUPPORT, multiple threaded downloads and all that.</p>
+
+<p>End of january for 3.0 release.</p>
+
+<p>Extensible reporting. Logic is now in maven site plugin rather than contined in the core. Static maven sites will probably disappear.</p>
+
+<p>Guice and peaberry. Plexus has been going as long as spring, was ahead, but now&#8230;. not kept up. Needed more speed and injection listening - use guice with in effect a wrapper so all the plexus stuff still works as was. Use JSR330 in the future.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/06/mounting-readynas-duo-drives-in-ubuntu/">Mounting ReadyNAS Duo Drives From Ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T00:20:35+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Choosing a NAS solution where you can&#8217;t mount the storage media outside of the NAS is asking for trouble. I was worried I&#8217;d made the wrong choice when I found that mounting the ReadyNAS do ext3 drives is not trivial, mainly because they use a 16kb block size with their SPARC cpus.</p>
+
+<p>A bit of routing around found various solutions, but the one which worked for me was as follows.</p>
+
+<ol>
+<li><p>Fire up ubuntu vm (running on OS X for me and in my case 9.10 Karmic)</p></li>
+<li><p>install lvm2 with a apt-get install lvm2</p></li>
+<li><p>Download ext2fuse 0.5 (from <a href="http://linux.softpedia.com/progDownload/ext2fuse-Download-29820.html">here</a> for example)</p></li>
+<li><p>run vgscan to locate drives</p></li>
+<li><p>vgchange -ay c to allow access to drive</p></li>
+<li><p>mkdir /mnt/lvm</p></li>
+<li><p>ext2fuse /dev/c/c /mnt/lvm (where ext2fuse will have been downloaded)</p></li>
+<li><p>drive can now be accessed on /mnt/lvm</p></li>
+</ol>
+
+
+<p>Hurrah!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/11/24/jpa-and-hades/">JPA and Hades</a></h1>
     
     
       <p class="meta">
@@ -116,7 +242,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/11/17/jsf-2-highlights/">JSF 2 Highlights…</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/11/17/jsf-2-highlights/">JSF 2 Highlights…</a></h1>
     
     
       <p class="meta">
@@ -175,7 +301,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/11/16/the-kanban-methodology/">The Kanban Methodology</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/11/16/the-kanban-methodology/">The Kanban Methodology</a></h1>
     
     
       <p class="meta">
@@ -240,7 +366,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/11/16/devox-2009-antwerp/">Devox 2009 – Antwerp</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/11/16/devox-2009-antwerp/">Devox 2009 – Antwerp</a></h1>
     
     
       <p class="meta">
@@ -286,7 +412,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/09/04/svn-diff-ignoring-whitespace/">Svn Diff Ignoring Whitespace</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/09/04/svn-diff-ignoring-whitespace/">Svn Diff Ignoring Whitespace</a></h1>
     
     
       <p class="meta">
@@ -331,7 +457,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/09/02/spring-configuration-namespace-resolution/">Spring Configuration Namespace Resolution</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/09/02/spring-configuration-namespace-resolution/">Spring Configuration Namespace Resolution</a></h1>
     
     
       <p class="meta">
@@ -379,7 +505,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/08/25/tinkering-with-cpu-scaling-and-ubuntu/">Tinkering With CPU Scaling and Ubuntu</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/08/25/tinkering-with-cpu-scaling-and-ubuntu/">Tinkering With CPU Scaling and Ubuntu</a></h1>
     
     
       <p class="meta">
@@ -428,7 +554,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/06/29/embedded-tomcat-and-jetty/">Embedded Tomcat and Jetty</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/06/29/embedded-tomcat-and-jetty/">Embedded Tomcat and Jetty</a></h1>
     
     
       <p class="meta">
@@ -465,133 +591,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/06/10/how-do-i-find-the-version-of-java-my-class-was-compiled-against/">How Do I Find the Version of Java My Class Was Compiled Against?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-10T18:03:20+01:00" pubdate data-updated="true">Jun 10<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>javap -verbose Classname
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>where Classname is your class, will give you loads of information, including major and minor java version numbers. Handy huh?</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/">Catching &#8216;File Size Exceeded&#8217; When Using Tomahawk File Upload Component</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-27T11:22:40+01:00" pubdate data-updated="true">May 27<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When using <a href="http://myfaces.apache.org/tomahawk-project/tomahawk12/tagdoc/t_inputFileUpload.html">Tomahawk&#8217;s file upload component</a> it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit is set in the web.xml configuration for Tomahawk, i.e.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter&gt;</span>
-</span><span class='line'><span class="nt">&lt;filter-name&gt;</span>extensionsFilter<span class="nt">&lt;/filter-name&gt;</span>
-</span><span class='line'><span class="nt">&lt;filter-class&gt;</span>org.apache.myfaces.webapp.filter.ExtensionsFilter<span class="nt">&lt;/filter-class&gt;</span>
-</span><span class='line'><span class="nt">&lt;init-param&gt;</span>
-</span><span class='line'><span class="nt">&lt;description&gt;</span>
-</span><span class='line'>  Set the size limit for uploaded files. Format: 10 - 10
-</span><span class='line'>  bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
-</span><span class='line'><span class="nt">&lt;/description&gt;</span>
-</span><span class='line'><span class="nt">&lt;param-name&gt;</span>uploadMaxFileSize<span class="nt">&lt;/param-name&gt;</span>
-</span><span class='line'><span class="nt">&lt;param-value&gt;</span>10m<span class="nt">&lt;/param-value&gt;</span>
-</span><span class='line'><span class="nt">&lt;/init-param&gt;</span>
-</span><span class='line'>    .....
-</span><span class='line'><span class="nt">&lt;/filter&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here you can see the limit is set to 10 meg.</p>
-
-<p>So by default, if you blow the limit, the component fails silently.. or does it?</p>
-
-<p>Well, the component actually adds a couple of attributes to the request when refreshing the page (following the click of the upload button). The attributes are:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;span&gt;</span>org.apache.myfaces.custom.fileupload.exception<span class="nt">&lt;/span&gt;&lt;span&gt;</span>
-</span><span class='line'>org.apache.myfaces.custom.fileupload.maxSize<span class="nt">&lt;/span&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>by checking the request (during the page render) you can grab these attributes, if set, and display something meaningful to the user. You could have a little render tag at the top of the page to ensure the attributes are checked. Whilst this is a bit cronky, it is one of the jsf workarounds which does work.. in a fashion.</p>
-
-<p>If they are present and you want to display the max size to the user, then apache commons FileUtils comes along to save the day</p>
-
-<p><a href="http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize">org.apache.commons.io.FileUtils.byteCountToDisplaySize</a>;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -609,23 +608,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+        <a href="/blog/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+        <a href="/blog/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
+        <a href="/blog/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
       </li>
     
       <li class="post">
-        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+        <a href="/blog/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
       </li>
     
       <li class="post">
-        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+        <a href="/blog/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
       </li>
     
   </ul>

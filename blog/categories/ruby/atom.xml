@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-24T22:11:30+01:00</updated>
+  <updated>2012-07-26T12:29:44+01:00</updated>
   <id>http://jamesjefferies.github.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Getting started with Network Rail's datafeeds]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
+    <link href="http://jamesjefferies.github.com/blog/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
     <updated>2012-07-04T23:46:41+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
+    <id>http://jamesjefferies.github.com/blog/2012/07/04/getting-started-with-network-rails-datafeeds</id>
     <content type="html"><![CDATA[<p>I've had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I'm therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it's what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
 
 <h2>Where do you start?</h2>
@@ -42,9 +42,11 @@
 
 <p>The updates you receive from this program are not formatted at all, it's just sending the message straight to string. Of course, this is just helping you know you're set up correctly. So you would get something like:</p>
 
-<p><code>ruby
-&lt;Stomp::Message headers={"message-id"=&gt;"ID:blahblah", "destination"=&gt;"/topic/TD_MC_EM_SIG_AREA", "timestamp"=&gt;"1341436026840", "expires"=&gt;"1341436326840", "persistent"=&gt;"true", "priority"=&gt;"4"} body='[{"CA_MSG":{"to":"1234","time":"1341435963000","area_id":"WH","msg_type":"CA","from":"5678","descr":"1Z99"}}]' command='MESSAGE' &gt;
-</code></p>
+<p>[code]</p>
+
+<p>&lt;Stomp::Message headers={"message-id"=>"ID:blahblah", "destination"=>"/topic/TD_MC_EM_SIG_AREA", "timestamp"=>"1341436026840", "expires"=>"1341436326840", "persistent"=>"true", "priority"=>"4"} body='[{"CA_MSG":{"to":"1234","time":"1341435963000","area_id":"WH","msg_type":"CA","from":"5678","descr":"1Z99"}}]' command='MESSAGE' ></p>
+
+<p>[/code]</p>
 
 <p>Ultimately of course, you'd process the JSON from the body and do something with it.</p>
 

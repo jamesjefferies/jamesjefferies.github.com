@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Flickr and the missing images - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+
+  
+  <meta name="description" content="A client got in touch with a weird problem, when logging in to flickr, some images wouldn&#8217;t download, the placeholders would be there with the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/2011/08/18/flickr-and-the-missing-images/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Flickr and the Missing Images</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-18T17:10:08+01:00" pubdate data-updated="true">Aug 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A client got in touch with a weird problem, when logging in to flickr, some images wouldn&#8217;t download, the placeholders would be there with the classic little red cross indicating a problem.</p>
+
+<h3>Idea 1 - funny URLs</h3>
+
+<p>Thinking that something must be going wrong with the content delivery for those pictures, the farm was down or whatever, I asked him to send through the direct URL, plus to try accessing it himself. Well, usually it didn&#8217;t work, but sometimes, if he right clicked and asked the browser to download the image it did. Curious.</p>
+
+<h3>Idea 2 - browsers</h3>
+
+<p>Ok, well, maybe it&#8217;s just the browser messing up with its security levels. Nope, still the same on Safari, Chrome &amp; Firefox.</p>
+
+<h3>Idea 3 - DNS</h3>
+
+<p>Maybe the DNS is being bodged up for those server farms. Try google DNS - no joy. Try flushing Windows DNS cache - no joy.</p>
+
+<h3>Idea 4 - Firefox&#8217;s exception list</h3>
+
+<p>This is where I found out about <a href="http://www.flickr.com/help/test">Flickr&#8217;s test page </a> which is useful for trouble shooting this stuff. Apparently all the global column didn&#8217;t load on a clean firefox install. So we added farm1 to firefox&#8217;s image exception list. Boom, they all came back.. bizarre.</p>
+
+<h3>Idea 5 - Conflict with security software</h3>
+
+<p>The machine was XP SP 3 with AVG internet security installed. After a further prod around, Ad-aware was on there, as was McAfee. So, here&#8217;s an idea, boot in to safe mode with networking and see if that works&#8230; Hmm, nope.</p>
+
+<h3>Idea 6 - Must be unrelated to the computer, belkin router anyone?</h3>
+
+<p>Surely the ISP wouldn&#8217;t be messing about here&#8230; but what about the router. A belkin apparently, which is when I found a <a href="http://www.flickr.com/help/forum/72157627085259789/">flickr forum thread</a> of people with the same problem. Ah, belkin routers - this is starting to make sense. Believe it or not, switching off the router firewall (whilst maintaining a software firewall on the PC) meant that the images downloaded without a problem. Argh! It was the router all along. It seemed so obscure.</p>
+
+<h3>In a nutshell</h3>
+
+<p>If you are having problems with flickr (or other image intensive sites) and you have a belkin router with the firewall switched on. SWITCH it off and see if it fixes it. If it does - bingo!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-18T17:10:08+01:00" pubdate data-updated="true">Aug 18<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='//categories/techie/'>Techie</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/2011/08/18/flickr-and-the-missing-images/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/2011/08/18/flickr-and-the-missing-images/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/06/29/mysql-and-foreign-keys/" title="Previous Post: MySQL and Foreign Keys">&laquo; MySQL and Foreign Keys</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/08/25/disabling-liquibase-when-running-unit-tests/" title="Next Post: Disabling liquibase when running unit tests">Disabling liquibase when running unit tests &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

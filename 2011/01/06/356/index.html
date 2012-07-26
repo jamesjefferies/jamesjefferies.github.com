@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Testing the Grails, Spring Security, LDAP combo - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+
+  
+  <meta name="description" content="For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you&#8217;re working &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/2011/01/06/356/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Testing the Grails, Spring Security, LDAP Combo</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-06T16:00:46+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you&#8217;re working remotely, or because you want a disposable directory to throw away after you&#8217;ve run your tests. Well, there is a <a href="http://www.grails.org/plugin/ldap-server">grails plugin</a> which adds an embedded LDAP directory (ApacheDS) to your application which can be fired up as/when required.</p>
+
+<p>After installing the plugin, it requires a bit of configuration, so in your Config.groovy:</p>
+
+<pre><code>environments {
+    development {       
+        // Embedded ldap server 
+        ldapServers {
+            d1 {
+                base = "dc=people,dc=companyname,dc=int"
+                port = 10389
+                indexed = ["objectClass", "uid", "mail", "userPassword"]
+            }
+        }
+        grails.plugins.springsecurity.ldap.context.server = 'ldap://localhost:10389'
+    }
+    ....
+</code></pre>
+
+<p>So now, when the app is instantiated in the development environment, you have an ldap directory running on localhost, post 10389. You might want to change what is indexed depending on what details you actually want indexing!</p>
+
+<p>If you wanted some default data loaded when the ldap server starts, simply add an ldif file to the grails-app/ldap-servers/d1/data directory. This gets auto loaded:</p>
+
+<pre><code>dn: ou=group,dc=people,dc=companyname,dc=int
+objectClass: top
+objectClass: organizationalUnit
+ou: group
+
+dn: ou=People,dc=people,dc=companyname,dc=int
+objectClass: organizationalUnit
+ou: People
+
+dn: uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int
+uid: jjefferies
+objectClass: uidObject
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+cn: James Jefferies
+sn: Jefferies
+userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
+</code></pre>
+
+<p>To run unit tests against it, a reference to the server get&#8217;s injected in to your test class and then you can run some tests against it:</p>
+
+<pre><code>class LdapTests extends GroovyTestCase {
+
+    def d1LdapServer    
+
+    void testLdapServerShouldExist() {
+        assert d1LdapServer.exists("uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int")
+    }
+
+    void testJJUserIsThere() {      
+        def user = d1LdapServer["uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int"]
+        assert "James Jefferies" == user.cn.first() // cn is a multi valued string attribute        
+    }
+}
+</code></pre>
+
+<p>If you&#8217;re doing the full spring security with custom rolled retrieval of Roles and you want to test it, then you need to make sure you&#8217;ve bootstrapped those users too, so that the roles are retrieved as well as the user being authenticated.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-06T16:00:46+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='//categories/java/'>java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/2011/01/06/356/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/2011/01/06/356/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/01/06/grails-spring-security-ldap/" title="Previous Post: Grails, Spring Security & Ldap">&laquo; Grails, Spring Security & Ldap</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/01/06/testing-the-grails-spring-security-ldap-combo/" title="Next Post: Testing the Grails, Spring Security, LDAP combo">Testing the Grails, Spring Security, LDAP combo &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

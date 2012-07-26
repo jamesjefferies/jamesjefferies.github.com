@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Maven reloaded (from devoxx) - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+
+  
+  <meta name="description" content="Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.github.com/2009/12/06/maven-reloaded-from-devoxx/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Maven Reloaded (From Devoxx)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T20:59:03+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other things. The points below are highlight points from his talk at devoxx.</p>
+
+<p>It was acknowledged that many things were wrong with maven 2.0 and version 3.0 is a chance to put those things right - adding extras like support for m2eclipse and osgi.</p>
+
+<p>Maven has moved from where it originally was set up. The main driver for changes are &#8216;desire lines&#8217; - difference between how things were intended and how people used things. Responding to invitations for improvement. How people check out whole source trees, mis use of the release plugin. Responding to under utilization of what exists.</p>
+
+<p>Maven 3 should be backwards compatible with maven 2, so we should be good to go with maven 3 - performance benefits?</p>
+
+<p>Pluggable modelreader for project builder (which has been refactored). mixins for poms, composition for poms. Keep hold of non-mutated model and track contributions to pom. Might have a &#8216;spring mixin&#8217; or &#8216;tomcat depoy mixin&#8217; or whatever, these can be stored in the reposoitory.</p>
+
+<p>More extension points on maven 3, decorate the lifecycle. DSLs can do all this, in groovy, ruby, scala, python.</p>
+
+<p>The queryable lifecycle. Can query the execution plan before it happens (which is what M2Eclipse now does). Big performance increase now in eclipse.</p>
+
+<p>Incremental build support. in M2 loads of stuff has been delegated to eclipse.</p>
+
+<p>Lifecycle extension points Tycho - maven plugins delegates stuff to OSGI/Eclipse stuff.</p>
+
+<p>Aggregator problems with maven 2, in 3, the post build works properly so report aggregation should work correctly.</p>
+
+<p>Tycho is the complete replacement for PDE headless build, buckminster and everything else that attmeptes to builf OSGI.</p>
+
+<p>Maven 3 used in hudson, M2Eclipse and netbeans already&#8230;</p>
+
+<p>Maven shell looks brilliant, a make-like reactor, the shell caches the poms and all sorts of stuff.</p>
+
+<p>Better error and inntegrity reporting. Lots of problems have a link to a wiki entry in confluence. Catalog to read about it. In the shell or m2eclipse, that data can be pulled in. Don&#8217;t allow builds where versions come from profiles which have to be activated manually.</p>
+
+<p>Plugin manager, switched over to OSGI runtime, conceierge, guice and peaberry. Creating isolated classloader and stuff, but decided to switch to OSGI instead. Hudson will be switched across to OSGI as well. Plexus going in maven 3.1, replaced by Guice.</p>
+
+<p>Plugin extension points, will be in 3.1 - rip off of Eclipse plugin.</p>
+
+<p>Replace HTTP stuff with jetty client. SSL, PGP SUPPORT, multiple threaded downloads and all that.</p>
+
+<p>End of january for 3.0 release.</p>
+
+<p>Extensible reporting. Logic is now in maven site plugin rather than contined in the core. Static maven sites will probably disappear.</p>
+
+<p>Guice and peaberry. Plexus has been going as long as spring, was ahead, but now&#8230;. not kept up. Needed more speed and injection listening - use guice with in effect a wrapper so all the plexus stuff still works as was. Use JSR330 in the future.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T20:59:03+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='//categories/techie/'>Techie</a>, <a class='category' href='//categories/java/'>java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.github.com/2009/12/06/maven-reloaded-from-devoxx/" data-via="shedcode" data-counturl="http://jamesjefferies.github.com/2009/12/06/maven-reloaded-from-devoxx/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/12/06/mounting-readynas-duo-drives-in-ubuntu/" title="Previous Post: Mounting ReadyNAS Duo drives from Ubuntu">&laquo; Mounting ReadyNAS Duo drives from Ubuntu</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/12/06/ivar-jacobsen-at-devoxx/" title="Next Post: Ivar Jacobson at Devoxx">Ivar Jacobson at Devoxx &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

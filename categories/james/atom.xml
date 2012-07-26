@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: James | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.github.com//categories/james/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.github.com/"/>
+  <updated>2012-07-26T14:30:00+01:00</updated>
+  <id>http://jamesjefferies.github.com/</id>
+  <author>
+    <name><![CDATA[James Jefferies]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Week 10 - the end of the Happenstance]]></title>
+    <link href="http://jamesjefferies.github.com/2012/06/22/week-10-the-end-of-the-happenstance/"/>
+    <updated>2012-06-22T18:16:55+01:00</updated>
+    <id>http://jamesjefferies.github.com/2012/06/22/week-10-the-end-of-the-happenstance</id>
+    <content type="html"><![CDATA[<p>At our Open House yesterday we had an 'In conversation' kind of thing with our mentor <a href="http://twitter.com/jamesb">James Boardwell</a> and what we thought would be a chat for 30 minutes or so, ended up being nearer to 2 hours! I knew we could talk about the last 10 weeks of Happenstance, that we had ideas and theories about what happened and why, but I hadn't anticipated there being so much to talk about... in front of an audience!</p>
+
+<p>When I went freelance last summer and set up my company, ShedCode, I was planning on doing some client work and in between, hopefully working on some of my own ideas to see what would happen. In the end I did 99% client work and was planning, at some point, to pause and work on my stuff.</p>
+
+<p>That's when Happenstance came along and it is fair to say that I thought at the beginning that Happenstance may have been a pleasant and interesting detour for my career as a Software Engineer/Developer and Techie. Instead of returning back to the path I was treading before Happenstance, I've finished the project on what feels like a completely different path, going who knows where!</p>
+
+<p>Helping an arts organisation learn new things, to be inspiring and to fix stuff is what I thought would happen. We did some of that, but also I learnt what a Technologist could be, that we could make things, real things with lives of their own which will live on after the project has finished. I've met new people, made friends and found out about interesting things. An interest in electronics has been rekindled, thanks to arduinos and I've started to pick up some Ruby and a bit of Rails. Speaking at Future Everything, TedX Sheffield and at the Open Houses has given me some confidence in public speaking.</p>
+
+<p>People have been so encouraging! Thanks to all who have had kind words to say, shared their knowledge, wisdom, contacts, experience, advice, tea and biscuits. Thanks too to those at <a href="http://sitegallery.org">Site</a> who have been incredibly open, helpful and friendly during the project, I've really appreciated it. Special thanks of course go to my co-resident, <a href="http://finalbullet.com">Leila</a>, who has put up with some of my more, er, random ideas, given me confidence to do stuff, been a great sounding board, co-speaker and partner in crime. She's been so generous to me and I think we've been a great team (even if I say so myself!). I hope we can work together on more stuff soon!</p>
+
+<p>I wrote a couple of blog posts about what to do next, both for me in <a href="http://jamesjefferies.com/2012/05/31/whatever-next/">general</a> and <a href="http://jamesjefferies.com/2012/06/15/whatever-next-the-technical-stuff/">technically</a> and really it's a work in progress. We've got debrief next week, then I'm on holiday for a couple of weeks. I think I really need a break, but I don't want to lose the momentum I've built up during Happenstance. So, those who've become my friends over the last 10 weeks and those who've known me for ages, don't let me slip in to old habits and ways &amp; please bear with me as I bounce ideas around like fleas on space hoppers. I hope that life post-Happenstance is going to get even more interesting!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Whatever next - the technical stuff]]></title>
+    <link href="http://jamesjefferies.github.com/2012/06/15/whatever-next-the-technical-stuff/"/>
+    <updated>2012-06-15T12:51:02+01:00</updated>
+    <id>http://jamesjefferies.github.com/2012/06/15/whatever-next-the-technical-stuff</id>
+    <content type="html"><![CDATA[<p>In recent years my main programming language has been Java, sprinkled with a bit of the usual korn/zsh scrips, SQL, HTML, JavaScript and other gubbins. The world of Java is rich with libraries, web frameworks, platforms and alternate languages. I've invested a lot of time in this ecosystem, knowing which tools are useful for which problems, gained expertise in various web frameworks, development environments and platforms, generally to be as productive as I've ever been.</p>
+
+<p>For the last couple of years though, I've been pondering whether to stick with what I know, or to spend time learning some new stuff. It is fair to say that I'm not a natural polyglot. I like to spend decent time getting to know a language and it's ecosystem and I find it can be tricky switching.</p>
+
+<h3>Grails &amp; Groovy</h3>
+
+<p>At first I spent a bit of time, starting to get to know <a href="http://grails.org">Grails</a>, basically using <a href="http://groovy.codehaus.org/">Groovy</a> on the JVM (Java Virtual Machine) to build a Rails like web framework. The rest of the Grails stack is also stuff which I know very well, Spring, Hibernate etc. There is a lot I like about Grails and I've yet to investigate all this is new in the latest 2.0 release.</p>
+
+<p>So, there you go, something I'd like, building upon a lot which I already know. Should be the favourite right?</p>
+
+<h3>Scala &amp; Play/Lift</h3>
+
+<p>Well, I then started thinking a bit about <a href="http://www.scala-lang.org/">Scala</a>, a language which polarises opinion, especially amongst the Java community. It is either the 'new' Java or it is a hodge podge of static typed semi functional programming. People complain about it's complexity or love how doing things in a more functional fashion reduces code and maintenance and gets it all set up for multi-core CPUs. If I was planning on doing more 'corporate' work, working on huge projects in London or building a twitter competitor then it'd make sense for me to have a good look at Scala.</p>
+
+<p>But I'm not, maybe ShedCode will work on an idea which will one day be huge, I think I'll worry about that another time!</p>
+
+<h3>Clojure</h3>
+
+<p>I'd also like to learn <a href="http://clojure.org/">Clojure</a>, mainly because I think it will be good for my programming skills and good for my brain.</p>
+
+<h3>Rails &amp; Ruby</h3>
+
+<p>Then, working on <a href="http://happenstanceproject.com">Happenstance</a> has made me think again...</p>
+
+<p>In early 2008 I was going to investigate <a href="http://rubyonrails.org/">Rails</a> &amp; Ruby, one because I liked the fact it was called Rails, but then also because it seemed to be gaining a lot of momentum and interest and it was 'cool'. In the end I got a job doing java, so I put it on the back burner. I also started to realise that, as is often the case where things are a bit 'cool' there were quite a few.. ahem.. nobbers around who not only believed that Rails was THE framework to use but that using anything else was such a POOR substitute. I have to be honest, it did my nut. I did meet a few people who seemed ok, but the majority, I didn't really get on with.</p>
+
+<p>Now I find that a lot of the R&amp;D web apps I'm interested in, have been built with Rails. I've also met some more Rails devs who are not nobbers, in fact, they are interesting, helpful, open minded people. I'd like to work with some of them, I'd like to build things on top of the work they've done. I'd like to explore the Rails ecosystem which has inspired so much in other languages (like Grails for example).</p>
+
+<h3>Client Side</h3>
+
+<p>Even though over the last few weeks, I've been thinking more about whether the classic server side MVC web framework is what I should be looking at all. There is a significant trend for using client side JavaScript frameworks for doing a lot of the hardwork in the browser, whilst having a more simple RESTful service/API set up on the server. Examples would be <a href="http://documentcloud.github.com/backbone/">Backbone.js</a>, <a href="http://emberjs.com/">Ember.js</a>, <a href="http://knockoutjs.com/">Knockout.js</a> etc. This somehow feels like a good idea, but I'm not great with JavaScript and I'm not sure this is what I want to do just yet. Obviously improving my JavaScript knowledge would be useful regardless!</p>
+
+<h3>Crossroads</h3>
+
+<p>So, I find myself at a crossroads. I'll spend some time with Clojure, regardless of what else I do, but I've got some interesting projects to start in the next month or so and I need to decide whether I:</p>
+
+<ol>
+<li><p>Learn Rails and see what happens...</p></li>
+<li><p>Go with what I know a bit and build something with Grails. I know the tools, I know the libraries and I know it works (mainly)</p></li>
+<li><p>Client side JavaScript stuff</p></li>
+<li><p>Go with Scala, build on top of the Java I know and become have decent with functional languages</p></li>
+</ol>
+
+
+<p>At the moment, these are in my preferred order, but I'll let you know what happens...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Whatever next?]]></title>
+    <link href="http://jamesjefferies.github.com/2012/05/31/whatever-next/"/>
+    <updated>2012-05-31T23:34:05+01:00</updated>
+    <id>http://jamesjefferies.github.com/2012/05/31/whatever-next</id>
+    <content type="html"><![CDATA[<h3>Then</h3>
+
+<p>This time last year I was in despair, I wasn’t enjoying my job and it was getting me down. Up to that point I’d spent 6 years writing software for Barclays, 5 years writing software for npower/Yorkshire Electricity, 3 years writing software for the digital agency Technophobia. I could feel myself getting stale and much as I enjoyed working with a lot of my colleagues, it felt to me like I needed a bit of a change.</p>
+
+<p>During August 2011, I left <a href="http://www.technophobia.com">Technophobia</a> and set up my own limited company ShedCode without much of an idea what to do next! Fortunately I was able to get off with a cracking start; I was able to share an office above the <a href="http://www.sitegallery.org">Site Gallery</a> in Sheffield City Centre with 3 good friends and then I was able to do some standard contracting work, 4 days a week to get some funds in the coffers.</p>
+
+<p>Having an office was key to me going freelance, I didn’t really want to work from home, too many distractions, but sharing a small office with people I like and can trust was ideal. Being at tenant at Site also meant that I started to meet people in the building, both staff &amp; other tenants. It’s a great place to work &amp; it’s also where I first heard about the <a href="http://happenstanceproject.com">Happenstance Project.</a> In a nutshell, the project is a 10 week residency for technologists in Arts Organisations of which Site was to be one of them.</p>
+
+<h2>Happenstance</h2>
+
+<p>After umming and ahhing a bit about applying, I decided to go for it, the weekend before the deadline. The actual application process was really useful for me, helping me to work out some ideas about what I wanted to do next, with my career and ShedCode. To cut a long story short, I managed to get a place as one of the residents and at the point of writing this, we’re 7 weeks into the 10 weeks.</p>
+
+<p>Time really flies when you’re having fun and learning new things and so far that sums the residency up nicely. We’ve built thermal printing sentient characters from Wuthering Heights which are mobile, tweet and respond to SMS text messages. An incredible polargraph drawing machine as well as fixing lots of technical things for the Site organisation itself. You can read more about what we’ve been up to on the <a href="http://happenstanceproject.com/blog">happenstance project blog</a> and our <a href="http://happenstancesheffield.tumblr.com/">tumblr </a>site.</p>
+
+<p>I’ve hankered after Research &amp; Development time for years and getting the odd day here or there hasn’t been enough. This residency though has been a mixture of R&amp;D and practical help for the organisation and it has seriously got me thinking. It’s one thing to have an idea, it’s something else though to have the time to actually try and get it to work. There have been nights after working on happenstance when I have not been able to sleep as my brain has been working overtime trying to solve problems... I feel a bit more alive!</p>
+
+<p>The question now though for me, is</p>
+
+<h2>Whatever next?</h2>
+
+<p>I’m pretty good, if I can blow my own trumpet for a minute, at technical problem solving. From laser printers, to wireless networks, to security, to domains, even WordPress. As a problem solver and nosy chuffer, you don’t spend 17 years working without picking up some knowledge of what your colleagues do!</p>
+
+<p>I’ve spent most of my time though writing and designing software. I’m not the best software engineer in the world, in fact there’s a lot of my code out there which other people now have to support for which I apologise most sincerely, but I’m not a bad all rounder.</p>
+
+<p>Once Happenstance finishes, at the end of June, I’d like to take some time to work on some of my own projects. I’ve got two railway related products I’d like to build, plus a project for school kids and then at least one other one which is coming together.</p>
+
+<p>Since being a Technologist in Residence though, it’s given me the hunger to get involved in other things too. It’s been a real privilege working with my fellow resident <a href="http://finalbullet.com">Leila Johnston</a>, she is a great writer, inventor and organiser of exciting events and has an incredible network of interesting people who do really interesting things.</p>
+
+<p>And as I wrote that sentence above, it’s when I thought, hang on, that’s what I’m after. I think I WANT TO BE AN INTERESTING PERSON! So that people can say, "Hey, you know who you should get in to do such and such, you could do a lot worse than hire that friendly freelancer James Jefferies!"</p>
+
+<h3></h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 6 – Polargraph working, mobile printers and Open House]]></title>
+    <link href="http://jamesjefferies.github.com/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house/"/>
+    <updated>2012-05-31T23:08:12+01:00</updated>
+    <id>http://jamesjefferies.github.com/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house</id>
+    <content type="html"><![CDATA[<p>Leila has done a top job of writing up about the Open House we held at Site Gallery on Friday. We had a great time talking about Happenstance so far to a full house (well cafe anyway).</p>
+
+<p><a href="http://jamesjefferies.com/?attachment_id=551"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/settingupopenhouse-620x465.jpg" alt="" /></a></p>
+
+<p>Having the Polargraph finally up and running on the correct voltage was great and a fantastic drawing of Lord Jarvis of Cocker appeared as the event went on.</p>
+
+<p>We also had Heathcliff Printer working (although he did conk out at one point for some unexplained reason) and Leila got her Kinnect set up doing some Minority Report style magic.</p>
+
+<p>One of our conductive <a href="http://www.bareconductive.com/paper-houses">paint houses</a> was there too, but it was too dark really to see it in action. Winter time for those I think.</p>
+
+<p>We had a little Q&amp;A after our talk and one of the questions really got me thinking about being a creative software engineer - what does that mean in practice and how can we encourage techies to embrace their creativity, smashing through the constraints of institutional methodologies. Sounds like that might be a future blog post!</p>
+
+<p>A lot of cake was eaten and a good time was had by all. Thanks to all who helped and all who came along!</p>
+
+<p><a href="http://jamesjefferies.com/?attachment_id=552"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/openhouseeatingcake-620x465.jpg" alt="" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week 5 – a bit of a blur]]></title>
+    <link href="http://jamesjefferies.github.com/2012/05/31/week-5-a-bit-of-a-blur/"/>
+    <updated>2012-05-31T23:07:02+01:00</updated>
+    <id>http://jamesjefferies.github.com/2012/05/31/week-5-a-bit-of-a-blur</id>
+    <content type="html"><![CDATA[<p>The final week of Sprint 1 was all a bit of a blur. As we had the Future Everything conference on the Friday, my thoughts were on the presentation.</p>
+
+<p>We also did some work on our <a href="http://polargraph.co.uk">Polargraph</a> which was not behaving very well at all. This was disappointing as we'd hope to get it working before Future Everything. What was cool though, was that we saw some Polargraphs in action at the conference, Stuart Childs and Matt Venn had their super machines in action. Matt is doing stuff with <a href="http://www.mattvenn.net/2011/09/19/polargraph-energy-monitoring/">Energy Monitoring</a></p>
+
+<p>The Manchester Museum of Science and Industry is a great place, I especially enjoyed looking at the big steam engines and railway engines in the Power Hall. Took my mind of our talk which went OK! It was fun to see Linda and Natalia our fellow residents from Bristol and Brighton galleries respectively.</p>
+
+<p>.. and relax! (Chris the researcher, me and Natalia looking interested.. I think!)</p>
+
+<p><a href="http://jamesjefferies.com/?attachment_id=520"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/inthepub-620x465.jpg" alt="" /></a></p>
+]]></content>
+  </entry>
+  
+</feed>

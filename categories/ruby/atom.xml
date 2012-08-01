@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ruby | James Jefferies and ShedCode Ltd]]></title>
-  <link href="http://jamesjefferies.github.com//categories/ruby/atom.xml" rel="self"/>
-  <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-31T14:45:10+01:00</updated>
-  <id>http://jamesjefferies.github.com/</id>
+  <link href="http://jamesjefferies.com//categories/ruby/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2012-08-01T09:36:59+01:00</updated>
+  <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Getting started with Network Rail's datafeeds]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
+    <link href="http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
     <updated>2012-07-04T23:46:41+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
+    <id>http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
     <content type="html"><![CDATA[<p>I've had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I'm therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it's what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
 
 <h2>Where do you start?</h2>

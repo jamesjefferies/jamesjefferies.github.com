@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Sheffield | James Jefferies and ShedCode Ltd]]></title>
-  <link href="http://jamesjefferies.github.com//categories/sheffield/atom.xml" rel="self"/>
-  <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-31T14:45:10+01:00</updated>
-  <id>http://jamesjefferies.github.com/</id>
+  <link href="http://jamesjefferies.com//categories/sheffield/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2012-08-01T09:36:59+01:00</updated>
+  <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Electrified Spine (and the rest of the news)]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
+    <link href="http://jamesjefferies.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
     <updated>2012-07-16T15:39:04+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
+    <id>http://jamesjefferies.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
     <content type="html"><![CDATA[<p>Today the government has announced a further set of infrastructure investment for the railways. This has to be good news, especially where electrification is concerned. Electric trains are more efficient, cleaner and perform better than their diesel (and steam I suppose!) counterparts. I appreciate that the electricity still has to come from somewhere, but in the main it is the right thing to do.</p>
 
 <h2>Already Announced</h2>
@@ -66,9 +66,9 @@
   
   <entry>
     <title type="html"><![CDATA[Whatever next?]]></title>
-    <link href="http://jamesjefferies.github.com/2012/05/31/whatever-next/"/>
+    <link href="http://jamesjefferies.com/2012/05/31/whatever-next/"/>
     <updated>2012-05-31T23:34:05+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/05/31/whatever-next</id>
+    <id>http://jamesjefferies.com/2012/05/31/whatever-next</id>
     <content type="html"><![CDATA[<h3>Then</h3>
 
 <p>This time last year I was in despair, I wasn’t enjoying my job and it was getting me down. Up to that point I’d spent 6 years writing software for Barclays, 5 years writing software for npower/Yorkshire Electricity, 3 years writing software for the digital agency Technophobia. I could feel myself getting stale and much as I enjoyed working with a lot of my colleagues, it felt to me like I needed a bit of a change.</p>
@@ -105,9 +105,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 3 - Cathy & Heathcliff's amazing adventures]]></title>
-    <link href="http://jamesjefferies.github.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/"/>
+    <link href="http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/"/>
     <updated>2012-05-04T18:18:34+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures</id>
+    <id>http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures</id>
     <content type="html"><![CDATA[<p>This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site office to get our heads down.</p>
 
 <p>The first challenge was to allow 6th Formers to send messages to Cathy &amp; Heathcliff. At first we thought of hooking them up directly to twitter accounts, but as Leila had a <a href="http://twilio.com">Twilio</a> account, it meant that we could do something clever with SMS Text messages. With a bit of PHP magic on an intermediary server (timescales demanded a quick turnaround!) we managed to get the SMS messages sent to the two printers. Hooray!</p>
@@ -122,9 +122,9 @@
   
   <entry>
     <title type="html"><![CDATA[Week 1 in Sheffield]]></title>
-    <link href="http://jamesjefferies.github.com/2012/04/22/week-1-in-sheffield/"/>
+    <link href="http://jamesjefferies.com/2012/04/22/week-1-in-sheffield/"/>
     <updated>2012-04-22T16:19:47+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/04/22/week-1-in-sheffield</id>
+    <id>http://jamesjefferies.com/2012/04/22/week-1-in-sheffield</id>
     <content type="html"><![CDATA[<p>We're three days in to our residency and time is already flying along. We've spoken to a lot of people, fixed some niggly problems in the office and had some ideas which I'm sure any Technologist in Residence would be proud of!</p>
 
 <p>Our esteemed directors at Site have been storing up interesting people for us to talk to which has been great. It's striking how we've met people who are passionate, not only about what they do, but about the greater tech community in Sheffield, Sheffield itself, Yorkshire and the North! This resonates with me as a Yorkshirebod and as someone who would like to see the economic balance tip in our direction.</p>
@@ -139,9 +139,9 @@
   
   <entry>
     <title type="html"><![CDATA[Something inspiring.. For Sheffield!]]></title>
-    <link href="http://jamesjefferies.github.com/2012/04/17/something-inspiring-for-sheffield/"/>
+    <link href="http://jamesjefferies.com/2012/04/17/something-inspiring-for-sheffield/"/>
     <updated>2012-04-17T17:54:52+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/04/17/something-inspiring-for-sheffield</id>
+    <id>http://jamesjefferies.com/2012/04/17/something-inspiring-for-sheffield</id>
     <content type="html"><![CDATA[<p>Sheffield is the city of Seven Hills, George Orwell wrote in 'Road to Wigan Pier'</p>
 
 <blockquote><p>"The town is very hilly (said to be built on seven hills, like Rome) and everywhere streets of mean little houses blackened by smoke run up at sharp angles, paved with cobbles which are purposely set unevenly to give horses etc, a grip"</p></blockquote>

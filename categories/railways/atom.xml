@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Railways | James Jefferies and ShedCode Ltd]]></title>
-  <link href="http://jamesjefferies.github.com//categories/railways/atom.xml" rel="self"/>
-  <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-31T14:45:10+01:00</updated>
-  <id>http://jamesjefferies.github.com/</id>
+  <link href="http://jamesjefferies.com//categories/railways/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2012-08-01T09:36:59+01:00</updated>
+  <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Downloading the Network Rail Schedules]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/18/downloading-the-network-rail-schedules/"/>
+    <link href="http://jamesjefferies.com/2012/07/18/downloading-the-network-rail-schedules/"/>
     <updated>2012-07-18T17:43:39+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/18/downloading-the-network-rail-schedules</id>
+    <id>http://jamesjefferies.com/2012/07/18/downloading-the-network-rail-schedules</id>
     <content type="html"><![CDATA[<p>As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon S3. The Schedule feed is an extract of train schedules from the Integration Train Planning System.</p>
 
 <p>When you have your Network Rail account you can subscribe, either to all the data, or to the Train Operators you are interested in. However, at the time of writing, the only feed which works is the one for ALL the data, the Train Operator specific downloads throw an unhelpful error</p>
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Electrified Spine (and the rest of the news)]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
+    <link href="http://jamesjefferies.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
     <updated>2012-07-16T15:39:04+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
+    <id>http://jamesjefferies.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
     <content type="html"><![CDATA[<p>Today the government has announced a further set of infrastructure investment for the railways. This has to be good news, especially where electrification is concerned. Electric trains are more efficient, cleaner and perform better than their diesel (and steam I suppose!) counterparts. I appreciate that the electricity still has to come from somewhere, but in the main it is the right thing to do.</p>
 
 <h2>Already Announced</h2>
@@ -91,9 +91,9 @@
   
   <entry>
     <title type="html"><![CDATA[Getting started with Network Rail's datafeeds]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
+    <link href="http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
     <updated>2012-07-04T23:46:41+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
+    <id>http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
     <content type="html"><![CDATA[<p>I've had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I'm therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it's what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
 
 <h2>Where do you start?</h2>

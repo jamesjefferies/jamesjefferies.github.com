@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Techie | James Jefferies and ShedCode Ltd]]></title>
-  <link href="http://jamesjefferies.github.com//categories/techie/atom.xml" rel="self"/>
-  <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-31T14:45:10+01:00</updated>
-  <id>http://jamesjefferies.github.com/</id>
+  <link href="http://jamesjefferies.com//categories/techie/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2012-08-01T09:36:59+01:00</updated>
+  <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Downloading the Network Rail Schedules]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/18/downloading-the-network-rail-schedules/"/>
+    <link href="http://jamesjefferies.com/2012/07/18/downloading-the-network-rail-schedules/"/>
     <updated>2012-07-18T17:43:39+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/18/downloading-the-network-rail-schedules</id>
+    <id>http://jamesjefferies.com/2012/07/18/downloading-the-network-rail-schedules</id>
     <content type="html"><![CDATA[<p>As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon S3. The Schedule feed is an extract of train schedules from the Integration Train Planning System.</p>
 
 <p>When you have your Network Rail account you can subscribe, either to all the data, or to the Train Operators you are interested in. However, at the time of writing, the only feed which works is the one for ALL the data, the Train Operator specific downloads throw an unhelpful error</p>
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[Getting started with Network Rail's datafeeds]]></title>
-    <link href="http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
+    <link href="http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
     <updated>2012-07-04T23:46:41+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
+    <id>http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
     <content type="html"><![CDATA[<p>I've had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I'm therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it's what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
 
 <h2>Where do you start?</h2>
@@ -109,9 +109,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Whatever next - the technical stuff]]></title>
-    <link href="http://jamesjefferies.github.com/2012/06/15/whatever-next-the-technical-stuff/"/>
+    <link href="http://jamesjefferies.com/2012/06/15/whatever-next-the-technical-stuff/"/>
     <updated>2012-06-15T12:51:02+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/06/15/whatever-next-the-technical-stuff</id>
+    <id>http://jamesjefferies.com/2012/06/15/whatever-next-the-technical-stuff</id>
     <content type="html"><![CDATA[<p>In recent years my main programming language has been Java, sprinkled with a bit of the usual korn/zsh scrips, SQL, HTML, JavaScript and other gubbins. The world of Java is rich with libraries, web frameworks, platforms and alternate languages. I've invested a lot of time in this ecosystem, knowing which tools are useful for which problems, gained expertise in various web frameworks, development environments and platforms, generally to be as productive as I've ever been.</p>
 
 <p>For the last couple of years though, I've been pondering whether to stick with what I know, or to spend time learning some new stuff. It is fair to say that I'm not a natural polyglot. I like to spend decent time getting to know a language and it's ecosystem and I find it can be tricky switching.</p>
@@ -162,9 +162,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Week 3 - Cathy & Heathcliff's amazing adventures]]></title>
-    <link href="http://jamesjefferies.github.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/"/>
+    <link href="http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/"/>
     <updated>2012-05-04T18:18:34+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures</id>
+    <id>http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures</id>
     <content type="html"><![CDATA[<p>This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site office to get our heads down.</p>
 
 <p>The first challenge was to allow 6th Formers to send messages to Cathy &amp; Heathcliff. At first we thought of hooking them up directly to twitter accounts, but as Leila had a <a href="http://twilio.com">Twilio</a> account, it meant that we could do something clever with SMS Text messages. With a bit of PHP magic on an intermediary server (timescales demanded a quick turnaround!) we managed to get the SMS messages sent to the two printers. Hooray!</p>
@@ -179,9 +179,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Week 1 in Sheffield]]></title>
-    <link href="http://jamesjefferies.github.com/2012/04/22/week-1-in-sheffield/"/>
+    <link href="http://jamesjefferies.com/2012/04/22/week-1-in-sheffield/"/>
     <updated>2012-04-22T16:19:47+01:00</updated>
-    <id>http://jamesjefferies.github.com/2012/04/22/week-1-in-sheffield</id>
+    <id>http://jamesjefferies.com/2012/04/22/week-1-in-sheffield</id>
     <content type="html"><![CDATA[<p>We're three days in to our residency and time is already flying along. We've spoken to a lot of people, fixed some niggly problems in the office and had some ideas which I'm sure any Technologist in Residence would be proud of!</p>
 
 <p>Our esteemed directors at Site have been storing up interesting people for us to talk to which has been great. It's striking how we've met people who are passionate, not only about what they do, but about the greater tech community in Sheffield, Sheffield itself, Yorkshire and the North! This resonates with me as a Yorkshirebod and as someone who would like to see the economic balance tip in our direction.</p>

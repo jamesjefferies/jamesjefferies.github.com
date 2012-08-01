@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Grumble | James Jefferies and ShedCode Ltd]]></title>
-  <link href="http://jamesjefferies.github.com//categories/grumble/atom.xml" rel="self"/>
-  <link href="http://jamesjefferies.github.com/"/>
-  <updated>2012-07-31T14:45:10+01:00</updated>
-  <id>http://jamesjefferies.github.com/</id>
+  <link href="http://jamesjefferies.com//categories/grumble/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2012-08-01T09:36:59+01:00</updated>
+  <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Dodgy Venue]]></title>
-    <link href="http://jamesjefferies.github.com/2007/04/24/dodgy-venue/"/>
+    <link href="http://jamesjefferies.com/2007/04/24/dodgy-venue/"/>
     <updated>2007-04-24T11:37:21+01:00</updated>
-    <id>http://jamesjefferies.github.com/2007/04/24/dodgy-venue</id>
+    <id>http://jamesjefferies.com/2007/04/24/dodgy-venue</id>
     <content type="html"><![CDATA[<p>Well, Newcastle Academy is an interesting place, old theatre kind of venue with a balcony and standing area downstairs. Which is great, I love 'em, except that the only way in and out were two doors at the back, up two sets of stairs! From there there was a lobby with two more sets of stairs heading down each side. A recipe for queueing to get out, scrambling over empty plastic glasses - no fun.</p>
 
 <p>We walked past the fire exits which would have been a good way of clearing the venue quickly, but there were venue staff on the doors keeping us in line. It was hot, smelly and unpleasant. One guy, claiming claustrophobia, made a dash for the door, barging everyone out of his way until he found he couldn't get out that way, upon which, after ranting and raving, he calmed down and pushed back in the queue. I was not happy! If you get claustrophobic, you don't go down to the front of a gig!</p>
@@ -28,9 +28,9 @@
   
   <entry>
     <title type="html"><![CDATA[Oracle 10g]]></title>
-    <link href="http://jamesjefferies.github.com/2007/04/19/oracle-10g/"/>
+    <link href="http://jamesjefferies.com/2007/04/19/oracle-10g/"/>
     <updated>2007-04-19T15:09:25+01:00</updated>
-    <id>http://jamesjefferies.github.com/2007/04/19/oracle-10g</id>
+    <id>http://jamesjefferies.com/2007/04/19/oracle-10g</id>
     <content type="html"><![CDATA[<p>How come Oracle 10g comes with so many nice things which are advertised as working 'out of the box' but actually a licence fee is paid. This wouldn't be so bad if the company refuses to pay the extra licences to access all of the performance tweaking goodies we need!</p>
 
 <p>Honestly, I tear my hair out :(</p>

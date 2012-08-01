@@ -367,10 +367,6 @@
         <lastmod>2012-07-24T21:55:56+01:00</lastmod>
     </url>
     <url>
-        <loc>http://jamesjefferies.com/2011/01/06/356/</loc>
-        <lastmod>2012-07-25T16:27:58+01:00</lastmod>
-    </url>
-    <url>
         <loc>
             http://jamesjefferies.com/2011/01/06/testing-the-grails-spring-security-ldap-combo/
         </loc>
@@ -483,15 +479,15 @@
         <lastmod>2012-07-24T21:07:53+01:00</lastmod>
     </url>
     <url>
-        <loc>http://jamesjefferies.com/blog/archives/</loc>
-        <lastmod>2012-07-26T14:37:04+01:00</lastmod>
+        <loc>http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/</loc>
+        <lastmod>2012-08-01T12:46:57+01:00</lastmod>
     </url>
     <url>
-        <loc>http://jamesjefferies.com/blog/arsiv/</loc>
-        <lastmod>2012-07-26T14:37:04+01:00</lastmod>
+        <loc>http://jamesjefferies.com/blog/archives/</loc>
+        <lastmod>2012-08-01T12:46:57+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/</loc>
-        <lastmod>2012-07-26T14:37:04+01:00</lastmod>
+        <lastmod>2012-08-01T12:46:57+01:00</lastmod>
     </url>
 </urlset>

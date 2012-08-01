@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-01T09:36:59+01:00</updated>
+  <updated>2012-08-01T12:50:12+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Moving from WordPress to Octopress]]></title>
+    <link href="http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/"/>
+    <updated>2012-08-01T12:43:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress</id>
+    <content type="html"><![CDATA[<h2>What is Octopress?</h2>
+
+<p><a href="http://octopress.org">Octopress</a> is a blogging engine designed to be run from the command line, it uses Markdown for formatting content and doesn&#8217;t have any built in GUI editing facilities.</p>
+
+<p>It is worth looking at though because it generates static HTML files, so you don&#8217;t need a database, you don&#8217;t need PHP you just need to serve straight forward files.</p>
+
+<p>The integration with github pages is very nice, so you can actually use github to host your blog or website leaving them to worry about server admin etc!</p>
+
+<h2>Why did I switch?</h2>
+
+<p>At the moment, my virtual server was only hosting my blog and nothing else. At the moment, I don&#8217;t need it for anything else, so being able to move to github pages for free was one draw, saving me £X a month. When I need a server again, I&#8217;ll set one up.</p>
+
+<p>I having nothing against WordPress per se, but it wasn&#8217;t very hackable by me, a non-PHP developer. Now with Octopress, it seems a lot more straight forward. Plus I no longer have a MySQL or PHP install to maintain.</p>
+
+<p>It <em>feels</em> like the Octopress templates are more designer friendly. I&#8217;ll let you know if that is the case!</p>
+
+<p>My site now has very straightforward version control, powered by git.</p>
+
+<h2>How does it work?</h2>
+
+<p>You check out the <a href="https://github.com/imathis/octopress">source</a> (from github of course). The html generating engine is written in ruby, so you need to have that installed. Once set up and configured, you can push your content using git to wherever you want to deploy it.</p>
+
+<p>When you deploy, octopress turns your markdown and HTML templates in to straight forward HTML pages ready to be served.</p>
+
+<p>It uses Disqus by default for comments, but if you have a WordPress account, you can set that up with Disqus before migration. Works a treat.</p>
+
+<h2>Exiting WordPress</h2>
+
+<p>At first I tried the ruby WordPress migrating script. Basically it was not very good and I think I wasted a fair bit of time on it. Better is the Python <a href="https://github.com/thomasf/exitwp">exitwp.py</a> script which is.. brilliant!</p>
+
+<h2>Downsides</h2>
+
+<ul>
+<li>There is a much smaller plugin selection available</li>
+<li>You generally re-generate the whole site when you want to publish something new (there are ways around that though, to selectively generate new content).</li>
+<li>If you had a blog with a lot of posts, then it might take some time to generate.</li>
+<li>Small amount of off-the-shelf themes</li>
+</ul>
+
+
+<h2>Upsides</h2>
+
+<ul>
+<li>The standard plugins you might want are available, twitter, github, google analytics.</li>
+<li>Github pages integration is very straightforward</li>
+<li>Simple caching can be set up if required, but no more W3 Total Cache Super Plugin things</li>
+<li>No WordPress security loopholes and patches</li>
+<li>No PHP or MySQL loopholes or patches</li>
+<li>Fast</li>
+<li>Relatively lightweight page sizes</li>
+<li>Nice default, responsive design</li>
+</ul>
+
+
+<h2>Theme</h2>
+
+<p>I&#8217;m using a slightly customised default theme at the moment, but hopefully will have a bespoke one up and running soon.</p>
+
+<h2>Summary</h2>
+
+<p>Now I&#8217;m migrated, I&#8217;m liking it so far, let me know what you think..</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Downloading the Network Rail Schedules]]></title>
@@ -614,33 +683,6 @@ path/to/eclipse/here
 <h3>In a nutshell</h3>
 
 <p>If you are having problems with flickr (or other image intensive sites) and you have a belkin router with the firewall switched on. SWITCH it off and see if it fixes it. If it does - bingo!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[MySQL and Foreign Keys]]></title>
-    <link href="http://jamesjefferies.com/2011/06/29/mysql-and-foreign-keys/"/>
-    <updated>2011-06-29T23:25:40+01:00</updated>
-    <id>http://jamesjefferies.com/2011/06/29/mysql-and-foreign-keys</id>
-    <content type="html"><![CDATA[<p>This is to remind me next time that MySQL isn’t as clever as you think it might be.</p>
-
-<p>If you have Table A, with column 1, 2, 3 and Table B with columns 4, 5, 6 – Primary keys are columns 1 &amp; 4 respectively.</p>
-
-<p>Now you want to add a foreign key to table B, column 6, referencing column 1 in table A. No problem:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">`</span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tableB</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">fk_column_1</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">column6</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">tableA</span> <span class="p">(</span><span class="n">column1</span><span class="p">);</span><span class="o">`</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>oh dear, fails with something like</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">`</span><span class="n">ERROR</span> <span class="mi">1005</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="n">Can</span><span class="s1">&#39;t create table &#39;</span><span class="p">.</span><span class="o">/</span><span class="n">databasename</span><span class="o">/#</span><span class="k">sql</span><span class="o">-</span><span class="mi">55</span><span class="n">d1_b07</span><span class="p">.</span><span class="n">frm</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">errno</span><span class="p">:</span> <span class="mi">150</span><span class="p">)</span><span class="o">`</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This fails because creating the primary key on columns 1 and 4 don’t automatically create indexes on those columns, and adding a foreign key requires there to be an index on the column you are referencing. Boom!</p>
 ]]></content>
   </entry>
   

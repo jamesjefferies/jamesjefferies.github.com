@@ -9,10 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Fantastic night at the Sheffield Arena seeing Rush.. &#8220;The Spirit of Radio&#8221;
-&#8220;Time Stand Still)&#8221;
-&#8220;Presto)&#8221;
-&#8220; &hellip;">
+  <meta name="description" content="This is to remind me next time that MySQL isn’t as clever as you think it might be. If you have Table A, with column 1, 2, 3 and Table B with columns &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +77,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/06/29/mysql-and-foreign-keys/">MySQL and Foreign Keys</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-29T23:25:40+01:00" pubdate data-updated="true">Jun 29<span>th</span>, 2011</time>
+        
+         | <a href="/2011/06/29/mysql-and-foreign-keys/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is to remind me next time that MySQL isn’t as clever as you think it might be.</p>
+
+<p>If you have Table A, with column 1, 2, 3 and Table B with columns 4, 5, 6 – Primary keys are columns 1 &amp; 4 respectively.</p>
+
+<p>Now you want to add a foreign key to table B, column 6, referencing column 1 in table A. No problem:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">`</span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tableB</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">fk_column_1</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">column6</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">tableA</span> <span class="p">(</span><span class="n">column1</span><span class="p">);</span><span class="o">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>oh dear, fails with something like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">`</span><span class="n">ERROR</span> <span class="mi">1005</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="n">Can</span><span class="s1">&#39;t create table &#39;</span><span class="p">.</span><span class="o">/</span><span class="n">databasename</span><span class="o">/#</span><span class="k">sql</span><span class="o">-</span><span class="mi">55</span><span class="n">d1_b07</span><span class="p">.</span><span class="n">frm</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">errno</span><span class="p">:</span> <span class="mi">150</span><span class="p">)</span><span class="o">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This fails because creating the primary key on columns 1 and 4 don’t automatically create indexes on those columns, and adding a foreign key requires there to be an index on the column you are referencing. Boom!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -413,104 +466,6 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 
 
 <p></p>
-
-<p>If you&#8217;re doing the full spring security with custom rolled retrieval of Roles and you want to test it, then you need to make sure you&#8217;ve bootstrapped those users too, so that the roles are retrieved as well as the user being authenticated.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/01/06/356/">Testing the Grails, Spring Security, LDAP Combo</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-06T16:00:46+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
-        
-         | <a href="/2011/01/06/356/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you&#8217;re working remotely, or because you want a disposable directory to throw away after you&#8217;ve run your tests. Well, there is a <a href="http://www.grails.org/plugin/ldap-server">grails plugin</a> which adds an embedded LDAP directory (ApacheDS) to your application which can be fired up as/when required.</p>
-
-<p>After installing the plugin, it requires a bit of configuration, so in your Config.groovy:</p>
-
-<pre><code>environments {
-    development {       
-        // Embedded ldap server 
-        ldapServers {
-            d1 {
-                base = "dc=people,dc=companyname,dc=int"
-                port = 10389
-                indexed = ["objectClass", "uid", "mail", "userPassword"]
-            }
-        }
-        grails.plugins.springsecurity.ldap.context.server = 'ldap://localhost:10389'
-    }
-    ....
-</code></pre>
-
-<p>So now, when the app is instantiated in the development environment, you have an ldap directory running on localhost, post 10389. You might want to change what is indexed depending on what details you actually want indexing!</p>
-
-<p>If you wanted some default data loaded when the ldap server starts, simply add an ldif file to the grails-app/ldap-servers/d1/data directory. This gets auto loaded:</p>
-
-<pre><code>dn: ou=group,dc=people,dc=companyname,dc=int
-objectClass: top
-objectClass: organizationalUnit
-ou: group
-
-dn: ou=People,dc=people,dc=companyname,dc=int
-objectClass: organizationalUnit
-ou: People
-
-dn: uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int
-uid: jjefferies
-objectClass: uidObject
-objectClass: top
-objectClass: person
-objectClass: organizationalPerson
-cn: James Jefferies
-sn: Jefferies
-userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
-</code></pre>
-
-<p>To run unit tests against it, a reference to the server get&#8217;s injected in to your test class and then you can run some tests against it:</p>
-
-<pre><code>class LdapTests extends GroovyTestCase {
-
-    def d1LdapServer    
-
-    void testLdapServerShouldExist() {
-        assert d1LdapServer.exists("uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int")
-    }
-
-    void testJJUserIsThere() {      
-        def user = d1LdapServer["uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int"]
-        assert "James Jefferies" == user.cn.first() // cn is a multi valued string attribute        
-    }
-}
-</code></pre>
 
 <p>If you&#8217;re doing the full spring security with custom rolled retrieval of Roles and you want to test it, then you need to make sure you&#8217;ve bootstrapped those users too, so that the roles are retrieved as well as the user being authenticated.</p>
 </div>
@@ -976,6 +931,10 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
       </li>
     
@@ -989,10 +948,6 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
     
       <li class="post">
         <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
       </li>
     
   </ul>

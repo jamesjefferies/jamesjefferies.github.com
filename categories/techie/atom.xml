@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Techie | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com//categories/techie/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-01T09:36:59+01:00</updated>
+  <updated>2012-08-01T12:50:12+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Moving from WordPress to Octopress]]></title>
+    <link href="http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/"/>
+    <updated>2012-08-01T12:43:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress</id>
+    <content type="html"><![CDATA[<h2>What is Octopress?</h2>
+
+<p><a href="http://octopress.org">Octopress</a> is a blogging engine designed to be run from the command line, it uses Markdown for formatting content and doesn't have any built in GUI editing facilities.</p>
+
+<p>It is worth looking at though because it generates static HTML files, so you don't need a database, you don't need PHP you just need to serve straight forward files.</p>
+
+<p>The integration with github pages is very nice, so you can actually use github to host your blog or website leaving them to worry about server admin etc!</p>
+
+<h2>Why did I switch?</h2>
+
+<p>At the moment, my virtual server was only hosting my blog and nothing else. At the moment, I don't need it for anything else, so being able to move to github pages for free was one draw, saving me £X a month. When I need a server again, I'll set one up.</p>
+
+<p>I having nothing against WordPress per se, but it wasn't very hackable by me, a non-PHP developer. Now with Octopress, it seems a lot more straight forward. Plus I no longer have a MySQL or PHP install to maintain.</p>
+
+<p>It <em>feels</em> like the Octopress templates are more designer friendly. I'll let you know if that is the case!</p>
+
+<p>My site now has very straightforward version control, powered by git.</p>
+
+<h2>How does it work?</h2>
+
+<p>You check out the <a href="https://github.com/imathis/octopress">source</a> (from github of course). The html generating engine is written in ruby, so you need to have that installed. Once set up and configured, you can push your content using git to wherever you want to deploy it.</p>
+
+<p>When you deploy, octopress turns your markdown and HTML templates in to straight forward HTML pages ready to be served.</p>
+
+<p>It uses Disqus by default for comments, but if you have a WordPress account, you can set that up with Disqus before migration. Works a treat.</p>
+
+<h2>Exiting WordPress</h2>
+
+<p>At first I tried the ruby WordPress migrating script. Basically it was not very good and I think I wasted a fair bit of time on it. Better is the Python <a href="https://github.com/thomasf/exitwp">exitwp.py</a> script which is.. brilliant!</p>
+
+<h2>Downsides</h2>
+
+<ul>
+<li>There is a much smaller plugin selection available</li>
+<li>You generally re-generate the whole site when you want to publish something new (there are ways around that though, to selectively generate new content).</li>
+<li>If you had a blog with a lot of posts, then it might take some time to generate.</li>
+<li>Small amount of off-the-shelf themes</li>
+</ul>
+
+
+<h2>Upsides</h2>
+
+<ul>
+<li>The standard plugins you might want are available, twitter, github, google analytics.</li>
+<li>Github pages integration is very straightforward</li>
+<li>Simple caching can be set up if required, but no more W3 Total Cache Super Plugin things</li>
+<li>No WordPress security loopholes and patches</li>
+<li>No PHP or MySQL loopholes or patches</li>
+<li>Fast</li>
+<li>Relatively lightweight page sizes</li>
+<li>Nice default, responsive design</li>
+</ul>
+
+
+<h2>Theme</h2>
+
+<p>I'm using a slightly customised default theme at the moment, but hopefully will have a bespoke one up and running soon.</p>
+
+<h2>Summary</h2>
+
+<p>Now I'm migrated, I'm liking it so far, let me know what you think..</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Downloading the Network Rail Schedules]]></title>
@@ -174,23 +243,6 @@ end
 <p>Finally, we wanted to get the messages sent to Cathy and Heathcliff's twitter accounts - @CathyPrinter @HeathcliffPrinter - initially we looked a using the PHP OAuth libraries to authenticate and send the message to twitter, but as neither of us are particularly adept at PHP, we decided on a different solution. Using <a href="http://ifttt.com">If This Then That</a> and some server side magic, we send an email from the server, via their gmail accounts to If This Then That, which then passes them on to their twitter accounts.. Hooray x 3!</p>
 
 <p>You can see us setting them up on our <a href="http://happenstancesheffield.tumblr.com">tumblr site</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Week 1 in Sheffield]]></title>
-    <link href="http://jamesjefferies.com/2012/04/22/week-1-in-sheffield/"/>
-    <updated>2012-04-22T16:19:47+01:00</updated>
-    <id>http://jamesjefferies.com/2012/04/22/week-1-in-sheffield</id>
-    <content type="html"><![CDATA[<p>We're three days in to our residency and time is already flying along. We've spoken to a lot of people, fixed some niggly problems in the office and had some ideas which I'm sure any Technologist in Residence would be proud of!</p>
-
-<p>Our esteemed directors at Site have been storing up interesting people for us to talk to which has been great. It's striking how we've met people who are passionate, not only about what they do, but about the greater tech community in Sheffield, Sheffield itself, Yorkshire and the North! This resonates with me as a Yorkshirebod and as someone who would like to see the economic balance tip in our direction.</p>
-
-<p>Site have a new Technical expert starting at the beginning of May so there is a small backlog of  outstanding techie issues for the organisation. I find it impossible to sit in the office without diving in to help when the printer doesn't work or the wi-fi has gone screwy! Hopefully now we've fixed some of the more pressing issues but it is highlighted for me that I have to be careful with my time. We had decided that we would spend three days a week on-site in the office but actually it makes sense to spend a day elsewhere to allow us to focus on bigger tasks without interruption. We'll try that next week to see how we go.</p>
-
-<p>Our bigger ideas are still fermenting, but two <a href="http://arduino.cc/hu/Guide/Introduction">Arduino</a> kits arrived on Friday and as it is about 25 years since I last played with electronics in anger, I'm excited to see what we end up using them for. I think I had something like this when I was a kid... you should have heard the stylophone I made!</p>
-
-<p><img src="http://ecx.images-amazon.com/images/I/51jZKCqIj4L._SL500_AA300_.jpg" alt="" /></p>
 ]]></content>
   </entry>
   

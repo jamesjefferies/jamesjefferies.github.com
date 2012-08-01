@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Testing the Grails, Spring Security, LDAP combo - James Jefferies and ShedCode Ltd</title>
+  <title>Moving from WordPress to Octopress - James Jefferies and ShedCode Ltd</title>
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you&#8217;re working &hellip;">
+  <meta name="description" content="What is Octopress? Octopress is a blogging engine designed to be run from the command line, it uses Markdown for formatting content and doesn&#8217;t &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jamesjefferies.com/2011/01/06/356/">
+  <link rel="canonical" href="http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
@@ -80,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">Testing the Grails, Spring Security, LDAP Combo</h1>
+      <h1 class="entry-title">Moving From WordPress to Octopress</h1>
     
     
       <p class="meta">
@@ -96,7 +96,7 @@
   
 
 
-<time datetime="2011-01-06T16:00:46+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+<time datetime="2012-08-01T12:43:00+01:00" pubdate data-updated="true">Aug 1<span>st</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -105,67 +105,67 @@
   </header>
 
 
-<div class="entry-content"><p>For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you&#8217;re working remotely, or because you want a disposable directory to throw away after you&#8217;ve run your tests. Well, there is a <a href="http://www.grails.org/plugin/ldap-server">grails plugin</a> which adds an embedded LDAP directory (ApacheDS) to your application which can be fired up as/when required.</p>
+<div class="entry-content"><h2>What is Octopress?</h2>
 
-<p>After installing the plugin, it requires a bit of configuration, so in your Config.groovy:</p>
+<p><a href="http://octopress.org">Octopress</a> is a blogging engine designed to be run from the command line, it uses Markdown for formatting content and doesn&#8217;t have any built in GUI editing facilities.</p>
 
-<pre><code>environments {
-    development {       
-        // Embedded ldap server 
-        ldapServers {
-            d1 {
-                base = "dc=people,dc=companyname,dc=int"
-                port = 10389
-                indexed = ["objectClass", "uid", "mail", "userPassword"]
-            }
-        }
-        grails.plugins.springsecurity.ldap.context.server = 'ldap://localhost:10389'
-    }
-    ....
-</code></pre>
+<p>It is worth looking at though because it generates static HTML files, so you don&#8217;t need a database, you don&#8217;t need PHP you just need to serve straight forward files.</p>
 
-<p>So now, when the app is instantiated in the development environment, you have an ldap directory running on localhost, post 10389. You might want to change what is indexed depending on what details you actually want indexing!</p>
+<p>The integration with github pages is very nice, so you can actually use github to host your blog or website leaving them to worry about server admin etc!</p>
 
-<p>If you wanted some default data loaded when the ldap server starts, simply add an ldif file to the grails-app/ldap-servers/d1/data directory. This gets auto loaded:</p>
+<h2>Why did I switch?</h2>
 
-<pre><code>dn: ou=group,dc=people,dc=companyname,dc=int
-objectClass: top
-objectClass: organizationalUnit
-ou: group
+<p>At the moment, my virtual server was only hosting my blog and nothing else. At the moment, I don&#8217;t need it for anything else, so being able to move to github pages for free was one draw, saving me £X a month. When I need a server again, I&#8217;ll set one up.</p>
 
-dn: ou=People,dc=people,dc=companyname,dc=int
-objectClass: organizationalUnit
-ou: People
+<p>I having nothing against WordPress per se, but it wasn&#8217;t very hackable by me, a non-PHP developer. Now with Octopress, it seems a lot more straight forward. Plus I no longer have a MySQL or PHP install to maintain.</p>
 
-dn: uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int
-uid: jjefferies
-objectClass: uidObject
-objectClass: top
-objectClass: person
-objectClass: organizationalPerson
-cn: James Jefferies
-sn: Jefferies
-userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
-</code></pre>
+<p>It <em>feels</em> like the Octopress templates are more designer friendly. I&#8217;ll let you know if that is the case!</p>
 
-<p>To run unit tests against it, a reference to the server get&#8217;s injected in to your test class and then you can run some tests against it:</p>
+<p>My site now has very straightforward version control, powered by git.</p>
 
-<pre><code>class LdapTests extends GroovyTestCase {
+<h2>How does it work?</h2>
 
-    def d1LdapServer    
+<p>You check out the <a href="https://github.com/imathis/octopress">source</a> (from github of course). The html generating engine is written in ruby, so you need to have that installed. Once set up and configured, you can push your content using git to wherever you want to deploy it.</p>
 
-    void testLdapServerShouldExist() {
-        assert d1LdapServer.exists("uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int")
-    }
+<p>When you deploy, octopress turns your markdown and HTML templates in to straight forward HTML pages ready to be served.</p>
 
-    void testJJUserIsThere() {      
-        def user = d1LdapServer["uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int"]
-        assert "James Jefferies" == user.cn.first() // cn is a multi valued string attribute        
-    }
-}
-</code></pre>
+<p>It uses Disqus by default for comments, but if you have a WordPress account, you can set that up with Disqus before migration. Works a treat.</p>
 
-<p>If you&#8217;re doing the full spring security with custom rolled retrieval of Roles and you want to test it, then you need to make sure you&#8217;ve bootstrapped those users too, so that the roles are retrieved as well as the user being authenticated.</p>
+<h2>Exiting WordPress</h2>
+
+<p>At first I tried the ruby WordPress migrating script. Basically it was not very good and I think I wasted a fair bit of time on it. Better is the Python <a href="https://github.com/thomasf/exitwp">exitwp.py</a> script which is.. brilliant!</p>
+
+<h2>Downsides</h2>
+
+<ul>
+<li>There is a much smaller plugin selection available</li>
+<li>You generally re-generate the whole site when you want to publish something new (there are ways around that though, to selectively generate new content).</li>
+<li>If you had a blog with a lot of posts, then it might take some time to generate.</li>
+<li>Small amount of off-the-shelf themes</li>
+</ul>
+
+
+<h2>Upsides</h2>
+
+<ul>
+<li>The standard plugins you might want are available, twitter, github, google analytics.</li>
+<li>Github pages integration is very straightforward</li>
+<li>Simple caching can be set up if required, but no more W3 Total Cache Super Plugin things</li>
+<li>No WordPress security loopholes and patches</li>
+<li>No PHP or MySQL loopholes or patches</li>
+<li>Fast</li>
+<li>Relatively lightweight page sizes</li>
+<li>Nice default, responsive design</li>
+</ul>
+
+
+<h2>Theme</h2>
+
+<p>I&#8217;m using a slightly customised default theme at the moment, but hopefully will have a bespoke one up and running soon.</p>
+
+<h2>Summary</h2>
+
+<p>Now I&#8217;m migrated, I&#8217;m liking it so far, let me know what you think..</p>
 </div>
 
 
@@ -188,12 +188,12 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
   
 
 
-<time datetime="2011-01-06T16:00:46+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+<time datetime="2012-08-01T12:43:00+01:00" pubdate data-updated="true">Aug 1<span>st</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='//categories/java/'>java</a>
+    <a class='category' href='//categories/techie/'>Techie</a>
   
 </span>
 
@@ -202,7 +202,7 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2011/01/06/356/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2011/01/06/356/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/" >Tweet</a>
   
   
   
@@ -211,10 +211,8 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2011/01/06/grails-spring-security-ldap/" title="Previous Post: Grails, Spring Security & Ldap">&laquo; Grails, Spring Security & Ldap</a>
+        <a class="basic-alignment left" href="/2012/07/18/downloading-the-network-rail-schedules/" title="Previous Post: Downloading the Network Rail Schedules">&laquo; Downloading the Network Rail Schedules</a>
       
-      
-        <a class="basic-alignment right" href="/2011/01/06/testing-the-grails-spring-security-ldap-combo/" title="Next Post: Testing the Grails, Spring Security, LDAP combo">Testing the Grails, Spring Security, LDAP combo &raquo;</a>
       
     </p>
   </footer>
@@ -235,6 +233,10 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
       </li>
     
@@ -248,10 +250,6 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
     
       <li class="post">
         <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever next - the technical stuff</a>
       </li>
     
   </ul>
@@ -326,8 +324,8 @@ userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jamesjefferies.com/2011/01/06/356/';
-        var disqus_url = 'http://jamesjefferies.com/2011/01/06/356/';
+        var disqus_identifier = 'http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/';
+        var disqus_url = 'http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/';
         var disqus_script = 'embed.js';
       
     (function () {

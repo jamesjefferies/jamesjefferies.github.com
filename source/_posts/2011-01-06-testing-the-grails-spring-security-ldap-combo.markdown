@@ -18,9 +18,7 @@ For running unit tests & integration tests, you might not want to run against an
 
 After installing the plugin, it requires a bit of configuration, so in your Config.groovy:
 
-
-    
-    
+``` groovy  
     environments {
         development {		
     		// Embedded ldap server 
@@ -34,17 +32,13 @@ After installing the plugin, it requires a bit of configuration, so in your Conf
     		grails.plugins.springsecurity.ldap.context.server = 'ldap://localhost:10389'
         }
         ....
-    
-
-
+```    
 
 So now, when the app is instantiated in the development environment, you have an ldap directory running on localhost, post 10389. You might want to change what is indexed depending on what details you actually want indexing!
 
 If you wanted some default data loaded when the ldap server starts, simply add an ldif file to the grails-app/ldap-servers/d1/data directory. This gets auto loaded:
 
-
-    
-    
+``` 
     dn: ou=group,dc=people,dc=companyname,dc=int
     objectClass: top
     objectClass: organizationalUnit
@@ -62,16 +56,12 @@ If you wanted some default data loaded when the ldap server starts, simply add a
     objectClass: organizationalPerson
     cn: James Jefferies
     sn: Jefferies
-    userPassword: {SHA}ERnP037iRzV+A0oI2ETuol9v0g8=
-    
-
-
+    userPassword: {SHA}ERnP637iUzV+A0oI2ETuol9v0g8=
+``` 
 
 To run unit tests against it, a reference to the server get's injected in to your test class and then you can run some tests against it:
 
-
-    
-    
+``` groovy 
     class LdapTests extends GroovyTestCase {
     
     	def d1LdapServer    
@@ -85,8 +75,6 @@ To run unit tests against it, a reference to the server get's injected in to you
     		assert "James Jefferies" == user.cn.first() // cn is a multi valued string attribute		
     	}
     }
-    
-
-
+```    
 
 If you're doing the full spring security with custom rolled retrieval of Roles and you want to test it, then you need to make sure you've bootstrapped those users too, so that the roles are retrieved as well as the user being authenticated.

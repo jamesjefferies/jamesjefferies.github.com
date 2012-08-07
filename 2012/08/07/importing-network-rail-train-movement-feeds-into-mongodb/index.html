@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Maven reloaded (from devoxx) - James Jefferies and ShedCode Ltd</title>
+  <title>Importing Network Rail Train Movement feeds into MongoDB - James Jefferies and ShedCode Ltd</title>
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other &hellip;">
+  <meta name="description" content="Network Rail datafeeds? Ah yes, please my previous blog post for further info, apologies for the lack of updates on here, I&#8217;ve been away, sent &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jamesjefferies.com/2009/12/06/maven-reloaded-from-devoxx/">
+  <link rel="canonical" href="http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
@@ -80,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">Maven Reloaded (From Devoxx)</h1>
+      <h1 class="entry-title">Importing Network Rail Train Movement Feeds Into MongoDB</h1>
     
     
       <p class="meta">
@@ -96,7 +96,7 @@
   
 
 
-<time datetime="2009-12-06T20:59:03+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+<time datetime="2012-08-07T14:33:00+01:00" pubdate data-updated="true">Aug 7<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -105,45 +105,106 @@
   </header>
 
 
-<div class="entry-content"><p>Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other things. The points below are highlight points from his talk at devoxx.</p>
+<div class="entry-content"><h2>Network Rail datafeeds?</h2>
 
-<p>It was acknowledged that many things were wrong with maven 2.0 and version 3.0 is a chance to put those things right - adding extras like support for m2eclipse and osgi.</p>
+<p>Ah yes, please my previous <a href="http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds/">blog</a> post for further info, apologies for the lack of updates on here, I&#8217;ve been away, sent round the loop line.</p>
 
-<p>Maven has moved from where it originally was set up. The main driver for changes are &#8216;desire lines&#8217; - difference between how things were intended and how people used things. Responding to invitations for improvement. How people check out whole source trees, mis use of the release plugin. Responding to under utilization of what exists.</p>
+<h2>Why MongoDB?</h2>
 
-<p>Maven 3 should be backwards compatible with maven 2, so we should be good to go with maven 3 - performance benefits?</p>
+<p><a href="http://www.mongodb.org/">MongoDB</a> is a scalable, high-performance, open source, NoSQL database. I thought it would make a good fit for the train movement feeds as it&#8217;s storage is oriented towards JSON-style documents. It&#8217;s JSON-style because it actually uses <a href="http://bsonspec.org/">binary-encoded serialisation</a> behind the scenes.</p>
 
-<p>Pluggable modelreader for project builder (which has been refactored). mixins for poms, composition for poms. Keep hold of non-mutated model and track contributions to pom. Might have a &#8216;spring mixin&#8217; or &#8216;tomcat depoy mixin&#8217; or whatever, these can be stored in the reposoitory.</p>
+<p>There is a nice little interactive tutorial on the MongoDB home page to get you in to the swing of things.</p>
 
-<p>More extension points on maven 3, decorate the lifecycle. DSLs can do all this, in groovy, ruby, scala, python.</p>
+<h2>Getting Mongo installed on OS X</h2>
 
-<p>The queryable lifecycle. Can query the execution plan before it happens (which is what M2Eclipse now does). Big performance increase now in eclipse.</p>
+<p>I use <a href="http://mxcl.github.com/homebrew/">Homebrew</a> for installing packaged stuff on to my Mac, if you use it, then you can easily install it with</p>
 
-<p>Incremental build support. in M2 loads of stuff has been delegated to eclipse.</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install mongodb</span></code></pre></td></tr></table></div></figure>
 
-<p>Lifecycle extension points Tycho - maven plugins delegates stuff to OSGI/Eclipse stuff.</p>
 
-<p>Aggregator problems with maven 2, in 3, the post build works properly so report aggregation should work correctly.</p>
+<h2>What do you need for Ruby Mongo Magic?</h2>
 
-<p>Tycho is the complete replacement for PDE headless build, buckminster and everything else that attmeptes to builf OSGI.</p>
+<p>There is a standard Mongo driver available, which you can install using gem</p>
 
-<p>Maven 3 used in hudson, M2Eclipse and netbeans already&#8230;</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install mongo</span></code></pre></td></tr></table></div></figure>
 
-<p>Maven shell looks brilliant, a make-like reactor, the shell caches the poms and all sorts of stuff.</p>
 
-<p>Better error and inntegrity reporting. Lots of problems have a link to a wiki entry in confluence. Catalog to read about it. In the shell or m2eclipse, that data can be pulled in. Don&#8217;t allow builds where versions come from profiles which have to be activated manually.</p>
+<p>but it is also worth installing the C compiled extension to speed up any BSON serialisation</p>
 
-<p>Plugin manager, switched over to OSGI runtime, conceierge, guice and peaberry. Creating isolated classloader and stuff, but decided to switch to OSGI instead. Hudson will be switched across to OSGI as well. Plexus going in maven 3.1, replaced by Guice.</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install bson_ext</span></code></pre></td></tr></table></div></figure>
 
-<p>Plugin extension points, will be in 3.1 - rip off of Eclipse plugin.</p>
 
-<p>Replace HTTP stuff with jetty client. SSL, PGP SUPPORT, multiple threaded downloads and all that.</p>
+<p>More info can be found on the <a href="http://www.mongodb.org/display/DOCS/Ruby+Language+Center">official pages</a></p>
 
-<p>End of january for 3.0 release.</p>
+<h2>Code example?</h2>
 
-<p>Extensible reporting. Logic is now in maven site plugin rather than contined in the core. Static maven sites will probably disappear.</p>
+<p>Here you go, proper version in the <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">github repository</a></p>
 
-<p>Guice and peaberry. Plexus has been going as long as spring, was ahead, but now&#8230;. not kept up. Needed more speed and injection listening - use guice with in effect a wrapper so all the plexus stuff still works as was. Use JSR330 in the future.</p>
+<div><script src='https://gist.github.com/3285558.js?file='></script>
+<noscript><pre><code>require 'rubygems' 
+require 'stomp'
+require 'json'
+require 'mongo'
+
+begin
+  # Credentials set here as environment variables
+  @user = ENV[&quot;DATAFEEDS_USER&quot;]; 
+  @password = ENV[&quot;DATAFEEDS_PASSWORD&quot;]
+  @host = &quot;datafeeds.networkrail.co.uk&quot;
+  @port = 61618
+
+  # Example destination add yours here
+  @destination = &quot;/topic/TRAIN_MVT_ALL_TOC&quot;
+
+  puts &quot;Connecting to datafeeds as #{@user} using stomp protocol stomp://#{@host}:#{@port}\n&quot; 
+  @connection = Stomp::Connection.open @user, @password, @host, @port, true 
+  @connection.subscribe @destination 
+
+  while true
+    @msg = @connection.receive
+
+    # Use JSON library to parse the messge body
+    message_body = JSON.parse(@msg.body)
+
+    db = Mongo::Connection.new.db(&quot;rail&quot;)
+    coll = db.collection(&quot;td&quot;)
+
+    message_body.each do |td| 
+
+      # Sanity check debug, output each td message as nice looking JSON 
+      # puts JSON.pretty_generate(td)   
+      
+      # insert into collection
+      id = coll.insert(td)
+
+    end
+  end 
+
+  @connection.disconnect
+rescue 
+end</code></pre></noscript></div>
+
+
+<h2>Examples of querying Mongo</h2>
+
+<p>There are lots of good examples and resources for using Mongo, but just a couple of examples related to the schema I&#8217;ve used in the example. You can fire up the interactive Mongo console and try the following (once you have some data!)</p>
+
+<p>To retrieve all Departure events</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>db.td.find({ "body.event_type" : "DEPARTURE" })</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To retrieve 10 (using limit) Train Movement (type 3) messages</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>db.td.find({ "header.msg_type" : "0003" }).limit(10)</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 
@@ -166,12 +227,12 @@
   
 
 
-<time datetime="2009-12-06T20:59:03+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+<time datetime="2012-08-07T14:33:00+01:00" pubdate data-updated="true">Aug 7<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='//categories/techie/'>Techie</a>, <a class='category' href='//categories/java/'>java</a>
+    <a class='category' href='//categories/mongodb/'>MongoDB</a>, <a class='category' href='//categories/railways/'>Railways</a>, <a class='category' href='//categories/ruby/'>Ruby</a>, <a class='category' href='//categories/techie/'>Techie</a>
   
 </span>
 
@@ -180,7 +241,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2009/12/06/maven-reloaded-from-devoxx/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2009/12/06/maven-reloaded-from-devoxx/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/" >Tweet</a>
   
   
   
@@ -189,10 +250,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2009/12/06/mounting-readynas-duo-drives-in-ubuntu/" title="Previous Post: Mounting ReadyNAS Duo drives from Ubuntu">&laquo; Mounting ReadyNAS Duo drives from Ubuntu</a>
+        <a class="basic-alignment left" href="/2012/08/01/moving-from-wordpress-to-octopress/" title="Previous Post: Moving from WordPress to Octopress">&laquo; Moving from WordPress to Octopress</a>
       
-      
-        <a class="basic-alignment right" href="/2009/12/06/ivar-jacobsen-at-devoxx/" title="Next Post: Ivar Jacobson at Devoxx">Ivar Jacobson at Devoxx &raquo;</a>
       
     </p>
   </footer>
@@ -304,8 +363,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jamesjefferies.com/2009/12/06/maven-reloaded-from-devoxx/';
-        var disqus_url = 'http://jamesjefferies.com/2009/12/06/maven-reloaded-from-devoxx/';
+        var disqus_identifier = 'http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/';
+        var disqus_url = 'http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/';
         var disqus_script = 'embed.js';
       
     (function () {

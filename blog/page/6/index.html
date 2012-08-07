@@ -9,8 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230; 1
-javap - &hellip;">
+  <meta name="description" content="With maven, running web apps with embedded tomcat &amp; jetty is brill&#8230; as long as you have a straightforward configuration, not requiring lots &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +77,48 @@ javap - &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/29/embedded-tomcat-and-jetty/">Embedded Tomcat and Jetty</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-29T18:04:15+01:00" pubdate data-updated="true">Jun 29<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>With maven, running web apps with embedded tomcat &amp; jetty is brill&#8230; as long as you have a straightforward configuration, not requiring lots of extra dependencies. The maven jetty plugin is super configurable though and can be tweaked as required.</p>
+
+<p>To get the jetty plugin working though, you need to add the following to your settings.xml</p>
+
+<p>org.mortbay.jetty</p>
+
+<p>Once you&#8217;ve done that, it should pick up fine with mvn jetty:run for jetty or mvn tomcat:run for tomcat</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -641,89 +682,6 @@ private Date startDate;</code></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/07/uml-diagrams-in-javadocs/">UML Diagrams in Javadocs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-07T12:48:37+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ok, so after all that excitement about javadocs, now we can really push the boat out by getting a maven plugin to also auto create UML diagrams. &#8220;Diagrams&#8221; I hear you ask, yes diagrams. Useful for people like me who like pictures.</p>
-
-<p>So, this requires two steps. The first is to install graphviz which the plug in uses to create the pictures. A simple process on a linux box with apt-get.</p>
-
-<p>The second is adding the following configuration to the pom&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="o">&lt;</span><span class="n">plugin</span><span class="o">&gt;</span>
-</span><span class='line'>        <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">maven</span><span class="o">-</span><span class="n">javadoc</span><span class="o">-</span><span class="n">plugin</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
-</span><span class='line'>        <span class="o">&lt;</span><span class="n">configuration</span><span class="o">&gt;</span>
-</span><span class='line'>          <span class="o">&lt;</span><span class="n">source</span><span class="o">&gt;</span><span class="mf">1.6</span><span class="o">&lt;/</span><span class="n">source</span><span class="o">&gt;</span>
-</span><span class='line'>          <span class="o">&lt;</span><span class="n">aggregate</span><span class="o">&gt;</span><span class="kc">true</span><span class="o">&lt;/</span><span class="n">aggregate</span><span class="o">&gt;</span>
-</span><span class='line'>          <span class="o">&lt;</span><span class="n">doclet</span><span class="o">&gt;</span><span class="n">gr</span><span class="o">.</span><span class="na">spinellis</span><span class="o">.</span><span class="na">umlgraph</span><span class="o">.</span><span class="na">doclet</span><span class="o">.</span><span class="na">UmlGraphDoc</span><span class="o">&lt;/</span><span class="n">doclet</span><span class="o">&gt;</span>
-</span><span class='line'>          <span class="o">&lt;</span><span class="n">docletArtifact</span><span class="o">&gt;</span>
-</span><span class='line'>            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">gr</span><span class="o">.</span><span class="na">spinellis</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-</span><span class='line'>            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">UmlGraph</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
-</span><span class='line'>            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mf">4.6</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-</span><span class='line'>          <span class="o">&lt;/</span><span class="n">docletArtifact</span><span class="o">&gt;</span>
-</span><span class='line'>          <span class="o">&lt;</span><span class="n">additionalparam</span><span class="o">&gt;</span>
-</span><span class='line'>            <span class="o">-</span><span class="n">inferrel</span> <span class="o">-</span><span class="n">inferdep</span> <span class="o">-</span><span class="n">quiet</span> <span class="o">-</span><span class="n">hide</span> <span class="n">java</span><span class="o">.*</span>
-</span><span class='line'>            <span class="o">-</span><span class="n">collpackages</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.*</span> <span class="o">-</span><span class="n">qualify</span>
-</span><span class='line'>            <span class="o">-</span><span class="n">postfixpackage</span> <span class="o">-</span><span class="n">nodefontsize</span> <span class="mi">9</span>
-</span><span class='line'>            <span class="o">-</span><span class="n">nodefontpackagesize</span> <span class="mi">7</span>
-</span><span class='line'>          <span class="o">&lt;/</span><span class="n">additionalparam</span><span class="o">&gt;</span>
-</span><span class='line'>        <span class="o">&lt;/</span><span class="n">configuration</span><span class="o">&gt;</span>
-</span><span class='line'>      <span class="o">&lt;/</span><span class="n">plugin</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>now, when you build the maven site you get nice UML diagrams in your javadocs</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -741,6 +699,10 @@ private Date startDate;</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
       </li>
     
@@ -754,10 +716,6 @@ private Date startDate;</code></p>
     
       <li class="post">
         <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
       </li>
     
   </ul>

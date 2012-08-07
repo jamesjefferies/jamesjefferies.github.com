@@ -483,11 +483,17 @@
         <lastmod>2012-08-01T12:46:57+01:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/
+        </loc>
+        <lastmod>2012-08-07T15:22:55+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://jamesjefferies.com/blog/archives/</loc>
-        <lastmod>2012-08-01T12:46:57+01:00</lastmod>
+        <lastmod>2012-08-07T15:22:55+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/</loc>
-        <lastmod>2012-08-01T12:46:57+01:00</lastmod>
+        <lastmod>2012-08-07T15:22:55+01:00</lastmod>
     </url>
 </urlset>

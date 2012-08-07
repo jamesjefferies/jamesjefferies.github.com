@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-01T12:54:11+01:00</updated>
+  <updated>2012-08-07T15:24:42+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Importing Network Rail Train Movement feeds into MongoDB]]></title>
+    <link href="http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/"/>
+    <updated>2012-08-07T14:33:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb</id>
+    <content type="html"><![CDATA[<h2>Network Rail datafeeds?</h2>
+
+<p>Ah yes, please my previous <a href="http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds/">blog</a> post for further info, apologies for the lack of updates on here, I&#8217;ve been away, sent round the loop line.</p>
+
+<h2>Why MongoDB?</h2>
+
+<p><a href="http://www.mongodb.org/">MongoDB</a> is a scalable, high-performance, open source, NoSQL database. I thought it would make a good fit for the train movement feeds as it&#8217;s storage is oriented towards JSON-style documents. It&#8217;s JSON-style because it actually uses <a href="http://bsonspec.org/">binary-encoded serialisation</a> behind the scenes.</p>
+
+<p>There is a nice little interactive tutorial on the MongoDB home page to get you in to the swing of things.</p>
+
+<h2>Getting Mongo installed on OS X</h2>
+
+<p>I use <a href="http://mxcl.github.com/homebrew/">Homebrew</a> for installing packaged stuff on to my Mac, if you use it, then you can easily install it with</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install mongodb</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>What do you need for Ruby Mongo Magic?</h2>
+
+<p>There is a standard Mongo driver available, which you can install using gem</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install mongo</span></code></pre></td></tr></table></div></figure>
+
+
+<p>but it is also worth installing the C compiled extension to speed up any BSON serialisation</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install bson_ext</span></code></pre></td></tr></table></div></figure>
+
+
+<p>More info can be found on the <a href="http://www.mongodb.org/display/DOCS/Ruby+Language+Center">official pages</a></p>
+
+<h2>Code example?</h2>
+
+<p>Here you go, proper version in the <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">github repository</a></p>
+
+<div><script src='https://gist.github.com/3285558.js?file='></script>
+<noscript><pre><code>require 'rubygems' 
+require 'stomp'
+require 'json'
+require 'mongo'
+
+begin
+  # Credentials set here as environment variables
+  @user = ENV[&quot;DATAFEEDS_USER&quot;]; 
+  @password = ENV[&quot;DATAFEEDS_PASSWORD&quot;]
+  @host = &quot;datafeeds.networkrail.co.uk&quot;
+  @port = 61618
+
+  # Example destination add yours here
+  @destination = &quot;/topic/TRAIN_MVT_ALL_TOC&quot;
+
+  puts &quot;Connecting to datafeeds as #{@user} using stomp protocol stomp://#{@host}:#{@port}\n&quot; 
+  @connection = Stomp::Connection.open @user, @password, @host, @port, true 
+  @connection.subscribe @destination 
+
+  while true
+    @msg = @connection.receive
+
+    # Use JSON library to parse the messge body
+    message_body = JSON.parse(@msg.body)
+
+    db = Mongo::Connection.new.db(&quot;rail&quot;)
+    coll = db.collection(&quot;td&quot;)
+
+    message_body.each do |td| 
+
+      # Sanity check debug, output each td message as nice looking JSON 
+      # puts JSON.pretty_generate(td)   
+      
+      # insert into collection
+      id = coll.insert(td)
+
+    end
+  end 
+
+  @connection.disconnect
+rescue 
+end</code></pre></noscript></div>
+
+
+<h2>Examples of querying Mongo</h2>
+
+<p>There are lots of good examples and resources for using Mongo, but just a couple of examples related to the schema I&#8217;ve used in the example. You can fire up the interactive Mongo console and try the following (once you have some data!)</p>
+
+<p>To retrieve all Departure events</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>db.td.find({ "body.event_type" : "DEPARTURE" })</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To retrieve 10 (using limit) Train Movement (type 3) messages</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>db.td.find({ "header.msg_type" : "0003" }).limit(10)</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Moving from WordPress to Octopress]]></title>
@@ -646,43 +754,6 @@ path/to/eclipse/here
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Flickr and the missing images]]></title>
-    <link href="http://jamesjefferies.com/2011/08/18/flickr-and-the-missing-images/"/>
-    <updated>2011-08-18T17:10:08+01:00</updated>
-    <id>http://jamesjefferies.com/2011/08/18/flickr-and-the-missing-images</id>
-    <content type="html"><![CDATA[<p>A client got in touch with a weird problem, when logging in to flickr, some images wouldn&#8217;t download, the placeholders would be there with the classic little red cross indicating a problem.</p>
-
-<h3>Idea 1 - funny URLs</h3>
-
-<p>Thinking that something must be going wrong with the content delivery for those pictures, the farm was down or whatever, I asked him to send through the direct URL, plus to try accessing it himself. Well, usually it didn&#8217;t work, but sometimes, if he right clicked and asked the browser to download the image it did. Curious.</p>
-
-<h3>Idea 2 - browsers</h3>
-
-<p>Ok, well, maybe it&#8217;s just the browser messing up with its security levels. Nope, still the same on Safari, Chrome &amp; Firefox.</p>
-
-<h3>Idea 3 - DNS</h3>
-
-<p>Maybe the DNS is being bodged up for those server farms. Try google DNS - no joy. Try flushing Windows DNS cache - no joy.</p>
-
-<h3>Idea 4 - Firefox&#8217;s exception list</h3>
-
-<p>This is where I found out about <a href="http://www.flickr.com/help/test">Flickr&#8217;s test page </a> which is useful for trouble shooting this stuff. Apparently all the global column didn&#8217;t load on a clean firefox install. So we added farm1 to firefox&#8217;s image exception list. Boom, they all came back.. bizarre.</p>
-
-<h3>Idea 5 - Conflict with security software</h3>
-
-<p>The machine was XP SP 3 with AVG internet security installed. After a further prod around, Ad-aware was on there, as was McAfee. So, here&#8217;s an idea, boot in to safe mode with networking and see if that works&#8230; Hmm, nope.</p>
-
-<h3>Idea 6 - Must be unrelated to the computer, belkin router anyone?</h3>
-
-<p>Surely the ISP wouldn&#8217;t be messing about here&#8230; but what about the router. A belkin apparently, which is when I found a <a href="http://www.flickr.com/help/forum/72157627085259789/">flickr forum thread</a> of people with the same problem. Ah, belkin routers - this is starting to make sense. Believe it or not, switching off the router firewall (whilst maintaining a software firewall on the PC) meant that the images downloaded without a problem. Argh! It was the router all along. It seemed so obscure.</p>
-
-<h3>In a nutshell</h3>
-
-<p>If you are having problems with flickr (or other image intensive sites) and you have a belkin router with the firewall switched on. SWITCH it off and see if it fixes it. If it does - bingo!</p>
 ]]></content>
   </entry>
   

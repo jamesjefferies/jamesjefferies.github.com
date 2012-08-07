@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="This is to remind me next time that MySQL isn’t as clever as you think it might be. If you have Table A, with column 1, 2, 3 and Table B with columns &hellip;">
+  <meta name="description" content="A client got in touch with a weird problem, when logging in to flickr, some images wouldn&#8217;t download, the placeholders would be there with the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,72 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/08/18/flickr-and-the-missing-images/">Flickr and the Missing Images</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-18T17:10:08+01:00" pubdate data-updated="true">Aug 18<span>th</span>, 2011</time>
+        
+         | <a href="/2011/08/18/flickr-and-the-missing-images/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A client got in touch with a weird problem, when logging in to flickr, some images wouldn&#8217;t download, the placeholders would be there with the classic little red cross indicating a problem.</p>
+
+<h3>Idea 1 - funny URLs</h3>
+
+<p>Thinking that something must be going wrong with the content delivery for those pictures, the farm was down or whatever, I asked him to send through the direct URL, plus to try accessing it himself. Well, usually it didn&#8217;t work, but sometimes, if he right clicked and asked the browser to download the image it did. Curious.</p>
+
+<h3>Idea 2 - browsers</h3>
+
+<p>Ok, well, maybe it&#8217;s just the browser messing up with its security levels. Nope, still the same on Safari, Chrome &amp; Firefox.</p>
+
+<h3>Idea 3 - DNS</h3>
+
+<p>Maybe the DNS is being bodged up for those server farms. Try google DNS - no joy. Try flushing Windows DNS cache - no joy.</p>
+
+<h3>Idea 4 - Firefox&#8217;s exception list</h3>
+
+<p>This is where I found out about <a href="http://www.flickr.com/help/test">Flickr&#8217;s test page </a> which is useful for trouble shooting this stuff. Apparently all the global column didn&#8217;t load on a clean firefox install. So we added farm1 to firefox&#8217;s image exception list. Boom, they all came back.. bizarre.</p>
+
+<h3>Idea 5 - Conflict with security software</h3>
+
+<p>The machine was XP SP 3 with AVG internet security installed. After a further prod around, Ad-aware was on there, as was McAfee. So, here&#8217;s an idea, boot in to safe mode with networking and see if that works&#8230; Hmm, nope.</p>
+
+<h3>Idea 6 - Must be unrelated to the computer, belkin router anyone?</h3>
+
+<p>Surely the ISP wouldn&#8217;t be messing about here&#8230; but what about the router. A belkin apparently, which is when I found a <a href="http://www.flickr.com/help/forum/72157627085259789/">flickr forum thread</a> of people with the same problem. Ah, belkin routers - this is starting to make sense. Believe it or not, switching off the router firewall (whilst maintaining a software firewall on the PC) meant that the images downloaded without a problem. Argh! It was the router all along. It seemed so obscure.</p>
+
+<h3>In a nutshell</h3>
+
+<p>If you are having problems with flickr (or other image intensive sites) and you have a belkin router with the firewall switched on. SWITCH it off and see if it fixes it. If it does - bingo!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -844,76 +910,6 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/11/01/set-list-for-british-sea-power-at-fibbers-october-4th-2010/">Set List for British Sea Power at Fibbers - October 4th 2010</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-11-01T22:06:24+00:00" pubdate data-updated="true">Nov 1<span>st</span>, 2010</time>
-        
-         | <a href="/2010/11/01/set-list-for-british-sea-power-at-fibbers-october-4th-2010/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Lights Out For Darker Skies</p>
-
-<p>Remember me</p>
-
-<p>Canvey Island</p>
-
-<p>Pyrex</p>
-
-<p>Atom</p>
-
-<p>Zeus</p>
-
-<p>Bear</p>
-
-<p>Blackout</p>
-
-<p>Down On the Ground</p>
-
-<p>Can we do it</p>
-
-<p>Waving Flags</p>
-
-<p>Skua</p>
-
-<p>St Louis</p>
-
-<p>Lucifer</p>
-
-<p>Glitter</p>
-
-<p>Carrion</p>
-
-<p>Rock in A</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -931,6 +927,10 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
       </li>
     
@@ -944,10 +944,6 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
     
       <li class="post">
         <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
       </li>
     
   </ul>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Maps | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.com//categories/maps/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2012-08-01T12:54:11+01:00</updated>
+  <id>http://jamesjefferies.com/</id>
+  <author>
+    <name><![CDATA[James Jefferies]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Maps]]></title>
+    <link href="http://jamesjefferies.com/2007/04/26/maps/"/>
+    <updated>2007-04-26T10:37:32+01:00</updated>
+    <id>http://jamesjefferies.com/2007/04/26/maps</id>
+    <content type="html"><![CDATA[<p>I found this via <a href="http://jamesandclare.net/life/basement.org">basement.org</a> and as I like underground maps and things like that, especially the London Underground, this made fascinating viewing.</p>
+
+<p>The website has a proposed <a href="http://jamesandclare.net/life/www.kickmap.com">new design</a> of the New York Subway map and is well worth a look...</p>
+]]></content>
+  </entry>
+  
+</feed>

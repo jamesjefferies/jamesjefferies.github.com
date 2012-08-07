@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Migrating from HSQLDB to MySQL - part 1 - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+  <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
+  
+  <meta name="description" content="For this development project, we&#8217;ve been developing locally using in memory HSQLDB. The advantages of this are, easy set up out of the box (no &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.com/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3110855-6']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Migrating From HSQLDB to MySQL - Part 1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-11T11:49:03+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>For this development project, we&#8217;ve been developing locally using in memory HSQLDB. The advantages of this are, easy set up out of the box (no database set up required), auto generation of schema from domain objects (thank you hibernate, using hbm2dll) and speed. A lightweight in memory db is good for us at this stage of the game.</p>
+
+<p>Unfortunately though we need a proper database for when we go out in to the big world and as we can&#8217;t use Oracle, we&#8217;re going to make do with MySQL (just kidding here folks ;) )..</p>
+
+<p>no, we really are using MySQL (see what I did there, I&#8217;m hilarious).</p>
+
+<p>Of course, hibernate provides transparent mapping to which ever databases it supports out of the box.. nothing can, nor will it go wrong..</p>
+
+<p>Hmm, see what I did their for comic effect? I can&#8217;t help myself.</p>
+
+<p>Fortunately, we&#8217;re approaching 300 unit tests now, so switching to a real database should be a few configuration tweaks, prove the tests still run and off you go.</p>
+
+<p>So, what issues did we hit:</p>
+
+<h4>MySQL doesn&#8217;t &#8216;support&#8217; sequences</h4>
+
+<p>You get used to sequences when developing with Oracle, hibernate lets you set a primary key as a sequence quite easily</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Id</span>
+</span><span class='line'><span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="o">.</span><span class="na">SEQUENCE</span><span class="o">)</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>of course, everything works nicely with HSQLDB, however switch to MySQL and it doesn&#8217;t work. Fortunately from Hibernate 3.2.3 onwards, you can set up your own custom generator which will create a sequence table and use that instead, to emulate the behaviour of a sequence. A few magic annotations and off we go. What we do here is fire up the funky SequenceStyleGenerator (that&#8217;s the new bit) telling it to use a table, which we can name if we want, plus I&#8217;ve named the columns and given the sequence a noddy name.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Id</span>
+</span><span class='line'><span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">generator</span><span class="o">=</span><span class="s">&quot;SuperDuperSequenceGenerator&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="nd">@GenericGenerator</span>
+</span><span class='line'>    <span class="n">name</span><span class="o">=</span><span class="s">&quot;SuperDuperSequenceGenerator&quot;</span><span class="o">,</span>
+</span><span class='line'>    <span class="n">strategy</span><span class="o">=</span><span class="s">&quot;org.hibernate.id.enhanced.SequenceStyleGenerator&quot;</span><span class="o">,</span>
+</span><span class='line'>    <span class="n">parameters</span><span class="o">={</span>
+</span><span class='line'><span class="nd">@Parameter</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;force_table_use&quot;</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="o">),</span>
+</span><span class='line'><span class="nd">@Parameter</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;value_column&quot;</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;value_column&quot;</span><span class="o">),</span>
+</span><span class='line'><span class="nd">@Parameter</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;sequence_name&quot;</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;sequence_name&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="o">})</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Don&#8217;t make assumptions about column lengths</h4>
+
+<p>Set up a String property and HSQLDB will happily do that for you, doesn&#8217;t care about length just works. I&#8217;m not advocating this is a good thing, but it is what it does. When you switch to using MySQL, this will default to a column with 255 characters. No problem with that default, but when you&#8217;ve happily chucked more than 255 characters in there, then MySQL will complain.</p>
+
+<p>Simple solution, set the column size</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Column</span><span class="o">(</span><span class="n">length</span><span class="o">=</span><span class="mi">1000</span><span class="o">)</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">String</span> <span class="n">aThousandCharacterString</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Don&#8217;t be a complete monkey spanner and use reserved words for domain objects or properties..</h4>
+
+<p>Of course, being experienced developers, we wouldn&#8217;t get caught out with any of those puppies would we?</p>
+
+<p>If we had, we&#8217;d recommend that people watch out for the following if nothing else.</p>
+
+<ul>
+<li>Calling a domain object Trigger</li>
+<li>Calling a domain object RoyRodgers</li>
+<li>Calling a property lines</li>
+</ul>
+
+
+<p>(by the way, one of those is just a joke)</p>
+
+<p>If you <em>have</em> done the naughty, then all is not lost. You could refactor everything, or simply specificy an explicit table or column name.. i.e.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;LinesToRender&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">lines</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Entity</span>
+</span><span class='line'><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;DiversityTrigger&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Trigger</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Set the correct dialogue property in the hibernate properties</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>hibernate.dialect<span class="o">=</span>org.hibernate.dialect.MySQLInnoDBDialect
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-11T11:49:03+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/03/04/concurrent-http-session-management-with-spring-security/" title="Previous Post: Concurrent HTTP session management with Spring Security">&laquo; Concurrent HTTP session management with Spring Security</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/03/12/installing-maven-on-an-etch-box/" title="Next Post: Installing maven on an etch box">Installing maven on an etch box &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

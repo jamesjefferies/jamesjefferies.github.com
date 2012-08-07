@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Moving from WordPress to Octopress - James Jefferies and ShedCode Ltd</title>
+  <meta name="author" content="James Jefferies">
+  <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
+  
+  <meta name="description" content="What is Octopress? Octopress is a blogging engine designed to be run from the command line, it uses Markdown for formatting content and doesn&#8217;t &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="James Jefferies and ShedCode Ltd" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3110855-6']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">James Jefferies and ShedCode Ltd</a></h1>
+  
+    <h2>The world of James and ShedCode</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jamesjefferies.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Moving From WordPress to Octopress</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-01T12:43:00+01:00" pubdate data-updated="true">Aug 1<span>st</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>What is Octopress?</h2>
+
+<p><a href="http://octopress.org">Octopress</a> is a blogging engine designed to be run from the command line, it uses Markdown for formatting content and doesn&#8217;t have any built in GUI editing facilities.</p>
+
+<p>It is worth looking at though because it generates static HTML files, so you don&#8217;t need a database, you don&#8217;t need PHP you just need to serve straight forward files.</p>
+
+<p>The integration with github pages is very nice, so you can actually use github to host your blog or website leaving them to worry about server admin etc!</p>
+
+<h2>Why did I switch?</h2>
+
+<p>At the moment, my virtual server was only hosting my blog and nothing else. At the moment, I don&#8217;t need it for anything else, so being able to move to github pages for free was one draw, saving me £X a month. When I need a server again, I&#8217;ll set one up.</p>
+
+<p>I having nothing against WordPress per se, but it wasn&#8217;t very hackable by me, a non-PHP developer. Now with Octopress, it seems a lot more straight forward. Plus I no longer have a MySQL or PHP install to maintain.</p>
+
+<p>It <em>feels</em> like the Octopress templates are more designer friendly. I&#8217;ll let you know if that is the case!</p>
+
+<p>My site now has very straightforward version control, powered by git.</p>
+
+<h2>How does it work?</h2>
+
+<p>You check out the <a href="https://github.com/imathis/octopress">source</a> (from github of course). The html generating engine is written in ruby, so you need to have that installed. Once set up and configured, you can push your content using git to wherever you want to deploy it.</p>
+
+<p>When you deploy, octopress turns your markdown and HTML templates in to straight forward HTML pages ready to be served.</p>
+
+<p>It uses Disqus by default for comments, but if you have a WordPress account, you can set that up with Disqus before migration. Works a treat.</p>
+
+<h2>Exiting WordPress</h2>
+
+<p>At first I tried the ruby WordPress migrating script. Basically it was not very good and I think I wasted a fair bit of time on it. Better is the Python <a href="https://github.com/thomasf/exitwp">exitwp.py</a> script which is.. brilliant!</p>
+
+<h2>Downsides</h2>
+
+<ul>
+<li>There is a much smaller plugin selection available</li>
+<li>You generally re-generate the whole site when you want to publish something new (there are ways around that though, to selectively generate new content).</li>
+<li>If you had a blog with a lot of posts, then it might take some time to generate.</li>
+<li>Small amount of off-the-shelf themes</li>
+</ul>
+
+
+<h2>Upsides</h2>
+
+<ul>
+<li>The standard plugins you might want are available, twitter, github, google analytics.</li>
+<li>Github pages integration is very straightforward</li>
+<li>Simple caching can be set up if required, but no more W3 Total Cache Super Plugin things</li>
+<li>No WordPress security loopholes and patches</li>
+<li>No PHP or MySQL loopholes or patches</li>
+<li>Fast</li>
+<li>Relatively lightweight page sizes</li>
+<li>Nice default, responsive design</li>
+</ul>
+
+
+<h2>Theme</h2>
+
+<p>I&#8217;m using a slightly customised default theme at the moment, but hopefully will have a bespoke one up and running soon.</p>
+
+<h2>Summary</h2>
+
+<p>Now I&#8217;m migrated, I&#8217;m liking it so far, let me know what you think..</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Jefferies</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-01T12:43:00+01:00" pubdate data-updated="true">Aug 1<span>st</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='//categories/techie/'>Techie</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/07/18/downloading-the-network-rail-schedules/" title="Previous Post: Downloading the Network Rail Schedules">&laquo; Downloading the Network Rail Schedules</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail's datafeeds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jamesjefferies">@jamesjefferies</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jamesjefferies',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("shedcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/shedcode" class="twitter-follow-button" data-show-count="false">Follow @shedcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Jefferies -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jamesjefferiesblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/';
+        var disqus_url = 'http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

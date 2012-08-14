@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="A client got in touch with a weird problem, when logging in to flickr, some images wouldn&#8217;t download, the placeholders would be there with the &hellip;">
+  <meta name="description" content="If you&#8217;re running Liquibase, configured by Spring (or whatever) and you don&#8217;t want it to run it&#8217;s checks when running unit tests, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/08/25/disabling-liquibase-when-running-unit-tests/">Disabling Liquibase When Running Unit Tests</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-25T10:33:44+01:00" pubdate data-updated="true">Aug 25<span>th</span>, 2011</time>
+        
+         | <a href="/2011/08/25/disabling-liquibase-when-running-unit-tests/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you&#8217;re running Liquibase, configured by Spring (or whatever) and you don&#8217;t want it to run it&#8217;s checks when running unit tests, you can disable it from running by setting a system property.</p>
+
+<p>Whilst running a single unit test class many times, you might want to add a system set property call before any of the tests are run. Hence:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@BeforeClass</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">switchOffLiquibase</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="n">Liquibase</span><span class="o">.</span><span class="na">SHOULD_RUN_SYSTEM_PROPERTY</span><span class="o">,</span> <span class="s">&quot;false&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -771,145 +822,6 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/12/14/liquibase-and-the-maven-plugin/">Liquibase and the Maven Plugin</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-14T16:40:04+00:00" pubdate data-updated="true">Dec 14<span>th</span>, 2010</time>
-        
-         | <a href="/2010/12/14/liquibase-and-the-maven-plugin/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m having a look at the <a href="http://liquibase.org/home">Liquibase</a> product at the mo, mainly to help automate the database migrations for one of our clients. Currently the process is a bit hairy and manual. It&#8217;s easy to make mistakes and you have to be on the ball, plus rollbacks are awkard and generally it&#8217;s a mess.</p>
-
-<p>Liquibase is a Database Change Management system - as they say &#8220;You never develop code without version control, why do you develop your database without it?&#8221; - and I agree.</p>
-
-<p>However, in classic Open Source fashion, the documentation leaves something to be desired. So when I found myself trusting the documentation and getting the error:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>The driver has not been specified either as a parameter or in a properties file
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>when it was specified in both properties and as a parameter I should have realised that it was the documentation which was wrong, not me. I&#8217;m far too trusting&#8230;.</p>
-
-<p>So, when you set up the maven plugin in and they recommend doing this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;groupid&gt;</span>org.liquibase<span class="nt">&lt;/groupid&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;artifactid&gt;</span>liquibase-plugin<span class="nt">&lt;/artifactid&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;version&gt;</span>1.6.1.0<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>                      <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>                          <span class="nt">&lt;propertyfile&gt;</span>src/main/resources/liquibase.properties<span class="nt">&lt;/propertyfile&gt;</span>
-</span><span class='line'>                      <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>                      <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                          <span class="nt">&lt;goal&gt;</span>update<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>                      <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>you just ignore them as the configuration is only set for that particular phase - whereas you want the configuration for all phases.. so you should set it up like this instead, makes a lot of sense really.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>        <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;groupid&gt;</span>org.liquibase<span class="nt">&lt;/groupid&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;artifactid&gt;</span>liquibase-plugin<span class="nt">&lt;/artifactid&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;version&gt;</span>1.9.3.0<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;propertyfile&gt;</span>src/main/resources/liquibase.properties<span class="nt">&lt;/propertyfile&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;changelogfile&gt;</span>src/main/resources/db/changelog-master.xml<span class="nt">&lt;/changelogfile&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;driver&gt;</span>com.mysql.jdbc.Driver<span class="nt">&lt;/driver&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;url&gt;</span>${db-connection-url}<span class="nt">&lt;/url&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;username&gt;</span>${db-connection-username}<span class="nt">&lt;/username&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;password&gt;</span>${db-connection-password}<span class="nt">&lt;/password&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;goal&gt;</span>update<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>hurrah.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -927,6 +839,10 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
       </li>
     
@@ -940,10 +856,6 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
     
       <li class="post">
         <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
       </li>
     
   </ul>

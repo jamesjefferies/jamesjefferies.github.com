@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-10T14:04:32+01:00</updated>
+  <updated>2012-08-14T20:50:23+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Before you buy a Berg Little Printer...]]></title>
+    <link href="http://jamesjefferies.com/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/"/>
+    <updated>2012-08-14T19:56:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>You may have heard today that <a href="http://bergcloud.com/littleprinter/">BERG&#8217;s Little Printer</a> is now available for pre-order. It does look like a great bit of kit &amp; the ability to produce your own content should produce some interesting rolls of paper!</p>
+
+<p>Anyways, before you splash out with your hard earned £199 + P&amp;P you should, you <em>really</em> should have a look at <a href="http://gofreerange.com/printer">Go free range&#8217;s Open Source printer</a>.</p>
+
+<p>Not only are they cheaper than the Little Printer, but being Open Source &amp; built using Rails &amp; Arduino, you can get stuck in to the source code, make changes yourself and create some interesting content.</p>
+
+<p>As part of the <a href="http://happenstanceproject.com">Happenstance Project</a> we were fortunate to borrow a couple of Go free range&#8217;s printers and start experimenting. We hooked them up with <a href="http://twillio.com">Twillio</a> and a bit of ruby magic to get them recieving SMS messages. Each printer (Cathy &amp; Heathcliff) had their own phone numbers, when they recieved the message, they printed it out &amp; sent the contents to their twitter feeds.</p>
+
+<p>You can read more on this blog <a href="http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/">elsewhere</a> or you can watch our <a href="http://tedxtalks.ted.com/video/TEDxSheffield-2012-Leila-Johnst">TEDx</a> talk on the project as a whole.</p>
+
+<p>So, buy all means pre-order a Little Printer, but have a think about getting the super duper Go Free Ranger printer first!</p>
+
+<p><img src="http://25.media.tumblr.com/tumblr_m4uf1acC5R1rvn0edo1_500.jpg" title="Cathy Long Cat" alt="Cathy long cat" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Importing Network Rail Train Movement feeds into MongoDB]]></title>
@@ -732,28 +753,6 @@ end</code></pre></noscript></div>
 unset UBUNTU_MENUPROXY
 path/to/eclipse/here
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Disabling liquibase when running unit tests]]></title>
-    <link href="http://jamesjefferies.com/2011/08/25/disabling-liquibase-when-running-unit-tests/"/>
-    <updated>2011-08-25T10:33:44+01:00</updated>
-    <id>http://jamesjefferies.com/2011/08/25/disabling-liquibase-when-running-unit-tests</id>
-    <content type="html"><![CDATA[<p>If you&#8217;re running Liquibase, configured by Spring (or whatever) and you don&#8217;t want it to run it&#8217;s checks when running unit tests, you can disable it from running by setting a system property.</p>
-
-<p>Whilst running a single unit test class many times, you might want to add a system set property call before any of the tests are run. Hence:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@BeforeClass</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">switchOffLiquibase</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="n">Liquibase</span><span class="o">.</span><span class="na">SHOULD_RUN_SYSTEM_PROPERTY</span><span class="o">,</span> <span class="s">&quot;false&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

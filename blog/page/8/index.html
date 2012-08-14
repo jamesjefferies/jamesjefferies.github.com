@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Just about every day I find something else useful out about Maven. Today&#8217;s little nugget of joy is asking it to download the javadocs (i.e. &hellip;">
+  <meta name="description" content="Should be easy this, but I made an assumption (probably on a Friday afternoon) and it&#8217;s just returned to bite my petite derriere&#8230; 1
+javax &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/24/java-persistence-temporal-types-spooky/">Java Persistence - Temporal Types - Spooky</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-24T10:55:26+00:00" pubdate data-updated="true">Feb 24<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Should be easy this, but I made an assumption (probably on a Friday afternoon) and it&#8217;s just returned to bite my petite derriere&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">javax</span><span class="o">.</span><span class="na">persistence</span><span class="o">.</span><span class="na">TemporalType</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>is an enum which can have three values</p>
+
+<pre><code>DATE
+TIME
+TIMESTAMP
+</code></pre>
+
+<p>the differences being that with Date, you just get the date, no time factor at all.</p>
+
+<p>Time, you just get the time, no date factor at all.</p>
+
+<p>Timestamp, you get date and time, which is probably what you want when you want a timestamp (durr). Don&#8217;t be misled in to thinking that a TemporalType.Date will include the time, because it won&#8217;t!</p>
+
+<p>I don&#8217;t know why, but TemporalTypes make me think of Rentaghost&#8230; odd</p>
+
+<p><a href="http://www.hibernate.org/hib_docs/ejb3-api/javax/persistence/TemporalType.html">Temporal Type</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -574,42 +633,6 @@ var_dump($_SERVER);</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/08/24/finding-running-threads-on-a-jvm/">Finding Running Threads on a JVM</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-24T00:03:08+01:00" pubdate data-updated="true">Aug 24<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>run kill -QUIT <pid> for the jvm and it&#8217;ll give you a useful summary of threads which are running, plus how much memory is being used!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -627,6 +650,10 @@ var_dump($_SERVER);</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
       </li>
     
@@ -640,10 +667,6 @@ var_dump($_SERVER);</p>
     
       <li class="post">
         <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
       </li>
     
   </ul>

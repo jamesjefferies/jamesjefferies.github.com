@@ -15,7 +15,7 @@ Anyways, before you splash out with your hard earned £199 + P&P you should, you
 
 Not only are they cheaper than the Little Printer, but being Open Source & built using Rails & Arduino, you can get stuck in to the source code, make changes yourself and create some interesting content. 
 
-As part of the [Happenstance Project](http://happenstanceproject.com) we were fortunate to borrow a couple of Go free range's printers and start experimenting. We hooked them up with [Twillio](http://twillio.com) and a bit of ruby magic to get them recieving SMS messages. Each printer (Cathy & Heathcliff) had their own phone numbers, when they recieved the message, they printed it out & sent the contents to their twitter feeds.
+As part of the [Happenstance Project](http://happenstanceproject.com) we were fortunate to borrow a couple of Go free range's printers and start experimenting. We hooked them up with [Twilio](http://twilio.com) and a bit of ruby magic to get them recieving SMS messages. Each printer (Cathy & Heathcliff) had their own phone numbers, when they recieved the message, they printed it out & sent the contents to their twitter feeds.
 
 You can read more on this blog [elsewhere](http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/) or you can watch our [TEDx](http://tedxtalks.ted.com/video/TEDxSheffield-2012-Leila-Johnst) talk on the project as a whole.
 

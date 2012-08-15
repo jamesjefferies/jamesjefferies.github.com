@@ -4,7 +4,7 @@
   <title><![CDATA[Category: james | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com//categories/james/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-14T20:50:23+01:00</updated>
+  <updated>2012-08-15T11:06:08+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -24,7 +24,7 @@
 
 <p>Not only are they cheaper than the Little Printer, but being Open Source &amp; built using Rails &amp; Arduino, you can get stuck in to the source code, make changes yourself and create some interesting content.</p>
 
-<p>As part of the <a href="http://happenstanceproject.com">Happenstance Project</a> we were fortunate to borrow a couple of Go free range's printers and start experimenting. We hooked them up with <a href="http://twillio.com">Twillio</a> and a bit of ruby magic to get them recieving SMS messages. Each printer (Cathy &amp; Heathcliff) had their own phone numbers, when they recieved the message, they printed it out &amp; sent the contents to their twitter feeds.</p>
+<p>As part of the <a href="http://happenstanceproject.com">Happenstance Project</a> we were fortunate to borrow a couple of Go free range's printers and start experimenting. We hooked them up with <a href="http://twilio.com">Twilio</a> and a bit of ruby magic to get them recieving SMS messages. Each printer (Cathy &amp; Heathcliff) had their own phone numbers, when they recieved the message, they printed it out &amp; sent the contents to their twitter feeds.</p>
 
 <p>You can read more on this blog <a href="http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/">elsewhere</a> or you can watch our <a href="http://tedxtalks.ted.com/video/TEDxSheffield-2012-Leila-Johnst">TEDx</a> talk on the project as a whole.</p>
 

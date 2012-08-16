@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com//categories/ruby/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-16T13:01:23+01:00</updated>
+  <updated>2012-08-16T14:54:17+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[From MySQL datadump to mongo]]></title>
+    <link href="http://jamesjefferies.com/2012/08/16/from-mysql-datadump-to-mongo/"/>
+    <updated>2012-08-16T14:42:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/16/from-mysql-datadump-to-mongo</id>
+    <content type="html"><![CDATA[<p>Let us say that you have a MySQL dump of  a database table, with a load of data which ideally, you'd like to pull into a Mongo DB as json.</p>
+
+<p>What you could do is…</p>
+
+<h2>Import data in to MySQL database</h2>
+
+<p>Usual kind of thing here, assuming you have a MySQL username for a created database:</p>
+
+<p><code>
+mysql -uusername -p -Ddbname &lt; mysqldumpfile.sql
+</code></p>
+
+<h2>Export data from MySQL database in json format</h2>
+
+<p>There is a cracking ruby gem <a href="https://github.com/seamusabshere/mysql2xxxx">mysql2xxxx</a> which will export from a mysql database to various formats, including json.</p>
+
+<p>You can drive it via code or a number of binaries are provided. So:</p>
+
+<p><code>
+mysql2json --user=username --password=password --database=dbname --execute="select * from my_special_table" &gt; my_special_file.json
+</code></p>
+
+<h2>Importing the json straight in to your mongodb</h2>
+
+<p>Then you can use mongoimport to pull in the json. If your export from <code>mysql2json</code> is surrounded by the square brackets, you'll need the <code>--jsonArray</code> option. Your command will need to be something like:</p>
+
+<p><code>
+mongoimport --type json --file my_special_file.json --collection mycollection --db mymongodb --jsonArray
+</code></p>
+
+<h2>Summary</h2>
+
+<p>Simple three step transformation from MySQL dump to Mongo. You may know a better, more straightforward way of doing this, please add a comment if you do!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Parse Train Describer CSV Data]]></title>

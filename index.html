@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="What is Octopress? Octopress is a blogging engine designed to be run from the command line, it uses Markdown for formatting content and doesn&#8217;t &hellip;">
+  <meta name="description" content="Let us say that you have a MySQL dump of a database table, with a load of data which ideally, you&#8217;d like to pull into a Mongo DB as json. What &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,390 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL Datadump to Mongo</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-16T14:42:00+01:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/08/16/from-mysql-datadump-to-mongo/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let us say that you have a MySQL dump of  a database table, with a load of data which ideally, you&#8217;d like to pull into a Mongo DB as json.</p>
+
+<p>What you could do is…</p>
+
+<h2>Import data in to MySQL database</h2>
+
+<p>Usual kind of thing here, assuming you have a MySQL username for a created database:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -uusername -p -Ddbname &lt; mysqldumpfile.sql</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Export data from MySQL database in json format</h2>
+
+<p>There is a cracking ruby gem <a href="https://github.com/seamusabshere/mysql2xxxx">mysql2xxxx</a> which will export from a mysql database to various formats, including json.</p>
+
+<p>You can drive it via code or a number of binaries are provided. So:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql2json --user=username --password=password --database=dbname --execute="select * from my_special_table" &gt; my_special_file.json</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Importing the json straight in to your mongodb</h2>
+
+<p>Then you can use mongoimport to pull in the json. If your export from <code>mysql2json</code> is surrounded by the square brackets, you&#8217;ll need the <code>--jsonArray</code> option. Your command will need to be something like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mongoimport --type json --file my_special_file.json --collection mycollection --db mymongodb --jsonArray</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Summary</h2>
+
+<p>Simple three step transformation from MySQL dump to Mongo. You may know a better, more straightforward way of doing this, please add a comment if you do!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-16T12:35:00+01:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/08/16/parse-train-describer-csv-data/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you are using the Network Rail Open Data Feeds, then hopefully you&#8217;ve had a look at the fantastic <a href="http://wiki.openraildata.info/index.php/TD_Berth_Steps">wiki</a> started by <a href="http://twitter.com/poggs">poggs</a>.</p>
+
+<p>In the reference data section, it provides a link to a CSV file which poggs is sharing containing Train Describer berths.</p>
+
+<p>I wanted to parse that data using a simple ruby script and get it in to my mongo database.</p>
+
+<p>You can use the mongoimport program to pull in the CSV by adding a header file, or you can use this little ruby script I wrote (with a <em>lot</em> of help from this <a href="http://www.dzone.com/snippets/turn-csv-headers-array-hashes">snippet</a>) which converts to JSON and inserts it in to the mongo db.</p>
+
+<div><script src='https://gist.github.com/3369575.js?file='></script>
+<noscript><pre><code>require 'csv'
+require 'json'
+require 'mongo'
+=begin
+
+Info from http://http://wiki.openraildata.info/index.php/TD_Berth_Steps
+
+# Example header
+# td_area,step_type,from_berth,to_berth,stanox,stanme,event,platform,line,trust_berth_offset,route,line,description
+
+# Example data
+AD,B,0632,0630,89321,PLUCKLY,A,1,,24,,,08-05-2012
+=end
+
+FILENAME=&quot;BerthStepsFile.csv&quot;
+
+# You might want to change this, easily done
+HEADER = ['td_area','step_type','from_berth','to_berth','stanox','stanme','event','platform','line','trust_berth_offset','route','line','description']
+
+csv_data = CSV.read FILENAME
+
+headers = HEADER.map {|i| i.to_s }
+string_data = csv_data.map {|row| row.map {|cell| cell.to_s } }
+array_of_hashes = string_data.map {|row| Hash[*headers.zip(row).flatten] }
+
+# Assume mongo database is called rail (or it will create one if it doesn't exist)
+db = Mongo::Connection.new.db(&quot;rail&quot;)
+
+# Create/use collection called berthsteps
+coll = db.collection(&quot;berthsteps&quot;)
+
+array_of_hashes.each do |td|
+
+  # Sanity check debug, output each td message as nice looking JSON 
+  #puts JSON.pretty_generate(td)   
+
+  # insert into collection and return with the id 
+  id = coll.insert(td)
+
+end</code></pre></noscript></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build a Network Rail Data Feed Teletyper</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-16T10:51:00+01:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before You Buy a Berg Little Printer&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-14T19:56:00+01:00" pubdate data-updated="true">Aug 14<span>th</span>, 2012</time>
+        
+         | <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>You may have heard today that <a href="http://bergcloud.com/littleprinter/">BERG&#8217;s Little Printer</a> is now available for pre-order. It does look like a great bit of kit &amp; the ability to produce your own content should produce some interesting rolls of paper!</p>
+
+<p>Anyways, before you splash out with your hard earned £199 + P&amp;P you should, you <em>really</em> should have a look at <a href="http://gofreerange.com/printer">Go free range&#8217;s Open Source printer</a>.</p>
+
+<p>Not only are they cheaper than the Little Printer, but being Open Source &amp; built using Rails &amp; Arduino, you can get stuck in to the source code, make changes yourself and create some interesting content.</p>
+
+<p>As part of the <a href="http://happenstanceproject.com">Happenstance Project</a> we were fortunate to borrow a couple of Go free range&#8217;s printers and start experimenting. We hooked them up with <a href="http://twilio.com">Twilio</a> and a bit of ruby magic to get them recieving SMS messages. Each printer (Cathy &amp; Heathcliff) had their own phone numbers, when they recieved the message, they printed it out &amp; sent the contents to their twitter feeds.</p>
+
+<p>You can read more on this blog <a href="http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/">elsewhere</a> or you can watch our <a href="http://tedxtalks.ted.com/video/TEDxSheffield-2012-Leila-Johnst">TEDx</a> talk on the project as a whole.</p>
+
+<p>So, buy all means pre-order a Little Printer, but have a think about getting the super duper Go Free Ranger printer first!</p>
+
+<p><img src="http://25.media.tumblr.com/tumblr_m4uf1acC5R1rvn0edo1_500.jpg" title="Cathy Long Cat" alt="Cathy long cat" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement Feeds Into MongoDB</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-07T14:33:00+01:00" pubdate data-updated="true">Aug 7<span>th</span>, 2012</time>
+        
+         | <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Network Rail datafeeds?</h2>
+
+<p>Ah yes, please my previous <a href="http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds/">blog</a> post for further info, apologies for the lack of updates on here, I&#8217;ve been away, sent round the loop line.</p>
+
+<h2>Why MongoDB?</h2>
+
+<p><a href="http://www.mongodb.org/">MongoDB</a> is a scalable, high-performance, open source, NoSQL database. I thought it would make a good fit for the train movement feeds as it&#8217;s storage is oriented towards JSON-style documents. It&#8217;s JSON-style because it actually uses <a href="http://bsonspec.org/">binary-encoded serialisation</a> behind the scenes.</p>
+
+<p>There is a nice little interactive tutorial on the MongoDB home page to get you in to the swing of things.</p>
+
+<h2>Getting Mongo installed on OS X</h2>
+
+<p>I use <a href="http://mxcl.github.com/homebrew/">Homebrew</a> for installing packaged stuff on to my Mac, if you use it, then you can easily install it with</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install mongodb</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>What do you need for Ruby Mongo Magic?</h2>
+
+<p>There is a standard Mongo driver available, which you can install using gem</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install mongo</span></code></pre></td></tr></table></div></figure>
+
+
+<p>but it is also worth installing the C compiled extension to speed up any BSON serialisation</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install bson_ext</span></code></pre></td></tr></table></div></figure>
+
+
+<p>More info can be found on the <a href="http://www.mongodb.org/display/DOCS/Ruby+Language+Center">official pages</a></p>
+
+<h2>Code example?</h2>
+
+<p>Here you go, proper version in the <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">github repository</a></p>
+
+<div><script src='https://gist.github.com/3285558.js?file='></script>
+<noscript><pre><code>require 'rubygems' 
+require 'stomp'
+require 'json'
+require 'mongo'
+
+begin
+  # Credentials set here as environment variables
+  @user = ENV[&quot;DATAFEEDS_USER&quot;]; 
+  @password = ENV[&quot;DATAFEEDS_PASSWORD&quot;]
+  @host = &quot;datafeeds.networkrail.co.uk&quot;
+  @port = 61618
+
+  # Example destination add yours here
+  @destination = &quot;/topic/TRAIN_MVT_ALL_TOC&quot;
+
+  puts &quot;Connecting to datafeeds as #{@user} using stomp protocol stomp://#{@host}:#{@port}\n&quot; 
+  @connection = Stomp::Connection.open @user, @password, @host, @port, true 
+  @connection.subscribe @destination 
+
+  while true
+    @msg = @connection.receive
+
+    # Use JSON library to parse the messge body
+    message_body = JSON.parse(@msg.body)
+
+    db = Mongo::Connection.new.db(&quot;rail&quot;)
+    coll = db.collection(&quot;td&quot;)
+
+    message_body.each do |td| 
+
+      # Sanity check debug, output each td message as nice looking JSON 
+      # puts JSON.pretty_generate(td)   
+      
+      # insert into collection
+      id = coll.insert(td)
+
+    end
+  end 
+
+  @connection.disconnect
+rescue 
+end</code></pre></noscript></div>
+
+
+<h2>Examples of querying Mongo</h2>
+
+<p>There are lots of good examples and resources for using Mongo, but just a couple of examples related to the schema I&#8217;ve used in the example. You can fire up the interactive Mongo console and try the following (once you have some data!)</p>
+
+<p>To retrieve all Departure events</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>db.td.find({ "body.event_type" : "DEPARTURE" })</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To retrieve 10 (using limit) Train Movement (type 3) messages</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>db.td.find({ "header.msg_type" : "0003" }).limit(10)</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -480,323 +864,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever Next - the Technical Stuff</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-15T12:51:02+01:00" pubdate data-updated="true">Jun 15<span>th</span>, 2012</time>
-        
-         | <a href="/2012/06/15/whatever-next-the-technical-stuff/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In recent years my main programming language has been Java, sprinkled with a bit of the usual korn/zsh scrips, SQL, HTML, JavaScript and other gubbins. The world of Java is rich with libraries, web frameworks, platforms and alternate languages. I&#8217;ve invested a lot of time in this ecosystem, knowing which tools are useful for which problems, gained expertise in various web frameworks, development environments and platforms, generally to be as productive as I&#8217;ve ever been.</p>
-
-<p>For the last couple of years though, I&#8217;ve been pondering whether to stick with what I know, or to spend time learning some new stuff. It is fair to say that I&#8217;m not a natural polyglot. I like to spend decent time getting to know a language and it&#8217;s ecosystem and I find it can be tricky switching.</p>
-
-<h3>Grails &amp; Groovy</h3>
-
-<p>At first I spent a bit of time, starting to get to know <a href="http://grails.org">Grails</a>, basically using <a href="http://groovy.codehaus.org/">Groovy</a> on the JVM (Java Virtual Machine) to build a Rails like web framework. The rest of the Grails stack is also stuff which I know very well, Spring, Hibernate etc. There is a lot I like about Grails and I&#8217;ve yet to investigate all this is new in the latest 2.0 release.</p>
-
-<p>So, there you go, something I&#8217;d like, building upon a lot which I already know. Should be the favourite right?</p>
-
-<h3>Scala &amp; Play/Lift</h3>
-
-<p>Well, I then started thinking a bit about <a href="http://www.scala-lang.org/">Scala</a>, a language which polarises opinion, especially amongst the Java community. It is either the &#8216;new&#8217; Java or it is a hodge podge of static typed semi functional programming. People complain about it&#8217;s complexity or love how doing things in a more functional fashion reduces code and maintenance and gets it all set up for multi-core CPUs. If I was planning on doing more &#8216;corporate&#8217; work, working on huge projects in London or building a twitter competitor then it&#8217;d make sense for me to have a good look at Scala.</p>
-
-<p>But I&#8217;m not, maybe ShedCode will work on an idea which will one day be huge, I think I&#8217;ll worry about that another time!</p>
-
-<h3>Clojure</h3>
-
-<p>I&#8217;d also like to learn <a href="http://clojure.org/">Clojure</a>, mainly because I think it will be good for my programming skills and good for my brain.</p>
-
-<h3>Rails &amp; Ruby</h3>
-
-<p>Then, working on <a href="http://happenstanceproject.com">Happenstance</a> has made me think again&#8230;</p>
-
-<p>In early 2008 I was going to investigate <a href="http://rubyonrails.org/">Rails</a> &amp; Ruby, one because I liked the fact it was called Rails, but then also because it seemed to be gaining a lot of momentum and interest and it was &#8216;cool&#8217;. In the end I got a job doing java, so I put it on the back burner. I also started to realise that, as is often the case where things are a bit &#8216;cool&#8217; there were quite a few.. ahem.. nobbers around who not only believed that Rails was THE framework to use but that using anything else was such a POOR substitute. I have to be honest, it did my nut. I did meet a few people who seemed ok, but the majority, I didn&#8217;t really get on with.</p>
-
-<p>Now I find that a lot of the R&amp;D web apps I&#8217;m interested in, have been built with Rails. I&#8217;ve also met some more Rails devs who are not nobbers, in fact, they are interesting, helpful, open minded people. I&#8217;d like to work with some of them, I&#8217;d like to build things on top of the work they&#8217;ve done. I&#8217;d like to explore the Rails ecosystem which has inspired so much in other languages (like Grails for example).</p>
-
-<h3>Client Side</h3>
-
-<p>Even though over the last few weeks, I&#8217;ve been thinking more about whether the classic server side MVC web framework is what I should be looking at all. There is a significant trend for using client side JavaScript frameworks for doing a lot of the hardwork in the browser, whilst having a more simple RESTful service/API set up on the server. Examples would be <a href="http://documentcloud.github.com/backbone/">Backbone.js</a>, <a href="http://emberjs.com/">Ember.js</a>, <a href="http://knockoutjs.com/">Knockout.js</a> etc. This somehow feels like a good idea, but I&#8217;m not great with JavaScript and I&#8217;m not sure this is what I want to do just yet. Obviously improving my JavaScript knowledge would be useful regardless!</p>
-
-<h3>Crossroads</h3>
-
-<p>So, I find myself at a crossroads. I&#8217;ll spend some time with Clojure, regardless of what else I do, but I&#8217;ve got some interesting projects to start in the next month or so and I need to decide whether I:</p>
-
-<ol>
-<li><p>Learn Rails and see what happens&#8230;</p></li>
-<li><p>Go with what I know a bit and build something with Grails. I know the tools, I know the libraries and I know it works (mainly)</p></li>
-<li><p>Client side JavaScript stuff</p></li>
-<li><p>Go with Scala, build on top of the Java I know and become have decent with functional languages</p></li>
-</ol>
-
-
-<p>At the moment, these are in my preferred order, but I&#8217;ll let you know what happens&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/06/08/week-7-8-9-summary/">Week 7, 8 & 9 - Summary</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-08T15:14:32+01:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
-        
-         | <a href="/2012/06/08/week-7-8-9-summary/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Oh dear, what happened to week 7, 8 blog posts (I hear you ask)?</p>
-
-<p>Good question. Here&#8217;s a little re-cap of what you missed (thanks <a href="http://offbott.com/">offbott</a> for the reminders!)</p>
-
-<h3>Week 7</h3>
-
-<p>This week was mainly taken up with:</p>
-
-<ul>
-<li><p>creating a test version of the site gallery website, so that we could have a good tinker with the layout</p></li>
-<li><p>investigating the building&#8217;s network wiring and working out how we could get the office in to a better shape</p></li>
-<li><p>an official rehearsal for our TedX Sheffield talk</p></li>
-</ul>
-
-
-<h3>Week 8 - the broken back week</h3>
-
-<p>I really kernackered my back on Wednesday morning, which meant that I ended up working a bit on .. ahem.. Cathy &amp; Heathcliff&#8217;s back ends from home. Thursday was a bit better and we came up with the idea of building a &#8216;who&#8217;s in the house&#8217; lighting board. Leila has been doing lots of soldering. Our IP camera arrived on Friday and we had it looking around the office with it&#8217;s spooky eye.</p>
-
-<h3>Week 9 - the TedX and Sheffield Doc/Fest Week</h3>
-
-<p>Tuesday was Sheffield TedX and we were invited to do a 10 minute talk as part of the whole shebang. We managed to get Heathcliff working by borrowing a MacMini from Site, getting it to pick up the Wi-fi in the Crucible (yes, THAT crucible in Sheffield) and share it&#8217;s ethernet connection. Attendees could then send SMS to Heathcliff and up in the refreshment area, he&#8217;s print out their messages.</p>
-
-<p>We weren&#8217;t in the main part of the Crucible, but the Crucible studio which has room for about 270 people. I will confess and say that I felt the pressure for this one. Speaking in front of 270 people is one thing, being filmed ready for the TedX channel on YouTube is something else again!</p>
-
-<p>I think we did ok and people had nice things to say about us. Hurrah! The other speakers were, in the main, fantastic! Inspiring stuff.</p>
-
-<p>Then, Wednesday was the <a href="http://www.xolabs.co.uk/2011/11/01/xo-summit-expo-2012/">XO Summit</a> as part of Doc/Fest, which I managed to&#8230; errr, attend. Bumped in to and had a chat with the Right Honourable Honor Harger and caught up with some people I&#8217;d met the day before.</p>
-
-<p>Thursday was more Cathy &amp; Heathcliff re-writing. Getting rid of the awful PHP which we&#8217;d used initially and the gmail to ifttt to twitter thing and replacing it with a bit of Ruby and Sinatra which I got running on Heroku (was it any co-incidence that Heroku had a major outage overnight afterwards? I hope so!)</p>
-
-<p>Then today.. blogging ahoy!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/05/31/whatever-next/">Whatever Next?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-31T23:34:05+01:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
-        
-         | <a href="/2012/05/31/whatever-next/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Then</h3>
-
-<p>This time last year I was in despair, I wasn’t enjoying my job and it was getting me down. Up to that point I’d spent 6 years writing software for Barclays, 5 years writing software for npower/Yorkshire Electricity, 3 years writing software for the digital agency Technophobia. I could feel myself getting stale and much as I enjoyed working with a lot of my colleagues, it felt to me like I needed a bit of a change.</p>
-
-<p>During August 2011, I left <a href="http://www.technophobia.com">Technophobia</a> and set up my own limited company ShedCode without much of an idea what to do next! Fortunately I was able to get off with a cracking start; I was able to share an office above the <a href="http://www.sitegallery.org">Site Gallery</a> in Sheffield City Centre with 3 good friends and then I was able to do some standard contracting work, 4 days a week to get some funds in the coffers.</p>
-
-<p>Having an office was key to me going freelance, I didn’t really want to work from home, too many distractions, but sharing a small office with people I like and can trust was ideal. Being at tenant at Site also meant that I started to meet people in the building, both staff &amp; other tenants. It’s a great place to work &amp; it’s also where I first heard about the <a href="http://happenstanceproject.com">Happenstance Project.</a> In a nutshell, the project is a 10 week residency for technologists in Arts Organisations of which Site was to be one of them.</p>
-
-<h2>Happenstance</h2>
-
-<p>After umming and ahhing a bit about applying, I decided to go for it, the weekend before the deadline. The actual application process was really useful for me, helping me to work out some ideas about what I wanted to do next, with my career and ShedCode. To cut a long story short, I managed to get a place as one of the residents and at the point of writing this, we’re 7 weeks into the 10 weeks.</p>
-
-<p>Time really flies when you’re having fun and learning new things and so far that sums the residency up nicely. We’ve built thermal printing sentient characters from Wuthering Heights which are mobile, tweet and respond to SMS text messages. An incredible polargraph drawing machine as well as fixing lots of technical things for the Site organisation itself. You can read more about what we’ve been up to on the <a href="http://happenstanceproject.com/blog">happenstance project blog</a> and our <a href="http://happenstancesheffield.tumblr.com/">tumblr </a>site.</p>
-
-<p>I’ve hankered after Research &amp; Development time for years and getting the odd day here or there hasn’t been enough. This residency though has been a mixture of R&amp;D and practical help for the organisation and it has seriously got me thinking. It’s one thing to have an idea, it’s something else though to have the time to actually try and get it to work. There have been nights after working on happenstance when I have not been able to sleep as my brain has been working overtime trying to solve problems&#8230; I feel a bit more alive!</p>
-
-<p>The question now though for me, is</p>
-
-<h2>Whatever next?</h2>
-
-<p>I’m pretty good, if I can blow my own trumpet for a minute, at technical problem solving. From laser printers, to wireless networks, to security, to domains, even WordPress. As a problem solver and nosy chuffer, you don’t spend 17 years working without picking up some knowledge of what your colleagues do!</p>
-
-<p>I’ve spent most of my time though writing and designing software. I’m not the best software engineer in the world, in fact there’s a lot of my code out there which other people now have to support for which I apologise most sincerely, but I’m not a bad all rounder.</p>
-
-<p>Once Happenstance finishes, at the end of June, I’d like to take some time to work on some of my own projects. I’ve got two railway related products I’d like to build, plus a project for school kids and then at least one other one which is coming together.</p>
-
-<p>Since being a Technologist in Residence though, it’s given me the hunger to get involved in other things too. It’s been a real privilege working with my fellow resident <a href="http://finalbullet.com">Leila Johnston</a>, she is a great writer, inventor and organiser of exciting events and has an incredible network of interesting people who do really interesting things.</p>
-
-<p>And as I wrote that sentence above, it’s when I thought, hang on, that’s what I’m after. I think I WANT TO BE AN INTERESTING PERSON! So that people can say, &#8220;Hey, you know who you should get in to do such and such, you could do a lot worse than hire that friendly freelancer James Jefferies!&#8221;</p>
-
-<h3></h3>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house/">Week 6 – Polargraph Working, Mobile Printers and Open House</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-31T23:08:12+01:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
-        
-         | <a href="/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Leila has done a top job of writing up about the Open House we held at Site Gallery on Friday. We had a great time talking about Happenstance so far to a full house (well cafe anyway).</p>
-
-<p><a href="http://jamesjefferies.com/?attachment_id=551"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/settingupopenhouse-620x465.jpg" alt="" /></a></p>
-
-<p>Having the Polargraph finally up and running on the correct voltage was great and a fantastic drawing of Lord Jarvis of Cocker appeared as the event went on.</p>
-
-<p>We also had Heathcliff Printer working (although he did conk out at one point for some unexplained reason) and Leila got her Kinnect set up doing some Minority Report style magic.</p>
-
-<p>One of our conductive <a href="http://www.bareconductive.com/paper-houses">paint houses</a> was there too, but it was too dark really to see it in action. Winter time for those I think.</p>
-
-<p>We had a little Q&amp;A after our talk and one of the questions really got me thinking about being a creative software engineer - what does that mean in practice and how can we encourage techies to embrace their creativity, smashing through the constraints of institutional methodologies. Sounds like that might be a future blog post!</p>
-
-<p>A lot of cake was eaten and a good time was had by all. Thanks to all who helped and all who came along!</p>
-
-<p><a href="http://jamesjefferies.com/?attachment_id=552"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/openhouseeatingcake-620x465.jpg" alt="" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/05/31/week-5-a-bit-of-a-blur/">Week 5 – a Bit of a Blur</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-31T23:07:02+01:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
-        
-         | <a href="/2012/05/31/week-5-a-bit-of-a-blur/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The final week of Sprint 1 was all a bit of a blur. As we had the Future Everything conference on the Friday, my thoughts were on the presentation.</p>
-
-<p>We also did some work on our <a href="http://polargraph.co.uk">Polargraph</a> which was not behaving very well at all. This was disappointing as we&#8217;d hope to get it working before Future Everything. What was cool though, was that we saw some Polargraphs in action at the conference, Stuart Childs and Matt Venn had their super machines in action. Matt is doing stuff with <a href="http://www.mattvenn.net/2011/09/19/polargraph-energy-monitoring/">Energy Monitoring</a></p>
-
-<p>The Manchester Museum of Science and Industry is a great place, I especially enjoyed looking at the big steam engines and railway engines in the Power Hall. Took my mind of our talk which went OK! It was fun to see Linda and Natalia our fellow residents from Bristol and Brighton galleries respectively.</p>
-
-<p>.. and relax! (Chris the researcher, me and Natalia looking interested.. I think!)</p>
-
-<p><a href="http://jamesjefferies.com/?attachment_id=520"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/inthepub-620x465.jpg" alt="" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -812,23 +879,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
+        <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
+        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
       <li class="post">
-        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
       </li>
     
   </ul>

@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="On Sunday afternoon I was chatting to my neighbour Nikki with her young lad Sunny. He was armed with a water pistol and before I knew it, I was &hellip;">
+  <meta name="description" content="http://www.jreactor.com/category/hibernate/
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,221 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/04/18/lucene-and-spring/">Lucene and Spring</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-18T15:38:51+01:00" pubdate data-updated="true">Apr 18<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>http://www.jreactor.com/category/hibernate/</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/04/18/really-useful-transaction-stuff/">Really Useful Transaction Stuff</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-18T15:38:42+01:00" pubdate data-updated="true">Apr 18<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For this to work, you MUST set up the data source in the spring section rather than hibernate, otherwise the transaction manager doesn&#8217;t create the session.. and goodness me, the DAOs are so much tidier, no phase listener crap either!</p>
+
+<p>http://www.javalobby.org/articles/thread-safe/index.jsp</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/04/17/some-helpful-stuff-with-jsf/">Some Helpful Stuff With Jsf</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-17T18:39:46+01:00" pubdate data-updated="true">Apr 17<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>http://www.jroller.com/eyallupu/entry/javamail_sending_embedded_image_in</p>
+
+<p>http://saloon.javaranch.com/cgi-bin/ubb/ultimatebb.cgi?ubb=get_topic&amp;f=82&amp;t=000921</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/04/15/getting-hibernate-and-mysql-to-work-properly/">Getting Hibernate and Mysql to Work Properly</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-15T18:55:44+01:00" pubdate data-updated="true">Apr 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When you have a problem with hibernate and mysql, namely mysql dropping the connection before hibernate does, then you need to configure the c3p0 connection pooling functionality. There are two main things which need setting, plus one which actually switches it on, helpfully badly documented!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;c3p0.idle_test_period&quot;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;c3p0.timeout&quot;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;c3p0.max_size&quot;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/property&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>The max size property actually switches connection pooling on and in this case sets it to a maximum of 100 connections in the pool. Then the other two come in to play.</p>
+
+<p>idle_test_period is how many seconds between hibernate testing the unused connections in the pool to make sure they are still alive. You want this to be set to less than mysql&#8217;s timeout.</p>
+
+<p>timeout is how long an open connection will stay open before it times out.</p>
+
+<p>So, as long as the idle_test_period is less than the mysql timeout, you should be ok. But don&#8217;t forget the max_size, otherwise it isn&#8217;t switched on at all!</p>
+
+<p>You&#8217;ll also need to add c3p0 as a maven dependency and include it in your package.</p>
+
+<p><a href="http://www.codefin.net/2007/05/hibernate-and-mysql-connection-timeouts.html">codefin</a>
+<a href="http://www.hibernate.org/214.html">hibernate docs</a>
+<a href="http://www.mchange.com/projects/c3p0/index.html#hibernate-specific">c3p0</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/04/13/useful-solaris-commands/">Useful Solaris Commands</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-13T16:28:55+01:00" pubdate data-updated="true">Apr 13<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Gives info about the os installed</strong></p>
+
+<p>uname -a</p>
+
+<p><strong>32 or 64 bit kernel</strong></p>
+
+<p>isainfo -bv (64 or 32 bit)</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -320,87 +536,9 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/04/24/getting-away-with-it-all-messed-up/">Getting Away With It (All Messed Up)&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-04-24T11:32:55+01:00" pubdate data-updated="true">Apr 24<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Went to see James last night, who&#8217;ve recently reformed with one of their classic line ups. The venue was the Newcastle Academy and John and I drove up after work in fast mini, via the chippy in Thirsk. We missed the support band, but got there in time to fight our way to the queue for the lav, then the queue for the bar, then down to a good position to the left of the stage about half way down.</p>
-
-<p>There was a real sense of anticipation for the band coming on stage and the whole place (2000 people) erupted when they did, starting the set with the classic song &#8216;Come Home&#8217;.</p>
-
-<p>I&#8217;ll post the set list later, but they did two encores plus what you&#8217;d expect from a James gig, Sit Down, Tomorrow, Sometimes, She&#8217;s a Star - fantastic.</p>
-
-<p>The set list was a mix of ancient and modern, hits and obscurities which in my book was great. However, people gabbing away during the new songs and more obscure songs was irritating.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/04/19/oracle-10g/">Oracle 10g</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-04-19T15:09:25+01:00" pubdate data-updated="true">Apr 19<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>How come Oracle 10g comes with so many nice things which are advertised as working &#8216;out of the box&#8217; but actually a licence fee is paid. This wouldn&#8217;t be so bad if the company refuses to pay the extra licences to access all of the performance tweaking goodies we need!</p>
-
-<p>Honestly, I tear my hair out :(</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/12/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -415,23 +553,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
+        <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
+        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
+        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
       </li>
     
       <li class="post">
-        <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting started with Network Rail&#8217;s datafeeds</a>
+        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
       <li class="post">
-        <a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the end of the Happenstance</a>
+        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
       </li>
     
   </ul>

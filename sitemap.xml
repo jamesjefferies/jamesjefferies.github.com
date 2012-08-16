@@ -483,11 +483,35 @@
         <lastmod>2012-08-01T12:46:57+01:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/
+        </loc>
+        <lastmod>2012-08-07T15:22:55+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jamesjefferies.com/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/
+        </loc>
+        <lastmod>2012-08-15T09:06:17+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper/</loc>
+        <lastmod>2012-08-16T10:51:26+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jamesjefferies.com/2012/08/16/parse-train-describer-csv-data/</loc>
+        <lastmod>2012-08-16T13:00:32+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jamesjefferies.com/2012/08/16/from-mysql-datadump-to-mongo/</loc>
+        <lastmod>2012-08-16T14:52:22+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://jamesjefferies.com/blog/archives/</loc>
-        <lastmod>2012-08-01T12:46:57+01:00</lastmod>
+        <lastmod>2012-08-16T14:52:22+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/</loc>
-        <lastmod>2012-08-01T12:46:57+01:00</lastmod>
+        <lastmod>2012-08-16T14:52:22+01:00</lastmod>
     </url>
 </urlset>

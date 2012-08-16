@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="run kill -QUIT for the jvm and it&#8217;ll give you a useful summary of threads which are running, plus how much memory is being used!
+  <meta name="description" content="wondering what tomcat is doing? kill -QUIT will do a thread dump to $TOMCAT_HOME/logs/catalina.out - very interesting!
 ">
   
 
@@ -78,6 +78,80 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/10/17/tomact-thread-dump/">Tomact Thread Dump</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-17T10:51:51+01:00" pubdate data-updated="true">Oct 17<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>wondering what tomcat is doing? kill -QUIT <pid> will do a thread dump to $TOMCAT_HOME/logs/catalina.out - very interesting!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/09/09/httpjstweenblogspotcom/">Javascript Motion Tween&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-09T18:34:38+01:00" pubdate data-updated="true">Sep 9<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>http://jstween.blogspot.com/</p>
+
+<p>says it all</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -496,97 +570,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/05/12/class-equals/">Class Equals</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-12T14:41:23+01:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ok, so if you don&#8217;t want to do the instanceof (which allows subclasses to pass) you simply want to use .equals.. as so:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">classA</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">classB</span><span class="o">.</span><span class="na">class</span><span class="o">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/05/12/difference-between-instanceof-and-isinstance/">Difference Between Instanceof and isInstance</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-12T11:52:28+01:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>f  you use instanceof or isInstance it will succeed if the class can be &#8216;upcast&#8217;, so if it inherits from what you&#8217;re comparing it to..</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">classA</span> <span class="k">instanceof</span> <span class="n">classB</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>is true if classA is of a type inherited from classB</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">classA</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">isInstance</span><span class="o">(</span><span class="n">ClassB</span><span class="o">.</span><span class="na">class</span><span class="o">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>isInstance allows you to do it dynamically though</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -604,6 +587,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
@@ -613,14 +604,6 @@
     
       <li class="post">
         <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
       </li>
     
   </ul>

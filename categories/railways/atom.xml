@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Railways | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com//categories/railways/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-15T11:06:08+01:00</updated>
+  <updated>2012-08-16T13:01:23+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Parse Train Describer CSV Data]]></title>
+    <link href="http://jamesjefferies.com/2012/08/16/parse-train-describer-csv-data/"/>
+    <updated>2012-08-16T12:35:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/16/parse-train-describer-csv-data</id>
+    <content type="html"><![CDATA[<p>If you are using the Network Rail Open Data Feeds, then hopefully you've had a look at the fantastic <a href="http://wiki.openraildata.info/index.php/TD_Berth_Steps">wiki</a> started by <a href="http://twitter.com/poggs">poggs</a>.</p>
+
+<p>In the reference data section, it provides a link to a CSV file which poggs is sharing containing Train Describer berths.</p>
+
+<p>I wanted to parse that data using a simple ruby script and get it in to my mongo database.</p>
+
+<p>You can use the mongoimport program to pull in the CSV by adding a header file, or you can use this little ruby script I wrote (with a <em>lot</em> of help from this <a href="http://www.dzone.com/snippets/turn-csv-headers-array-hashes">snippet</a>) which converts to JSON and inserts it in to the mongo db.</p>
+
+<p><div><script src='https://gist.github.com/3369575.js?file='></script>
+<noscript><pre><code>require 'csv'
+require 'json'
+require 'mongo'
+=begin
+
+Info from http://http://wiki.openraildata.info/index.php/TD_Berth_Steps
+
+# Example header
+# td_area,step_type,from_berth,to_berth,stanox,stanme,event,platform,line,trust_berth_offset,route,line,description
+
+# Example data
+AD,B,0632,0630,89321,PLUCKLY,A,1,,24,,,08-05-2012
+=end
+
+FILENAME=&quot;BerthStepsFile.csv&quot;
+
+# You might want to change this, easily done
+HEADER = ['td_area','step_type','from_berth','to_berth','stanox','stanme','event','platform','line','trust_berth_offset','route','line','description']
+
+csv_data = CSV.read FILENAME
+
+headers = HEADER.map {|i| i.to_s }
+string_data = csv_data.map {|row| row.map {|cell| cell.to_s } }
+array_of_hashes = string_data.map {|row| Hash[*headers.zip(row).flatten] }
+
+# Assume mongo database is called rail (or it will create one if it doesn't exist)
+db = Mongo::Connection.new.db(&quot;rail&quot;)
+
+# Create/use collection called berthsteps
+coll = db.collection(&quot;berthsteps&quot;)
+
+array_of_hashes.each do |td|
+
+  # Sanity check debug, output each td message as nice looking JSON 
+  #puts JSON.pretty_generate(td)   
+
+  # insert into collection and return with the id 
+  id = coll.insert(td)
+
+end</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Importing Network Rail Train Movement feeds into MongoDB]]></title>

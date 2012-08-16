@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-15T11:06:08+01:00</updated>
+  <updated>2012-08-16T13:01:23+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Parse Train Describer CSV Data]]></title>
+    <link href="http://jamesjefferies.com/2012/08/16/parse-train-describer-csv-data/"/>
+    <updated>2012-08-16T12:35:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/16/parse-train-describer-csv-data</id>
+    <content type="html"><![CDATA[<p>If you are using the Network Rail Open Data Feeds, then hopefully you&#8217;ve had a look at the fantastic <a href="http://wiki.openraildata.info/index.php/TD_Berth_Steps">wiki</a> started by <a href="http://twitter.com/poggs">poggs</a>.</p>
+
+<p>In the reference data section, it provides a link to a CSV file which poggs is sharing containing Train Describer berths.</p>
+
+<p>I wanted to parse that data using a simple ruby script and get it in to my mongo database.</p>
+
+<p>You can use the mongoimport program to pull in the CSV by adding a header file, or you can use this little ruby script I wrote (with a <em>lot</em> of help from this <a href="http://www.dzone.com/snippets/turn-csv-headers-array-hashes">snippet</a>) which converts to JSON and inserts it in to the mongo db.</p>
+
+<div><script src='https://gist.github.com/3369575.js?file='></script>
+<noscript><pre><code>require 'csv'
+require 'json'
+require 'mongo'
+=begin
+
+Info from http://http://wiki.openraildata.info/index.php/TD_Berth_Steps
+
+# Example header
+# td_area,step_type,from_berth,to_berth,stanox,stanme,event,platform,line,trust_berth_offset,route,line,description
+
+# Example data
+AD,B,0632,0630,89321,PLUCKLY,A,1,,24,,,08-05-2012
+=end
+
+FILENAME=&quot;BerthStepsFile.csv&quot;
+
+# You might want to change this, easily done
+HEADER = ['td_area','step_type','from_berth','to_berth','stanox','stanme','event','platform','line','trust_berth_offset','route','line','description']
+
+csv_data = CSV.read FILENAME
+
+headers = HEADER.map {|i| i.to_s }
+string_data = csv_data.map {|row| row.map {|cell| cell.to_s } }
+array_of_hashes = string_data.map {|row| Hash[*headers.zip(row).flatten] }
+
+# Assume mongo database is called rail (or it will create one if it doesn't exist)
+db = Mongo::Connection.new.db(&quot;rail&quot;)
+
+# Create/use collection called berthsteps
+coll = db.collection(&quot;berthsteps&quot;)
+
+array_of_hashes.each do |td|
+
+  # Sanity check debug, output each td message as nice looking JSON 
+  #puts JSON.pretty_generate(td)   
+
+  # insert into collection and return with the id 
+  id = coll.insert(td)
+
+end</code></pre></noscript></div>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Build A Network Rail Data Feed Teletyper]]></title>
+    <link href="http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper/"/>
+    <updated>2012-08-16T10:51:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Before you buy a Berg Little Printer...]]></title>
@@ -704,55 +773,6 @@ end</code></pre></noscript></div>
 <p>As for Happenstance, well, I&#8217;m looking forward to working with Leila, we have different, yet hopefully, complementary skill sets and I feel I have a lot to learn from her. We&#8217;ve discussed some of the challenges that appeal to problem solving techies and we have a few ideas which we&#8217;ll be looking to explore further when we start officially after Easter. The Gallery itself has recently been going through a period of organisational and strategic change. Laura and Judith have been able to look, with fresh eyes, at the potential for growth of the organisation and it&#8217;s role as a connector within the city. I hope we can help!</p>
 
 <p>The first <em>real</em> impression I remember being able to do was Windy Miller from Camberwick Green. Well actually, it was Windy Miller&#8217;s windmill, but you know what I mean&#8230;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Happenstance Project - Technologist In Residence]]></title>
-    <link href="http://jamesjefferies.com/2012/03/11/happenstance-project-technologist-in-residence/"/>
-    <updated>2012-03-11T18:24:14+00:00</updated>
-    <id>http://jamesjefferies.com/2012/03/11/happenstance-project-technologist-in-residence</id>
-    <content type="html"><![CDATA[<p>I&#8217;m really chuffed to say that I&#8217;ve been successful in applying for a residency with the <a href="http://happenstanceproject.com">Happenstance Project</a>. When I first heard about it, I thought it sounded interesting but, I didn&#8217;t consider my chances of getting a place were very high.</p>
-
-<p>Filling in the application form was a great way to help me think through what I could offer and also helped me to realise that it was exactly the sort of thing I should try with my new found freelance freedom. So, some time later, I submitted the form to see what would happen. In all I think 60 odd people applied, so I was excited to find that I&#8217;d been invited to the sandpit day at <a href="http://www.nesta.org.uk/">NESTA</a> (The National Endowment for Science, Technology and the Arts) for a selection workshop and interview.</p>
-
-<p>The day came and I zipped down to the big smoke on the train. Candidates were seen 6 at a time and my group including some strong candidates, including <a href="http://finalbullet.com">Leila Johnston</a> who will be my partner in crime for the project up at <a href="http://sitegallery.org">Site Gallery</a> in sunny Sheffield.</p>
-
-<p>After all that, I was offered a place, hurrah!</p>
-
-<p>So you may ask what I&#8217;ll be doing - well, that&#8217;s a very good question. From the project site:</p>
-
-<blockquote><p>As a resident, you will be expected to:</p>
-
-<h3>Complete Two Projects</h3>
-
-<p><em>The main body of the residencies will be split into two short five-week sprints. Each resident, or pair of residents, will complete one small project or one prototype in each sprint. The first project will be based upon the idea that you submit in your application, which will be further refined during the Sandpit Day in February; the second will be based upon your observations while resident in the organisation.</em></p>
-
-<h3>Share Your Work</h3>
-
-<p><em>You will be asked to document your work on a weekly basis, via a project blog, and also participate in three ‘Open House’ events, where you will have the opportunity to present your work, talk through your process and discuss any wider themes or implications. During the residencies, you will have the opportunity to work with both a mentor and a project manager.</em></p></blockquote>
-
-<p>My fellow Technologist In Residence, Leila, has written a good blog post about the kind of stuff we may end up doing. <a href="http://finalbullet.com/2012/03/10/im-going-to-sheffield/">Deffo worth a read</a>!</p>
-
-<p>I&#8217;ll hopefully blog and tweet as I go with the project, as well as the official blog posts which will be part of my &#8216;write up&#8217; - not sure where that will be yet!</p>
-
-<p>Hurrah!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Running Eclipse under the Unity interface]]></title>
-    <link href="http://jamesjefferies.com/2011/09/09/running-eclipse-under-the-unity-interface/"/>
-    <updated>2011-09-09T10:00:36+01:00</updated>
-    <id>http://jamesjefferies.com/2011/09/09/running-eclipse-under-the-unity-interface</id>
-    <content type="html"><![CDATA[<p>Unity eh? Love it or hate it the version in Ubuntu 11.04 seems not quite complete. Also other applications sometimes will not play nicely.</p>
-
-<p>Eclipse is one of them, your menu items can go walk about. I found this <a href="http://blog.matto1990.com/2011/04/using-eclipse-under-ubuntu-11-04-natty/">blog post</a> which has a helpful hint. Unsetting UBUNTU_MENUPROXY for the application does the trick</p>
-
-<pre><code>#!/bin/bash
-unset UBUNTU_MENUPROXY
-path/to/eclipse/here
-</code></pre>
 ]]></content>
   </entry>
   

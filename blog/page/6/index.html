@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="I have a little gnome applet running which tells me how fast my CPUs are running. Annoyingly, they seem to be lazing about at 2.0Ghz, saving energy &hellip;">
+  <meta name="description" content="svn diff is nice but not very configurable&#8230; fear not! 1
+svn diff --diff-cmd diff -x -uw /path/to/file will save the day. this tells svn diff to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,99 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/09/04/svn-diff-ignoring-whitespace/">Svn Diff Ignoring Whitespace</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-04T18:05:02+01:00" pubdate data-updated="true">Sep 4<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>svn diff is nice but not very configurable&#8230; fear not!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn diff --diff-cmd diff -x -uw /path/to/file
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will save the day. this tells svn diff to use diff with the -uw flags. Brill&#8230;</p>
+
+<p>now to get it working with my favourite diff, sdiff!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/09/02/spring-configuration-namespace-resolution/">Spring Configuration Namespace Resolution</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-02T18:07:31+01:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>try saying &#8220;Spring configuration namespace resolution&#8221; with a mouthful of tea.</p>
+
+<p>Anyway, from Spring 2.5, one can use the new namespace resolution functionality in your spring configuration. We&#8217;ve used this for example (by the way, http bits have lost a slash - stops them getting wordpress&#8217;d), here:</p>
+
+<p>Which allows you to use the namespace amq in your spring configuration, i.e.</p>
+
+<p>spring knows that amq maps to the active mq schema, and as we provide a url in the location section, it knows where it can get it from.</p>
+
+<p>The only downside to this is when apache.org goes down, as it did last week. Spring tries to look up the schema, can&#8217;t and consequently fails to start. This is catastrophic.</p>
+
+<p>I&#8217;ve been trying to find out how to work around this, ideally I&#8217;d like Spring to get the xsd from the classpath (where I&#8217;ve put it) rather than trying to download it from the internet. Just in case apache.org disappears up it&#8217;s own firewall.. again.</p>
+
+<p>The change is simple, if you know how. Chuck the .xsd schema file in src/main/resources and update the config as follows, change in red - hurrah!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -540,161 +634,6 @@ private Date startDate;</code></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/14/java-dates-and-times/">Java Dates and Times&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-14T10:38:17+01:00" pubdate data-updated="true">Apr 14<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>.. have always been a bit of a crock. Lumpy and confusing. Apache common date utils have helped, but still you end up witing unintuitive code.</p>
-
-<p>Many in the java community were hoping that JSR 310 was going to save the day, but it is looking more and more likely that it will not now make the cut for JDK 7. So, where does that leave us?</p>
-
-<p>Hello <a href="http://joda-time.sourceforge.net/">Joda-Time</a>!</p>
-
-<p>So, the drive behind JSR 310 was really incorporating Joda-Time in to the java specification. I&#8217;ve only just discovered Joda-Time and haven&#8217;t used it in anger, but I really wish I&#8217;d found it sooner and will be looking to take it out for a spin at the earliest opportunity.</p>
-
-<p>this, from the overview page gives you a tast of what Joda-Time gives you&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAfterPayDay</span><span class="o">(</span><span class="n">DateTime</span> <span class="n">datetime</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="k">if</span> <span class="o">(</span><span class="n">datetime</span><span class="o">.</span><span class="na">getMonthOfYear</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>   <span class="c1">// February is month 2!!</span>
-</span><span class='line'><span class="err"> </span>   <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">26</span><span class="o">;</span>
-</span><span class='line'><span class="err"> </span> <span class="o">}</span>
-</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">28</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="n">Days</span> <span class="nf">daysToNewYear</span><span class="o">(</span><span class="n">LocalDate</span> <span class="n">fromDate</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err"> </span> <span class="n">LocalDate</span> <span class="n">newYear</span> <span class="o">=</span> <span class="n">fromDate</span><span class="o">.</span><span class="na">plusYears</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="na">withDayOfYear</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">Days</span><span class="o">.</span><span class="na">daysBetween</span><span class="o">(</span><span class="n">fromDate</span><span class="o">,</span> <span class="n">newYear</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isRentalOverdue</span><span class="o">(</span><span class="n">DateTime</span> <span class="n">datetimeRented</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err"> </span> <span class="n">Period</span> <span class="n">rentalPeriod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Period</span><span class="o">().</span><span class="na">withDays</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="na">withHours</span><span class="o">(</span><span class="mi">12</span><span class="o">);</span>
-</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">datetimeRented</span><span class="o">.</span><span class="na">plus</span><span class="o">(</span><span class="n">rentalPeriod</span><span class="o">).</span><span class="na">isBeforeNow</span><span class="o">();</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">getBirthMonthText</span><span class="o">(</span><span class="n">LocalDate</span> <span class="n">dateOfBirth</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">dateOfBirth</span><span class="o">.</span><span class="na">monthOfYear</span><span class="o">().</span><span class="na">getAsText</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/09/migrating-packages-from-old-machine-to-new/">Migrating Packages From Old Machine to New</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-09T12:41:31+01:00" pubdate data-updated="true">Apr 9<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Before switching off your old ubuntu machine for good, run</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --get-selections &gt; Packages.lst
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>which will output all the stuff you&#8217;ve installed using the package manager to a flat file (Packages.lst). Copy this file to your new machine.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --set-selections &lt; Packages.lst
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will then set all those packages ready for install on your new machine.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get -s dselect-upgrade
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and then when you are feeling brave</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get dselect-upgrade
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will install them for you&#8230;hopefully!</p>
-
-<p>oh and watch out for things you <em>don&#8217;t</em> want to install on the new machine, like gfx drivers. You can remove them from Packages.lst</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -712,6 +651,14 @@ private Date startDate;</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
@@ -721,14 +668,6 @@ private Date startDate;</code></p>
     
       <li class="post">
         <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
       </li>
     
   </ul>

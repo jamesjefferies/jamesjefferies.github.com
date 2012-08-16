@@ -9,8 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Then nip it in the bud by opening Image Capture and setting it not to open anything in the preferences (not in the app, but from the menu).. hurrah!
-">
+  <meta name="description" content=".. have always been a bit of a crock. Lumpy and confusing. Apache common date utils have helped, but still you end up witing unintuitive code. Many &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +77,161 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/14/java-dates-and-times/">Java Dates and Times&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-14T10:38:17+01:00" pubdate data-updated="true">Apr 14<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>.. have always been a bit of a crock. Lumpy and confusing. Apache common date utils have helped, but still you end up witing unintuitive code.</p>
+
+<p>Many in the java community were hoping that JSR 310 was going to save the day, but it is looking more and more likely that it will not now make the cut for JDK 7. So, where does that leave us?</p>
+
+<p>Hello <a href="http://joda-time.sourceforge.net/">Joda-Time</a>!</p>
+
+<p>So, the drive behind JSR 310 was really incorporating Joda-Time in to the java specification. I&#8217;ve only just discovered Joda-Time and haven&#8217;t used it in anger, but I really wish I&#8217;d found it sooner and will be looking to take it out for a spin at the earliest opportunity.</p>
+
+<p>this, from the overview page gives you a tast of what Joda-Time gives you&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAfterPayDay</span><span class="o">(</span><span class="n">DateTime</span> <span class="n">datetime</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span> <span class="k">if</span> <span class="o">(</span><span class="n">datetime</span><span class="o">.</span><span class="na">getMonthOfYear</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>   <span class="c1">// February is month 2!!</span>
+</span><span class='line'><span class="err"> </span>   <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">26</span><span class="o">;</span>
+</span><span class='line'><span class="err"> </span> <span class="o">}</span>
+</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">28</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="n">Days</span> <span class="nf">daysToNewYear</span><span class="o">(</span><span class="n">LocalDate</span> <span class="n">fromDate</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err"> </span> <span class="n">LocalDate</span> <span class="n">newYear</span> <span class="o">=</span> <span class="n">fromDate</span><span class="o">.</span><span class="na">plusYears</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="na">withDayOfYear</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">Days</span><span class="o">.</span><span class="na">daysBetween</span><span class="o">(</span><span class="n">fromDate</span><span class="o">,</span> <span class="n">newYear</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isRentalOverdue</span><span class="o">(</span><span class="n">DateTime</span> <span class="n">datetimeRented</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err"> </span> <span class="n">Period</span> <span class="n">rentalPeriod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Period</span><span class="o">().</span><span class="na">withDays</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="na">withHours</span><span class="o">(</span><span class="mi">12</span><span class="o">);</span>
+</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">datetimeRented</span><span class="o">.</span><span class="na">plus</span><span class="o">(</span><span class="n">rentalPeriod</span><span class="o">).</span><span class="na">isBeforeNow</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">getBirthMonthText</span><span class="o">(</span><span class="n">LocalDate</span> <span class="n">dateOfBirth</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">dateOfBirth</span><span class="o">.</span><span class="na">monthOfYear</span><span class="o">().</span><span class="na">getAsText</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/09/migrating-packages-from-old-machine-to-new/">Migrating Packages From Old Machine to New</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-09T12:41:31+01:00" pubdate data-updated="true">Apr 9<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Before switching off your old ubuntu machine for good, run</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --get-selections &gt; Packages.lst
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which will output all the stuff you&#8217;ve installed using the package manager to a flat file (Packages.lst). Copy this file to your new machine.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --set-selections &lt; Packages.lst
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will then set all those packages ready for install on your new machine.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get -s dselect-upgrade
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and then when you are feeling brave</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get dselect-upgrade
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will install them for you&#8230;hopefully!</p>
+
+<p>oh and watch out for things you <em>don&#8217;t</em> want to install on the new machine, like gfx drivers. You can remove them from Packages.lst</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -608,87 +762,6 @@ query.executeUpdate();
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/02/the-art-of-progamming-the-1k-zx81/">The Art of Progamming the 1K ZX81&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-02T09:07:13+00:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>.. is a book I rediscovered over the weekend. Forget your design patterns, social networking, annotated, concurrent, peristent, webby crap and build yourself a lunar lander.. in less than 1K.</p>
-
-<p>It even has a two line random word generator, that&#8217;s better than the one I built the other week!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/02/25/creating-mysql-users/">Creating Mysql Users</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-25T14:12:07+00:00" pubdate data-updated="true">Feb 25<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I used to know Ingres RDBMS pretty well and then got well in to Oracle, in fact, I&#8217;ve got 7 years of Oracle experience probably. Unfortunately, each day that goes by, I forget how to do the ninja stuff I used to be able to do..</p>
-
-<p>Instead now, I&#8217;m using HSQLDB for in memory speedy development and then today have been getting local mysql up and running. Of course, it&#8217;s easy to get the db fired up on ubuntu, where I have the block is creating a simple user who can log on to the flippin&#8217; thing. All you mysql veterans out there will be stroking your beard wondering what all the fuss is about. So, to remind my self, here&#8217;s some pimple simple stuff&#8230;</p>
-
-<pre><code> grant all on DATABASENAME.* to 'NEWUSERNAME'@'localhost' identified by 'NEWPASSWORD';
-</code></pre>
-
-<p>Yeah, yeah, you could, should do a lot more with this, but for what I want, it just works&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -706,6 +779,14 @@ query.executeUpdate();
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
@@ -715,14 +796,6 @@ query.executeUpdate();
     
       <li class="post">
         <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
       </li>
     
   </ul>

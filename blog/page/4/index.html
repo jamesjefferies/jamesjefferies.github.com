@@ -9,7 +9,17 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="I&#8217;m having a look at the Liquibase product at the mo, mainly to help automate the database migrations for one of our clients. Currently the &hellip;">
+  <meta name="description" content="You may ask yourself this question - here is a little query from MySQL performance blog which may well help: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+SELECT count(*) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +87,128 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/12/29/how-big-are-my-mysql-tables/">How Big Are My MySQL Tables?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-29T13:41:15+00:00" pubdate data-updated="true">Dec 29<span>th</span>, 2010</time>
+        
+         | <a href="/2010/12/29/how-big-are-my-mysql-tables/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>You may ask yourself this question - here is a little query from <a href="http://www.mysqlperformanceblog.com/">MySQL performance blog</a> which may well help:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">TABLES</span><span class="p">,</span>
+</span><span class='line'><span class="k">TABLE_NAME</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">table_rows</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="k">rows</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="k">DATA</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="n">idx</span><span class="p">,</span>
+</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="o">+</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="n">total_size</span><span class="p">,</span>
+</span><span class='line'><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span> <span class="n">idxfrac</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">TABLES</span>
+</span><span class='line'><span class="k">group</span> <span class="k">by</span> <span class="k">TABLE_NAME</span>
+</span><span class='line'><span class="k">order</span> <span class="k">by</span> <span class="n">total_size</span> <span class="k">desc</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/12/29/getting-spring-and-liquibase-to-play-nicely/">Getting Spring and Liquibase to Play Nicely</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-29T11:08:40+00:00" pubdate data-updated="true">Dec 29<span>th</span>, 2010</time>
+        
+         | <a href="/2010/12/29/getting-spring-and-liquibase-to-play-nicely/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Liquibase comes with out of the box Spring integration, although there are few configuration options if you take this route. Straight after your web application is deployed, the Spring container will start - as it starts, it runs the Liquibase database migrations before the application is fully instantiated.</p>
+
+<p>Getting it working with v2.0.0 proved problematic, the way you get it working is to add the following to your Spring context (note clazz should be class, but is messes up the markup!)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;liquibase&quot;</span> <span class="na">clazz=</span><span class="s">&quot;liquibase.integration.spring.SpringLiquibase&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">ref=</span><span class="s">&quot;dataSource&quot;</span> <span class="na">name=</span><span class="s">&quot;dataSource&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;changeLog&quot;</span> <span class="na">value=</span><span class="s">&quot;classpath:db/changelog-master.xml&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;contexts&quot;</span> <span class="na">value=</span><span class="s">&quot;test, production&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>   
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>which is all well and good, except the SpringLiquibase class crashes on instantiation - it&#8217;s expecting a map named &#8216;parameters&#8217; to exist. Unfortunately, when you try and inject the map in to the class, that fails too as the Map can&#8217;t be set externally&#8230; looking at the code, you can see where it&#8217;s going wrong - fortunately, it has been fixed in the latest overnight snapshot build, so instead of using v2.0.0 I&#8217;m now using V2.0.1.SNAPSHOT</p>
+
+<p>I could have created my own implementation of SpringLiquibase - in fact this would have been my next step, but for now I&#8217;ll stick with the updated snapshot.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -569,105 +701,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/03/04/the-amazing-gnu-sed/">The Amazing GNU Sed</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-04T11:50:57+00:00" pubdate data-updated="true">Mar 4<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Goodness me, how have I managed for the last 19 years without sed editing inplace&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sed -i <span class="s1">&#39;s/old-fogey/new-fangled/g&#39;</span> *.james.documents.txt
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/02/26/the-arrival-of-the-little-nipper/">The Arrival of the Little Nipper</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-02-26T14:40:55+00:00" pubdate data-updated="true">Feb 26<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So we had a baby (planned)! At home (planned)! And there was no major damage to the house.. apart from fusing all the lights (unplanned), but you can&#8217;t win them all.</p>
-
-<p>Her name is Iris, she was 6lbs 6oz and is a real cutie.</p>
-
-<p>On Feb 3rd at around 5am, Clare woke up thinking contractions might have been starting. When I woke up an hour later, it hit me that maybe today was it, the beginning of the labour. In the back of my mind I was thinking that we might have a good 48 hours before our baby arrived so I didn&#8217;t need to get too worried, but I&#8217;d best phone work and stay at home to help Clare out. We were actually due 4 days later and often first babies are late, so we didn&#8217;t think we&#8217;d be in a rush.</p>
-
-<p>At around 10am we phoned the community midwife to ask her to come around. She arrived at 2pm and said that we had deffo started, but that it all could fizzle out or continue in to the next day. After she&#8217;d gone though, we were both relieved that things were ok (blood pressure and all that) so Clare went for a bath. It was around about now that things moved up a gear &amp; it started snowing.. a lot.</p>
-
-<p>I go the birthing pool ready and ran around the house trying to prepare everything and then at 5pm we phoned triage to ask for another midwife to come out as we were having three contractions in 10 minutes.</p>
-
-<p>The poor midwife had just managed to get home in the snow before turning around and coming to our house. She told us that if she couldn&#8217;t make it, she&#8217;d send an ambulance and we&#8217;d have to go in to hospital.. we really didn&#8217;t want that to happen..</p>
-
-<p>At around 6:30pm Clare&#8217;s waters broke - which wasn&#8217;t quite what I expected, I was pretty scared actually and called triage again to make sure all was ok. Midwife finally arrived at 7:15pm and we were amazed to find that we were at the 10 cm mark and ready to go!</p>
-
-<p>The midwife called for the second midwife ( you have two for home birth ) and for the baby resuscitation &amp; the gas &amp; air kit. Clare was just using a TENS machine for pain relief at this point as you&#8217;re not supposed to get in to the birthing pool until the midwife arrives, especially first time around. Unfortunately we were now too far gone for the pool, so we decamped to our bedroom.</p>
-
-<p>Iris by this time was facing the correct way, in the proper position and all seemed to be going well, phew. The second midwife arrived about 8pm, but the gas&#8217;n&#8217;air and resuscitation stuff didn&#8217;t arrive until about 15 minutes before Iris did, a close call - fortunately we didn&#8217;t need to use the resus equipment.</p>
-
-<p>Just after she was born, we had some kind of spillage, through the floorboards in our bedroom, in to the light rose of the sitting room which fused all the lights in the house. This wasn&#8217;t too much of a problem until we had to call out for the third midwife to do some repairs to Clare. These repairs were done using standard, anglepoise &amp; bedside lamps - coupled with a few candles for good measure! Very dramatic!</p>
-
-<p>Everyone left about 2:30am to leave the three of us, shattered, but happy!</p>
-
-<p><a href="http://www.flickr.com/photos/53005472@N00/4331197534/"><img src="http://farm5.static.flickr.com/4004/4331197534_09db5094d3_m.jpg" alt="P1000635" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -685,6 +718,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
@@ -694,14 +735,6 @@
     
       <li class="post">
         <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the rest of the news)</a>
       </li>
     
   </ul>

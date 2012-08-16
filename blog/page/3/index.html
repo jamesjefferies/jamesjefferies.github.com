@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Last summer, when I set up my own company, ShedCode, I was fortunate to be able share an office with 3 friends, all of whom I&#8217;d worked with &hellip;">
+  <meta name="description" content="I&#8217;m really chuffed to say that I&#8217;ve been successful in applying for a residency with the Happenstance Project. When I first heard about &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,54 +77,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/04/01/first-ish-impressions-site-gallery/">First-ish Impressions - Site Gallery</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-01T18:51:55+01:00" pubdate data-updated="true">Apr 1<span>st</span>, 2012</time>
-        
-         | <a href="/2012/04/01/first-ish-impressions-site-gallery/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last summer, when I set up my own company, ShedCode, I was fortunate to be able share an office with 3 friends, all of whom I&#8217;d worked with before. We were able to get an office on the top floor of the Site Gallery building, so my relationship with Site was already established on a different footing, that of a happy tenant.</p>
-
-<p>That is not to say that I had any real idea what happened in the building! Sure, there was a cafe and a shop, but I was not that familiar with the rest of the space, the actual gallery. I&#8217;d have a look at each new exhibition, but it was usually a quick zoom around whilst waiting for a coffee.</p>
-
-<p>Fast forward to this week, Tuesday 27th March 2012, when the Happenstance induction began and ignorance would no longer be an excuse! Leila (my co-technologist-in-residence) &amp; I spent a couple of days finding out much more about our place of work for the 10 weeks. We had many chats with the two directors, Laura Sillars and Judith Harry, sat in a staff meeting, had a tour around the secret rooms of the gallery, unearthed old AV kit, basked in the sun on one of the balconies, met our amazing mentor, James Boardwell, met our friendly researcher, Chris Bilton, went to our fantastic local pub, The Rutland Arms and visited some of the art spaces within a 10 minute walk of the Site.</p>
-
-<p>Now we have a much better idea of where Site Gallery sits in relation to the city of Sheffield, the UK and Internationally. The gallery is located a few minutes from the Railway Station, in the middle of a real creative area of the city. Apparently there are over 300 studio spaces within 10 minutes walk! We were fortunate to be able to have a sneak peak in some of these places, Yorkshire Art Space, Access Space, the Archipelago Works, Bloc and S1 Artspace. Many of these buildings I would walk past each day on the way to work, without realising that behind the walls, doors and windows, incredible things were taking place.</p>
-
-<p>As for Happenstance, well, I&#8217;m looking forward to working with Leila, we have different, yet hopefully, complementary skill sets and I feel I have a lot to learn from her. We&#8217;ve discussed some of the challenges that appeal to problem solving techies and we have a few ideas which we&#8217;ll be looking to explore further when we start officially after Easter. The Gallery itself has recently been going through a period of organisational and strategic change. Laura and Judith have been able to look, with fresh eyes, at the potential for growth of the organisation and it&#8217;s role as a connector within the city. I hope we can help!</p>
-
-<p>The first <em>real</em> impression I remember being able to do was Windy Miller from Camberwick Green. Well actually, it was Windy Miller&#8217;s windmill, but you know what I mean&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -575,20 +527,35 @@ path/to/eclipse/here
 
 <p>Add the util schema to your bean configuration xml</p>
 
-<pre><code>beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:util="http://www.springframework.org/schema/util"
-xsi:schemaLocation="
-http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-http://www.springframework.org/schema/util
-http://www.springframework.org/schema/util/spring-util-3.0.xsd"
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>    <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+</span><span class='line'>    <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>    <span class="na">xmlns:util=</span><span class="s">&quot;http://www.springframework.org/schema/util&quot;</span>
+</span><span class='line'>    <span class="na">xsi:schemaLocation=</span><span class="s">&quot;</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/beans</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/util</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/util/spring-util-3.0.xsd&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <p>and then you can just reference your constants as follows:&#8220;</p>
 
-<pre><code>util:constant static-field="com.foo.bar.RATE_2000_2950"
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;util:constant</span> <span class="na">static-field=</span><span class="s">&quot;com.foo.bar.RATE_2000_2950&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 </div>
   
   
@@ -747,6 +714,114 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/01/06/grails-spring-security-ldap/">Grails, Spring Security & Ldap</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-06T15:25:32+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/06/grails-spring-security-ldap/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At work we&#8217;re building a grails application which needs to authenticate users against our internal user directory using LDAP (Lightweight Directory something-or-other Protocol). Grails has two fantastic plugins to help here:</p>
+
+<ol>
+<li>Spring security plugin</li>
+<li>Spring security LDAP plugin</li>
+</ol>
+
+
+<p>Now, getting the LDAP plugin to work has proved somewhat problematic, partially because of me rushing ahead, partially because documentation isn&#8217;t quite as good as it could be. So to get the application to authenticate users with LDAP, there are two main ways of doing it.</p>
+
+<ol>
+<li>Password comparison (where you have to do your own password encoding)</li>
+<li>Bind authentication (where you pass on the username and password and let the LDAP directory authenticate)</li>
+</ol>
+
+
+<p>for some daft reason, I started off down the Password comparison route, which was made more problematic when I found out that our internal LDAP directory uses an archaic form of password encryption. Once I&#8217;d stopped and re-read the documentation, a little light came on in my head and I started trying to get it to work with Bind authentication - then it doesn&#8217;t matter how the password is encrypted, you&#8217;re delegating that task.</p>
+
+<p>The other part of the requirement is that the roles which will be retrieved following authentication will be from the application database (initially anyway) rather than the LDAP directory using a userDetailsService. So, to get everything working, the various Spring components need configuring manually, rather than relying on the plug in to do it.</p>
+
+<p>So - how did I get it working against a real LDAP directory once the Spring Security &amp; LDAP plugins are installed?</p>
+
+<p>Well, first, in the application configuration, set the ldap context:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>grails.plugins.springsecurity.ldap.context.server <span class="o">=</span> <span class="s1">&#39;ldap://this is the ip address of my ldap directory:this is the port used&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, in the resources.groovy spring configuration file, set up the following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">beans</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>     <span class="c1">// this gives the pattern for authenticating the user, as the user doesn&#39;t want to enter the whole thing, </span>
+</span><span class='line'>     <span class="c1">// just their unique id</span>
+</span><span class='line'>     <span class="n">myLdapAuthenticator</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ldap</span><span class="o">.</span><span class="na">authentication</span><span class="o">.</span><span class="na">BindAuthenticator</span><span class="o">,</span> <span class="n">ref</span><span class="o">(</span><span class="s2">&quot;contextSource&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>         <span class="n">userDnPatterns</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;uid={0},ou=People,dc=people,dc=somewhereorother,dc=int&#39;</span><span class="o">]</span>
+</span><span class='line'>     <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">// this overrides the default Authentication Provider with our authenticator and our user details service</span>
+</span><span class='line'>     <span class="n">ldapAuthProvider</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ldap</span><span class="o">.</span><span class="na">authentication</span><span class="o">.</span><span class="na">LdapAuthenticationProvider</span><span class="o">,</span>
+</span><span class='line'>        <span class="n">ref</span><span class="o">(</span><span class="s2">&quot;myLdapAuthenticator&quot;</span><span class="o">),</span>
+</span><span class='line'>        <span class="n">ref</span><span class="o">(</span><span class="s2">&quot;userDetailsService&quot;</span><span class="o">)</span>
+</span><span class='line'>     <span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">// defining our user details service</span>
+</span><span class='line'>     <span class="n">userDetailsService</span><span class="o">(</span><span class="n">com</span><span class="o">.</span><span class="na">companyname</span><span class="o">.</span><span class="na">service</span><span class="o">.</span><span class="na">UserDetailsService</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Now, when the application is started, spring security knows it needs to use LDAP to do it&#8217;s business and once it&#8217;s authenticated, it needs to use our user details service to return the list of roles. Hurrah!</p>
+
+<p>PS - nearly forgot - to use the userDetailsService for retrieving the roles, it has to implement the org.springframework.security.ldap.userdetails.LdapAuthoritiesPopulator interface, returning a collection of org.springframework.security.core.GrantedAuthority</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -772,15 +847,15 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd"
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
-      </li>
-    
-      <li class="post">
         <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
       <li class="post">
         <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
       </li>
     
   </ul>

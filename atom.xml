@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-16T14:54:17+01:00</updated>
+  <updated>2012-08-16T15:16:09+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -111,15 +111,6 @@ end</code></pre></noscript></div>
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Build A Network Rail Data Feed Teletyper]]></title>
-    <link href="http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper/"/>
-    <updated>2012-08-16T10:51:00+01:00</updated>
-    <id>http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
@@ -430,8 +421,6 @@ end</code></pre></noscript></div>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="no">Stomp</span><span class="o">::</span><span class="no">Message</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message-id&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ID:blahblah&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436026840&quot;</span><span class="p">,</span> <span class="s2">&quot;expires&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436326840&quot;</span><span class="p">,</span> <span class="s2">&quot;persistent&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;priority&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;4&quot;</span><span class="p">}</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;[{&quot;CA_MSG&quot;:{&quot;to&quot;:&quot;1234&quot;,&quot;time&quot;:&quot;1341435963000&quot;,&quot;area_id&quot;:&quot;WH&quot;,&quot;msg_type&quot;:&quot;CA&quot;,&quot;from&quot;:&quot;5678&quot;,&quot;descr&quot;:&quot;1Z99&quot;}}]&#39;</span> <span class="n">command</span><span class="o">=</span><span class="s1">&#39;MESSAGE&#39;</span> <span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p></p>
 
 <p>Ultimately of course, you&#8217;d process the JSON from the body and do something with it.</p>
 
@@ -784,17 +773,36 @@ end</code></pre></noscript></div>
 
 <p>We don&#8217;t have many horses heading up and down hills any more, nor are our houses mean, but it does feel like we are missing a bit of a trick. The city centre has its ups and downs, steps, ramps and in one particular office block, a slide..</p>
 
-<p>http://www.youtube.com/watch?v=twA_mVMgMY8</p>
+<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=twA_mVMgMY8' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
 
 <p>So if an office building can have that, how about a slide in some other parts of the city. At this point I should fire up a photo editing app with a picture of the site in the city and overlay an amazing &#8216;artist&#8217;s impression&#8217; of a slide. Maybe I&#8217;ll do that another time. For now though, here is an example of some outdoor thinking in the Netherlands at an entrance to a railway station in Utrecht</p>
 
-<p>http://www.youtube.com/watch?v=d1uurSegIH4</p>
+<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=d1uurSegIH4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
 
 <p>This is what we want, some super duper slides installed, imagine what an economic edge it would give to Sheffield!</p>
 
 <p>In the mean time, until we do get more slides, here is one way of getting down an escalator in a hurry&#8230;</p>
 
-<p>http://www.youtube.com/watch?v=fFqQOlYE4EE</p>
+<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=fFqQOlYE4EE' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[First-ish impressions - Site Gallery]]></title>
+    <link href="http://jamesjefferies.com/2012/04/01/first-ish-impressions-site-gallery/"/>
+    <updated>2012-04-01T18:51:55+01:00</updated>
+    <id>http://jamesjefferies.com/2012/04/01/first-ish-impressions-site-gallery</id>
+    <content type="html"><![CDATA[<p>Last summer, when I set up my own company, ShedCode, I was fortunate to be able share an office with 3 friends, all of whom I&#8217;d worked with before. We were able to get an office on the top floor of the Site Gallery building, so my relationship with Site was already established on a different footing, that of a happy tenant.</p>
+
+<p>That is not to say that I had any real idea what happened in the building! Sure, there was a cafe and a shop, but I was not that familiar with the rest of the space, the actual gallery. I&#8217;d have a look at each new exhibition, but it was usually a quick zoom around whilst waiting for a coffee.</p>
+
+<p>Fast forward to this week, Tuesday 27th March 2012, when the Happenstance induction began and ignorance would no longer be an excuse! Leila (my co-technologist-in-residence) &amp; I spent a couple of days finding out much more about our place of work for the 10 weeks. We had many chats with the two directors, Laura Sillars and Judith Harry, sat in a staff meeting, had a tour around the secret rooms of the gallery, unearthed old AV kit, basked in the sun on one of the balconies, met our amazing mentor, James Boardwell, met our friendly researcher, Chris Bilton, went to our fantastic local pub, The Rutland Arms and visited some of the art spaces within a 10 minute walk of the Site.</p>
+
+<p>Now we have a much better idea of where Site Gallery sits in relation to the city of Sheffield, the UK and Internationally. The gallery is located a few minutes from the Railway Station, in the middle of a real creative area of the city. Apparently there are over 300 studio spaces within 10 minutes walk! We were fortunate to be able to have a sneak peak in some of these places, Yorkshire Art Space, Access Space, the Archipelago Works, Bloc and S1 Artspace. Many of these buildings I would walk past each day on the way to work, without realising that behind the walls, doors and windows, incredible things were taking place.</p>
+
+<p>As for Happenstance, well, I&#8217;m looking forward to working with Leila, we have different, yet hopefully, complementary skill sets and I feel I have a lot to learn from her. We&#8217;ve discussed some of the challenges that appeal to problem solving techies and we have a few ideas which we&#8217;ll be looking to explore further when we start officially after Easter. The Gallery itself has recently been going through a period of organisational and strategic change. Laura and Judith have been able to look, with fresh eyes, at the potential for growth of the organisation and it&#8217;s role as a connector within the city. I hope we can help!</p>
+
+<p>The first <em>real</em> impression I remember being able to do was Windy Miller from Camberwick Green. Well actually, it was Windy Miller&#8217;s windmill, but you know what I mean&#8230;</p>
 ]]></content>
   </entry>
   

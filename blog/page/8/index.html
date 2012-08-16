@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Got caught out with a gotcha last night which I &#8216;solved&#8217; this morning. I hate leaving work with an annoying problem, but I knew I was too &hellip;">
+  <meta name="description" content="I used to know Ingres RDBMS pretty well and then got well in to Oracle, in fact, I&#8217;ve got 7 years of Oracle experience probably. Unfortunately &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,93 +77,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/03/using-dml-for-an-update-with-hibernatejpa/">Using DML for an Update With hibernate/JPA</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-03T09:05:25+00:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Got caught out with a gotcha last night which I &#8216;solved&#8217; this morning. I hate leaving work with an annoying problem, but I knew I was too tired to get it clear in my head.  So, I was doing a direct update to an object in the database using</p>
-
-<pre><code>Query query = entityManager.createQuery("Update Foo f set f.value = :value where f.key = :key");
-query.executeUpdate();
-</code></pre>
-
-<p>Which works, the database gets updated. However by doing the update directly the hibernate persistence context is bypassed so although the db is sorted, hibernate is blissfully ignorant of what you&#8217;ve done. Yes, what YOU have done!</p>
-
-<p>So, one way to get around this is to ask hibernate to refresh what it knows about the object using the entity manager (by the way, the entity manager is JPA&#8217;s equivalent of the hibernate session manager).</p>
-
-<pre><code>entityManager.refresh(theFoo);
-</code></pre>
-
-<p>Or.. I guess you could retrieve the Foo object, update it and then save it and you wouldn&#8217;t have got in this pickle in the first place&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/02/the-art-of-progamming-the-1k-zx81/">The Art of Progamming the 1K ZX81&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-02T09:07:13+00:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>.. is a book I rediscovered over the weekend. Forget your design patterns, social networking, annotated, concurrent, peristent, webby crap and build yourself a lunar lander.. in less than 1K.</p>
-
-<p>It even has a two line random word generator, that&#8217;s better than the one I built the other week!</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -647,6 +560,83 @@ deb http://www.backports.org/debian etch-backports main non-free
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/11/i-know-nothing/">I Know Nothing!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-11T10:06:38+00:00" pubdate data-updated="true">Nov 11<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>about PHP..</p>
+
+<p>so todays tip is adding the var dump at the beginning of the page to find out what the chuff is going on:</p>
+
+<p>&lt;?php
+var_dump($_SERVER);</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/10/17/tomact-thread-dump/">Tomact Thread Dump</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-17T10:51:51+01:00" pubdate data-updated="true">Oct 17<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>wondering what tomcat is doing? kill -QUIT <pid> will do a thread dump to $TOMCAT_HOME/logs/catalina.out - very interesting!</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -672,15 +662,15 @@ deb http://www.backports.org/debian etch-backports main non-free
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
-      </li>
-    
-      <li class="post">
         <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
       <li class="post">
         <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
       </li>
     
   </ul>

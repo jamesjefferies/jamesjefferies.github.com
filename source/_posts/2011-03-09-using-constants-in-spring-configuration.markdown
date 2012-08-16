@@ -15,25 +15,20 @@ Whilst doing some re-work on a loan calculator, I wanted to move the configurati
 
 Add the util schema to your bean configuration xml
 
+``` xml
 
-    
-    
-    beans xmlns="http://www.springframework.org/schema/beans"
+    <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:util="http://www.springframework.org/schema/util"
     xsi:schemaLocation="
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/util
-    http://www.springframework.org/schema/util/spring-util-3.0.xsd"
-    
-
-
+    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+``` 
 
 and then you can just reference your constants as follows:``
 
-
-    
-    
-    util:constant static-field="com.foo.bar.RATE_2000_2950"
-    
+``` xml 
+    <util:constant static-field="com.foo.bar.RATE_2000_2950" />
+```    

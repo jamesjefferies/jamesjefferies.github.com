@@ -13,3 +13,5 @@ footer: true
 Last year he turned freelance with his own company, ShedCode, and is now able to work on the kind of projects he always dreamt about. The first of those projects was [Happenstance](http://happenstanceproject.com), a Digital R&D funded project where he was Technologist in Residence at Site Gallery, Sheffield.
 
 You can watch his [TEDx talk](http://tedxtalks.ted.com/video/TEDxSheffield-2012-Leila-Johnst) about the Happenstance project.
+
+<a href="http://uk.linkedin.com/in/jamesjefferies"><img src="http://www.linkedin.com/img/webpromo/btn_profile_greytxt_80x15.png" width="80" height="15" border="0" alt="View James Jefferies's profile on LinkedIn"></a>

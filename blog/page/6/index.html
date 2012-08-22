@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="try saying &#8220;Spring configuration namespace resolution&#8221; with a mouthful of tea. Anyway, from Spring 2.5, one can use the new namespace &hellip;">
+  <meta name="description" content="svn diff is nice but not very configurable&#8230; fear not! 1
+svn diff --diff-cmd diff -x -uw /path/to/file will save the day. this tells svn diff to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/09/04/svn-diff-ignoring-whitespace/">Svn Diff Ignoring Whitespace</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-04T18:05:02+01:00" pubdate data-updated="true">Sep 4<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>svn diff is nice but not very configurable&#8230; fear not!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn diff --diff-cmd diff -x -uw /path/to/file
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will save the day. this tells svn diff to use diff with the -uw flags. Brill&#8230;</p>
+
+<p>now to get it working with my favourite diff, sdiff!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -589,95 +635,6 @@ private Date startDate;</code></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/14/java-dates-and-times/">Java Dates and Times&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-14T10:38:17+01:00" pubdate data-updated="true">Apr 14<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>.. have always been a bit of a crock. Lumpy and confusing. Apache common date utils have helped, but still you end up witing unintuitive code.</p>
-
-<p>Many in the java community were hoping that JSR 310 was going to save the day, but it is looking more and more likely that it will not now make the cut for JDK 7. So, where does that leave us?</p>
-
-<p>Hello <a href="http://joda-time.sourceforge.net/">Joda-Time</a>!</p>
-
-<p>So, the drive behind JSR 310 was really incorporating Joda-Time in to the java specification. I&#8217;ve only just discovered Joda-Time and haven&#8217;t used it in anger, but I really wish I&#8217;d found it sooner and will be looking to take it out for a spin at the earliest opportunity.</p>
-
-<p>this, from the overview page gives you a tast of what Joda-Time gives you&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAfterPayDay</span><span class="o">(</span><span class="n">DateTime</span> <span class="n">datetime</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span> <span class="k">if</span> <span class="o">(</span><span class="n">datetime</span><span class="o">.</span><span class="na">getMonthOfYear</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>   <span class="c1">// February is month 2!!</span>
-</span><span class='line'><span class="err"> </span>   <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">26</span><span class="o">;</span>
-</span><span class='line'><span class="err"> </span> <span class="o">}</span>
-</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">28</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="n">Days</span> <span class="nf">daysToNewYear</span><span class="o">(</span><span class="n">LocalDate</span> <span class="n">fromDate</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err"> </span> <span class="n">LocalDate</span> <span class="n">newYear</span> <span class="o">=</span> <span class="n">fromDate</span><span class="o">.</span><span class="na">plusYears</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="na">withDayOfYear</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">Days</span><span class="o">.</span><span class="na">daysBetween</span><span class="o">(</span><span class="n">fromDate</span><span class="o">,</span> <span class="n">newYear</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isRentalOverdue</span><span class="o">(</span><span class="n">DateTime</span> <span class="n">datetimeRented</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err"> </span> <span class="n">Period</span> <span class="n">rentalPeriod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Period</span><span class="o">().</span><span class="na">withDays</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="na">withHours</span><span class="o">(</span><span class="mi">12</span><span class="o">);</span>
-</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">datetimeRented</span><span class="o">.</span><span class="na">plus</span><span class="o">(</span><span class="n">rentalPeriod</span><span class="o">).</span><span class="na">isBeforeNow</span><span class="o">();</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">getBirthMonthText</span><span class="o">(</span><span class="n">LocalDate</span> <span class="n">dateOfBirth</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err"> </span> <span class="k">return</span> <span class="n">dateOfBirth</span><span class="o">.</span><span class="na">monthOfYear</span><span class="o">().</span><span class="na">getAsText</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -695,6 +652,10 @@ private Date startDate;</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/22/setting-up-a-fresh-debian-server/">Setting up a Fresh Debian Server</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
       </li>
     
@@ -708,10 +669,6 @@ private Date startDate;</code></p>
     
       <li class="post">
         <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/01/moving-from-wordpress-to-octopress/">Moving from WordPress to Octopress</a>
       </li>
     
   </ul>

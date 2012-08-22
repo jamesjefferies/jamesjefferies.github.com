@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-21T11:13:20+01:00</updated>
+  <updated>2012-08-22T14:57:51+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,181 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Setting up a Fresh Debian Server]]></title>
+    <link href="http://jamesjefferies.com/2012/08/22/setting-up-a-fresh-debian-server/"/>
+    <updated>2012-08-22T14:41:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/22/setting-up-a-fresh-debian-server</id>
+    <content type="html"><![CDATA[<h2>Accessing the server</h2>
+
+<p>Once set up, you will have the IP address, in the form 123.456.789.012 and the root password. This means you will be able to log on to the server using ssh (secure shell), i.e.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh root@123.456.789.012</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You will get a message along the lines of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>The authenticity of host '123.456.789.012(123.456.789.012)' can't be established. RSA key fingerprint is blah blah bla
+</span><span class='line'>Are you sure you want to continue connecting (yes/no)?</span></code></pre></td></tr></table></div></figure>
+
+
+<p>to which you will reply</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yes</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and you will then get</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Warning: Permanently added '123.456.789.012' (RSA) to the list of known hosts.
+</span><span class='line'>root@123.456.789.012's password: </span></code></pre></td></tr></table></div></figure>
+
+
+<p>which is when you can enter your password. Hopefully then you&#8217;ll be logged on to the server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>blah blah blah snip…
+</span><span class='line'>servername:~# </span></code></pre></td></tr></table></div></figure>
+
+
+<h3>First things first</h3>
+
+<p>Root access is the super user for your server. You really don&#8217;t want to have people being able to log on to your server as root. What you really need is to have user accounts which people can use to log on, and if/when required, they can get super user privileges to do whatever they need to do.</p>
+
+<p>What we are going to do is to stop root being able to secure shell straight in to the server, create a new user account to use for our admin (with upgradable privileges) and run ssh on a different port to deter basic attacks.</p>
+
+<h3>Change root&#8217;s password!</h3>
+
+<p>So you have a default root password - CHANGE IT to a new one! From a root prompt, use <code>passwd</code> to change the password</p>
+
+<h3>Adding a new user</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>adduser james</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Will create a new user, called James - you can add in extra details as you go like full name etc.</p>
+
+<p>Now we want to allow james a bit of privilege, not by default though, but by using the sudo command.</p>
+
+<h4>Aside - setting default editor to be vi</h4>
+
+<p>By default, for all users, you may want to use vi as your editor (ok, you may not, but I do!) so add the following to <code>/etc/profile</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>EDITOR=vi
+</span><span class='line'>export EDITOR</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Giving the new user sudo privileges</h3>
+
+<p>The application <code>visudo</code> is your friend. You edit the config file and then sudo does the rest. When you open the file, you&#8217;ll see a section with:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># User privilege specification
+</span><span class='line'>root    ALL=(ALL) ALL
+</span><span class='line'>admin ALL = (ALL) ALL
+</span><span class='line'>james ALL = (ALL) ALL</span></code></pre></td></tr></table></div></figure>
+
+
+<p>By adding my own entry, it allows me to upgrade my user to super user privileges for all actions. You can limit the commands which users can run if you like using this, but if you are going to be the super user, you probably want to leave it as all.</p>
+
+<h2>Sorting out access</h2>
+
+<p>Let&#8217;s stop people attempting to log on to the server as <a href="http://www.howtogeek.com/howto/linux/security-tip-disable-root-ssh-login-on-linux/">root via ssh</a> and also to run ssh on a different port than the default. There is a lot of good advice <a href="http://www.foogazi.com/2006/11/29/modify-ssh-to-maximize-security/">here</a></p>
+
+<h3>Amend port</h3>
+
+<p>The default port is 22, change this to something else, which isn&#8217;t being used by anything else</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># What ports, IPs and protocols we listen for
+</span><span class='line'>Port 60</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Stop root login</h3>
+
+<p>Now stop people logging in as root</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PermitRootLogin no</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Some other bits</h3>
+
+<p>Give maximum number of log in attempts to be 3, only allow james to login.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MaxAuthTries 3
+</span><span class='line'>AllowUsers james </span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Restart sshd</h3>
+
+<p>As root (or sudo)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/init.d/ssh restart</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now try logging in remotely from a different shell (i.e. keep the one you&#8217;ve just restarted sshd on open in case you have any problems!)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -p60 james@123.456.789.0123</span></code></pre></td></tr></table></div></figure>
+
+
+<p>obviously set the p to be the port you set earlier.</p>
+
+<h3>Stop chancers getting in</h3>
+
+<p>It&#8217;s also a good idea to stop people attempting to log on to your server using common passwords, usernames etc. A good way to do this is to install the <a href="http://en.wikipedia.org/wiki/Fail2ban">fail2ban</a> which goes some way to banning people trying to brute force their way in to your server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install fail2ban</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Default settings are pretty good here.</p>
+
+<h2>Firewall configuration</h2>
+
+<p>UFW or Uncomplicated Firewall is a good first port of call for securing your shiny new server. You can install it as root with</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install ufw</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, unlike fail2ban, ufw is installed switched off. You need to configure a few things before getting it up and running and providing that extra security. By default ALL ports are shut, so make sure you&#8217;ve opened up the ones you need before switching the firewall on!</p>
+
+<p>For example, if you&#8217;ve set up your ssh to run on port 60, then you need to run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ufw allow 60</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you&#8217;re going to be running apache on port 80 (the usual)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ufw allow 80</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here are a few <a href="http://www.mmncs.com/2011/07/this-guide-shows-howto-install-and-setup-uncomplicatedfirewall-ufw-on-linux-ubuntu-10-04-and-11-04-and-other-debian-distributions/">notes</a></p>
+
+<p>Don&#8217;t forget to run <code>ufw enable</code> when you are ready! <code>ufw status</code> tells you what is set up.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[From MySQL datadump to mongo]]></title>
@@ -784,25 +959,6 @@ end</code></pre></noscript></div>
 <p>In the mean time, until we do get more slides, here is one way of getting down an escalator in a hurry&#8230;</p>
 
 <p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=fFqQOlYE4EE' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[First-ish impressions - Site Gallery]]></title>
-    <link href="http://jamesjefferies.com/2012/04/01/first-ish-impressions-site-gallery/"/>
-    <updated>2012-04-01T18:51:55+01:00</updated>
-    <id>http://jamesjefferies.com/2012/04/01/first-ish-impressions-site-gallery</id>
-    <content type="html"><![CDATA[<p>Last summer, when I set up my own company, ShedCode, I was fortunate to be able share an office with 3 friends, all of whom I&#8217;d worked with before. We were able to get an office on the top floor of the Site Gallery building, so my relationship with Site was already established on a different footing, that of a happy tenant.</p>
-
-<p>That is not to say that I had any real idea what happened in the building! Sure, there was a cafe and a shop, but I was not that familiar with the rest of the space, the actual gallery. I&#8217;d have a look at each new exhibition, but it was usually a quick zoom around whilst waiting for a coffee.</p>
-
-<p>Fast forward to this week, Tuesday 27th March 2012, when the Happenstance induction began and ignorance would no longer be an excuse! Leila (my co-technologist-in-residence) &amp; I spent a couple of days finding out much more about our place of work for the 10 weeks. We had many chats with the two directors, Laura Sillars and Judith Harry, sat in a staff meeting, had a tour around the secret rooms of the gallery, unearthed old AV kit, basked in the sun on one of the balconies, met our amazing mentor, James Boardwell, met our friendly researcher, Chris Bilton, went to our fantastic local pub, The Rutland Arms and visited some of the art spaces within a 10 minute walk of the Site.</p>
-
-<p>Now we have a much better idea of where Site Gallery sits in relation to the city of Sheffield, the UK and Internationally. The gallery is located a few minutes from the Railway Station, in the middle of a real creative area of the city. Apparently there are over 300 studio spaces within 10 minutes walk! We were fortunate to be able to have a sneak peak in some of these places, Yorkshire Art Space, Access Space, the Archipelago Works, Bloc and S1 Artspace. Many of these buildings I would walk past each day on the way to work, without realising that behind the walls, doors and windows, incredible things were taking place.</p>
-
-<p>As for Happenstance, well, I&#8217;m looking forward to working with Leila, we have different, yet hopefully, complementary skill sets and I feel I have a lot to learn from her. We&#8217;ve discussed some of the challenges that appeal to problem solving techies and we have a few ideas which we&#8217;ll be looking to explore further when we start officially after Easter. The Gallery itself has recently been going through a period of organisational and strategic change. Laura and Judith have been able to look, with fresh eyes, at the potential for growth of the organisation and it&#8217;s role as a connector within the city. I hope we can help!</p>
-
-<p>The first <em>real</em> impression I remember being able to do was Windy Miller from Camberwick Green. Well actually, it was Windy Miller&#8217;s windmill, but you know what I mean&#8230;</p>
 ]]></content>
   </entry>
   

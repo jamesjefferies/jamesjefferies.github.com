@@ -176,7 +176,13 @@
 
 <h3>Giving the new user sudo privileges</h3>
 
-<p>The application <code>visudo</code> is your friend. You edit the config file and then sudo does the rest. When you open the file, you&#8217;ll see a section with:</p>
+<p>You may need to install sudo if it isn&#8217;t already installed on your server. It&#8217;s a simple case of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install sudo</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, the application <code>visudo</code> is your friend. You edit the config file using visudo and then sudo does the rest. When you open the file, you&#8217;ll see a section with:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

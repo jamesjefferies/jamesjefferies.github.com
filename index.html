@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Accessing the server Once set up, you will have the IP address, in the form 123.456.789.012 and the root password. This means you will be able to log &hellip;">
+  <meta name="description" content="So, your server is set up and raring to go. Please see my earlier blogpost on getting the server to this point.. next! Install Apache2 Let&#8217;s &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,247 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/22/setting-up-wordpress/">Setting Up WordPress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T15:07:00+01:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+        
+         | <a href="/2012/08/22/setting-up-wordpress/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So, your server is set up and raring to go. Please see my <a href="http://jamesjefferies.com/2012/08/22/setting-up-a-fresh-debian-server/">earlier blogpost</a> on getting the server to this point.. next!</p>
+
+<h2>Install Apache2</h2>
+
+<p>Let&#8217;s get our web server up and running by installing apache</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install apache2</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and check it is up and running with <code>http://123.456.789.012</code> in your friendly web browser.</p>
+
+<h2>Configure Apache2 for low memory usage</h2>
+
+<p>With previous virtual servers, I&#8217;ve found that Apache needs a bit of tweaking to support WordPress load. I found this useful <a href="http://imperialwicket.com/tuning-apache-for-a-low-memory-server-like-aws-micro-ec2-instances">post</a> about tweaking apache. The nuts and bolts are to amend some of the settings in your <code>/etc/apache2/apache.conf</code> as follows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Timeout 30
+</span><span class='line'>KeepAlive On
+</span><span class='line'>MaxKeepAliveRequests 50
+</span><span class='line'>KeepAliveTimeout 10
+</span><span class='line'>
+</span><span class='line'>&lt;IfModule mpm_prefork_module&gt;
+</span><span class='line'>    StartServers          5
+</span><span class='line'>    MinSpareServers       5
+</span><span class='line'>    MaxSpareServers      10
+</span><span class='line'>    MaxClients          150
+</span><span class='line'>    MaxRequestsPerChild   0
+</span><span class='line'>&lt;/IfModule&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Setting up virtual host with apache</h2>
+
+<p>A very simple set up would be to create the following <code>/etc/apache2/sites-available/myacedomainname.com</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#Ensure that Apache listens on port 80
+</span><span class='line'>#Listen 80 (note uncomment this with ports.conf set to 80 and you will experience a WORLD of pain!)
+</span><span class='line'>
+</span><span class='line'># Listen for virtual host requests on all IP addresses
+</span><span class='line'>NameVirtualHost *:80
+</span><span class='line'>
+</span><span class='line'>&lt;VirtualHost *:80&gt;
+</span><span class='line'>DocumentRoot /var/www/myacedomainname.com
+</span><span class='line'>ServerName www.myacedomainname.com
+</span><span class='line'>
+</span><span class='line'># Other directives here
+</span><span class='line'>
+</span><span class='line'>&lt;/VirtualHost&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Enable site (and other useful commands)</h2>
+
+<p>Create that file in sites-available and use the following commands to enable/disable - they will give you options when they run as to which sites you want to enable/disable</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo a2ensite
+</span><span class='line'>sudo a2dissite</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Force reload configuration?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo  /etc/init.d/apache2 force-reload</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install PHP</h2>
+
+<p>Ok, well to get WordPress running, we&#8217;re going to need some PHP, so get it installed</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install php5 libapache2-mod-php5</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install MySQL</h2>
+
+<p>And we&#8217;ll need a database too</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mysql-server mysql-client php5-mysql</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If already installed, but you want to reset it so you can set root password etc, give it a bit of this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg-reconfigure mysql-server-5.1</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Migrating a site from another provider</h2>
+
+<h3>Database gubbins</h3>
+
+<p>Get a database dump from your old site, either using PHPMyAdmin if installed, or doing a dump from the command line using <code>mysqldump</code>. Hopefully at the end of that process you&#8217;ll be able to import the dump in to your new set up with a bit of:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -uroot -p &lt; databasedump.sql</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The dump may contain a create database statement to create the database, right at the top along the lines of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE DATABASE `db1234` DEFAULT CHARACTER SET latin1 COLLATE latin1_german2_ci; USE db1234;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you&#8217;ll need to create a database user for WordPress to use. So make sure you&#8217;ve got a file dump of your WordPress installation, either by command line, or the hosting admin suite, or an FTP application or whatever you&#8217;re comfortable with. You&#8217;re going to need your wp-config.php file which will tell you how your existing WordPress site is set up. This is the bit you need to look at for now</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/** The name of the database for WordPress */
+</span><span class='line'>define('DB_NAME', 'db1234');
+</span><span class='line'>
+</span><span class='line'>/** MySQL database username */
+</span><span class='line'>define('DB_USER', 'dbuser');
+</span><span class='line'>
+</span><span class='line'>/** MySQL database password */
+</span><span class='line'>define('DB_PASSWORD', 'dbpassword');
+</span><span class='line'>
+</span><span class='line'>/** MySQL hostname */
+</span><span class='line'>define('DB_HOST', 'localhost');
+</span><span class='line'>
+</span><span class='line'>/** Database Charset to use in creating database tables. */
+</span><span class='line'>define('DB_CHARSET', 'utf8');
+</span><span class='line'>
+</span><span class='line'>/** The Database Collate type. Don't change this if in doubt. */
+</span><span class='line'>define('DB_COLLATE', '');</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So in your existing set up you have a database user called <code>dbuser</code> with password <code>dbpassword</code> so create that user in your new setup as follows</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grant all on db1234.* to 'dbuser'@'localhost' identified by 'dbpassword';</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then make sure it works with a bit of <code>mysql -udbuser -Ddb1234 -p</code> enter your password and hopefully you are in.</p>
+
+<h3>Filesystem</h3>
+
+<p>Now get that dump of the filesystem you have and unpack it in <code>/var/www/myacedomain.com</code> or whatever you set in your virtual hosts configuration earlier. You may need to change the ownership of everything, including that directory to www-data with a bit of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chown -R www-data:www-data /var/www/myacedomain.com</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+and check the permissions too, directories should be set to 755 and files to 644. You can enforce this with</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo find . -type f -print | sudo xargs chmod 644  # Files
+</span><span class='line'>sudo find . -type d -print | sudo xargs chmod 755  # Directories</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It is entirely possible that after all this, you can now hit <code>http://myacedomain.com</code> or <code>http://123.456.789.012</code> and see your migrated WordPress site!</p>
+
+<h3>UTF-8 issues</h3>
+
+<p>Now, one issue I&#8217;ve had in the past is problems with UTF-8 conversion. I.e. the posts you&#8217;ve migrated end up with funny characters like â€“ â€œ â€™ â€ - you can tell if this is causing you grief because you see the characters mixed up in your posts, but if you comment out these lines (by adding // in front) in your WordPress config, then they.. ahem, magically go away</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>define('DB_CHARSET', 'utf8');
+</span><span class='line'>define('DB_COLLATE', '');</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Best not to do that though, you <em>can</em> use the <a href="http://wordpress.org/extend/plugins/search-and-replace/">search and replace</a> WordPress plugin to replace all the dodgy characters in the database. Find &#8220;â&#8221; and replace with &#8220;&#8221; - hooray!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -987,54 +1228,6 @@ end</code></pre></noscript></div>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the End of the Happenstance</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-22T18:16:55+01:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2012</time>
-        
-         | <a href="/2012/06/22/week-10-the-end-of-the-happenstance/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>At our Open House yesterday we had an &#8216;In conversation&#8217; kind of thing with our mentor <a href="http://twitter.com/jamesb">James Boardwell</a> and what we thought would be a chat for 30 minutes or so, ended up being nearer to 2 hours! I knew we could talk about the last 10 weeks of Happenstance, that we had ideas and theories about what happened and why, but I hadn&#8217;t anticipated there being so much to talk about&#8230; in front of an audience!</p>
-
-<p>When I went freelance last summer and set up my company, ShedCode, I was planning on doing some client work and in between, hopefully working on some of my own ideas to see what would happen. In the end I did 99% client work and was planning, at some point, to pause and work on my stuff.</p>
-
-<p>That&#8217;s when Happenstance came along and it is fair to say that I thought at the beginning that Happenstance may have been a pleasant and interesting detour for my career as a Software Engineer/Developer and Techie. Instead of returning back to the path I was treading before Happenstance, I&#8217;ve finished the project on what feels like a completely different path, going who knows where!</p>
-
-<p>Helping an arts organisation learn new things, to be inspiring and to fix stuff is what I thought would happen. We did some of that, but also I learnt what a Technologist could be, that we could make things, real things with lives of their own which will live on after the project has finished. I&#8217;ve met new people, made friends and found out about interesting things. An interest in electronics has been rekindled, thanks to arduinos and I&#8217;ve started to pick up some Ruby and a bit of Rails. Speaking at Future Everything, TedX Sheffield and at the Open Houses has given me some confidence in public speaking.</p>
-
-<p>People have been so encouraging! Thanks to all who have had kind words to say, shared their knowledge, wisdom, contacts, experience, advice, tea and biscuits. Thanks too to those at <a href="http://sitegallery.org">Site</a> who have been incredibly open, helpful and friendly during the project, I&#8217;ve really appreciated it. Special thanks of course go to my co-resident, <a href="http://finalbullet.com">Leila</a>, who has put up with some of my more, er, random ideas, given me confidence to do stuff, been a great sounding board, co-speaker and partner in crime. She&#8217;s been so generous to me and I think we&#8217;ve been a great team (even if I say so myself!). I hope we can work together on more stuff soon!</p>
-
-<p>I wrote a couple of blog posts about what to do next, both for me in <a href="http://jamesjefferies.com/2012/05/31/whatever-next/">general</a> and <a href="http://jamesjefferies.com/2012/06/15/whatever-next-the-technical-stuff/">technically</a> and really it&#8217;s a work in progress. We&#8217;ve got debrief next week, then I&#8217;m on holiday for a couple of weeks. I think I really need a break, but I don&#8217;t want to lose the momentum I&#8217;ve built up during Happenstance. So, those who&#8217;ve become my friends over the last 10 weeks and those who&#8217;ve known me for ages, don&#8217;t let me slip in to old habits and ways &amp; please bear with me as I bounce ideas around like fleas on space hoppers. I hope that life post-Happenstance is going to get even more interesting!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1050,6 +1243,10 @@ end</code></pre></noscript></div>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/22/setting-up-wordpress/">Setting up WordPress</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/22/setting-up-a-fresh-debian-server/">Setting up a Fresh Debian Server</a>
       </li>
     
@@ -1063,10 +1260,6 @@ end</code></pre></noscript></div>
     
       <li class="post">
         <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
       </li>
     
   </ul>

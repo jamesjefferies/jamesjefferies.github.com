@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Last summer, when I set up my own company, ShedCode, I was fortunate to be able share an office with 3 friends, all of whom I&#8217;d worked with &hellip;">
+  <meta name="description" content="Sheffield is the city of Seven Hills, George Orwell wrote in &#8216;Road to Wigan Pier&#8217; &#8220;The town is very hilly (said to be built on &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,60 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/04/17/something-inspiring-for-sheffield/">Something Inspiring.. For Sheffield!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-17T17:54:52+01:00" pubdate data-updated="true">Apr 17<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/17/something-inspiring-for-sheffield/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sheffield is the city of Seven Hills, George Orwell wrote in &#8216;Road to Wigan Pier&#8217;</p>
+
+<blockquote><p>&#8220;The town is very hilly (said to be built on seven hills, like Rome) and everywhere streets of mean little houses blackened by smoke run up at sharp angles, paved with cobbles which are purposely set unevenly to give horses etc, a grip&#8221;</p></blockquote>
+
+<p>We don&#8217;t have many horses heading up and down hills any more, nor are our houses mean, but it does feel like we are missing a bit of a trick. The city centre has its ups and downs, steps, ramps and in one particular office block, a slide..</p>
+
+<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=twA_mVMgMY8' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+
+<p>So if an office building can have that, how about a slide in some other parts of the city. At this point I should fire up a photo editing app with a picture of the site in the city and overlay an amazing &#8216;artist&#8217;s impression&#8217; of a slide. Maybe I&#8217;ll do that another time. For now though, here is an example of some outdoor thinking in the Netherlands at an entrance to a railway station in Utrecht</p>
+
+<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=d1uurSegIH4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+
+<p>This is what we want, some super duper slides installed, imagine what an economic edge it would give to Sheffield!</p>
+
+<p>In the mean time, until we do get more slides, here is one way of getting down an escalator in a hurry&#8230;</p>
+
+<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=fFqQOlYE4EE' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -612,157 +666,6 @@ path/to/eclipse/here
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/01/06/testing-the-grails-spring-security-ldap-combo/">Testing the Grails, Spring Security, LDAP Combo</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-06T16:00:46+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
-        
-         | <a href="/2011/01/06/testing-the-grails-spring-security-ldap-combo/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you&#8217;re working remotely, or because you want a disposable directory to throw away after you&#8217;ve run your tests. Well, there is a <a href="http://www.grails.org/plugin/ldap-server">grails plugin</a> which adds an embedded LDAP directory (ApacheDS) to your application which can be fired up as/when required.</p>
-
-<p>After installing the plugin, it requires a bit of configuration, so in your Config.groovy:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">environments</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">development</span> <span class="o">{</span>       
-</span><span class='line'>      <span class="c1">// Embedded ldap server </span>
-</span><span class='line'>      <span class="n">ldapServers</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">d1</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;dc=people,dc=companyname,dc=int&quot;</span>
-</span><span class='line'>              <span class="n">port</span> <span class="o">=</span> <span class="mi">10389</span>
-</span><span class='line'>              <span class="n">indexed</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;objectClass&quot;</span><span class="o">,</span> <span class="s2">&quot;uid&quot;</span><span class="o">,</span> <span class="s2">&quot;mail&quot;</span><span class="o">,</span> <span class="s2">&quot;userPassword&quot;</span><span class="o">]</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="n">grails</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">springsecurity</span><span class="o">.</span><span class="na">ldap</span><span class="o">.</span><span class="na">context</span><span class="o">.</span><span class="na">server</span> <span class="o">=</span> <span class="s1">&#39;ldap://localhost:10389&#39;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="o">....</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>So now, when the app is instantiated in the development environment, you have an ldap directory running on localhost, post 10389. You might want to change what is indexed depending on what details you actually want indexing!</p>
-
-<p>If you wanted some default data loaded when the ldap server starts, simply add an ldif file to the grails-app/ldap-servers/d1/data directory. This gets auto loaded:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="nl">dn:</span> <span class="n">ou</span><span class="o">=</span><span class="n">group</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">people</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">companyname</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="kt">int</span>
-</span><span class='line'><span class="nl">objectClass:</span> <span class="n">top</span>
-</span><span class='line'><span class="nl">objectClass:</span> <span class="n">organizationalUnit</span>
-</span><span class='line'><span class="nl">ou:</span> <span class="n">group</span>
-</span><span class='line'>
-</span><span class='line'><span class="nl">dn:</span> <span class="n">ou</span><span class="o">=</span><span class="n">People</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">people</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">companyname</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="kt">int</span>
-</span><span class='line'><span class="nl">objectClass:</span> <span class="n">organizationalUnit</span>
-</span><span class='line'><span class="nl">ou:</span> <span class="n">People</span>
-</span><span class='line'>
-</span><span class='line'><span class="nl">dn:</span> <span class="n">uid</span><span class="o">=</span><span class="n">jjefferies</span><span class="o">,</span><span class="n">ou</span><span class="o">=</span><span class="n">People</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">people</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">companyname</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="kt">int</span>
-</span><span class='line'><span class="nl">uid:</span> <span class="n">jjefferies</span>
-</span><span class='line'><span class="nl">objectClass:</span> <span class="n">uidObject</span>
-</span><span class='line'><span class="nl">objectClass:</span> <span class="n">top</span>
-</span><span class='line'><span class="nl">objectClass:</span> <span class="n">person</span>
-</span><span class='line'><span class="nl">objectClass:</span> <span class="n">organizationalPerson</span>
-</span><span class='line'><span class="nl">cn:</span> <span class="n">James</span> <span class="n">Jefferies</span>
-</span><span class='line'><span class="nl">sn:</span> <span class="n">Jefferies</span>
-</span><span class='line'><span class="nl">userPassword:</span> <span class="o">{</span><span class="n">SHA</span><span class="o">}</span><span class="n">ERnP637iUzV</span><span class="o">+</span><span class="n">A0oI2ETuol9v0g8</span><span class="o">=</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>To run unit tests against it, a reference to the server get&#8217;s injected in to your test class and then you can run some tests against it:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="kd">class</span> <span class="nc">LdapTests</span> <span class="kd">extends</span> <span class="n">GroovyTestCase</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kt">def</span> <span class="n">d1LdapServer</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="kt">void</span> <span class="nf">testLdapServerShouldExist</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">assert</span> <span class="n">d1LdapServer</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="s2">&quot;uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int&quot;</span><span class="o">)</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kt">void</span> <span class="nf">testJJUserIsThere</span><span class="o">()</span> <span class="o">{</span>        
-</span><span class='line'>      <span class="kt">def</span> <span class="n">user</span> <span class="o">=</span> <span class="n">d1LdapServer</span><span class="o">[</span><span class="s2">&quot;uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int&quot;</span><span class="o">]</span>
-</span><span class='line'>      <span class="k">assert</span> <span class="s2">&quot;James Jefferies&quot;</span> <span class="o">==</span> <span class="n">user</span><span class="o">.</span><span class="na">cn</span><span class="o">.</span><span class="na">first</span><span class="o">()</span> <span class="c1">// cn is a multi valued string attribute       </span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>If you&#8217;re doing the full spring security with custom rolled retrieval of Roles and you want to test it, then you need to make sure you&#8217;ve bootstrapped those users too, so that the roles are retrieved as well as the user being authenticated.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -780,6 +683,10 @@ path/to/eclipse/here
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/08/22/setting-up-wordpress/">Setting up WordPress</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/22/setting-up-a-fresh-debian-server/">Setting up a Fresh Debian Server</a>
       </li>
     
@@ -793,10 +700,6 @@ path/to/eclipse/here
     
       <li class="post">
         <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
       </li>
     
   </ul>

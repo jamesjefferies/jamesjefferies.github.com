@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-22T21:33:44+01:00</updated>
+  <updated>2012-08-23T15:45:58+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,218 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Setting up WordPress]]></title>
+    <link href="http://jamesjefferies.com/2012/08/22/setting-up-wordpress/"/>
+    <updated>2012-08-22T15:07:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/22/setting-up-wordpress</id>
+    <content type="html"><![CDATA[<p>So, your server is set up and raring to go. Please see my <a href="http://jamesjefferies.com/2012/08/22/setting-up-a-fresh-debian-server/">earlier blogpost</a> on getting the server to this point.. next!</p>
+
+<h2>Install Apache2</h2>
+
+<p>Let&#8217;s get our web server up and running by installing apache</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install apache2</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and check it is up and running with <code>http://123.456.789.012</code> in your friendly web browser.</p>
+
+<h2>Configure Apache2 for low memory usage</h2>
+
+<p>With previous virtual servers, I&#8217;ve found that Apache needs a bit of tweaking to support WordPress load. I found this useful <a href="http://imperialwicket.com/tuning-apache-for-a-low-memory-server-like-aws-micro-ec2-instances">post</a> about tweaking apache. The nuts and bolts are to amend some of the settings in your <code>/etc/apache2/apache.conf</code> as follows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Timeout 30
+</span><span class='line'>KeepAlive On
+</span><span class='line'>MaxKeepAliveRequests 50
+</span><span class='line'>KeepAliveTimeout 10
+</span><span class='line'>
+</span><span class='line'>&lt;IfModule mpm_prefork_module&gt;
+</span><span class='line'>    StartServers          5
+</span><span class='line'>    MinSpareServers       5
+</span><span class='line'>    MaxSpareServers      10
+</span><span class='line'>    MaxClients          150
+</span><span class='line'>    MaxRequestsPerChild   0
+</span><span class='line'>&lt;/IfModule&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Setting up virtual host with apache</h2>
+
+<p>A very simple set up would be to create the following <code>/etc/apache2/sites-available/myacedomainname.com</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#Ensure that Apache listens on port 80
+</span><span class='line'>#Listen 80 (note uncomment this with ports.conf set to 80 and you will experience a WORLD of pain!)
+</span><span class='line'>
+</span><span class='line'># Listen for virtual host requests on all IP addresses
+</span><span class='line'>NameVirtualHost *:80
+</span><span class='line'>
+</span><span class='line'>&lt;VirtualHost *:80&gt;
+</span><span class='line'>DocumentRoot /var/www/myacedomainname.com
+</span><span class='line'>ServerName www.myacedomainname.com
+</span><span class='line'>
+</span><span class='line'># Other directives here
+</span><span class='line'>
+</span><span class='line'>&lt;/VirtualHost&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Enable site (and other useful commands)</h2>
+
+<p>Create that file in sites-available and use the following commands to enable/disable - they will give you options when they run as to which sites you want to enable/disable</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo a2ensite
+</span><span class='line'>sudo a2dissite</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Force reload configuration?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo  /etc/init.d/apache2 force-reload</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install PHP</h2>
+
+<p>Ok, well to get WordPress running, we&#8217;re going to need some PHP, so get it installed</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install php5 libapache2-mod-php5</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install MySQL</h2>
+
+<p>And we&#8217;ll need a database too</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mysql-server mysql-client php5-mysql</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If already installed, but you want to reset it so you can set root password etc, give it a bit of this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg-reconfigure mysql-server-5.1</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Migrating a site from another provider</h2>
+
+<h3>Database gubbins</h3>
+
+<p>Get a database dump from your old site, either using PHPMyAdmin if installed, or doing a dump from the command line using <code>mysqldump</code>. Hopefully at the end of that process you&#8217;ll be able to import the dump in to your new set up with a bit of:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -uroot -p &lt; databasedump.sql</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The dump may contain a create database statement to create the database, right at the top along the lines of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE DATABASE `db1234` DEFAULT CHARACTER SET latin1 COLLATE latin1_german2_ci; USE db1234;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you&#8217;ll need to create a database user for WordPress to use. So make sure you&#8217;ve got a file dump of your WordPress installation, either by command line, or the hosting admin suite, or an FTP application or whatever you&#8217;re comfortable with. You&#8217;re going to need your wp-config.php file which will tell you how your existing WordPress site is set up. This is the bit you need to look at for now</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/** The name of the database for WordPress */
+</span><span class='line'>define('DB_NAME', 'db1234');
+</span><span class='line'>
+</span><span class='line'>/** MySQL database username */
+</span><span class='line'>define('DB_USER', 'dbuser');
+</span><span class='line'>
+</span><span class='line'>/** MySQL database password */
+</span><span class='line'>define('DB_PASSWORD', 'dbpassword');
+</span><span class='line'>
+</span><span class='line'>/** MySQL hostname */
+</span><span class='line'>define('DB_HOST', 'localhost');
+</span><span class='line'>
+</span><span class='line'>/** Database Charset to use in creating database tables. */
+</span><span class='line'>define('DB_CHARSET', 'utf8');
+</span><span class='line'>
+</span><span class='line'>/** The Database Collate type. Don't change this if in doubt. */
+</span><span class='line'>define('DB_COLLATE', '');</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So in your existing set up you have a database user called <code>dbuser</code> with password <code>dbpassword</code> so create that user in your new setup as follows</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grant all on db1234.* to 'dbuser'@'localhost' identified by 'dbpassword';</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then make sure it works with a bit of <code>mysql -udbuser -Ddb1234 -p</code> enter your password and hopefully you are in.</p>
+
+<h3>Filesystem</h3>
+
+<p>Now get that dump of the filesystem you have and unpack it in <code>/var/www/myacedomain.com</code> or whatever you set in your virtual hosts configuration earlier. You may need to change the ownership of everything, including that directory to www-data with a bit of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chown -R www-data:www-data /var/www/myacedomain.com</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+and check the permissions too, directories should be set to 755 and files to 644. You can enforce this with</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo find . -type f -print | sudo xargs chmod 644  # Files
+</span><span class='line'>sudo find . -type d -print | sudo xargs chmod 755  # Directories</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It is entirely possible that after all this, you can now hit <code>http://myacedomain.com</code> or <code>http://123.456.789.012</code> and see your migrated WordPress site!</p>
+
+<h3>UTF-8 issues</h3>
+
+<p>Now, one issue I&#8217;ve had in the past is problems with UTF-8 conversion. I.e. the posts you&#8217;ve migrated end up with funny characters like â€“ â€œ â€™ â€ - you can tell if this is causing you grief because you see the characters mixed up in your posts, but if you comment out these lines (by adding // in front) in your WordPress config, then they.. ahem, magically go away</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>define('DB_CHARSET', 'utf8');
+</span><span class='line'>define('DB_COLLATE', '');</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Best not to do that though, you <em>can</em> use the <a href="http://wordpress.org/extend/plugins/search-and-replace/">search and replace</a> WordPress plugin to replace all the dodgy characters in the database. Find &#8220;â&#8221; and replace with &#8220;&#8221; - hooray!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Setting up a Fresh Debian Server]]></title>
@@ -940,31 +1152,6 @@ end</code></pre></noscript></div>
 <p>Our bigger ideas are still fermenting, but two <a href="http://arduino.cc/hu/Guide/Introduction">Arduino</a> kits arrived on Friday and as it is about 25 years since I last played with electronics in anger, I&#8217;m excited to see what we end up using them for. I think I had something like this when I was a kid&#8230; you should have heard the stylophone I made!</p>
 
 <p><img src="http://ecx.images-amazon.com/images/I/51jZKCqIj4L._SL500_AA300_.jpg" alt="" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Something inspiring.. For Sheffield!]]></title>
-    <link href="http://jamesjefferies.com/2012/04/17/something-inspiring-for-sheffield/"/>
-    <updated>2012-04-17T17:54:52+01:00</updated>
-    <id>http://jamesjefferies.com/2012/04/17/something-inspiring-for-sheffield</id>
-    <content type="html"><![CDATA[<p>Sheffield is the city of Seven Hills, George Orwell wrote in &#8216;Road to Wigan Pier&#8217;</p>
-
-<blockquote><p>&#8220;The town is very hilly (said to be built on seven hills, like Rome) and everywhere streets of mean little houses blackened by smoke run up at sharp angles, paved with cobbles which are purposely set unevenly to give horses etc, a grip&#8221;</p></blockquote>
-
-<p>We don&#8217;t have many horses heading up and down hills any more, nor are our houses mean, but it does feel like we are missing a bit of a trick. The city centre has its ups and downs, steps, ramps and in one particular office block, a slide..</p>
-
-<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=twA_mVMgMY8' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
-
-<p>So if an office building can have that, how about a slide in some other parts of the city. At this point I should fire up a photo editing app with a picture of the site in the city and overlay an amazing &#8216;artist&#8217;s impression&#8217; of a slide. Maybe I&#8217;ll do that another time. For now though, here is an example of some outdoor thinking in the Netherlands at an entrance to a railway station in Utrecht</p>
-
-<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=d1uurSegIH4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
-
-<p>This is what we want, some super duper slides installed, imagine what an economic edge it would give to Sheffield!</p>
-
-<p>In the mean time, until we do get more slides, here is one way of getting down an escalator in a hurry&#8230;</p>
-
-<p><video width='' height='' preload='none' controls poster=''><source src='http://www.youtube.com/watch?v=fFqQOlYE4EE' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
 ]]></content>
   </entry>
   

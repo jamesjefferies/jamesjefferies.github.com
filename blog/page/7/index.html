@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="During project development, we&#8217;re auto creating our database when the application initiates. This is superuseful initially, especially when the &hellip;">
+  <meta name="description" content="Aww, what a gotcha this morning. Felt stoopid when I realised what was going on. There are a number of ways to use dates with Lucene and specifically &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/">Hibernate Search, Lucene and Greenwich Mean Time</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-22T11:20:05+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Aww, what a gotcha this morning. Felt stoopid when I realised what was going on.</p>
+
+<p>There are a number of ways to use dates with Lucene and specifically with Hibernate Search, which is what I&#8217;m using at the moment for providing a wrapper around Lucene. I wanted to search for a certain date range on a field.. which has been set to midnight. You can probably guess what&#8217;s coming here. Now we&#8217;re in British Summer Time our clocks are forward, but of course, the date is stored by Lucene as GMT, consequently, without a bit of cleverness, something saved at 12:01 AM on the 2nd April BST, is actually 11:01 PM on the 1st April GMT.</p>
+
+<p>Throw in a date range search looking for stuff from the 2nd April onwards and things start going a bit wonky!</p>
+
+<p>By the way, here is how it now woorks, still may not be the best way to do it, but it&#8217;s working for now.</p>
+
+<p><code>@Field(index = Index.UN_TOKENIZED)
+@DateBridge(resolution = Resolution.HOUR)
+@Temporal(TemporalType.DATE)
+private Date startDate;</code></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -761,66 +808,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/04/concurrent-http-session-management-with-spring-security/">Concurrent HTTP Session Management With Spring Security</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-04T12:06:26+00:00" pubdate data-updated="true">Mar 4<span>th</span>, 2009</time>
-        
-         | <a href="/2009/03/04/concurrent-http-session-management-with-spring-security/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Spring Security (formerly Acegi) is a useful framework for adding security to webapps. Directories, pages and the like can all be controlled with various user roles and methods can be annotated too, ensuring a belt and braces approach.</p>
-
-<p>The setting to switch it on in the configuration is just this (within the other security config):</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;security:concurrent-session-control</span> <span class="na">max-sessions=</span><span class="s">&quot;1&quot;</span> <span class="na">expired-url=</span><span class="s">&quot;/already-logged-in.faces&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and as you can see, you can set a url for spring to redirect to if you already have a session somewhere else. The gotcha though seems to be that unless you configure  a listener, it may not know when the session has expired (i.e. if you don&#8217;t log out).</p>
-
-<p>so, in the good old web.xml, add this little puppy to listen out for expired sessions&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;listener&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;listener-class&gt;</span>org.springframework.security.ui.session.HttpSessionEventPublisher<span class="nt">&lt;/listener-class&gt;</span>
-</span><span class='line'><span class="nt">&lt;/listener&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>hopefully, job is a good &#8216;un</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -838,6 +825,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/04/poor-old-java/">Poor old java</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/22/setting-up-wordpress/">Setting up WordPress</a>
       </li>
     
@@ -851,10 +842,6 @@
     
       <li class="post">
         <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
   </ul>

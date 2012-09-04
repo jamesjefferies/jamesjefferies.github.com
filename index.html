@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="So, your server is set up and raring to go. Please see my earlier blogpost on getting the server to this point.. next! Install Apache2 Let&#8217;s &hellip;">
+  <meta name="description" content="There seems to be a lot of noise at the moment about the latest security vulnerabilities in Java, especially Java 7. I&#8217;d go as far as to say &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/09/04/poor-old-java/">Poor Old Java</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-04T12:11:00+01:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/04/poor-old-java/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There seems to be a lot of noise at the moment about the latest security vulnerabilities in Java, especially Java 7. I&#8217;d go as far as to say that some of the articles are <a href="http://www.pcadvisor.co.uk/news/security/3379150/time-give-java-boot/">scare stories</a>. Is this what we need, to give Java the boot?</p>
+
+<h2>TL;DR</h2>
+
+<p>All computers connected to things have security vulnerabilities of various forms.</p>
+
+<p>Desktop Java installed computers where not required is an unnecessary security risk and should be uninstalled, just as Adobe Flash, Adobe Reader, Silverlight etc. Windows 8 and Mac OS X don&#8217;t bundle Java runtimes via default anymore. This is a good thing. Oracle should be far quicker out of the blocks fixing security vulnerabilitles.</p>
+
+<p>Giving Java the boot full stop is an over the top reaction. However, giving Java the boot on the desktop when it&#8217;s not required is a wise move.</p>
+
+<h2>History</h2>
+
+<p>Java as a platform has a reputation for being secure, reliable and frequently patched. Being able to run Java server side on Sun software provided the building blocks for many web businesses at the end of the last millenium and in to this one.</p>
+
+<p>It also has many branches in to other parts of the internet ecosystem. As well as running server side, the other two main areas are mobile Java, J2ME, for example and desktop Java, either via browser plugin Applets or as runnable GUI applications using a desktop JVM (virtual machine).</p>
+
+<p>Over the last few years, mobile Java has basically been nobbled by the rise of smartphones and their respective application frameworks and stacks, Android, iOS, Windows whatever it&#8217;s called, BlackBerry and the rest.</p>
+
+<p>However, the legacy of desktop Java has continued by some applications still requiring a JVM installed on the local PC and some people still writing or using Java applets. Althoguh Sun and now Oracle have continued to try and encourage desktop development with their JavaFX initative, they&#8217;ve not got very far.</p>
+
+<h3>Applets</h3>
+
+<p>The idea behind applets was that you visited a site via a web browser, which could always deliver the latest version of the application code to your browser, either to run in a plug-in or using the JVM installed on your machine. They were useful for some niche applications, you sometimes see them now replacing flash file uploaders for example, but the User Experience was often a bit shonky.</p>
+
+<h3>Desktop Applications</h3>
+
+<p>Write Once, run anywhere was the mantra behind Java Desktop applications, an attractive proposition. One set of code would run on Windows, Linux, Unix variants &amp; Macs. Many Java development environments have been written in Java and are used today. CrashPlan is an example cross platform application which requires desktop Java to work.</p>
+
+<h2>Legacy</h2>
+
+<p>Unfortunately, a lot of the Java runtimes (and Flash installs, adobe reader installs etc), installed in days of yore on people&#8217;s machines will have security vulnerabilities, either because they are out of date or because of recent new exploits.</p>
+
+<p>It was interesting to see Apple&#8217;s response to recent JVM exploits, although they may have been slow in responding, they, in effect, switched off people&#8217;s Java installations, providing a prompt if it was required. In one OS X update (assuming it was installed!) Macs became better protected from Java exploits.</p>
+
+<h2>Summary</h2>
+
+<p>If you don&#8217;t use Java on your machine - uninstall it, it&#8217;s not worth having a potential vulnerability. Same with Flash or Adobe reader - if you don&#8217;t use them, uninstall them.</p>
+
+<p>If you do need it installed on your machine, there is some great advice <a href="http://www.macworld.co.uk/macsoftware/news/?newsid=3378690&amp;pagtype=allchandate">here</a></p>
+
+<p>Of course, keep things up to date that you do use, Operating systems, browsers etc</p>
+
+<p>Java server side is a different story. If you do use the Java Virtual Machine, whether it is for Java apps, Clojure, Scala or whatever. Keep your eyes on the Oracle security bulletins, update when you can and be aware of any vulnerabilities in the latest version.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1108,126 +1188,6 @@ end</code></pre></noscript></div>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/07/04/getting-started-with-network-rails-datafeeds/">Getting Started With Network Rail&#8217;s Datafeeds</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-04T23:46:41+01:00" pubdate data-updated="true">Jul 4<span>th</span>, 2012</time>
-        
-         | <a href="/2012/07/04/getting-started-with-network-rails-datafeeds/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I&#8217;m therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it&#8217;s what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
-
-<h2>Where do you start?</h2>
-
-<p>If you are interested in using the datafeeds yourself, you can read all about it on <a href="http://www.networkrail.co.uk/data-feeds/">Network Rail&#8217;s site</a> which also has a link to download the developer&#8217;s guide in PDF format.</p>
-
-<p>First, you need to <a href="https://datafeeds.networkrail.co.uk/ntrod/login">create an account</a> - I believe there are limited numbers of accounts going at the moment, so the sooner you do that, the better.</p>
-
-<p>There are two types of feeds available, pub/sub using the stomp protocol for real-ish time data &amp; downloads of huge files from Amazon S3 for timetables etc.</p>
-
-<p>Once your account is active, you can subscribe to any of the pub/sub datafeeds you like and away you go.</p>
-
-<h2>Receiving Messages</h2>
-
-<p>I decided that I was going to try accessing the pub/sub datafeeds using Ruby (not my usual language) and put my experimental code on to my git hub account. Feel free to <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">have a look and check it out</a>, I&#8217;ll be using it for my initial experiments, so it should get updated beyond this basic example!</p>
-
-<p>I&#8217;ve also included a sample, no error checking, very straightforward listener below. If you wish to try and run it, then you will of course need Ruby and Ruby gems installed, plus the stomp ruby gem.</p>
-
-<p>Then, you just need to ensure your username and password are set as the relevant environment variables and away you go.</p>
-
-<p>All being well, you should slowly receive updates from the topic you have selected. The example below uses Train positioning data for the East Midlands (TD_MC_EM_SIG_AREA) and assumes that you have subscribed to that feed using the <a href="https://datafeeds.networkrail.co.uk/ntrod/myFeeds">network rail control panel</a></p>
-
-<p>The updates you receive from this program are not formatted at all, it&#8217;s just sending the message straight to string. Of course, this is just helping you know you&#8217;re set up correctly. So you would get something like:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="no">Stomp</span><span class="o">::</span><span class="no">Message</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message-id&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ID:blahblah&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436026840&quot;</span><span class="p">,</span> <span class="s2">&quot;expires&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436326840&quot;</span><span class="p">,</span> <span class="s2">&quot;persistent&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;priority&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;4&quot;</span><span class="p">}</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;[{&quot;CA_MSG&quot;:{&quot;to&quot;:&quot;1234&quot;,&quot;time&quot;:&quot;1341435963000&quot;,&quot;area_id&quot;:&quot;WH&quot;,&quot;msg_type&quot;:&quot;CA&quot;,&quot;from&quot;:&quot;5678&quot;,&quot;descr&quot;:&quot;1Z99&quot;}}]&#39;</span> <span class="n">command</span><span class="o">=</span><span class="s1">&#39;MESSAGE&#39;</span> <span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ultimately of course, you&#8217;d process the JSON from the body and do something with it.</p>
-
-<h2>Example Ruby Listener</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;stomp&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">begin</span>
-</span><span class='line'>  <span class="c1"># Credentials set here as environment variables</span>
-</span><span class='line'>  <span class="vi">@user</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;DATAFEEDS_USER&quot;</span><span class="o">]</span><span class="p">;</span>
-</span><span class='line'>  <span class="vi">@password</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;DATAFEEDS_PASSWORD&quot;</span><span class="o">]</span>
-</span><span class='line'>  <span class="vi">@host</span> <span class="o">=</span> <span class="s2">&quot;datafeeds.networkrail.co.uk&quot;</span>
-</span><span class='line'>  <span class="vi">@port</span> <span class="o">=</span> <span class="mi">61618</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Example destination add yours here</span>
-</span><span class='line'>  <span class="vi">@destination</span> <span class="o">=</span> <span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Connecting to datafeeds as </span><span class="si">#{</span><span class="vi">@user</span><span class="si">}</span><span class="s2"> using stomp protocol stomp://</span><span class="si">#{</span><span class="vi">@host</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="vi">@port</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="vi">@connection</span> <span class="o">=</span> <span class="no">Stomp</span><span class="o">::</span><span class="no">Connection</span><span class="o">.</span><span class="n">open</span> <span class="vi">@user</span><span class="p">,</span> <span class="vi">@password</span><span class="p">,</span> <span class="vi">@host</span><span class="p">,</span> <span class="vi">@port</span><span class="p">,</span> <span class="kp">true</span>
-</span><span class='line'>  <span class="vi">@connection</span><span class="o">.</span><span class="n">subscribe</span> <span class="vi">@destination</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">while</span> <span class="kp">true</span>
-</span><span class='line'>    <span class="vi">@msg</span> <span class="o">=</span> <span class="vi">@connection</span><span class="o">.</span><span class="n">receive</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="vi">@msg</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="vi">@connection</span><span class="o">.</span><span class="n">disconnect</span>
-</span><span class='line'><span class="k">rescue</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1243,6 +1203,10 @@ end</code></pre></noscript></div>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/04/poor-old-java/">Poor old java</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/22/setting-up-wordpress/">Setting up WordPress</a>
       </li>
     
@@ -1256,10 +1220,6 @@ end</code></pre></noscript></div>
     
       <li class="post">
         <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Sheffield is the city of Seven Hills, George Orwell wrote in &#8216;Road to Wigan Pier&#8217; &#8220;The town is very hilly (said to be built on &hellip;">
+  <meta name="description" content="We&#8217;re three days in to our residency and time is already flying along. We&#8217;ve spoken to a lot of people, fixed some niggly problems in the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/04/22/week-1-in-sheffield/">Week 1 in Sheffield</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-22T16:19:47+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2012</time>
+        
+         | <a href="/2012/04/22/week-1-in-sheffield/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We&#8217;re three days in to our residency and time is already flying along. We&#8217;ve spoken to a lot of people, fixed some niggly problems in the office and had some ideas which I&#8217;m sure any Technologist in Residence would be proud of!</p>
+
+<p>Our esteemed directors at Site have been storing up interesting people for us to talk to which has been great. It&#8217;s striking how we&#8217;ve met people who are passionate, not only about what they do, but about the greater tech community in Sheffield, Sheffield itself, Yorkshire and the North! This resonates with me as a Yorkshirebod and as someone who would like to see the economic balance tip in our direction.</p>
+
+<p>Site have a new Technical expert starting at the beginning of May so there is a small backlog of  outstanding techie issues for the organisation. I find it impossible to sit in the office without diving in to help when the printer doesn&#8217;t work or the wi-fi has gone screwy! Hopefully now we&#8217;ve fixed some of the more pressing issues but it is highlighted for me that I have to be careful with my time. We had decided that we would spend three days a week on-site in the office but actually it makes sense to spend a day elsewhere to allow us to focus on bigger tasks without interruption. We&#8217;ll try that next week to see how we go.</p>
+
+<p>Our bigger ideas are still fermenting, but two <a href="http://arduino.cc/hu/Guide/Introduction">Arduino</a> kits arrived on Friday and as it is about 25 years since I last played with electronics in anger, I&#8217;m excited to see what we end up using them for. I think I had something like this when I was a kid&#8230; you should have heard the stylophone I made!</p>
+
+<p><img src="http://ecx.images-amazon.com/images/I/51jZKCqIj4L._SL500_AA300_.jpg" alt="" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -596,76 +642,6 @@ path/to/eclipse/here
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/03/09/using-constants-in-spring-configuration/">Using Constants in Spring Configuration</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-09T13:36:24+00:00" pubdate data-updated="true">Mar 9<span>th</span>, 2011</time>
-        
-         | <a href="/2011/03/09/using-constants-in-spring-configuration/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Whilst doing some re-work on a loan calculator, I wanted to move the configuration of the various loan rates in to the spring XML configuration. Setting up the various loan rates for the amount borrowed is relatively straightforward, but I wanted to use constants (defined only once in the app) in the map rather than straight strings. Easy you may say.. and indeed, it is if you use the &#8216;util&#8217; schema.</p>
-
-<p>Add the util schema to your bean configuration xml</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>    <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
-</span><span class='line'>    <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
-</span><span class='line'>    <span class="na">xmlns:util=</span><span class="s">&quot;http://www.springframework.org/schema/util&quot;</span>
-</span><span class='line'>    <span class="na">xsi:schemaLocation=</span><span class="s">&quot;</span>
-</span><span class='line'><span class="s">    http://www.springframework.org/schema/beans</span>
-</span><span class='line'><span class="s">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span>
-</span><span class='line'><span class="s">    http://www.springframework.org/schema/util</span>
-</span><span class='line'><span class="s">    http://www.springframework.org/schema/util/spring-util-3.0.xsd&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>and then you can just reference your constants as follows:&#8220;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;util:constant</span> <span class="na">static-field=</span><span class="s">&quot;com.foo.bar.RATE_2000_2950&quot;</span> <span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -683,6 +659,10 @@ path/to/eclipse/here
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/04/poor-old-java/">Poor old java</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/08/22/setting-up-wordpress/">Setting up WordPress</a>
       </li>
     
@@ -696,10 +676,6 @@ path/to/eclipse/here
     
       <li class="post">
         <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
       </li>
     
   </ul>

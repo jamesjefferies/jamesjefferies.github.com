@@ -2,7 +2,7 @@
 // To give it a try, uncomment some of the lines below rebuild your blog, and see how it works.
 // If you need a handy color picker try http://hslpicker.com
 
-$header-bg: #263347;
+$header-bg: #203a27;
 //$subtitle-color: lighten($header-bg, 58);
 //#$nav-bg: desaturate(lighten(#8fc17a, 18), 5);
 //$nav-bg-front: image-url('noise.png');
@@ -41,3 +41,7 @@ $footer-bg-back: linear-gradient(lighten($footer-bg, 8), $footer-bg, darken($foo
 //$pre-bg: $base03;
 //$pre-border: darken($base02, 5);
 //$pre-color: $base1;
+
+html {
+  background: #203a27 !important;
+}

@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-09-04T13:47:49+01:00</updated>
+  <updated>2012-09-05T15:16:28+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Troubleshooting WordPress connectivity issue - could not connect to host]]></title>
+    <link href="http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue/"/>
+    <updated>2012-09-05T14:57:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue</id>
+    <content type="html"><![CDATA[<h2>The problem</h2>
+
+<p>After migrating a WordPress site, auto update and plugin install wouldn&#8217;t work. The former errored with <code>could not connect to host</code> which seemed very odd.</p>
+
+<h3>First attempts</h3>
+
+<p>WordPress allows you to download the file manually or autoupdate if configured correctly. Clicking on the manual download link and the file downloaded fine to the local machine. So first, I thought I&#8217;d try and download the file from the command line on the new server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://wordpress.org/wordpress-3.4.1.zip</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Zip, it all downloaded fine.</p>
+
+<h3>Extra help</h3>
+
+<p>There is a good trouble shooting/dev plugin for WordPress called <a href="http://wordpress.org/extend/plugins/core-control/">Core Control</a>. By installing this and enabling the HTTP control, you can test the various transports WordPress uses for downloads. Curl, PHP File open, PHP Fsockopen etc.</p>
+
+<p>Testing all three default transports, starting with cURL came up with the same message, <code>could not connect to host</code></p>
+
+<h3>Head Scratching time</h3>
+
+<p>So WordPress was telling the truth. Now, as WordPress was running as the <code>www-data</code> user, what happens if I tried the wget from the command line for that user?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://wordpress.org/wordpress-3.4.1.zip
+</span><span class='line'>Permission denied!</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ah-ha, so it was nothing to do with WordPress, the <code>www-data</code> user couldn&#8217;t download anything.</p>
+
+<h3>Problem solved!</h3>
+
+<p>Firewalls, I started thinking firewalls and lo and behold, <a href="https://projects.bytemark.co.uk/projects/24/wiki/Firewall">BytemarkUK block outgoing http traffic</a> for the www-data user by default! This makes sense for when sites get compromised, but it also stops some of the core functionality for updates etc working.</p>
+
+<p>Enabling http traffic for the www-data user will make things worse if the site is compromised, but also makes it a lot easier to keep the site up to date, reducing the chances of a WordPress exploit.</p>
+
+<p>The following removes the firewall rule</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rm /etc/symbiosis/firewall/outgoing.d/50-www-data</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Poor old java]]></title>
@@ -1147,45 +1200,6 @@ end</code></pre></noscript></div>
 <p>Finally, we wanted to get the messages sent to Cathy and Heathcliff&#8217;s twitter accounts - @CathyPrinter @HeathcliffPrinter - initially we looked a using the PHP OAuth libraries to authenticate and send the message to twitter, but as neither of us are particularly adept at PHP, we decided on a different solution. Using <a href="http://ifttt.com">If This Then That</a> and some server side magic, we send an email from the server, via their gmail accounts to If This Then That, which then passes them on to their twitter accounts.. Hooray x 3!</p>
 
 <p>You can see us setting them up on our <a href="http://happenstancesheffield.tumblr.com">tumblr site</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Week 2 - how do you do]]></title>
-    <link href="http://jamesjefferies.com/2012/04/27/week-2-how-do-you-do/"/>
-    <updated>2012-04-27T18:18:59+01:00</updated>
-    <id>http://jamesjefferies.com/2012/04/27/week-2-how-do-you-do</id>
-    <content type="html"><![CDATA[<p>This week has all been about pairs of trousers. It has rained a lot and usually when you are equidistant from where you are going and where you want to go, the heavens open and you get absolutely soaked. I&#8217;ve been through three pairs of trousers and counting.</p>
-
-<p><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/04/rain-620x620.jpg" alt="rain" /></p>
-
-<p>So trousers.. and marketing/branding innovation labs, meeting with yet more interesting people, fixing the internet and eating flapjack.</p>
-
-<p>To distract us from the weather and all these other things we&#8217;ve had the excitement of two receipt printers which we are bringing to life. The illustrious <a href="http://twitter.com/lazyatom">James Adam</a> has written a fantastic <a href="http://gofreerange.com/hello-printer">article</a> about how to build internet enabled receipt printers. My advice would be to go away and read that, when you&#8217;re done, come back here!</p>
-
-<p>So we have been guinea pigs, taking delivery of two printers complete with special <a href="http://www.arduino.cc/">arduino</a> kits, leads and other <a href="http://uncyclopedia.wikia.com/wiki/Gubbins">gubbins</a>. Of course, all we needed to do was plug them in (following the instructions) and BOOM! The little printers would burst in to life&#8230;.</p>
-
-<p><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/04/heathcliff12-463x620.jpg" alt="" /></p>
-
-<p>&#8230; except they did not :(</p>
-
-<p>The little light flashed to say that it was talking to the internet, but the internet didn&#8217;t want to speak back. This was a blow, was it the printer, was it the lead, was it the network, was it the circuitry, was it the &#8216;sketch&#8217; (the arduino program)? So we put on our best Worzel Gummidge problem solving heads and got to work. We broke in to the server room and tried a direct connection (rather than through all the office switches and routers), fired up skype and waved the laptop in the direction of the kit whilst the illustrious one watched from afar. No joy.</p>
-
-<p>We knew that one of the other tenants in the building used a different internet connection, so we took one of the printers up there and plugged it in. It burst into life and the backlog of messages we&#8217;d sent it arrived in a semi-orderly fashion, hurrah! We knew the printer, leads and circuitry worked, but why didn&#8217;t it work on the other network?</p>
-
-<p>The next day the magic serial-USB debugging lead arrived and it was time to download the Arduino app and work out what on earth was happening. Once hooked up, the little bundle of electronic joy started telling us debug messages from the sketch.. which was nice, but it still didn&#8217;t work. Time for some coding I thought.</p>
-
-<p>I don&#8217;t think you can actually see what code is being run on the device as it is compiled in to assembler, so all I could do was add some further debugging information and upload it. I had some theories about the network too, what would happen if I put in the explicit IP address? Tweaked the URL it was using? Nothing, still didn&#8217;t work. At this point I thought we may was well upload the <a href="https://github.com/freerange/printer/blob/master/printer.ino">original sketch</a> with the relevant bits tweeted&#8230;</p>
-
-<p>AND IT ONLY WENT AND WORKED!</p>
-
-<p>Heathcliff lives&#8230;</p>
-
-<p><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/04/heathcliff31-620x620.jpg" alt="Heathcliff Lives" /></p>
-
-<p>and after lunch, we got Cathy working too!</p>
-
-<p>Next week we&#8217;ll send them off to Wuthering Heights and see what happens..</p>
 ]]></content>
   </entry>
   

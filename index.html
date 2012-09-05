@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="There seems to be a lot of noise at the moment about the latest security vulnerabilities in Java, especially Java 7. I&#8217;d go as far as to say &hellip;">
+  <meta name="description" content="The problem After migrating a WordPress site, auto update and plugin install wouldn&#8217;t work. The former errored with could not connect to host &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,88 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress Connectivity Issue - Could Not Connect to Host</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-05T14:57:00+01:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>The problem</h2>
+
+<p>After migrating a WordPress site, auto update and plugin install wouldn&#8217;t work. The former errored with <code>could not connect to host</code> which seemed very odd.</p>
+
+<h3>First attempts</h3>
+
+<p>WordPress allows you to download the file manually or autoupdate if configured correctly. Clicking on the manual download link and the file downloaded fine to the local machine. So first, I thought I&#8217;d try and download the file from the command line on the new server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://wordpress.org/wordpress-3.4.1.zip</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Zip, it all downloaded fine.</p>
+
+<h3>Extra help</h3>
+
+<p>There is a good trouble shooting/dev plugin for WordPress called <a href="http://wordpress.org/extend/plugins/core-control/">Core Control</a>. By installing this and enabling the HTTP control, you can test the various transports WordPress uses for downloads. Curl, PHP File open, PHP Fsockopen etc.</p>
+
+<p>Testing all three default transports, starting with cURL came up with the same message, <code>could not connect to host</code></p>
+
+<h3>Head Scratching time</h3>
+
+<p>So WordPress was telling the truth. Now, as WordPress was running as the <code>www-data</code> user, what happens if I tried the wget from the command line for that user?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://wordpress.org/wordpress-3.4.1.zip
+</span><span class='line'>Permission denied!</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ah-ha, so it was nothing to do with WordPress, the <code>www-data</code> user couldn&#8217;t download anything.</p>
+
+<h3>Problem solved!</h3>
+
+<p>Firewalls, I started thinking firewalls and lo and behold, <a href="https://projects.bytemark.co.uk/projects/24/wiki/Firewall">BytemarkUK block outgoing http traffic</a> for the www-data user by default! This makes sense for when sites get compromised, but it also stops some of the core functionality for updates etc working.</p>
+
+<p>Enabling http traffic for the www-data user will make things worse if the site is compromised, but also makes it a lot easier to keep the site up to date, reducing the chances of a WordPress exploit.</p>
+
+<p>The following removes the firewall rule</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rm /etc/symbiosis/firewall/outgoing.d/50-www-data</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1108,86 +1190,6 @@ end</code></pre></noscript></div>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">The Electrified Spine (and the Rest of the News)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-16T15:39:04+01:00" pubdate data-updated="true">Jul 16<span>th</span>, 2012</time>
-        
-         | <a href="/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Today the government has announced a further set of infrastructure investment for the railways. This has to be good news, especially where electrification is concerned. Electric trains are more efficient, cleaner and perform better than their diesel (and steam I suppose!) counterparts. I appreciate that the electricity still has to come from somewhere, but in the main it is the right thing to do.</p>
-
-<h2>Already Announced</h2>
-
-<p>We know that plans to electrify the Great Western Mainline (Paddington to Cardiff, Bristol, Oxford &amp; Newbury), plus the Trans-Pennine route between Manchester &amp; York, Blackpool and Manchester to Liverpool are already underway. These are all good things, but there were some unsatisfactory omissions. The new announcement helps with some of the missing links, but not all of them.</p>
-
-<p>There is a helpful <a href="http://assets.dft.gov.uk/publications/hlos-2012/map-hlos-electrification.pdf">map</a> which shows these routes in glorious technicolour</p>
-
-<h2>New Plans - Midland Mainline</h2>
-
-<p>Hooray, the Midland Mainline, which has been electrified to Bedford for many years is to be electrified to Nottingham and Sheffield (via Derby). For those of us who regularly travel to London from Sheffield we should experience a faster service. Not necessarily more trains though, no extra track is to be laid and unless signalling is replaced, you can&#8217;t fit that many more trains on the track.</p>
-
-<p>As far as I&#8217;m aware, there has been no announcement about rolling stock either, the simple solution for East Midlands Trains (assuming they&#8217;re still running the franchise) will be to get the existing Meridian trains upgraded with an extra coach containing all of the required electrical equipment, plus pantograph for current collection etc. Easier said than done, but a lot cheaper than brand new trains. So it is likely you&#8217;ll still be sitting on the same seat.</p>
-
-<h2>Missed Opportunities - Midland Mainline</h2>
-
-<h3>Erewash Valley</h3>
-
-<p>Why or why isn&#8217;t the Erewash valley route included as part of the plans? This is the line which goes straight on at the junction for Derby and Nottingham, joining up with the Sheffield line between Clay Cross and Chesterfield - it&#8217;s the most direct route to Sheffield and is useful when engineering works close the route via Derby. Very few London bound trains use this route, most are routed via Derby from Sheffield, but electrifying it would be useful for diversions and could give the opportunity for Sheffield, Leicester, London services which don&#8217;t call at Derby, potentially shaving more time off the journey.</p>
-
-<h3>Sheffield to Leeds</h3>
-
-<p>Groan, everybody wants a better service between Leeds and Sheffield, the best being the 45 minute Cross Country packed like a sardine train which goes via Wakefield. Why not electrify that route too so that more London trains can be extended easily to Leeds? Plus get some more electrified suburban stoppers on that route. Derby to Leeds semi-fast?</p>
-
-<h3>Sheffield to Doncaster</h3>
-
-<p>Whilst we&#8217;re at it, how about the link to Doncaster too, providing more opportunities for diversions and commuter services?</p>
-
-<h2>New Plans - Oxford to Corby &amp; Nuneaton</h2>
-
-<p>This wasn&#8217;t on my radar at all, but makes a lot of sense for new cross country routes as well as faster Birmingham to London trains via Oxford. Incorporating the start of the Oxford to Cambridge route (as far as Bedford) makes sense with that re-opening. The potential for new routes, well re-establishing old routes should give that part of the country a much better service.</p>
-
-<h2>New Plans - Reading to Southampton</h2>
-
-<p>Cross country trains mainly use this route at the moment and it is partially already electrified using the Southern standard 3rd Rail system. Over the next&#8230; err.. 50 years (?) the 3rd rail system will be phased out and replaced with the standard 25kv AC overhead system. This is the beginning of that process and also good preparation for Cross Country. Birmingham to Southampton trains will be electric all the way, as might, say Sheffield to Southampton trains, routed via Oxford.</p>
-
-<h2>The Spine</h2>
-
-<p>According to the plan, the Electrified Spine is to be the Southampton to Coventry and Sheffield routes and is a piece of spin. If I had a spine looking like that I&#8217;d be worried! The only new route, as far as I can see is the already announced re-opening of the Oxford to Bedford route, everywhere else is straightforward electrification.</p>
-
-<h2>Summary</h2>
-
-<p>I&#8217;m very happy to see these extra plans announced, but would like to understand more about why some very obvious links and connections have been omitted. What to others think?</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1203,6 +1205,10 @@ end</code></pre></noscript></div>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/04/poor-old-java/">Poor old java</a>
       </li>
     
@@ -1216,10 +1222,6 @@ end</code></pre></noscript></div>
     
       <li class="post">
         <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
       </li>
     
   </ul>

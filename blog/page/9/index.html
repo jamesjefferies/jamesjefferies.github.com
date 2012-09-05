@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Ok, I&#8217;ve tried doing this a number of ways, but here&#8217;s my favourite 1) Use http://www.easyvmx.com/ to create the initial machine, it&# &hellip;">
+  <meta name="description" content="Tinkering around with vmware server install meant that I couldn&#8217;t do any apt-get stuff. It kept on trying to remove the half installed debian &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,80 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/14/so-i-broke-the-package-installer-2/">So I Broke the Package Installer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-14T13:58:47+00:00" pubdate data-updated="true">Nov 14<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Tinkering around with vmware server install meant that I couldn&#8217;t do any apt-get stuff. It kept on trying to remove the half installed debian package, failing when running the scripts.</p>
+
+<p>useful commands</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --list
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>gives a list of the packages installed, the ii first bit, is installed stuff, I think the half installed one was hI or something similar, it stood out anyway!</p>
+
+<p>the pre/post scripts were causing a problem. I found them here:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/var/lib/dpkg/info
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and so I nobbled the four of them:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>-rwxr-xr-x 1 root root  6772 2008-11-13 10:36 vmware-server.prerm
+</span><span class='line'>-rwxr-xr-x 1 root root 30474 2008-11-13 10:36 vmware-server.preinst
+</span><span class='line'>-rwxr-xr-x 1 root root  1510 2008-11-13 10:36 vmware-server.postrm
+</span><span class='line'>-rwxr-xr-x 1 root root 48652 2008-11-13 10:36 vmware-server.postinst
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and ran this</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo dpkg --purge  vmware-server
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hooray!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -435,54 +509,6 @@ var_dump($_SERVER);</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/07/09/svcadm-on-solaris/">Svcadm on Solaris</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-09T12:06:10+01:00" pubdate data-updated="true">Jul 9<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>svcadm is the service admin command line thing on solaris</p>
-
-<p>e.g. svcadm enable tomcat will switch on the tomcat managed service</p>
-
-<p>if a service doesn&#8217;t start</p>
-
-<p>svcs - all services</p>
-
-<p>svcs -x  services with exceptions (in maintenance mode)</p>
-
-<p>svcs -x -v as above, more verbose</p>
-
-<p>svcadm clear tomcat - clears any exceptions</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -500,6 +526,10 @@ var_dump($_SERVER);</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/04/poor-old-java/">Poor old java</a>
       </li>
     
@@ -513,10 +543,6 @@ var_dump($_SERVER);</p>
     
       <li class="post">
         <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
       </li>
     
   </ul>

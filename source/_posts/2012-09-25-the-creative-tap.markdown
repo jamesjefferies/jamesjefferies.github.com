@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Creative Tap"
+title: "The Creativity Tap"
 date: 2012-09-25 22:15
 comments: true
 categories: 

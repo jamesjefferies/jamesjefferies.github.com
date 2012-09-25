@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="In all the rush of our baby arriving, we didn&#8217;t feel able to start with re-usable nappies, but once we got in to the swing of things, we wanted &hellip;">
+  <meta name="description" content="I&#8217;ve asked this a number of times in the past, but I think I&#8217;ve finally found the answer! Often with JSF you may have a command button &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/06/08/why-has-my-jsf-button-stopped-working/">Why Has My JSF Button Stopped Working..</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-08T14:44:01+01:00" pubdate data-updated="true">Jun 8<span>th</span>, 2010</time>
+        
+         | <a href="/2010/06/08/why-has-my-jsf-button-stopped-working/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve asked this a number of times in the past, but I think I&#8217;ve  finally found the answer!</p>
+
+<p>Often with JSF you may have a command  button wrapped in a div or subview rendered only in certain  circumstances.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;f:subview</span> <span class="na">id=</span><span class="s">&quot;show-the-button&quot;</span> <span class="na">rendered=</span><span class="s">&quot;#{managedBean.shouldButtonBeRendered}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;h:commandButton</span> <span class="na">action=</span><span class="s">&quot;#{managedBean.doSomething}&quot;</span> <span class="na">value=</span><span class="s">&quot;Do Something&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/f:subview&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ok, you might have some extra mark up in there, id etc, but this is  just to keep things simple for this example.</p>
+
+<p>Now, for the button  to be rendered, the value of  managedBean.shouldButtonBeRendered should  be true when the page is being rendered, then the button appears.</p>
+
+<p>However,  if between the page loading and the button being clicked, the value of  managedBean.shouldButtonBeRendered changes, then the button action is  ignored. Many hours of headaches would have been saved if I&#8217;d realised this sooner!</p>
+
+<p>So, if you have a button which stops working under certain circumstances, check any rendering on the component or parent components!</p>
+
+<p>More info can be found on the <a href="http://forums.sun.com/thread.jspa?threadID=5410200">sun forums</a> and on <a href="http://balusc.blogspot.com/2010/06/benefits-and-pitfalls-of-viewscoped.html">BalusC&#8217;s</a> useful site</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -602,54 +661,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/11/24/jpa-and-hades/">JPA and Hades</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-11-24T23:21:43+00:00" pubdate data-updated="true">Nov 24<span>th</span>, 2009</time>
-        
-         | <a href="/2009/11/24/jpa-and-hades/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>JPA (Java Persistence API) is the standard implementation for persistence in the Java world. Although most people would probably use Hibernate (which is JPA compliant) the JPA spec gives a standard way forward for the various persistence vendors to produce compliant platforms which they can then extend with their own bells and whistles.</p>
-
-<p>Having used JPA a few times now, I&#8217;ve found it to be well thought out and useful. However, although JPA 2.0 is around the corner there are still some improvments which could be made. Hades is an open source library which is built on top of JPA and makes producing the Data Access (DAO) layer super easy. Using convention over configuration means that simply by writing an interface with the simple queries you require is all that is required for Hades to factory produce the actual services you will need.</p>
-
-<p>So, for example, by declaring public User findByUsername(String username);  in your service interface, Hades will automatically generate a corresponding query returning a type safe User. This works for lists as well (which solves the pain of having generic lists returned which are not type safe)</p>
-
-<p>It uses a genericDAO service which is the JPA entity manager on steroids.</p>
-
-<p>Proper named queries can be added to the interface and once again, Hades will implement the query for you.</p>
-
-<p>All in all, definitely worth a look.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -667,6 +678,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
       </li>
     
@@ -680,10 +695,6 @@
     
       <li class="post">
         <a href="/2012/08/22/setting-up-a-fresh-debian-server/">Setting up a Fresh Debian Server</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
       </li>
     
   </ul>

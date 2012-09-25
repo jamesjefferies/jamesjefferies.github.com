@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Today the government has announced a further set of infrastructure investment for the railways. This has to be good news, especially where &hellip;">
+  <meta name="description" content="As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,60 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/07/18/downloading-the-network-rail-schedules/">Downloading the Network Rail Schedules</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-18T17:43:39+01:00" pubdate data-updated="true">Jul 18<span>th</span>, 2012</time>
+        
+         | <a href="/2012/07/18/downloading-the-network-rail-schedules/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon S3. The Schedule feed is an extract of train schedules from the Integration Train Planning System.</p>
+
+<p>When you have your Network Rail account you can subscribe, either to all the data, or to the Train Operators you are interested in. However, at the time of writing, the only feed which works is the one for ALL the data, the Train Operator specific downloads throw an unhelpful error</p>
+
+<blockquote><p>HTTP Status 401 - User not subscribed to CIF_HL_FULL_DAILY</p></blockquote>
+
+<p>Which is a bit rubbish really. So my advice is, at this point to subscribe to ALL the data rather than just for one TOC. You can then access the feeds and download the zip file with either:</p>
+
+<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full</a></p>
+
+<p>for the full feed or, say</p>
+
+<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon</a></p>
+
+<p>for Monday&#8217;s update.</p>
+
+<p>Note that you will need to authenticate if you haven&#8217;t already, using your username and password.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -692,52 +746,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/">Week 3 - Cathy & Heathcliff&#8217;s Amazing Adventures</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-04T18:18:34+01:00" pubdate data-updated="true">May 4<span>th</span>, 2012</time>
-        
-         | <a href="/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site office to get our heads down.</p>
-
-<p>The first challenge was to allow 6th Formers to send messages to Cathy &amp; Heathcliff. At first we thought of hooking them up directly to twitter accounts, but as Leila had a <a href="http://twilio.com">Twilio</a> account, it meant that we could do something clever with SMS Text messages. With a bit of PHP magic on an intermediary server (timescales demanded a quick turnaround!) we managed to get the SMS messages sent to the two printers. Hooray!</p>
-
-<p>The next step was to bypass the button on the Arduino device which you had to push each time a message arrived. We edited the C code and uploaded the new code to the devices so that instead of waiting for the button to be pushed, the green light flashed and it printed without intervention. Hooray x 2!</p>
-
-<p>Finally, we wanted to get the messages sent to Cathy and Heathcliff&#8217;s twitter accounts - @CathyPrinter @HeathcliffPrinter - initially we looked a using the PHP OAuth libraries to authenticate and send the message to twitter, but as neither of us are particularly adept at PHP, we decided on a different solution. Using <a href="http://ifttt.com">If This Then That</a> and some server side magic, we send an email from the server, via their gmail accounts to If This Then That, which then passes them on to their twitter accounts.. Hooray x 3!</p>
-
-<p>You can see us setting them up on our <a href="http://happenstancesheffield.tumblr.com">tumblr site</a>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -755,6 +763,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
       </li>
     
@@ -768,10 +780,6 @@
     
       <li class="post">
         <a href="/2012/08/22/setting-up-a-fresh-debian-server/">Setting up a Fresh Debian Server</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
       </li>
     
   </ul>

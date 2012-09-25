@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-09-05T15:16:28+01:00</updated>
+  <updated>2012-09-25T22:19:09+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The Creativity Tap]]></title>
+    <link href="http://jamesjefferies.com/2012/09/25/the-creativity-tap/"/>
+    <updated>2012-09-25T22:15:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/09/25/the-creativity-tap</id>
+    <content type="html"><![CDATA[<h2>The Creativity Tap</h2>
+
+<p>Creativity is just like a tap right? You need to do some thing a bit woo and a bit wah, so you switch on the creativity tap and all these incredible ideas just pour out of your brain. There are two dangers though if you use the creativity tap.</p>
+
+<p>One is that if you leave that tap switched off for a while, then all the creativity gets stored up in your brain, without an outlet until&#8230; Pop! One day it’s gone, those ideas had to go somewhere, so they leaked out, usually somewhere behind your ear, hopefully picked up by someone else. You have writers block, coders deadlock, songwriters&#8230; err, song block. Oh dear</p>
+
+<p>The other danger is that you leave that tap switched on all the time until your brain empties. This too is a bad idea, sure, you’ve made some room in your noddle for new things, but you need a few left in there, to keep the ideas factory ticking over. Oh double dear&#8230;</p>
+
+<h2>Writing Songs</h2>
+
+<p>Knowing people who are songwriters, I get the privilege of seeing songs appear, until they end up being recorded and performed, or they mutate into a different song, or they end up on the shelf, maybe for another day. I’m sure not every songwriter works like this, but those I know have to <em>work</em> at honing a song. They rarely appear fully formed but they often appear when there is space in their lives to switch on the creativity tap for a bit to see what happens.</p>
+
+<p>If they don’t have the chance to get the songs <em>out</em>, into the open, then you can see how those song ideas start to play merry hell. The frustration builds, no time for the songs, too busy having to do other stuff. It’s almost a physical pain, the song <em>has</em> to be brought to life. There is a creative imperative which must be fulfilled.</p>
+
+<h2>Writing Code</h2>
+
+<p>Fortunately, for us software engineers, coders, developers, tapping at our keyboards day by day, telling the computer what to do and when to do it, we don’t need the creativity tap. We get stuck? We ask a search engine. We need to do something from scratch? Well, <em>someone</em> will have done something like it, we just need to find it and copy them. We need another pair of eyes? Well, ask a colleague. It’s all there for us, if we use a clever framework or development environment, it’ll probably autocomplete what we’re thinking too. We are coding machines..</p>
+
+<p>Or are we? Having spent many years writing code, I started to realise that when I was mechanistic in what I was doing, I became frustrated that I wasn’t able to come up with new ideas or ways of doing things. I was constrained by getting this piece of work finished in as short a period of time that was possible. No time to switch on the creativity tap, just <em>get it done</em>.</p>
+
+<p>The big problem is when you work for someone else, you can find yourself under a lot of pressure to crank the sausage machine handle rather than think things through. I worked with an engineer once, who would deliberately stop what he was doing and just <em>think</em>. Rather than thrashing through a jungle of code&#8230; stop first and think. It worked too, giving a bit of time to turn on the creativity tap to see what happened.</p>
+
+<p>I struggled in my day to day job, so I tried to make time in the evenings and the weekends. But you’re so tired then that switching on the creativity tap just floods you with ideas which you don’t have the energy to either make note of or do anything with. Like the frustrated songwriter I would feel the pain of not learning new skills, not playing with languages and technology. Not actually chuffing making anything which made you say, even if it is just to yourself “I made that and I’m pleased with what I’ve done”.</p>
+
+<p>So, what can be done?</p>
+
+<p>Well one answer, in the workplace, where people have a pressurised, day to day job and a boss, is for the bosses to give people time when they have the headspace to play. With their work, with something new, with wooden blocks, with a great idea they’ve had. Not only do they get chance to switch on the creativity tap, but usually it knocks on in to their ‘day to day’ work too. Wins all around.</p>
+
+<p>If you are your own boss, then plan in time where you put down the work you’re doing for clients or your startup and have a play. You never know what amazing ideas might come to life!</p>
+
+<p>Disclaimer - the creativity tap premise is a load of nonsense, if only it was a tap we could switch on and off!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Troubleshooting WordPress connectivity issue - could not connect to host]]></title>
@@ -1183,23 +1222,6 @@ end</code></pre></noscript></div>
 <p><strong>Thursday</strong> was the day of working out how to get Cathy and Heathcliff mobile. A frustrating day as the components and bits and bobs we bought didn&#8217;t work or wouldn&#8217;t work how we wanted them to. We ended the day though with a 3G dongle and an ethernet to USB connector which hopefully means that if we can take a Mac, a dongle, a lead, a printer &amp; some sort of power supply then we can take them anywhere where there is a mobile signal and they&#8217;ll work.</p>
 
 <p>We also spent a fair bit of time thinking about our contribution to <a href="http://futureeverything.org/">Future Everything</a> which is next week, meep!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Week 3 - Cathy & Heathcliff's amazing adventures]]></title>
-    <link href="http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/"/>
-    <updated>2012-05-04T18:18:34+01:00</updated>
-    <id>http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures</id>
-    <content type="html"><![CDATA[<p>This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site office to get our heads down.</p>
-
-<p>The first challenge was to allow 6th Formers to send messages to Cathy &amp; Heathcliff. At first we thought of hooking them up directly to twitter accounts, but as Leila had a <a href="http://twilio.com">Twilio</a> account, it meant that we could do something clever with SMS Text messages. With a bit of PHP magic on an intermediary server (timescales demanded a quick turnaround!) we managed to get the SMS messages sent to the two printers. Hooray!</p>
-
-<p>The next step was to bypass the button on the Arduino device which you had to push each time a message arrived. We edited the C code and uploaded the new code to the devices so that instead of waiting for the button to be pushed, the green light flashed and it printed without intervention. Hooray x 2!</p>
-
-<p>Finally, we wanted to get the messages sent to Cathy and Heathcliff&#8217;s twitter accounts - @CathyPrinter @HeathcliffPrinter - initially we looked a using the PHP OAuth libraries to authenticate and send the message to twitter, but as neither of us are particularly adept at PHP, we decided on a different solution. Using <a href="http://ifttt.com">If This Then That</a> and some server side magic, we send an email from the server, via their gmail accounts to If This Then That, which then passes them on to their twitter accounts.. Hooray x 3!</p>
-
-<p>You can see us setting them up on our <a href="http://happenstancesheffield.tumblr.com">tumblr site</a>.</p>
 ]]></content>
   </entry>
   

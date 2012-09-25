@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="For this development project, we&#8217;ve been developing locally using in memory HSQLDB. The advantages of this are, easy set up out of the box (no &hellip;">
+  <meta name="description" content="Ok, noddy stuff this really, but it&#8217;s good reference for me, thanks to wilbatron. Lenny has maven packaged, but etch doesn&#8217;t, so a manual &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,70 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/03/12/installing-maven-on-an-etch-box/">Installing Maven on an Etch Box</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-12T11:53:22+00:00" pubdate data-updated="true">Mar 12<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ok, noddy stuff this really, but it&#8217;s good reference for me, thanks to wilbatron. Lenny has maven packaged, but etch doesn&#8217;t, so a manual install is required!</p>
+
+<p>oh, make sure java and bzip2 are installed and set up</p>
+
+<p>download maven binary, unarchive it, move to /usr/local do some links</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget http://www.mirrorservice.org/sites/ftp.apache.org/maven/binaries/apache-maven-2.0.9-bin.tar.bz2
+</span><span class='line'>tar xjvf apache-maven-2.0.9-bin.tar.bz2
+</span><span class='line'>mv apache-maven-2.0.9 /usr/local/
+</span><span class='line'>ln -s /usr/local/apache-maven-2.0.9/ /usr/local/maven
+</span><span class='line'>ln -s /usr/local/maven/bin/mvn /usr/local/bin/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I went a bit off piste after that and added the following to /etc/mvnrc rather than chuck them in the mvn shell script</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">JAVA_HOME</span><span class="o">=</span>/whatever/this/is
+</span><span class='line'><span class="nv">M2_HOME</span><span class="o">=</span>/wherever/you/put/it
+</span><span class='line'><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">&quot;-Xms256m -Xmx512m&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -679,62 +743,6 @@ deb http://www.backports.org/debian etch-backports main non-free
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/02/03/annoying-bug-with-myfaces-2/">Annoying Bug With MyFaces</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-03T09:42:52+00:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So I reckon I&#8217;ve spent over an hour wrestling with this chuffer&#8230;.</p>
-
-<p>Simple search button on a page using Tomahawk Data Table to render the output. Page would render first time out, but then using the search button resulted in the following error</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">NoSuchMethodError</span><span class="o">:</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">myfaces</span><span class="o">.</span><span class="na">component</span><span class="o">.</span><span class="na">html</span><span class="o">.</span><span class="na">ext</span><span class="o">.</span><span class="na">HtmlDataTable</span><span class="o">.</span><span class="na">refresh</span><span class="o">(</span><span class="n">Ljavax</span><span class="o">/</span><span class="n">faces</span><span class="o">/</span><span class="n">context</span><span class="o">/</span><span class="n">FacesContext</span><span class="o">;)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>Looks like there might be a problem rendering the data table doesn&#8217;t it. Well, I thought I&#8217;d made a chimpolata mistake somewhere down the line&#8230; and I had, but nothing to do with the table&#8230;.</p>
-
-<p>The last thing the search method did was return a string to tell MyFaces where to navigate to next. Like a complete chump, at some point I&#8217;d removed the config from the faces navigation xml to tell it which page that string referred to.</p>
-
-<p>Consequently, rather than saying something like</p>
-
-<pre><code>Navigation failure you numpty, couldn't find "list-applicants"
-</code></pre>
-
-<p>it came up with the other error&#8230; Thanks MyFaces, you&#8217;re really helpful</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -752,6 +760,10 @@ deb http://www.backports.org/debian etch-backports main non-free
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
       </li>
     
@@ -765,10 +777,6 @@ deb http://www.backports.org/debian etch-backports main non-free
     
       <li class="post">
         <a href="/2012/08/22/setting-up-a-fresh-debian-server/">Setting up a Fresh Debian Server</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
       </li>
     
   </ul>

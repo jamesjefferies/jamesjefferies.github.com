@@ -9,10 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Fantastic night at the Sheffield Arena seeing Rush.. &#8220;The Spirit of Radio&#8221;
-&#8220;Time Stand Still)&#8221;
-&#8220;Presto)&#8221;
-&#8220; &hellip;">
+  <meta name="description" content="This is to remind me next time that MySQL isn’t as clever as you think it might be. If you have Table A, with column 1, 2, 3 and Table B with columns &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +78,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/06/29/mysql-and-foreign-keys/">MySQL and Foreign Keys</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-29T23:25:40+01:00" pubdate data-updated="true">Jun 29<span>th</span>, 2011</time>
+        
+         | <a href="/2011/06/29/mysql-and-foreign-keys/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is to remind me next time that MySQL isn’t as clever as you think it might be.</p>
+
+<p>If you have Table A, with column 1, 2, 3 and Table B with columns 4, 5, 6 – Primary keys are columns 1 &amp; 4 respectively.</p>
+
+<p>Now you want to add a foreign key to table B, column 6, referencing column 1 in table A. No problem:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">`</span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tableB</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">fk_column_1</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">column6</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">tableA</span> <span class="p">(</span><span class="n">column1</span><span class="p">);</span><span class="o">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>oh dear, fails with something like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">`</span><span class="n">ERROR</span> <span class="mi">1005</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="n">Can</span><span class="s1">&#39;t create table &#39;</span><span class="p">.</span><span class="o">/</span><span class="n">databasename</span><span class="o">/#</span><span class="k">sql</span><span class="o">-</span><span class="mi">55</span><span class="n">d1_b07</span><span class="p">.</span><span class="n">frm</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">errno</span><span class="p">:</span> <span class="mi">150</span><span class="p">)</span><span class="o">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This fails because creating the primary key on columns 1 and 4 don’t automatically create indexes on those columns, and adding a foreign key requires there to be an index on the column you are referencing. Boom!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -877,61 +930,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/10/14/maven-gets-an-update-3-0/">Maven Gets an Update - 3.0</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-10-14T11:17:33+01:00" pubdate data-updated="true">Oct 14<span>th</span>, 2010</time>
-        
-         | <a href="/2010/10/14/maven-gets-an-update-3-0/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Maven is the build &amp; dependency management tool we use for all our java projects. Used correctly it&#8217;s ace, but it can also prove to be a headache when you head off the beaten track.</p>
-
-<p>Maven 3.0 has just been released which contains a lot of new goodies, plus, alleged backwards compatibility!</p>
-
-<p>The pom file, which is the main file which describes the structure of the project, it&#8217;d dependencies and plugins <em>is</em> backwards compatible, but there is stricter validation. So when I ran one of our project configuration files through the new version, it came up with a number of missing versions and scopes in the wrong place. Easy to fix and the config still works with version 2 or 3. Bigger and more complicated project structures may have more problems.</p>
-
-<p>The two things I think are most interesting are:</p>
-
-<ul>
-<li><p>When an error occurs, rather than just spitting out an error message, a link is included to a wiki page, what a great idea! For example:</p>
-
-<p>[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] <a href="http://cwiki.apache.org/confluence/display/MAVEN/NoGoalSpecifiedException">http://cwiki.apache.org/confluence/display/MAVEN/NoGoalSpecifiedException</a></p></li>
-<li><p>The maven shell has been updated, the shell is a high performance console add on, giving you syntax highlighting and context sensitive help. At the mo you can download and <a href="http://github.com/sonatype/mvnsh">install it from github </a></p></li>
-</ul>
-
-
-<p>I&#8217;ll be taking it out for a spin with some of our projects to see if there any issues, before we maybe have a look at some of our other projects.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -949,6 +947,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
@@ -962,10 +964,6 @@
     
       <li class="post">
         <a href="/2012/08/22/setting-up-wordpress/">Setting up WordPress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/22/setting-up-a-fresh-debian-server/">Setting up a Fresh Debian Server</a>
       </li>
     
   </ul>

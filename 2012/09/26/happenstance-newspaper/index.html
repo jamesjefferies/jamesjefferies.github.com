@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hibernate Search, Lucene and Greenwich Mean Time - James Jefferies and ShedCode Ltd</title>
+  <title>Happenstance Newspaper - James Jefferies and ShedCode Ltd</title>
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Aww, what a gotcha this morning. Felt stoopid when I realised what was going on. There are a number of ways to use dates with Lucene and specifically &hellip;">
+  <meta name="description" content="Following on from the amazing Happenstance Project I worked on earlier in the year, we had the final Showcase at Nesta HQ. For the Showcase, Leila &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jamesjefferies.com/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/">
+  <link rel="canonical" href="http://jamesjefferies.com/2012/09/26/happenstance-newspaper/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">Hibernate Search, Lucene and Greenwich Mean Time</h1>
+      <h1 class="entry-title">Happenstance Newspaper</h1>
     
     
       <p class="meta">
@@ -97,25 +97,20 @@
   
 
 
-<time datetime="2009-04-22T11:20:05+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2009</time>
+<time datetime="2012-09-26T20:50:00+01:00" pubdate data-updated="true">Sep 26<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Aww, what a gotcha this morning. Felt stoopid when I realised what was going on.</p>
+<div class="entry-content"><p>Following on from the amazing <a href="http://happenstanceproject.com">Happenstance Project</a> I worked on earlier in the year, we had the final Showcase at Nesta HQ. For the Showcase, <a href="http://finalbullet.com">Leila</a> produced a Happenstance Newspaper, including articles by yours truly! You can download a <a href="http://jamesjefferies.com/Happenstance_2012_Newspaper.pdf">PDF copy of it</a>.</p>
 
-<p>There are a number of ways to use dates with Lucene and specifically with Hibernate Search, which is what I&#8217;m using at the moment for providing a wrapper around Lucene. I wanted to search for a certain date range on a field.. which has been set to midnight. You can probably guess what&#8217;s coming here. Now we&#8217;re in British Summer Time our clocks are forward, but of course, the date is stored by Lucene as GMT, consequently, without a bit of cleverness, something saved at 12:01 AM on the 2nd April BST, is actually 11:01 PM on the 1st April GMT.</p>
+<p>Enjoy!</p>
 
-<p>Throw in a date range search looking for stuff from the 2nd April onwards and things start going a bit wonky!</p>
-
-<p>By the way, here is how it now woorks, still may not be the best way to do it, but it&#8217;s working for now.</p>
-
-<p><code>@Field(index = Index.UN_TOKENIZED)
-@DateBridge(resolution = Resolution.HOUR)
-@Temporal(TemporalType.DATE)
-private Date startDate;</code></p>
+<p><img src="http://jamesjefferies.com/happenstance_newspaper.jpg" title="Happenstance Newspaper" alt="Newspaper" /></p>
 </div>
 
 
@@ -138,15 +133,21 @@ private Date startDate;</code></p>
   
 
 
-<time datetime="2009-04-22T11:20:05+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2009</time>
+<time datetime="2012-09-26T20:50:00+01:00" pubdate data-updated="true">Sep 26<span>th</span>, 2012</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/categories/happenstance/'>Happenstance</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2012/09/26/happenstance-newspaper/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2012/09/26/happenstance-newspaper/" >Tweet</a>
   
   
   
@@ -155,14 +156,18 @@ private Date startDate;</code></p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2009/04/14/gotcha-with-auto-ddl-generation-and-hibernate/" title="Previous Post: Gotcha with auto DDL generation and hibernate">&laquo; Gotcha with auto DDL generation and hibernate</a>
+        <a class="basic-alignment left" href="/2012/09/25/the-creativity-tap/" title="Previous Post: The Creativity Tap">&laquo; The Creativity Tap</a>
       
-      
-        <a class="basic-alignment right" href="/2009/04/30/what-is-an-expert/" title="Next Post: What is an expert and top ten reasons managers become great - links">What is an expert and top ten reasons managers become great - links &raquo;</a>
       
     </p>
   </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -258,6 +263,22 @@ private Date startDate;</code></p>
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'jamesjefferiesblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jamesjefferies.com/2012/09/26/happenstance-newspaper/';
+        var disqus_url = 'http://jamesjefferies.com/2012/09/26/happenstance-newspaper/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 

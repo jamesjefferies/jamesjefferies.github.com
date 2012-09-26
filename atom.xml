@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-09-25T22:19:09+01:00</updated>
+  <updated>2012-09-26T21:02:53+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Happenstance Newspaper]]></title>
+    <link href="http://jamesjefferies.com/2012/09/26/happenstance-newspaper/"/>
+    <updated>2012-09-26T20:50:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/09/26/happenstance-newspaper</id>
+    <content type="html"><![CDATA[<p>Following on from the amazing <a href="http://happenstanceproject.com">Happenstance Project</a> I worked on earlier in the year, we had the final Showcase at Nesta HQ. For the Showcase, <a href="http://finalbullet.com">Leila</a> produced a Happenstance Newspaper, including articles by yours truly! You can download a <a href="http://jamesjefferies.com/Happenstance_2012_Newspaper.pdf">PDF copy of it</a>.</p>
+
+<p>Enjoy!</p>
+
+<p><img src="http://jamesjefferies.com/happenstance_newspaper.jpg" title="Happenstance Newspaper" alt="Newspaper" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Creativity Tap]]></title>
@@ -1203,25 +1216,6 @@ end</code></pre></noscript></div>
 <p>.. and relax! (Chris the researcher, me and Natalia looking interested.. I think!)</p>
 
 <p><a href="http://jamesjefferies.com/?attachment_id=520"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/inthepub-620x465.jpg" alt="" /></a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Week 4 - stutter stutter]]></title>
-    <link href="http://jamesjefferies.com/2012/05/11/week-4-stutter-stutter/"/>
-    <updated>2012-05-11T16:03:50+01:00</updated>
-    <id>http://jamesjefferies.com/2012/05/11/week-4-stutter-stutter</id>
-    <content type="html"><![CDATA[<p>This week has been a bit wonky.</p>
-
-<p><strong>Saturday</strong> was a triumph, getting Cathy and Heathcliff doing something useful as part of Bill Drummond&#8217;s sixth form workshop. It certainly warmed the cockles &amp; Leila has written some more about it on her post.</p>
-
-<p><strong>Tuesday</strong> was a day where we were part of Site&#8217;s Brand Innovation task force, looking at Site&#8217;s &#8216;Brand Promise&#8217;. This was jam packed and a bit of a brain strain, but we made a contribution and as we were observed by our illustrious researcher, we hopefully gave him something to write about!</p>
-
-<p><strong>Wednesday</strong> went a bit wonky as my daughter was poorly meaning the day was very broken up. I started having a look at Ruby, the programming language whilst thinking about how we could get Cathy &amp; Heathcliff to interact a bit more with Twitter.</p>
-
-<p><strong>Thursday</strong> was the day of working out how to get Cathy and Heathcliff mobile. A frustrating day as the components and bits and bobs we bought didn&#8217;t work or wouldn&#8217;t work how we wanted them to. We ended the day though with a 3G dongle and an ethernet to USB connector which hopefully means that if we can take a Mac, a dongle, a lead, a printer &amp; some sort of power supply then we can take them anywhere where there is a mobile signal and they&#8217;ll work.</p>
-
-<p>We also spent a fair bit of time thinking about our contribution to <a href="http://futureeverything.org/">Future Everything</a> which is next week, meep!</p>
 ]]></content>
   </entry>
   

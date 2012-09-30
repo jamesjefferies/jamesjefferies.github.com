@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="When using Tomahawk&#8217;s file upload component it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit &hellip;">
+  <meta name="description" content="Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230; 1
+javap - &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/10/how-do-i-find-the-version-of-java-my-class-was-compiled-against/">How Do I Find the Version of Java My Class Was Compiled Against?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-10T18:03:20+01:00" pubdate data-updated="true">Jun 10<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>javap -verbose Classname
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where Classname is your class, will give you loads of information, including major and minor java version numbers. Handy huh?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -681,57 +725,6 @@ private Date startDate;</code></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/07/asking-maven-to-produce-your-javadocs/">Asking Maven to Produce Your Javadocs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-07T10:33:11+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Javadocs are the java platforms standard way of producing code documentation, comments about what the class is for, which methods are provided and all that kind of stuff. It feels a bit old school now, but they are really useful if kept up to date.</p>
-
-<p>As we are building our project using maven, we can ask maven to build a &#8216;site&#8217; for our project. This pulls in various bits of information about the project, including dependencies on other libraries (and their licencing models) and all kinds of interesting stuff.</p>
-
-<p>One of the maven plugins generates the javadocs for your project and it&#8217;s very straightforward to set up, just add this to the reporting section of your pom file (for maven) and when you do a mvn site it automatically builds your javadocs.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>maven-javadoc-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -749,6 +742,10 @@ private Date startDate;</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
@@ -762,10 +759,6 @@ private Date startDate;</code></p>
     
       <li class="post">
         <a href="/2012/09/04/poor-old-java/">Poor old java</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/22/setting-up-wordpress/">Setting up WordPress</a>
       </li>
     
   </ul>

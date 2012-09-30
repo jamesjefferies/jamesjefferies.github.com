@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="If you&#8217;re using Lucene queries then there are some special characters which do magic things. Of course you might not want any wild card / range &hellip;">
+  <meta name="description" content="Javadocs are the java platforms standard way of producing code documentation, comments about what the class is for, which methods are provided and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/07/asking-maven-to-produce-your-javadocs/">Asking Maven to Produce Your Javadocs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-07T10:33:11+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Javadocs are the java platforms standard way of producing code documentation, comments about what the class is for, which methods are provided and all that kind of stuff. It feels a bit old school now, but they are really useful if kept up to date.</p>
+
+<p>As we are building our project using maven, we can ask maven to build a &#8216;site&#8217; for our project. This pulls in various bits of information about the project, including dependencies on other libraries (and their licencing models) and all kinds of interesting stuff.</p>
+
+<p>One of the maven plugins generates the javadocs for your project and it&#8217;s very straightforward to set up, just add this to the reporting section of your pom file (for maven) and when you do a mvn site it automatically builds your javadocs.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>maven-javadoc-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -627,70 +678,6 @@ TIMESTAMP
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/02/18/getting-sun-jdk6-up-and-running-on-debian-etc-2/">Getting Sun Jdk6 Up and Running on Debian Etc</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-18T12:31:00+00:00" pubdate data-updated="true">Feb 18<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ok, so we&#8217;ll be going for proper open jdk at some point (Java 7 preferably) but to get us up and running with Java 6 update 7&#8230;</p>
-
-<p>add the following to /etc/apt/sources.list</p>
-
-<pre><code>deb http://ftp.us.debian.org/debian/ etch main contrib non-free
-deb http://www.backports.org/debian etch-backports main non-free
-</code></pre>
-
-<p>and run</p>
-
-<pre><code>sudo apt-get update
-</code></pre>
-
-<p>before running</p>
-
-<pre><code>sudo apt-get install sun-java6-jdk
-</code></pre>
-
-<p>now, I had a problem with the default java install (not sure how to tinker with /etc/alternatives yet) so I uninstalled</p>
-
-<pre><code> sudo apt-get remove sablevm
-</code></pre>
-
-<p>and</p>
-
-<pre><code> sudo apt-get remove free-java-sdk
-</code></pre>
-
-<p>once I work out /etc/alternatives beyond them just being symbolic links, then that&#8217;ll be not required I guess</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -708,6 +695,10 @@ deb http://www.backports.org/debian etch-backports main non-free
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
@@ -721,10 +712,6 @@ deb http://www.backports.org/debian etch-backports main non-free
     
       <li class="post">
         <a href="/2012/09/04/poor-old-java/">Poor old java</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/22/setting-up-wordpress/">Setting up WordPress</a>
       </li>
     
   </ul>

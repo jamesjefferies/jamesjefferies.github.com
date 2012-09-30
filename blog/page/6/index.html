@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Choosing a NAS solution where you can&#8217;t mount the storage media outside of the NAS is asking for trouble. I was worried I&#8217;d made the &hellip;">
+  <meta name="description" content="Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,82 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/06/maven-reloaded-from-devoxx/">Maven Reloaded (From Devoxx)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T20:59:03+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+        
+         | <a href="/2009/12/06/maven-reloaded-from-devoxx/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other things. The points below are highlight points from his talk at devoxx.</p>
+
+<p>It was acknowledged that many things were wrong with maven 2.0 and version 3.0 is a chance to put those things right - adding extras like support for m2eclipse and osgi.</p>
+
+<p>Maven has moved from where it originally was set up. The main driver for changes are &#8216;desire lines&#8217; - difference between how things were intended and how people used things. Responding to invitations for improvement. How people check out whole source trees, mis use of the release plugin. Responding to under utilization of what exists.</p>
+
+<p>Maven 3 should be backwards compatible with maven 2, so we should be good to go with maven 3 - performance benefits?</p>
+
+<p>Pluggable modelreader for project builder (which has been refactored). mixins for poms, composition for poms. Keep hold of non-mutated model and track contributions to pom. Might have a &#8216;spring mixin&#8217; or &#8216;tomcat depoy mixin&#8217; or whatever, these can be stored in the reposoitory.</p>
+
+<p>More extension points on maven 3, decorate the lifecycle. DSLs can do all this, in groovy, ruby, scala, python.</p>
+
+<p>The queryable lifecycle. Can query the execution plan before it happens (which is what M2Eclipse now does). Big performance increase now in eclipse.</p>
+
+<p>Incremental build support. in M2 loads of stuff has been delegated to eclipse.</p>
+
+<p>Lifecycle extension points Tycho - maven plugins delegates stuff to OSGI/Eclipse stuff.</p>
+
+<p>Aggregator problems with maven 2, in 3, the post build works properly so report aggregation should work correctly.</p>
+
+<p>Tycho is the complete replacement for PDE headless build, buckminster and everything else that attmeptes to builf OSGI.</p>
+
+<p>Maven 3 used in hudson, M2Eclipse and netbeans already&#8230;</p>
+
+<p>Maven shell looks brilliant, a make-like reactor, the shell caches the poms and all sorts of stuff.</p>
+
+<p>Better error and inntegrity reporting. Lots of problems have a link to a wiki entry in confluence. Catalog to read about it. In the shell or m2eclipse, that data can be pulled in. Don&#8217;t allow builds where versions come from profiles which have to be activated manually.</p>
+
+<p>Plugin manager, switched over to OSGI runtime, conceierge, guice and peaberry. Creating isolated classloader and stuff, but decided to switch to OSGI instead. Hudson will be switched across to OSGI as well. Plexus going in maven 3.1, replaced by Guice.</p>
+
+<p>Plugin extension points, will be in 3.1 - rip off of Eclipse plugin.</p>
+
+<p>Replace HTTP stuff with jetty client. SSL, PGP SUPPORT, multiple threaded downloads and all that.</p>
+
+<p>End of january for 3.0 release.</p>
+
+<p>Extensible reporting. Logic is now in maven site plugin rather than contined in the core. Static maven sites will probably disappear.</p>
+
+<p>Guice and peaberry. Plexus has been going as long as spring, was ahead, but now&#8230;. not kept up. Needed more speed and injection listening - use guice with in effect a wrapper so all the plexus stuff still works as was. Use JSR330 in the future.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -535,49 +611,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/06/10/how-do-i-find-the-version-of-java-my-class-was-compiled-against/">How Do I Find the Version of Java My Class Was Compiled Against?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-10T18:03:20+01:00" pubdate data-updated="true">Jun 10<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>javap -verbose Classname
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>where Classname is your class, will give you loads of information, including major and minor java version numbers. Handy huh?</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -595,6 +628,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
@@ -608,10 +645,6 @@
     
       <li class="post">
         <a href="/2012/09/04/poor-old-java/">Poor old java</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/22/setting-up-wordpress/">Setting up WordPress</a>
       </li>
     
   </ul>

@@ -3,7 +3,18 @@ layout: post
 title: "Scenic Railways - our railway hack"
 date: 2012-10-16 16:22
 comments: true
-categories: 
+published: false
+categories:
+- Techie
+- Hackday
+- Railways
+
+tags:
+- Techie
+- Hackday
+- Railways
+
+
 ---
 
 ![screen shot of application](/images/scenic-railways.png)
@@ -14,7 +25,7 @@ After some discussion on ideas, scope, implementation and the [Railway Performan
 
 ![ios-1](/images/scenic-railways-on-iphone.png)
 
-We got an initial version built in the time we had (from about 11am until 7pm) before the presentations start. I worked on a bit of map integration using [leaflet.js](http://leaflet.js) whilst Jez and Frankie implemented the main structure. Although the version we finished was relatively basic, there are some nice features, the best one being that the sides to look out of the window on, reverse depending on direction of travel!  It could easily be extended in the future to add extra routes and extra points of interest (POIs). Joe had some ideas on making the iOS app competitive, by providing incentives for people to take photos of the points from the train! 
+We got an initial version built in the time we had (from about 11am until 7pm) before the presentations start. I worked on a bit of map integration using [leaflet.js](http://leaflet.cloudmade.com) whilst Jez and Frankie implemented the main structure. Although the version we finished was relatively basic, there are some nice features, the best one being that the sides to look out of the window on, reverse depending on direction of travel!  It could easily be extended in the future to add extra routes and extra points of interest (POIs). Joe had some ideas on making the iOS app competitive, by providing incentives for people to take photos of the points from the train! 
 
 ![screen shot of application](/images/scenic-railways-1.png)
 

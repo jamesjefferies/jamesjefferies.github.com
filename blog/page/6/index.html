@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="I&#8217;m really pleased to be at Devoxx this year which is the biggest Java conference in Europe. Today around 3000 people turned up for day 1 of &hellip;">
+  <meta name="description" content="Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,8 @@
   
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
+  <li><a href="http://shedcode.co.uk/">ShedCode</a></li>
+  <li><a href="/about/">About</a></li>
   <li><a href="/blog/archives">Archives</a></li>
 </ul>
 
@@ -77,6 +79,308 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/06/maven-reloaded-from-devoxx/">Maven Reloaded (From Devoxx)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T20:59:03+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+        
+         | <a href="/2009/12/06/maven-reloaded-from-devoxx/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Jason Van Zyl was the speaker for this session, the creator of Maven - he know works for sonatype and will shortly be moving on from Maven to other things. The points below are highlight points from his talk at devoxx.</p>
+
+<p>It was acknowledged that many things were wrong with maven 2.0 and version 3.0 is a chance to put those things right - adding extras like support for m2eclipse and osgi.</p>
+
+<p>Maven has moved from where it originally was set up. The main driver for changes are &#8216;desire lines&#8217; - difference between how things were intended and how people used things. Responding to invitations for improvement. How people check out whole source trees, mis use of the release plugin. Responding to under utilization of what exists.</p>
+
+<p>Maven 3 should be backwards compatible with maven 2, so we should be good to go with maven 3 - performance benefits?</p>
+
+<p>Pluggable modelreader for project builder (which has been refactored). mixins for poms, composition for poms. Keep hold of non-mutated model and track contributions to pom. Might have a &#8216;spring mixin&#8217; or &#8216;tomcat depoy mixin&#8217; or whatever, these can be stored in the reposoitory.</p>
+
+<p>More extension points on maven 3, decorate the lifecycle. DSLs can do all this, in groovy, ruby, scala, python.</p>
+
+<p>The queryable lifecycle. Can query the execution plan before it happens (which is what M2Eclipse now does). Big performance increase now in eclipse.</p>
+
+<p>Incremental build support. in M2 loads of stuff has been delegated to eclipse.</p>
+
+<p>Lifecycle extension points Tycho - maven plugins delegates stuff to OSGI/Eclipse stuff.</p>
+
+<p>Aggregator problems with maven 2, in 3, the post build works properly so report aggregation should work correctly.</p>
+
+<p>Tycho is the complete replacement for PDE headless build, buckminster and everything else that attmeptes to builf OSGI.</p>
+
+<p>Maven 3 used in hudson, M2Eclipse and netbeans already&#8230;</p>
+
+<p>Maven shell looks brilliant, a make-like reactor, the shell caches the poms and all sorts of stuff.</p>
+
+<p>Better error and inntegrity reporting. Lots of problems have a link to a wiki entry in confluence. Catalog to read about it. In the shell or m2eclipse, that data can be pulled in. Don&#8217;t allow builds where versions come from profiles which have to be activated manually.</p>
+
+<p>Plugin manager, switched over to OSGI runtime, conceierge, guice and peaberry. Creating isolated classloader and stuff, but decided to switch to OSGI instead. Hudson will be switched across to OSGI as well. Plexus going in maven 3.1, replaced by Guice.</p>
+
+<p>Plugin extension points, will be in 3.1 - rip off of Eclipse plugin.</p>
+
+<p>Replace HTTP stuff with jetty client. SSL, PGP SUPPORT, multiple threaded downloads and all that.</p>
+
+<p>End of january for 3.0 release.</p>
+
+<p>Extensible reporting. Logic is now in maven site plugin rather than contined in the core. Static maven sites will probably disappear.</p>
+
+<p>Guice and peaberry. Plexus has been going as long as spring, was ahead, but now&#8230;. not kept up. Needed more speed and injection listening - use guice with in effect a wrapper so all the plexus stuff still works as was. Use JSR330 in the future.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/06/mounting-readynas-duo-drives-in-ubuntu/">Mounting ReadyNAS Duo Drives From Ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-06T00:20:35+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
+        
+         | <a href="/2009/12/06/mounting-readynas-duo-drives-in-ubuntu/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Choosing a NAS solution where you can&#8217;t mount the storage media outside of the NAS is asking for trouble. I was worried I&#8217;d made the wrong choice when I found that mounting the ReadyNAS do ext3 drives is not trivial, mainly because they use a 16kb block size with their SPARC cpus.</p>
+
+<p>A bit of routing around found various solutions, but the one which worked for me was as follows.</p>
+
+<ol>
+<li><p>Fire up ubuntu vm (running on OS X for me and in my case 9.10 Karmic)</p></li>
+<li><p>install lvm2 with a apt-get install lvm2</p></li>
+<li><p>Download ext2fuse 0.5 (from <a href="http://linux.softpedia.com/progDownload/ext2fuse-Download-29820.html">here</a> for example)</p></li>
+<li><p>run vgscan to locate drives</p></li>
+<li><p>vgchange -ay c to allow access to drive</p></li>
+<li><p>mkdir /mnt/lvm</p></li>
+<li><p>ext2fuse /dev/c/c /mnt/lvm (where ext2fuse will have been downloaded)</p></li>
+<li><p>drive can now be accessed on /mnt/lvm</p></li>
+</ol>
+
+
+<p>Hurrah!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/24/jpa-and-hades/">JPA and Hades</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-24T23:21:43+00:00" pubdate data-updated="true">Nov 24<span>th</span>, 2009</time>
+        
+         | <a href="/2009/11/24/jpa-and-hades/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>JPA (Java Persistence API) is the standard implementation for persistence in the Java world. Although most people would probably use Hibernate (which is JPA compliant) the JPA spec gives a standard way forward for the various persistence vendors to produce compliant platforms which they can then extend with their own bells and whistles.</p>
+
+<p>Having used JPA a few times now, I&#8217;ve found it to be well thought out and useful. However, although JPA 2.0 is around the corner there are still some improvments which could be made. Hades is an open source library which is built on top of JPA and makes producing the Data Access (DAO) layer super easy. Using convention over configuration means that simply by writing an interface with the simple queries you require is all that is required for Hades to factory produce the actual services you will need.</p>
+
+<p>So, for example, by declaring public User findByUsername(String username);  in your service interface, Hades will automatically generate a corresponding query returning a type safe User. This works for lists as well (which solves the pain of having generic lists returned which are not type safe)</p>
+
+<p>It uses a genericDAO service which is the JPA entity manager on steroids.</p>
+
+<p>Proper named queries can be added to the interface and once again, Hades will implement the query for you.</p>
+
+<p>All in all, definitely worth a look.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/17/jsf-2-highlights/">JSF 2 Highlights…</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-17T18:54:23+00:00" pubdate data-updated="true">Nov 17<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As a relatively experienced JSF 1.2 user I have high hopes for the next generation of the JSF framework. Consequently I gave up my afternoon to have my JSF world blown away.. or something.</p>
+
+<p>So, here are some highlights about what&#8217;s new in JSF 2</p>
+
+<ul>
+<li><p>Bye bye XML -  get rid of a lot of the silly XML configuration and replace it with annotations. JSF 1.x is weighed down with it&#8217;s verbose XML config and half-baked dependency injection, JSF 2 is much better</p></li>
+<li><p>Facelets is now the default renderer - and about time, using XHTML and facelets has always fitted better with JSF than compiled JSP.</p></li>
+<li><p>Composite components - the component model has been souped up to be far more useable, especially with simple ways to make composites.</p></li>
+<li><p>Standard AJAX tags - seem to work great but are obtrusive :(</p></li>
+<li><p>Partial State saving - no more performance issues with saving the state all the time, sensible deltas are now stored, phew!</p></li>
+<li><p>PreRenderViewEvent and PostAddToViewEvent - nice extendable ways to do on page load, on validation and all that stuff.</p></li>
+<li><p>Navigation short cuts - instead of going crazy with navigation xml, sensible defaults are now provided. return &#8220;catalog&#8221; would default to rendering /catalog.xhtml as you would hope</p></li>
+<li><p>Conditional navigation - still xml, but much cleverer now for allowing navigation logic in config rather than in the bean.</p></li>
+<li><p>JSR 299 beans - full on dependency injection including flash scope and all sorts of other goodies. This looks great but a bit different from how we&#8217;ve done it with Spring in the past.</p></li>
+<li><p>Proper bean validation - annotate the domain objects and bean validation can take place in one place on the server side, all wired up to the JSF lifecycle. Looks like a lifesaver. JSR 303 @NotNull @Email - you got to love that!</p></li>
+<li><p>Validation groups - can group sets of validations.. nice.</p></li>
+<li><p>Pluggable error dispatcher - holy moly, this is almost the holy grail - throw errors in a sensible way with extensibility made easy.</p></li>
+<li><p>Still uses web.xml though :/</p></li>
+</ul>
+
+
+<p>So in summary, there is lots of good stuff included in JSF 2.0, the problem is that it hasn&#8217;t been released yet, either as MyFaces or a RI implementation in a version fit for production. I want to give JSF 2.0 a go, but by that time I may have converted to wicket, or grails, or lift or loom or anything else which does most of this stuff just as well or better..</p>
+
+<p>oh and no mention of portlets!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/16/the-kanban-methodology/">The Kanban Methodology</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-16T19:27:38+00:00" pubdate data-updated="true">Nov 16<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now I&#8217;ve had some experience of working in a scrum environment, I was keen to find about other similiar methodologies. Kanban (which literally means - visual card) is a methodology direct from manufacturing, specifically in Japan. Limits and constraints are embraced to allow the smooth flow of tasks.</p>
+
+<p>A board is used to map flow of tasks, but generally with extra steps compared to a scrum board. Some of these steps are buffers, indicating that there may be inefficiencies or constraints which are hindering the flow, i.e. tasks which are in the &#8216;awaiting uploading&#8217; stage indicates that the uploading stage may have inefficiencies which constrain the throughput.</p>
+
+<p>Each stage has a limit, nominally set to twice the number of people working on the stage minus 1. The limits can be amended , but care must be taken that flow is increased rather than decreased. Work is managed on a pull basis. No one pushes work from left to right, people pull the work from the previous stage. This changes the stress that people encounter, they can only work at the limit which is set, they are not allowed to take on work which would take them above the limit. They can only take things on when they have spare capacity.</p>
+
+<p>I love how it works when there is spare capacity. If there is no task to pick up from the previous stage and say there are too many tasks in the test stage, then rather than jumping in to help someone else or do some testing, use the time to improve the efficiency of the process. Write a tool to make deployment faster etc. It&#8217;s in an inbuilt part of the processes that inefficiencies (when people are idle) work as a positive feedback loop in to the process to then speed things up, self healing!</p>
+
+<p>It was felt that kanban worked particularly well with</p>
+
+<ul>
+<li>dedicated teams - keeps variance low</li>
+<li>tasks of a similar size - again variance</li>
+<li>better on maintenance than big build projects, although it can work with both.</li>
+</ul>
+
+
+<p>Trust underpins it all, building trust for teams and for the client/customer. When we estimate we always add security, then others add further security and on and on we go until the actual estimates are wildly different from how long it takes to do the piece of work!</p>
+
+<p>If you&#8217;re blocked you can&#8217;t take on extra work over your limit. Forces concentration on blockers! Each worker has a magnet for the board, they have two magnets which are attached to whatever they are working on, they cannot work on anything else. Forces completion of tasks, and if there is idle time, work on the process.</p>
+
+<p>No planning or estimating in proper kanban process, the devs do the dev, testers test. Someone still has to break the tasks down, but there is an element of ensuring the spec&#8217;d bits are the right size too.</p>
+
+<p>The board uses different coloured postits and blockers are stuck on tasks which are stuck. Each day which a task remains in a stage, annotate it with a dot, so you can see how fast it is going.</p>
+
+<p>A few side notes: as a knowledge worker it&#8217;s important to remember that knowledge is perishable, if we accumulate it but don&#8217;t use it then it will decay&#8230;.</p>
+
+<p>if you are sawing down a tree, is it worth stopping to sharpen your saw on a regular basis? Why yes!</p>
+
+<p>For my workplace, I think we still have a lot to learn from scrum - have we ensured that we&#8217;re following scrum properly and learning the lessons from that before we&#8217;d think about taking a new process on. However, there are some principles which are always worth thinking about, especially when it comes to trust within organisations. If however, we had a maintenance team, with analysts, devs, testers - across projects, then I think kanban could prove really useful</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -308,270 +612,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/06/10/how-do-i-find-the-version-of-java-my-class-was-compiled-against/">How Do I Find the Version of Java My Class Was Compiled Against?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-10T18:03:20+01:00" pubdate data-updated="true">Jun 10<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>javap -verbose Classname
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>where Classname is your class, will give you loads of information, including major and minor java version numbers. Handy huh?</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/">Catching &#8216;File Size Exceeded&#8217; When Using Tomahawk File Upload Component</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-27T11:22:40+01:00" pubdate data-updated="true">May 27<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When using <a href="http://myfaces.apache.org/tomahawk-project/tomahawk12/tagdoc/t_inputFileUpload.html">Tomahawk&#8217;s file upload component</a> it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit is set in the web.xml configuration for Tomahawk, i.e.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter&gt;</span>
-</span><span class='line'><span class="nt">&lt;filter-name&gt;</span>extensionsFilter<span class="nt">&lt;/filter-name&gt;</span>
-</span><span class='line'><span class="nt">&lt;filter-class&gt;</span>org.apache.myfaces.webapp.filter.ExtensionsFilter<span class="nt">&lt;/filter-class&gt;</span>
-</span><span class='line'><span class="nt">&lt;init-param&gt;</span>
-</span><span class='line'><span class="nt">&lt;description&gt;</span>
-</span><span class='line'>  Set the size limit for uploaded files. Format: 10 - 10
-</span><span class='line'>  bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
-</span><span class='line'><span class="nt">&lt;/description&gt;</span>
-</span><span class='line'><span class="nt">&lt;param-name&gt;</span>uploadMaxFileSize<span class="nt">&lt;/param-name&gt;</span>
-</span><span class='line'><span class="nt">&lt;param-value&gt;</span>10m<span class="nt">&lt;/param-value&gt;</span>
-</span><span class='line'><span class="nt">&lt;/init-param&gt;</span>
-</span><span class='line'>    .....
-</span><span class='line'><span class="nt">&lt;/filter&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here you can see the limit is set to 10 meg.</p>
-
-<p>So by default, if you blow the limit, the component fails silently.. or does it?</p>
-
-<p>Well, the component actually adds a couple of attributes to the request when refreshing the page (following the click of the upload button). The attributes are:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;span&gt;</span>org.apache.myfaces.custom.fileupload.exception<span class="nt">&lt;/span&gt;&lt;span&gt;</span>
-</span><span class='line'>org.apache.myfaces.custom.fileupload.maxSize<span class="nt">&lt;/span&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>by checking the request (during the page render) you can grab these attributes, if set, and display something meaningful to the user. You could have a little render tag at the top of the page to ensure the attributes are checked. Whilst this is a bit cronky, it is one of the jsf workarounds which does work.. in a fashion.</p>
-
-<p>If they are present and you want to display the max size to the user, then apache commons FileUtils comes along to save the day</p>
-
-<p><a href="http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize">org.apache.commons.io.FileUtils.byteCountToDisplaySize</a>;</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/05/01/deploying-applications-to-tomcat-running-under/">Deploying Applications to Tomcat Running Under /</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-01T11:22:15+01:00" pubdate data-updated="true">May 1<span>st</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Standard practice with tomcat is that the application is deployed under a directory which is derived from the name of the war file archive which is deployed.</p>
-
-<p>i.e. foo.war will be deployed to the foo directory and will be accessed with the URL http://application-server-url/foo</p>
-
-<p>All well and good, but what if you want to access it as http://app-server-url/   ?</p>
-
-<p>a number of approaches were tried, none of which worked 100%, they part worked or ended up with the application being deployed twice. Pain, pain, pain.</p>
-
-<p>Trying to use docbase in the server.xml, i.e.</p>
-
-<p><code>&lt;Context path="" docBase="foo" debug="1"/&gt;</code></p>
-
-<p>will result in the application being deployed to / and /foo - not good, we only want it deployed once.</p>
-
-<p>So, take a step back. Only one application can be deployed under / and for tomcat, this defaults to one called ROOT.war, so rather than creating and deploying foo.war, call it ROOT.war and it will deploy to /, once and everyone is happy.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/30/what-is-an-expert/">What Is an Expert and Top Ten Reasons Managers Become Great - Links</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-30T12:24:35+01:00" pubdate data-updated="true">Apr 30<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>You&#8217;re not going to find the answer here (arf), but I love this <a href="http://softwarecreation.org/2009/how-to-become-an-expert-top-7-qualities/">article</a> on what it takes to become an expert. This point I find particularly interesting:</p>
-
-<blockquote><p>tacit knowledge: automatic, unexpressed knowledge that provides context for people, places, ideas, and experiences. Tacit knowledge is not easily shared. As Polanyi said: “We know more than we can tell.”</p></blockquote>
-
-<p>I like <a href="http://www.scottberkun.com/blog/2009/top-ten-reasons-managers-become-great/">this</a> too, especially the point that managers become great if they are self aware - they know their weaknesses and they make sure someone is covering their back.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/">Hibernate Search, Lucene and Greenwich Mean Time</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-22T11:20:05+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Aww, what a gotcha this morning. Felt stoopid when I realised what was going on.</p>
-
-<p>There are a number of ways to use dates with Lucene and specifically with Hibernate Search, which is what I&#8217;m using at the moment for providing a wrapper around Lucene. I wanted to search for a certain date range on a field.. which has been set to midnight. You can probably guess what&#8217;s coming here. Now we&#8217;re in British Summer Time our clocks are forward, but of course, the date is stored by Lucene as GMT, consequently, without a bit of cleverness, something saved at 12:01 AM on the 2nd April BST, is actually 11:01 PM on the 1st April GMT.</p>
-
-<p>Throw in a date range search looking for stuff from the 2nd April onwards and things start going a bit wonky!</p>
-
-<p>By the way, here is how it now woorks, still may not be the best way to do it, but it&#8217;s working for now.</p>
-
-<p><code>@Field(index = Index.UN_TOKENIZED)
-@DateBridge(resolution = Resolution.HOUR)
-@Temporal(TemporalType.DATE)
-private Date startDate;</code></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -589,23 +629,23 @@ private Date startDate;</code></p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
+        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
+        <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
+        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
+        <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
+        <a href="/2012/09/04/poor-old-java/">Poor old java</a>
       </li>
     
   </ul>

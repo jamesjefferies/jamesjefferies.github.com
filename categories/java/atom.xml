@@ -2,9 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: java | James Jefferies and ShedCode Ltd]]></title>
-  <link href="http://jamesjefferies.com//categories/java/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/categories/java/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-08-16T14:54:17+01:00</updated>
+  <updated>2012-10-08T20:55:46+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Poor old java]]></title>
+    <link href="http://jamesjefferies.com/2012/09/04/poor-old-java/"/>
+    <updated>2012-09-04T12:11:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/09/04/poor-old-java</id>
+    <content type="html"><![CDATA[<p>There seems to be a lot of noise at the moment about the latest security vulnerabilities in Java, especially Java 7. I'd go as far as to say that some of the articles are <a href="http://www.pcadvisor.co.uk/news/security/3379150/time-give-java-boot/">scare stories</a>. Is this what we need, to give Java the boot?</p>
+
+<h2>TL;DR</h2>
+
+<p>All computers connected to things have security vulnerabilities of various forms.</p>
+
+<p>Desktop Java installed computers where not required is an unnecessary security risk and should be uninstalled, just as Adobe Flash, Adobe Reader, Silverlight etc. Windows 8 and Mac OS X don't bundle Java runtimes via default anymore. This is a good thing. Oracle should be far quicker out of the blocks fixing security vulnerabilitles.</p>
+
+<p>Giving Java the boot full stop is an over the top reaction. However, giving Java the boot on the desktop when it's not required is a wise move.</p>
+
+<h2>History</h2>
+
+<p>Java as a platform has a reputation for being secure, reliable and frequently patched. Being able to run Java server side on Sun software provided the building blocks for many web businesses at the end of the last millenium and in to this one.</p>
+
+<p>It also has many branches in to other parts of the internet ecosystem. As well as running server side, the other two main areas are mobile Java, J2ME, for example and desktop Java, either via browser plugin Applets or as runnable GUI applications using a desktop JVM (virtual machine).</p>
+
+<p>Over the last few years, mobile Java has basically been nobbled by the rise of smartphones and their respective application frameworks and stacks, Android, iOS, Windows whatever it's called, BlackBerry and the rest.</p>
+
+<p>However, the legacy of desktop Java has continued by some applications still requiring a JVM installed on the local PC and some people still writing or using Java applets. Althoguh Sun and now Oracle have continued to try and encourage desktop development with their JavaFX initative, they've not got very far.</p>
+
+<h3>Applets</h3>
+
+<p>The idea behind applets was that you visited a site via a web browser, which could always deliver the latest version of the application code to your browser, either to run in a plug-in or using the JVM installed on your machine. They were useful for some niche applications, you sometimes see them now replacing flash file uploaders for example, but the User Experience was often a bit shonky.</p>
+
+<h3>Desktop Applications</h3>
+
+<p>Write Once, run anywhere was the mantra behind Java Desktop applications, an attractive proposition. One set of code would run on Windows, Linux, Unix variants &amp; Macs. Many Java development environments have been written in Java and are used today. CrashPlan is an example cross platform application which requires desktop Java to work.</p>
+
+<h2>Legacy</h2>
+
+<p>Unfortunately, a lot of the Java runtimes (and Flash installs, adobe reader installs etc), installed in days of yore on people's machines will have security vulnerabilities, either because they are out of date or because of recent new exploits.</p>
+
+<p>It was interesting to see Apple's response to recent JVM exploits, although they may have been slow in responding, they, in effect, switched off people's Java installations, providing a prompt if it was required. In one OS X update (assuming it was installed!) Macs became better protected from Java exploits.</p>
+
+<h2>Summary</h2>
+
+<p>If you don't use Java on your machine - uninstall it, it's not worth having a potential vulnerability. Same with Flash or Adobe reader - if you don't use them, uninstall them.</p>
+
+<p>If you do need it installed on your machine, there is some great advice <a href="http://www.macworld.co.uk/macsoftware/news/?newsid=3378690&amp;pagtype=allchandate">here</a></p>
+
+<p>Of course, keep things up to date that you do use, Operating systems, browsers etc</p>
+
+<p>Java server side is a different story. If you do use the Java Virtual Machine, whether it is for Java apps, Clojure, Scala or whatever. Keep your eyes on the Oracle security bulletins, update when you can and be aware of any vulnerabilities in the latest version.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Whatever next - the technical stuff]]></title>
@@ -127,87 +178,6 @@ public static void switchOffLiquibase() {</p>
 <p>"The core Java platform that delivers <a href="http://www.guardian.co.uk">www.guardian.co.uk</a> has a full release every two weeks. Compared with many enterprise Java applications, this is excellent. Compared with other websites, it's very poor."</p>
 
 <p>Food for thought people, food for thought...</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Testing the Grails, Spring Security, LDAP combo]]></title>
-    <link href="http://jamesjefferies.com/2011/01/06/testing-the-grails-spring-security-ldap-combo/"/>
-    <updated>2011-01-06T16:00:46+00:00</updated>
-    <id>http://jamesjefferies.com/2011/01/06/testing-the-grails-spring-security-ldap-combo</id>
-    <content type="html"><![CDATA[<p>For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you're working remotely, or because you want a disposable directory to throw away after you've run your tests. Well, there is a <a href="http://www.grails.org/plugin/ldap-server">grails plugin</a> which adds an embedded LDAP directory (ApacheDS) to your application which can be fired up as/when required.</p>
-
-<p>After installing the plugin, it requires a bit of configuration, so in your Config.groovy:</p>
-
-<p>``` groovy</p>
-
-<pre><code>environments {
-    development {       
-        // Embedded ldap server 
-        ldapServers {
-            d1 {
-                base = "dc=people,dc=companyname,dc=int"
-                port = 10389
-                indexed = ["objectClass", "uid", "mail", "userPassword"]
-            }
-        }
-        grails.plugins.springsecurity.ldap.context.server = 'ldap://localhost:10389'
-    }
-    ....
-</code></pre>
-
-<p>```</p>
-
-<p>So now, when the app is instantiated in the development environment, you have an ldap directory running on localhost, post 10389. You might want to change what is indexed depending on what details you actually want indexing!</p>
-
-<p>If you wanted some default data loaded when the ldap server starts, simply add an ldif file to the grails-app/ldap-servers/d1/data directory. This gets auto loaded:</p>
-
-<p>```</p>
-
-<pre><code>dn: ou=group,dc=people,dc=companyname,dc=int
-objectClass: top
-objectClass: organizationalUnit
-ou: group
-
-dn: ou=People,dc=people,dc=companyname,dc=int
-objectClass: organizationalUnit
-ou: People
-
-dn: uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int
-uid: jjefferies
-objectClass: uidObject
-objectClass: top
-objectClass: person
-objectClass: organizationalPerson
-cn: James Jefferies
-sn: Jefferies
-userPassword: {SHA}ERnP637iUzV+A0oI2ETuol9v0g8=
-</code></pre>
-
-<p>```</p>
-
-<p>To run unit tests against it, a reference to the server get's injected in to your test class and then you can run some tests against it:</p>
-
-<p>``` groovy</p>
-
-<pre><code>class LdapTests extends GroovyTestCase {
-
-    def d1LdapServer    
-
-    void testLdapServerShouldExist() {
-        assert d1LdapServer.exists("uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int")
-    }
-
-    void testJJUserIsThere() {      
-        def user = d1LdapServer["uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int"]
-        assert "James Jefferies" == user.cn.first() // cn is a multi valued string attribute        
-    }
-}
-</code></pre>
-
-<p>```</p>
-
-<p>If you're doing the full spring security with custom rolled retrieval of Roles and you want to test it, then you need to make sure you've bootstrapped those users too, so that the roles are retrieved as well as the user being authenticated.</p>
 ]]></content>
   </entry>
   

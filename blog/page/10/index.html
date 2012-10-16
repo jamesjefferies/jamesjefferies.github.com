@@ -9,18 +9,8 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Number of things need to be done: 1) Update dependencies for api and implementation jars 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-&lt;dependency&gt;
-&lt;groupId&gt;org. &hellip;">
+  <meta name="description" content="http://jakarta.apache.org/jmeter/ or jprobe http://www.quest.com/common/registration.aspx?requestdefid=18937
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +70,8 @@
   
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
+  <li><a href="http://shedcode.co.uk/">ShedCode</a></li>
+  <li><a href="/about/">About</a></li>
   <li><a href="/blog/archives">Archives</a></li>
 </ul>
 
@@ -88,6 +80,215 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/08/14/maybe-we-could-use-jmeter/">Maybe We Could Use Jmeter?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-14T18:02:30+01:00" pubdate data-updated="true">Aug 14<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>http://jakarta.apache.org/jmeter/</p>
+
+<p>or jprobe</p>
+
+<p>http://www.quest.com/common/registration.aspx?requestdefid=18937</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/14/so-you-want-to-add-comments-to-a-facelets-page/">So You Want to Add Comments to a Facelets Page?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-14T15:15:55+01:00" pubdate data-updated="true">Jul 14<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Simple, use the remove tag. This gets stripped out very early on and will not be rendered.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;ui:remove&gt;</span>
+</span><span class='line'>This is a comment basically, will get stripped out when facelets sorts out the templates...
+</span><span class='line'><span class="nt">&lt;/ui:remove&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/09/myfaces-12-and-tomcat-6/">Myfaces 1.2 and Tomcat 6</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-09T16:39:13+01:00" pubdate data-updated="true">Jul 9<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Well, after much head scratching, it appears that myfaces 1.2 (.3 specifically) doesn&#8217;t play ball with tomcat 6.0.14. A class cast error occurs when setting values determined by a select box.</p>
+
+<p>Not only is this a bit rubbish, but it&#8217;s cost me virtually a day of pain to work out what the problem was, and back out some changes.</p>
+
+<p>Consequently I&#8217;ve gone back to myfaces 1.1.5 - painful, but true, as I&#8217;m not sure I&#8217;d be able to get the nod to upgrade the tomcats to 6.0.16 - which does seem to work.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/09/svcadm-on-solaris/">Svcadm on Solaris</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-09T12:06:10+01:00" pubdate data-updated="true">Jul 9<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>svcadm is the service admin command line thing on solaris</p>
+
+<p>e.g. svcadm enable tomcat will switch on the tomcat managed service</p>
+
+<p>if a service doesn&#8217;t start</p>
+
+<p>svcs - all services</p>
+
+<p>svcs -x  services with exceptions (in maintenance mode)</p>
+
+<p>svcs -x -v as above, more verbose</p>
+
+<p>svcadm clear tomcat - clears any exceptions</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/05/23/easy-way-to-find-dependencies-for-java-archives/">Easy Way to Find Dependencies for Java Archives</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-23T14:15:08+01:00" pubdate data-updated="true">May 23<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Find them in archiva and then follow through with the dependent on tag. Helps to work out which dependencies you might need to add an exclude on</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -456,270 +657,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/05/02/have-a-look-at-this-time-machine-thing/">Have a Look at This, Time Machine Thing</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-02T15:08:24+01:00" pubdate data-updated="true">May 2<span>nd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>http://db.tidbits.com/article/9597</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/05/01/adding-a-link-in-javascript/">Adding a Link in Javascript</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-01T13:26:27+01:00" pubdate data-updated="true">May 1<span>st</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>thank you Jamie!</p>
-
-<p>(but then I found this too with prototype)</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;#&quot; id=&quot;myclickid&quot;&gt;text for link&lt;/a&gt;&#39;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>which will update a container called div and pop in the following stuff</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>should become</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">id=</span><span class="s">&quot;myclickid&quot;</span><span class="nt">&gt;</span>text for link<span class="nt">&lt;/a&gt;&lt;/div&gt;</span>
-</span><span class='line'>
-</span><span class='line'>function addLink() {
-</span><span class='line'>
-</span><span class='line'>    var closeP = document.createElement(&quot;p&quot;);
-</span><span class='line'>    closeP.appendChild(document.createTextNode(&quot;Alternatively, &quot;);
-</span><span class='line'>
-</span><span class='line'>    var closeLink = document.createElement(&quot;a&quot;);
-</span><span class='line'>    closeLink.href = &quot;#&quot;;
-</span><span class='line'>    closeLink.onclick = function() { window.close(); };
-</span><span class='line'>    closeLink.appendChild(document.createTextNode(&quot;Close window&quot;));
-</span><span class='line'>    closeP.appendChild(closeLink);
-</span><span class='line'>
-</span><span class='line'>    var parentEl = document.getElementById(&quot;container&quot;);
-</span><span class='line'>    // this should be the ID of the element this link should be appended to
-</span><span class='line'>    parentEl.appendChild(closeP);
-</span><span class='line'>    }
-</span><span class='line'>
-</span><span class='line'>    if (window.addEventListener) { window.addEventListener(&quot;load&quot;, addLink, false); }
-</span><span class='line'>    else if (window.attachEvent) { window.attachEvent(&quot;onload&quot;, addLink); }
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/05/01/getting-selenium-to-work-with-firefox-30b5/">Getting Selenium to Work With Firefox 3.0b5</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-01T11:10:06+01:00" pubdate data-updated="true">May 1<span>st</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Unpack the latest beta version of selenium</p>
-
-<p>update the rdf file, change 3.0b3 to 3.0b5</p>
-
-<p>repack</p>
-
-<p>install</p>
-
-<p>hooray!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/04/23/excellent-calendar-date-picker/">Excellent Calendar Date Picker</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-23T22:35:09+01:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>http://stephencelis.com/projects/timeframe</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/04/22/configuring-c3p0-in-spring/">Configuring C3p0 in Spring</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-22T16:24:37+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Tricky, the username and password have to be in the properties bundle as follows:</p>
-
-<p><bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-<property name="driverClass"><value>com.mysql.jdbc.Driver</value></property>
-<property name="jdbcUrl"><value>${db-connection-url}</value></property>
-<property name="properties">
-<props>
-<prop key="user">${db-connection-username}</prop>
-<prop key="password">${db-connection-password}</prop>
-<prop key="c3p0.timeout">25200</prop>
-<prop key="c3p0.idle_test_period">14400</prop>
-<prop key="c3p0.max_size">50</prop>
-</props>
-</property></p>
-
-<p></bean></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -737,23 +674,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
+        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
+        <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
+        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
+        <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
+        <a href="/2012/09/04/poor-old-java/">Poor old java</a>
       </li>
     
   </ul>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Problem Solving | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.com/categories/problem-solving/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2012-10-08T20:55:46+01:00</updated>
+  <id>http://jamesjefferies.com/</id>
+  <author>
+    <name><![CDATA[James Jefferies]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Troubleshooting WordPress connectivity issue - could not connect to host]]></title>
+    <link href="http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue/"/>
+    <updated>2012-09-05T14:57:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue</id>
+    <content type="html"><![CDATA[<h2>The problem</h2>
+
+<p>After migrating a WordPress site, auto update and plugin install wouldn't work. The former errored with <code>could not connect to host</code> which seemed very odd.</p>
+
+<h3>First attempts</h3>
+
+<p>WordPress allows you to download the file manually or autoupdate if configured correctly. Clicking on the manual download link and the file downloaded fine to the local machine. So first, I thought I'd try and download the file from the command line on the new server.</p>
+
+<p><code>
+wget http://wordpress.org/wordpress-3.4.1.zip
+</code></p>
+
+<p>Zip, it all downloaded fine.</p>
+
+<h3>Extra help</h3>
+
+<p>There is a good trouble shooting/dev plugin for WordPress called <a href="http://wordpress.org/extend/plugins/core-control/">Core Control</a>. By installing this and enabling the HTTP control, you can test the various transports WordPress uses for downloads. Curl, PHP File open, PHP Fsockopen etc.</p>
+
+<p>Testing all three default transports, starting with cURL came up with the same message, <code>could not connect to host</code></p>
+
+<h3>Head Scratching time</h3>
+
+<p>So WordPress was telling the truth. Now, as WordPress was running as the <code>www-data</code> user, what happens if I tried the wget from the command line for that user?</p>
+
+<p><code>
+wget http://wordpress.org/wordpress-3.4.1.zip
+Permission denied!
+</code></p>
+
+<p>Ah-ha, so it was nothing to do with WordPress, the <code>www-data</code> user couldn't download anything.</p>
+
+<h3>Problem solved!</h3>
+
+<p>Firewalls, I started thinking firewalls and lo and behold, <a href="https://projects.bytemark.co.uk/projects/24/wiki/Firewall">BytemarkUK block outgoing http traffic</a> for the www-data user by default! This makes sense for when sites get compromised, but it also stops some of the core functionality for updates etc working.</p>
+
+<p>Enabling http traffic for the www-data user will make things worse if the site is compromised, but also makes it a lot easier to keep the site up to date, reducing the chances of a WordPress exploit.</p>
+
+<p>The following removes the firewall rule</p>
+
+<p><code>
+rm /etc/symbiosis/firewall/outgoing.d/50-www-data
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

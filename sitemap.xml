@@ -366,7 +366,7 @@
         <loc>
             http://jamesjefferies.com/2011/01/06/testing-the-grails-spring-security-ldap-combo/
         </loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/2011/03/09/using-constants-in-spring-configuration/</loc>
@@ -462,7 +462,7 @@
         <loc>
             http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds/
         </loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -476,68 +476,72 @@
     </url>
     <url>
         <loc>http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/</loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://jamesjefferies.com/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/
         </loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://jamesjefferies.com/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/
         </loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/2012/08/16/parse-train-describer-csv-data/</loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/2012/08/16/from-mysql-datadump-to-mongo/</loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/2012/08/22/setting-up-a-fresh-debian-server/</loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/2012/08/22/setting-up-wordpress/</loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/2012/09/04/poor-old-java/</loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue/
         </loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/2012/09/25/the-creativity-tap/</loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/2012/09/26/happenstance-newspaper/</loc>
-        <lastmod>2012-09-26T21:14:01+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/2012/09/30/tech-companies-accelerate-your-employees/</loc>
-        <lastmod>2012-09-30T11:10:18+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jamesjefferies.com/2012/10/16/railway-hackday-off-the-rails/</loc>
+        <lastmod>2012-10-16T21:08:34+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/about/</loc>
-        <lastmod>2012-09-26T20:47:55+01:00</lastmod>
+        <lastmod>2012-10-16T20:51:50+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/blog/archives/</loc>
-        <lastmod>2012-09-30T11:10:18+01:00</lastmod>
+        <lastmod>2012-10-16T21:08:34+01:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/</loc>
-        <lastmod>2012-09-30T11:10:18+01:00</lastmod>
+        <lastmod>2012-10-16T21:08:34+01:00</lastmod>
     </url>
 </urlset>

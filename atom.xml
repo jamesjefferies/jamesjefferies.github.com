@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-10-08T20:55:46+01:00</updated>
+  <updated>2012-10-16T21:14:31+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Railway Hackday - Off The Rails]]></title>
+    <link href="http://jamesjefferies.com/2012/10/16/railway-hackday-off-the-rails/"/>
+    <updated>2012-10-16T15:12:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/10/16/railway-hackday-off-the-rails</id>
+    <content type="html"><![CDATA[<p><img src="http://jamesjefferies.com/images/off_the_rails_sponsors1.png" title="Off The Rails" alt="off the rails image" /></p>
+
+<p>After being Technologist in Residence at <a href="http://sitegallery.org">Site Gallery</a> earlier in the year, as part of the <a href="http://happenstanceproject.com">Happenstance Project</a> I started to think of some ideas I wanted to follow for later in 2012.</p>
+
+<h2>Hackday</h2>
+
+<p>One of those ideas was to run a <a href="http://rewiredstate.org/hack-days">Hackday</a>, but not any old Hackday, one centred around Railways. Network Rail had just opened up their realtime <a href="http://datafeeds.networkrail.co.uk">Datafeeds</a> and as far as I knew, no one else had ever run one. Sure, there had been Transport Hackdays, but not Railway specific ones.</p>
+
+<h2>First steps</h2>
+
+<p>So I got to work, I went to experience a 24 hour hackday for myself, where I discovered that sometimes technical issues with the building can really slow people&#8217;s progress and that working overnight doesn&#8217;t really suit me anymore!</p>
+
+<h2>Clickerty Hack</h2>
+
+<p>I also bought a domain and registered a Twitter account. The hackday would be called Clickerty Hack. Then, having a good read of <a href="http://hackdaymanifesto.com/">The Hackday Manifesto</a> made me realise that a lot of work was required to get a decent Hackday up and running.</p>
+
+<h2>Loco 2 and Off The Rails</h2>
+
+<p>It was then that I found out about somebody else&#8217;s plans for a Railway Hackday, <a href="http://loco2.com">loco2</a> was a company I was already watching with interest. A startup based around European Train travel, ticketing and guides.</p>
+
+<p>Their hackday, Off the Rails, was in a more advanced state than Clickerty Hack, so putting it on hold, I volunteered to help.</p>
+
+<h2>ShedCode Sponsorship</h2>
+
+<p>It was a real privilege to be able to help with a small part of the organising and for my company <a href="http://shedcode.co.uk">ShedCode</a> to be one of the sponsors, providing some of the food for the masses!</p>
+
+<h2>Meeting the experts</h2>
+
+<p>During 2012, I&#8217;d found a number of people who had built some incredible pieces of software using Railway data, especially <a href="http://twitter.com/poggs">Peter Hicks</a> and <a href="http://twitter.com/swlines">Tom Cairns</a> who built, amongst other things <a href="http://www.opentraintimes.com/">Open Train Times</a> and <a href="http://traintimes.im">Train Times</a> respectively. So it was brilliant to meet them in person at Off The Rails. There were also many other people knowledgeable about Railways, Open Data and Mapping - I could have spent all day just talking to people!</p>
+
+<h2>The teams</h2>
+
+<p>During the day, the teams built some inspiring things, including an application which builds spotify playlists to match the length of your train journey and many others. Most of them will hopefully be available at some point on github for perusal.</p>
+
+<h2>Thanks</h2>
+
+<p>All in all, a fantastic day, thanks to <a href="http://loco2.com">Loco2</a> and <a href="http://bethnalgreenventures.com">Bethnal Green Ventures</a> and here&#8217;s to the next Railway Hackday, whether it&#8217;s Off The Rails 2, or Clickerty Hack! With cake too of course ;)</p>
+
+<p><img src="http://jamesjefferies.com/images/cake.jpg" title="Cake" alt="off the rails cake" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Tech companies - accelerate your employees]]></title>
@@ -1214,29 +1261,6 @@ end</code></pre></noscript></div>
 <p>And as I wrote that sentence above, it’s when I thought, hang on, that’s what I’m after. I think I WANT TO BE AN INTERESTING PERSON! So that people can say, &#8220;Hey, you know who you should get in to do such and such, you could do a lot worse than hire that friendly freelancer James Jefferies!&#8221;</p>
 
 <h3></h3>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Week 6 – Polargraph working, mobile printers and Open House]]></title>
-    <link href="http://jamesjefferies.com/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house/"/>
-    <updated>2012-05-31T23:08:12+01:00</updated>
-    <id>http://jamesjefferies.com/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house</id>
-    <content type="html"><![CDATA[<p>Leila has done a top job of writing up about the Open House we held at Site Gallery on Friday. We had a great time talking about Happenstance so far to a full house (well cafe anyway).</p>
-
-<p><a href="http://jamesjefferies.com/?attachment_id=551"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/settingupopenhouse-620x465.jpg" alt="" /></a></p>
-
-<p>Having the Polargraph finally up and running on the correct voltage was great and a fantastic drawing of Lord Jarvis of Cocker appeared as the event went on.</p>
-
-<p>We also had Heathcliff Printer working (although he did conk out at one point for some unexplained reason) and Leila got her Kinnect set up doing some Minority Report style magic.</p>
-
-<p>One of our conductive <a href="http://www.bareconductive.com/paper-houses">paint houses</a> was there too, but it was too dark really to see it in action. Winter time for those I think.</p>
-
-<p>We had a little Q&amp;A after our talk and one of the questions really got me thinking about being a creative software engineer - what does that mean in practice and how can we encourage techies to embrace their creativity, smashing through the constraints of institutional methodologies. Sounds like that might be a future blog post!</p>
-
-<p>A lot of cake was eaten and a good time was had by all. Thanks to all who helped and all who came along!</p>
-
-<p><a href="http://jamesjefferies.com/?attachment_id=552"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/openhouseeatingcake-620x465.jpg" alt="" /></a></p>
 ]]></content>
   </entry>
   

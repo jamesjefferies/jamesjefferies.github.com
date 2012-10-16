@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="The final week of Sprint 1 was all a bit of a blur. As we had the Future Everything conference on the Friday, my thoughts were on the presentation. &hellip;">
+  <meta name="description" content="Leila has done a top job of writing up about the Open House we held at Site Gallery on Friday. We had a great time talking about Happenstance so far &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house/">Week 6 – Polargraph Working, Mobile Printers and Open House</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-31T23:08:12+01:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+        
+         | <a href="/2012/05/31/week-6-polargraph-working-mobile-printers-and-open-house/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Leila has done a top job of writing up about the Open House we held at Site Gallery on Friday. We had a great time talking about Happenstance so far to a full house (well cafe anyway).</p>
+
+<p><a href="http://jamesjefferies.com/?attachment_id=551"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/settingupopenhouse-620x465.jpg" alt="" /></a></p>
+
+<p>Having the Polargraph finally up and running on the correct voltage was great and a fantastic drawing of Lord Jarvis of Cocker appeared as the event went on.</p>
+
+<p>We also had Heathcliff Printer working (although he did conk out at one point for some unexplained reason) and Leila got her Kinnect set up doing some Minority Report style magic.</p>
+
+<p>One of our conductive <a href="http://www.bareconductive.com/paper-houses">paint houses</a> was there too, but it was too dark really to see it in action. Winter time for those I think.</p>
+
+<p>We had a little Q&amp;A after our talk and one of the questions really got me thinking about being a creative software engineer - what does that mean in practice and how can we encourage techies to embrace their creativity, smashing through the constraints of institutional methodologies. Sounds like that might be a future blog post!</p>
+
+<p>A lot of cake was eaten and a good time was had by all. Thanks to all who helped and all who came along!</p>
+
+<p><a href="http://jamesjefferies.com/?attachment_id=552"><img src="http://happenstanceproject.com/assets/wp-content/uploads/2012/05/openhouseeatingcake-620x465.jpg" alt="" /></a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -543,57 +595,6 @@ path/to/eclipse/here
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/08/25/disabling-liquibase-when-running-unit-tests/">Disabling Liquibase When Running Unit Tests</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-25T10:33:44+01:00" pubdate data-updated="true">Aug 25<span>th</span>, 2011</time>
-        
-         | <a href="/2011/08/25/disabling-liquibase-when-running-unit-tests/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you&#8217;re running Liquibase, configured by Spring (or whatever) and you don&#8217;t want it to run it&#8217;s checks when running unit tests, you can disable it from running by setting a system property.</p>
-
-<p>Whilst running a single unit test class many times, you might want to add a system set property call before any of the tests are run. Hence:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@BeforeClass</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">switchOffLiquibase</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="n">Liquibase</span><span class="o">.</span><span class="na">SHOULD_RUN_SYSTEM_PROPERTY</span><span class="o">,</span> <span class="s">&quot;false&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -611,6 +612,10 @@ path/to/eclipse/here
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/16/railway-hackday-off-the-rails/">Railway Hackday - Off The Rails</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
       </li>
     
@@ -624,10 +629,6 @@ path/to/eclipse/here
     
       <li class="post">
         <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/04/poor-old-java/">Poor old java</a>
       </li>
     
   </ul>

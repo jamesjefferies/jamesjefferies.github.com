@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Build A Network Rail Data Feed Teletyper - James Jefferies and ShedCode Ltd</title>
+  <title>Troubleshooting WordPress connectivity issue - could not connect to host - James Jefferies and ShedCode Ltd</title>
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="
-">
+  <meta name="description" content="The problem After migrating a WordPress site, auto update and plugin install wouldn&#8217;t work. The former errored with could not connect to host &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper/">
+  <link rel="canonical" href="http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
@@ -70,6 +69,8 @@
   
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
+  <li><a href="http://shedcode.co.uk/">ShedCode</a></li>
+  <li><a href="/about/">About</a></li>
   <li><a href="/blog/archives">Archives</a></li>
 </ul>
 
@@ -81,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">Build a Network Rail Data Feed Teletyper</h1>
+      <h1 class="entry-title">Troubleshooting WordPress Connectivity Issue - Could Not Connect to Host</h1>
     
     
       <p class="meta">
@@ -97,7 +98,7 @@
   
 
 
-<time datetime="2012-08-16T10:51:00+01:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+<time datetime="2012-09-05T14:57:00+01:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -106,7 +107,51 @@
   </header>
 
 
-<div class="entry-content">
+<div class="entry-content"><h2>The problem</h2>
+
+<p>After migrating a WordPress site, auto update and plugin install wouldn&#8217;t work. The former errored with <code>could not connect to host</code> which seemed very odd.</p>
+
+<h3>First attempts</h3>
+
+<p>WordPress allows you to download the file manually or autoupdate if configured correctly. Clicking on the manual download link and the file downloaded fine to the local machine. So first, I thought I&#8217;d try and download the file from the command line on the new server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://wordpress.org/wordpress-3.4.1.zip</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Zip, it all downloaded fine.</p>
+
+<h3>Extra help</h3>
+
+<p>There is a good trouble shooting/dev plugin for WordPress called <a href="http://wordpress.org/extend/plugins/core-control/">Core Control</a>. By installing this and enabling the HTTP control, you can test the various transports WordPress uses for downloads. Curl, PHP File open, PHP Fsockopen etc.</p>
+
+<p>Testing all three default transports, starting with cURL came up with the same message, <code>could not connect to host</code></p>
+
+<h3>Head Scratching time</h3>
+
+<p>So WordPress was telling the truth. Now, as WordPress was running as the <code>www-data</code> user, what happens if I tried the wget from the command line for that user?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://wordpress.org/wordpress-3.4.1.zip
+</span><span class='line'>Permission denied!</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ah-ha, so it was nothing to do with WordPress, the <code>www-data</code> user couldn&#8217;t download anything.</p>
+
+<h3>Problem solved!</h3>
+
+<p>Firewalls, I started thinking firewalls and lo and behold, <a href="https://projects.bytemark.co.uk/projects/24/wiki/Firewall">BytemarkUK block outgoing http traffic</a> for the www-data user by default! This makes sense for when sites get compromised, but it also stops some of the core functionality for updates etc working.</p>
+
+<p>Enabling http traffic for the www-data user will make things worse if the site is compromised, but also makes it a lot easier to keep the site up to date, reducing the chances of a WordPress exploit.</p>
+
+<p>The following removes the firewall rule</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rm /etc/symbiosis/firewall/outgoing.d/50-www-data</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 
@@ -129,15 +174,21 @@
   
 
 
-<time datetime="2012-08-16T10:51:00+01:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+<time datetime="2012-09-05T14:57:00+01:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/categories/problem-solving/'>Problem Solving</a>, <a class='category' href='/categories/techie/'>Techie</a>, <a class='category' href='/categories/wordpress/'>WordPress</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue/" >Tweet</a>
   
   
   
@@ -146,10 +197,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/" title="Previous Post: Before you buy a Berg Little Printer...">&laquo; Before you buy a Berg Little Printer...</a>
+        <a class="basic-alignment left" href="/2012/09/04/poor-old-java/" title="Previous Post: Poor old java">&laquo; Poor old java</a>
       
       
-        <a class="basic-alignment right" href="/2012/08/16/parse-train-describer-csv-data/" title="Next Post: Parse Train Describer CSV Data">Parse Train Describer CSV Data &raquo;</a>
+        <a class="basic-alignment right" href="/2012/09/25/the-creativity-tap/" title="Next Post: The Creativity Tap">The Creativity Tap &raquo;</a>
       
     </p>
   </footer>
@@ -170,23 +221,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
+        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
+        <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
+        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer...</a>
+        <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
+        <a href="/2012/09/04/poor-old-java/">Poor old java</a>
       </li>
     
   </ul>
@@ -261,8 +312,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper/';
-        var disqus_url = 'http://jamesjefferies.com/2012/08/16/build-a-network-rail-data-feed-teletyper/';
+        var disqus_identifier = 'http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue/';
+        var disqus_url = 'http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue/';
         var disqus_script = 'embed.js';
       
     (function () {

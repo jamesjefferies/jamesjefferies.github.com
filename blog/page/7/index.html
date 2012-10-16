@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="During project development, we&#8217;re auto creating our database when the application initiates. This is superuseful initially, especially when the &hellip;">
+  <meta name="description" content="Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230; 1
+javap - &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +70,8 @@
   
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
+  <li><a href="http://shedcode.co.uk/">ShedCode</a></li>
+  <li><a href="/about/">About</a></li>
   <li><a href="/blog/archives">Archives</a></li>
 </ul>
 
@@ -77,6 +80,270 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/10/how-do-i-find-the-version-of-java-my-class-was-compiled-against/">How Do I Find the Version of Java My Class Was Compiled Against?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-10T18:03:20+01:00" pubdate data-updated="true">Jun 10<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Is a very good question and something I couldn&#8217;t quite remember from the mists of time. However, there is a utility to help&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>javap -verbose Classname
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where Classname is your class, will give you loads of information, including major and minor java version numbers. Handy huh?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/05/27/catching-file-size-exceeded-when-using-tomahawk-file-upload-component/">Catching &#8216;File Size Exceeded&#8217; When Using Tomahawk File Upload Component</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-27T11:22:40+01:00" pubdate data-updated="true">May 27<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When using <a href="http://myfaces.apache.org/tomahawk-project/tomahawk12/tagdoc/t_inputFileUpload.html">Tomahawk&#8217;s file upload component</a> it isn&#8217;t obvious how to catch what happens when you blow the file size limit. The file limit is set in the web.xml configuration for Tomahawk, i.e.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter&gt;</span>
+</span><span class='line'><span class="nt">&lt;filter-name&gt;</span>extensionsFilter<span class="nt">&lt;/filter-name&gt;</span>
+</span><span class='line'><span class="nt">&lt;filter-class&gt;</span>org.apache.myfaces.webapp.filter.ExtensionsFilter<span class="nt">&lt;/filter-class&gt;</span>
+</span><span class='line'><span class="nt">&lt;init-param&gt;</span>
+</span><span class='line'><span class="nt">&lt;description&gt;</span>
+</span><span class='line'>  Set the size limit for uploaded files. Format: 10 - 10
+</span><span class='line'>  bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
+</span><span class='line'><span class="nt">&lt;/description&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-name&gt;</span>uploadMaxFileSize<span class="nt">&lt;/param-name&gt;</span>
+</span><span class='line'><span class="nt">&lt;param-value&gt;</span>10m<span class="nt">&lt;/param-value&gt;</span>
+</span><span class='line'><span class="nt">&lt;/init-param&gt;</span>
+</span><span class='line'>    .....
+</span><span class='line'><span class="nt">&lt;/filter&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here you can see the limit is set to 10 meg.</p>
+
+<p>So by default, if you blow the limit, the component fails silently.. or does it?</p>
+
+<p>Well, the component actually adds a couple of attributes to the request when refreshing the page (following the click of the upload button). The attributes are:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;span&gt;</span>org.apache.myfaces.custom.fileupload.exception<span class="nt">&lt;/span&gt;&lt;span&gt;</span>
+</span><span class='line'>org.apache.myfaces.custom.fileupload.maxSize<span class="nt">&lt;/span&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>by checking the request (during the page render) you can grab these attributes, if set, and display something meaningful to the user. You could have a little render tag at the top of the page to ensure the attributes are checked. Whilst this is a bit cronky, it is one of the jsf workarounds which does work.. in a fashion.</p>
+
+<p>If they are present and you want to display the max size to the user, then apache commons FileUtils comes along to save the day</p>
+
+<p><a href="http://commons.apache.org/io/api-release/org/apache/commons/io/FileUtils.html#byteCountToDisplaySize">org.apache.commons.io.FileUtils.byteCountToDisplaySize</a>;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/05/01/deploying-applications-to-tomcat-running-under/">Deploying Applications to Tomcat Running Under /</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-01T11:22:15+01:00" pubdate data-updated="true">May 1<span>st</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Standard practice with tomcat is that the application is deployed under a directory which is derived from the name of the war file archive which is deployed.</p>
+
+<p>i.e. foo.war will be deployed to the foo directory and will be accessed with the URL http://application-server-url/foo</p>
+
+<p>All well and good, but what if you want to access it as http://app-server-url/   ?</p>
+
+<p>a number of approaches were tried, none of which worked 100%, they part worked or ended up with the application being deployed twice. Pain, pain, pain.</p>
+
+<p>Trying to use docbase in the server.xml, i.e.</p>
+
+<p><code>&lt;Context path="" docBase="foo" debug="1"/&gt;</code></p>
+
+<p>will result in the application being deployed to / and /foo - not good, we only want it deployed once.</p>
+
+<p>So, take a step back. Only one application can be deployed under / and for tomcat, this defaults to one called ROOT.war, so rather than creating and deploying foo.war, call it ROOT.war and it will deploy to /, once and everyone is happy.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/30/what-is-an-expert/">What Is an Expert and Top Ten Reasons Managers Become Great - Links</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-30T12:24:35+01:00" pubdate data-updated="true">Apr 30<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>You&#8217;re not going to find the answer here (arf), but I love this <a href="http://softwarecreation.org/2009/how-to-become-an-expert-top-7-qualities/">article</a> on what it takes to become an expert. This point I find particularly interesting:</p>
+
+<blockquote><p>tacit knowledge: automatic, unexpressed knowledge that provides context for people, places, ideas, and experiences. Tacit knowledge is not easily shared. As Polanyi said: “We know more than we can tell.”</p></blockquote>
+
+<p>I like <a href="http://www.scottberkun.com/blog/2009/top-ten-reasons-managers-become-great/">this</a> too, especially the point that managers become great if they are self aware - they know their weaknesses and they make sure someone is covering their back.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/22/hibernate-search-lucene-and-greenwich-mean-time/">Hibernate Search, Lucene and Greenwich Mean Time</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-22T11:20:05+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Aww, what a gotcha this morning. Felt stoopid when I realised what was going on.</p>
+
+<p>There are a number of ways to use dates with Lucene and specifically with Hibernate Search, which is what I&#8217;m using at the moment for providing a wrapper around Lucene. I wanted to search for a certain date range on a field.. which has been set to midnight. You can probably guess what&#8217;s coming here. Now we&#8217;re in British Summer Time our clocks are forward, but of course, the date is stored by Lucene as GMT, consequently, without a bit of cleverness, something saved at 12:01 AM on the 2nd April BST, is actually 11:01 PM on the 1st April GMT.</p>
+
+<p>Throw in a date range search looking for stuff from the 2nd April onwards and things start going a bit wonky!</p>
+
+<p>By the way, here is how it now woorks, still may not be the best way to do it, but it&#8217;s working for now.</p>
+
+<p><code>@Field(index = Index.UN_TOKENIZED)
+@DateBridge(resolution = Resolution.HOUR)
+@Temporal(TemporalType.DATE)
+private Date startDate;</code></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -459,367 +726,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/07/asking-maven-to-produce-your-javadocs/">Asking Maven to Produce Your Javadocs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-07T10:33:11+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Javadocs are the java platforms standard way of producing code documentation, comments about what the class is for, which methods are provided and all that kind of stuff. It feels a bit old school now, but they are really useful if kept up to date.</p>
-
-<p>As we are building our project using maven, we can ask maven to build a &#8216;site&#8217; for our project. This pulls in various bits of information about the project, including dependencies on other libraries (and their licencing models) and all kinds of interesting stuff.</p>
-
-<p>One of the maven plugins generates the javadocs for your project and it&#8217;s very straightforward to set up, just add this to the reporting section of your pom file (for maven) and when you do a mvn site it automatically builds your javadocs.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'><span class="nt">&lt;artifactId&gt;</span>maven-javadoc-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/19/escaping-special-characters-with-lucene/">Escaping Special Characters With Lucene</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-19T12:10:57+00:00" pubdate data-updated="true">Mar 19<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you&#8217;re using Lucene queries then there are some special characters which do magic things. Of course you might not want any wild card / range magic going on and you&#8217;d rather the searcher could look up ] without everything blowing up.</p>
-
-<p>Well, you can escape those special characters simply by passing the query through the escape method of the QueryParser.. like so</p>
-
-<pre><code>searchTerm = QueryParser.escape(searchTerm);
-</code></pre>
-
-<p>of course this will nobble any asterixes or similar in there, so if you do want any wildcard stuff going on, add after the escaping.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/12/installing-maven-on-an-etch-box/">Installing Maven on an Etch Box</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-12T11:53:22+00:00" pubdate data-updated="true">Mar 12<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ok, noddy stuff this really, but it&#8217;s good reference for me, thanks to wilbatron. Lenny has maven packaged, but etch doesn&#8217;t, so a manual install is required!</p>
-
-<p>oh, make sure java and bzip2 are installed and set up</p>
-
-<p>download maven binary, unarchive it, move to /usr/local do some links</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget http://www.mirrorservice.org/sites/ftp.apache.org/maven/binaries/apache-maven-2.0.9-bin.tar.bz2
-</span><span class='line'>tar xjvf apache-maven-2.0.9-bin.tar.bz2
-</span><span class='line'>mv apache-maven-2.0.9 /usr/local/
-</span><span class='line'>ln -s /usr/local/apache-maven-2.0.9/ /usr/local/maven
-</span><span class='line'>ln -s /usr/local/maven/bin/mvn /usr/local/bin/
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I went a bit off piste after that and added the following to /etc/mvnrc rather than chuck them in the mvn shell script</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">JAVA_HOME</span><span class="o">=</span>/whatever/this/is
-</span><span class='line'><span class="nv">M2_HOME</span><span class="o">=</span>/wherever/you/put/it
-</span><span class='line'><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">&quot;-Xms256m -Xmx512m&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/11/migrating-from-hsqldb-to-mysql-part-1/">Migrating From HSQLDB to MySQL - Part 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-11T11:49:03+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>For this development project, we&#8217;ve been developing locally using in memory HSQLDB. The advantages of this are, easy set up out of the box (no database set up required), auto generation of schema from domain objects (thank you hibernate, using hbm2dll) and speed. A lightweight in memory db is good for us at this stage of the game.</p>
-
-<p>Unfortunately though we need a proper database for when we go out in to the big world and as we can&#8217;t use Oracle, we&#8217;re going to make do with MySQL (just kidding here folks ;) )..</p>
-
-<p>no, we really are using MySQL (see what I did there, I&#8217;m hilarious).</p>
-
-<p>Of course, hibernate provides transparent mapping to which ever databases it supports out of the box.. nothing can, nor will it go wrong..</p>
-
-<p>Hmm, see what I did their for comic effect? I can&#8217;t help myself.</p>
-
-<p>Fortunately, we&#8217;re approaching 300 unit tests now, so switching to a real database should be a few configuration tweaks, prove the tests still run and off you go.</p>
-
-<p>So, what issues did we hit:</p>
-
-<h4>MySQL doesn&#8217;t &#8216;support&#8217; sequences</h4>
-
-<p>You get used to sequences when developing with Oracle, hibernate lets you set a primary key as a sequence quite easily</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Id</span>
-</span><span class='line'><span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="o">.</span><span class="na">SEQUENCE</span><span class="o">)</span>
-</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>of course, everything works nicely with HSQLDB, however switch to MySQL and it doesn&#8217;t work. Fortunately from Hibernate 3.2.3 onwards, you can set up your own custom generator which will create a sequence table and use that instead, to emulate the behaviour of a sequence. A few magic annotations and off we go. What we do here is fire up the funky SequenceStyleGenerator (that&#8217;s the new bit) telling it to use a table, which we can name if we want, plus I&#8217;ve named the columns and given the sequence a noddy name.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Id</span>
-</span><span class='line'><span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">generator</span><span class="o">=</span><span class="s">&quot;SuperDuperSequenceGenerator&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="nd">@GenericGenerator</span>
-</span><span class='line'>    <span class="n">name</span><span class="o">=</span><span class="s">&quot;SuperDuperSequenceGenerator&quot;</span><span class="o">,</span>
-</span><span class='line'>    <span class="n">strategy</span><span class="o">=</span><span class="s">&quot;org.hibernate.id.enhanced.SequenceStyleGenerator&quot;</span><span class="o">,</span>
-</span><span class='line'>    <span class="n">parameters</span><span class="o">={</span>
-</span><span class='line'><span class="nd">@Parameter</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;force_table_use&quot;</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="o">),</span>
-</span><span class='line'><span class="nd">@Parameter</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;value_column&quot;</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;value_column&quot;</span><span class="o">),</span>
-</span><span class='line'><span class="nd">@Parameter</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;sequence_name&quot;</span><span class="o">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;sequence_name&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="o">})</span>
-</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Don&#8217;t make assumptions about column lengths</h4>
-
-<p>Set up a String property and HSQLDB will happily do that for you, doesn&#8217;t care about length just works. I&#8217;m not advocating this is a good thing, but it is what it does. When you switch to using MySQL, this will default to a column with 255 characters. No problem with that default, but when you&#8217;ve happily chucked more than 255 characters in there, then MySQL will complain.</p>
-
-<p>Simple solution, set the column size</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Column</span><span class="o">(</span><span class="n">length</span><span class="o">=</span><span class="mi">1000</span><span class="o">)</span>
-</span><span class='line'><span class="kd">private</span> <span class="n">String</span> <span class="n">aThousandCharacterString</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Don&#8217;t be a complete monkey spanner and use reserved words for domain objects or properties..</h4>
-
-<p>Of course, being experienced developers, we wouldn&#8217;t get caught out with any of those puppies would we?</p>
-
-<p>If we had, we&#8217;d recommend that people watch out for the following if nothing else.</p>
-
-<ul>
-<li>Calling a domain object Trigger</li>
-<li>Calling a domain object RoyRodgers</li>
-<li>Calling a property lines</li>
-</ul>
-
-
-<p>(by the way, one of those is just a joke)</p>
-
-<p>If you <em>have</em> done the naughty, then all is not lost. You could refactor everything, or simply specificy an explicit table or column name.. i.e.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;LinesToRender&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="kd">private</span> <span class="n">Integer</span> <span class="n">lines</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>or</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Entity</span>
-</span><span class='line'><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;DiversityTrigger&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Trigger</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Set the correct dialogue property in the hibernate properties</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>hibernate.dialect<span class="o">=</span>org.hibernate.dialect.MySQLInnoDBDialect
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/04/concurrent-http-session-management-with-spring-security/">Concurrent HTTP Session Management With Spring Security</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-04T12:06:26+00:00" pubdate data-updated="true">Mar 4<span>th</span>, 2009</time>
-        
-         | <a href="/2009/03/04/concurrent-http-session-management-with-spring-security/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Spring Security (formerly Acegi) is a useful framework for adding security to webapps. Directories, pages and the like can all be controlled with various user roles and methods can be annotated too, ensuring a belt and braces approach.</p>
-
-<p>The setting to switch it on in the configuration is just this (within the other security config):</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;security:concurrent-session-control</span> <span class="na">max-sessions=</span><span class="s">&quot;1&quot;</span> <span class="na">expired-url=</span><span class="s">&quot;/already-logged-in.faces&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and as you can see, you can set a url for spring to redirect to if you already have a session somewhere else. The gotcha though seems to be that unless you configure  a listener, it may not know when the session has expired (i.e. if you don&#8217;t log out).</p>
-
-<p>so, in the good old web.xml, add this little puppy to listen out for expired sessions&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;listener&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;listener-class&gt;</span>org.springframework.security.ui.session.HttpSessionEventPublisher<span class="nt">&lt;/listener-class&gt;</span>
-</span><span class='line'><span class="nt">&lt;/listener&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>hopefully, job is a good &#8216;un</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -837,23 +743,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL datadump to mongo</a>
+        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/parse-train-describer-csv-data/">Parse Train Describer CSV Data</a>
+        <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/16/build-a-network-rail-data-feed-teletyper/">Build A Network Rail Data Feed Teletyper</a>
+        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/">Before you buy a Berg Little Printer&#8230;</a>
+        <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
       </li>
     
       <li class="post">
-        <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement feeds into MongoDB</a>
+        <a href="/2012/09/04/poor-old-java/">Poor old java</a>
       </li>
     
   </ul>

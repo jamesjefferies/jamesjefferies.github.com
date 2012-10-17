@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Railways | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/categories/railways/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-10-16T21:14:31+01:00</updated>
+  <updated>2012-10-17T20:21:50+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Scenic Railways - our railway hack]]></title>
+    <link href="http://jamesjefferies.com/2012/10/16/scenic-railways-our-railway-hack/"/>
+    <updated>2012-10-16T16:22:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/10/16/scenic-railways-our-railway-hack</id>
+    <content type="html"><![CDATA[<p><img src="/images/scenic-railways.png" alt="screen shot of application" /></p>
+
+<p>Thanks to the <a href="/2012/10/16/railway-hackday-off-the-rails/">Off The Rails</a> hackday, I was able to team up with some fellow software engineers to build something in a day. Our team consisted of <a href="http://twitter.com/frankieroberto">Frankie Roberto</a>, <a href="http://twitter.com/jnicho02">Jez Nicholson</a>, and <a href="http://twitter.com/joooe">Joe Hughes</a>. Frankie had had the idea for building an application which would show sights of interest visible from the train route, indicating rough placements and which side of the train to look on. I knew Frankie from Sheffield, Frankie had worked with Jez before on a previous hackday and Joe was interested in what we were doing, our team was formed!</p>
+
+<p>Interestingly, during the 'speed dating' section at the beginning of the day, when we chatted to other people about their ideas and what they were thinking of building, one chap, whose name I think was Phil, was thinking about Railway iSpy, which sounds pretty similar to what we actually built (without Big Chief i-Spy though!). Our application also bears an uncanny similiarity to the Peppa Pig episode <a href="http://www.youtube.com/watch?v=Htl6NYcBE-k">The Train Ride!</a></p>
+
+<p>After some discussion on ideas, scope, implementation and the <a href="http://www.railperf.org.uk/">Railway Performance Society</a> we started building a Rails web application and an iOS app. Although I know a lot about railways, I'm still in the early days of learning Rails and iOS, so the patience of Jez and Frankie whilst building <a href="http://www.scenicrailways.org.uk">Scenic Railways</a> was much appreciated. So whilst the three of us built the web application, Joe got cracking with building an iOS application.</p>
+
+<p><img src="/images/scenic-railways-on-iphone.png" alt="ios-1" /></p>
+
+<p>We got an initial version built in the time we had (from about 11am until 7pm) before the presentations were due to start. I worked on a bit of map integration using <a href="http://leaflet.cloudmade.com">leaflet.js</a> whilst Jez and Frankie implemented the main structure.</p>
+
+<p>Although the version we finished was relatively basic, there are some nice features, the best one being that the sides to look out of the window on, reverse depending on direction of travel!  It could easily be extended in the future to add extra routes and extra points of interest (POIs). Joe had some ideas on making the iOS app competitive, by providing incentives for people to take photos of the points from the train!</p>
+
+<p><img src="/images/scenic-railways-1.png" alt="screen shot of application" /></p>
+
+<p>So, feel free to have a look at the site <a href="http://www.scenicrailways.org.uk">Scenic Railways</a> and you can even checkout the code from <a href="https://github.com/frankieroberto/scenic-railways">github</a> and laugh at my Rails code (or lack of it!).</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Railway Hackday - Off The Rails]]></title>
@@ -243,57 +268,6 @@ db.td.find({ "header.msg_type" : "0003" }).limit(10)
 <p>for Monday's update.</p>
 
 <p>Note that you will need to authenticate if you haven't already, using your username and password.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Electrified Spine (and the rest of the news)]]></title>
-    <link href="http://jamesjefferies.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
-    <updated>2012-07-16T15:39:04+01:00</updated>
-    <id>http://jamesjefferies.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
-    <content type="html"><![CDATA[<p>Today the government has announced a further set of infrastructure investment for the railways. This has to be good news, especially where electrification is concerned. Electric trains are more efficient, cleaner and perform better than their diesel (and steam I suppose!) counterparts. I appreciate that the electricity still has to come from somewhere, but in the main it is the right thing to do.</p>
-
-<h2>Already Announced</h2>
-
-<p>We know that plans to electrify the Great Western Mainline (Paddington to Cardiff, Bristol, Oxford &amp; Newbury), plus the Trans-Pennine route between Manchester &amp; York, Blackpool and Manchester to Liverpool are already underway. These are all good things, but there were some unsatisfactory omissions. The new announcement helps with some of the missing links, but not all of them.</p>
-
-<p>There is a helpful <a href="http://assets.dft.gov.uk/publications/hlos-2012/map-hlos-electrification.pdf">map</a> which shows these routes in glorious technicolour</p>
-
-<h2>New Plans - Midland Mainline</h2>
-
-<p>Hooray, the Midland Mainline, which has been electrified to Bedford for many years is to be electrified to Nottingham and Sheffield (via Derby). For those of us who regularly travel to London from Sheffield we should experience a faster service. Not necessarily more trains though, no extra track is to be laid and unless signalling is replaced, you can't fit that many more trains on the track.</p>
-
-<p>As far as I'm aware, there has been no announcement about rolling stock either, the simple solution for East Midlands Trains (assuming they're still running the franchise) will be to get the existing Meridian trains upgraded with an extra coach containing all of the required electrical equipment, plus pantograph for current collection etc. Easier said than done, but a lot cheaper than brand new trains. So it is likely you'll still be sitting on the same seat.</p>
-
-<h2>Missed Opportunities - Midland Mainline</h2>
-
-<h3>Erewash Valley</h3>
-
-<p>Why or why isn't the Erewash valley route included as part of the plans? This is the line which goes straight on at the junction for Derby and Nottingham, joining up with the Sheffield line between Clay Cross and Chesterfield - it's the most direct route to Sheffield and is useful when engineering works close the route via Derby. Very few London bound trains use this route, most are routed via Derby from Sheffield, but electrifying it would be useful for diversions and could give the opportunity for Sheffield, Leicester, London services which don't call at Derby, potentially shaving more time off the journey.</p>
-
-<h3>Sheffield to Leeds</h3>
-
-<p>Groan, everybody wants a better service between Leeds and Sheffield, the best being the 45 minute Cross Country packed like a sardine train which goes via Wakefield. Why not electrify that route too so that more London trains can be extended easily to Leeds? Plus get some more electrified suburban stoppers on that route. Derby to Leeds semi-fast?</p>
-
-<h3>Sheffield to Doncaster</h3>
-
-<p>Whilst we're at it, how about the link to Doncaster too, providing more opportunities for diversions and commuter services?</p>
-
-<h2>New Plans - Oxford to Corby &amp; Nuneaton</h2>
-
-<p>This wasn't on my radar at all, but makes a lot of sense for new cross country routes as well as faster Birmingham to London trains via Oxford. Incorporating the start of the Oxford to Cambridge route (as far as Bedford) makes sense with that re-opening. The potential for new routes, well re-establishing old routes should give that part of the country a much better service.</p>
-
-<h2>New Plans - Reading to Southampton</h2>
-
-<p>Cross country trains mainly use this route at the moment and it is partially already electrified using the Southern standard 3rd Rail system. Over the next... err.. 50 years (?) the 3rd rail system will be phased out and replaced with the standard 25kv AC overhead system. This is the beginning of that process and also good preparation for Cross Country. Birmingham to Southampton trains will be electric all the way, as might, say Sheffield to Southampton trains, routed via Oxford.</p>
-
-<h2>The Spine</h2>
-
-<p>According to the plan, the Electrified Spine is to be the Southampton to Coventry and Sheffield routes and is a piece of spin. If I had a spine looking like that I'd be worried! The only new route, as far as I can see is the already announced re-opening of the Oxford to Bedford route, everywhere else is straightforward electrification.</p>
-
-<h2>Summary</h2>
-
-<p>I'm very happy to see these extra plans announced, but would like to understand more about why some very obvious links and connections have been omitted. What to others think?</p>
 ]]></content>
   </entry>
   

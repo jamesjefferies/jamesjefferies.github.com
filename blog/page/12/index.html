@@ -9,8 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Gives info about the os installed uname -a 32 or 64 bit kernel isainfo -bv (64 or 32 bit)
-">
+  <meta name="description" content="When you have a problem with hibernate and mysql, namely mysql dropping the connection before hibernate does, then you need to configure the c3p0 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +79,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/04/15/getting-hibernate-and-mysql-to-work-properly/">Getting Hibernate and Mysql to Work Properly</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-15T18:55:44+01:00" pubdate data-updated="true">Apr 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When you have a problem with hibernate and mysql, namely mysql dropping the connection before hibernate does, then you need to configure the c3p0 connection pooling functionality. There are two main things which need setting, plus one which actually switches it on, helpfully badly documented!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;c3p0.idle_test_period&quot;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;c3p0.timeout&quot;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;c3p0.max_size&quot;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/property&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>The max size property actually switches connection pooling on and in this case sets it to a maximum of 100 connections in the pool. Then the other two come in to play.</p>
+
+<p>idle_test_period is how many seconds between hibernate testing the unused connections in the pool to make sure they are still alive. You want this to be set to less than mysql&#8217;s timeout.</p>
+
+<p>timeout is how long an open connection will stay open before it times out.</p>
+
+<p>So, as long as the idle_test_period is less than the mysql timeout, you should be ok. But don&#8217;t forget the max_size, otherwise it isn&#8217;t switched on at all!</p>
+
+<p>You&#8217;ll also need to add c3p0 as a maven dependency and include it in your package.</p>
+
+<p><a href="http://www.codefin.net/2007/05/hibernate-and-mysql-connection-timeouts.html">codefin</a>
+<a href="http://www.hibernate.org/214.html">hibernate docs</a>
+<a href="http://www.mchange.com/projects/c3p0/index.html#hibernate-specific">c3p0</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -460,6 +520,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/16/railway-hackday-off-the-rails/">Railway Hackday - Off The Rails</a>
       </li>
     
@@ -473,10 +537,6 @@
     
       <li class="post">
         <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
       </li>
     
   </ul>

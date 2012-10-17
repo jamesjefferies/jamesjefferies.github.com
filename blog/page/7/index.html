@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="With maven, running web apps with embedded tomcat &amp; jetty is brill&#8230; as long as you have a straightforward configuration, not requiring lots &hellip;">
+  <meta name="description" content="I have a little gnome applet running which tells me how fast my CPUs are running. Annoyingly, they seem to be lazing about at 2.0Ghz, saving energy &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/08/25/tinkering-with-cpu-scaling-and-ubuntu/">Tinkering With CPU Scaling and Ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-25T18:06:55+01:00" pubdate data-updated="true">Aug 25<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have a little gnome applet running which tells me how fast my CPUs are running. Annoyingly, they seem to be lazing about at 2.0Ghz, saving energy and all that, speeding up (allegedly) when required.</p>
+
+<p>This seemed like a bit of cop out to me, I want them running at 2.3Ghz, their max speed, when I&#8217;m compiling and running apps! I&#8217;m all for saving energy, but I want the control.</p>
+
+<p>Well, now I have it thanks to a bit of reconfiguring..</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo dpkg-reconfigure gnome-applets
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Running this allows the CPU speed applet to change the settings (with root permission). So, I have changed it from On Demand to Performance. Hurrah!</p>
+
+<p>More on the configuration you can achieve can be found in this interesting article. Click here! (sorry, couldn&#8217;t resist!)</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -648,42 +697,6 @@ private Date startDate;</code></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/07/fed-up-with-your-iphone-opening-iphoto/">Fed Up With Your iPhone Opening iPhoto?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-07T21:21:02+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Then nip it in the bud by opening Image Capture and setting it not to open anything in the preferences (not in the app, but from the menu).. hurrah!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -701,6 +714,10 @@ private Date startDate;</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/16/railway-hackday-off-the-rails/">Railway Hackday - Off The Rails</a>
       </li>
     
@@ -714,10 +731,6 @@ private Date startDate;</code></p>
     
       <li class="post">
         <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress connectivity issue - could not connect to host</a>
       </li>
     
   </ul>

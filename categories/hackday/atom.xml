@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hackday | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/categories/hackday/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-10-16T21:14:31+01:00</updated>
+  <updated>2012-10-17T20:21:50+01:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Scenic Railways - our railway hack]]></title>
+    <link href="http://jamesjefferies.com/2012/10/16/scenic-railways-our-railway-hack/"/>
+    <updated>2012-10-16T16:22:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/10/16/scenic-railways-our-railway-hack</id>
+    <content type="html"><![CDATA[<p><img src="/images/scenic-railways.png" alt="screen shot of application" /></p>
+
+<p>Thanks to the <a href="/2012/10/16/railway-hackday-off-the-rails/">Off The Rails</a> hackday, I was able to team up with some fellow software engineers to build something in a day. Our team consisted of <a href="http://twitter.com/frankieroberto">Frankie Roberto</a>, <a href="http://twitter.com/jnicho02">Jez Nicholson</a>, and <a href="http://twitter.com/joooe">Joe Hughes</a>. Frankie had had the idea for building an application which would show sights of interest visible from the train route, indicating rough placements and which side of the train to look on. I knew Frankie from Sheffield, Frankie had worked with Jez before on a previous hackday and Joe was interested in what we were doing, our team was formed!</p>
+
+<p>Interestingly, during the 'speed dating' section at the beginning of the day, when we chatted to other people about their ideas and what they were thinking of building, one chap, whose name I think was Phil, was thinking about Railway iSpy, which sounds pretty similar to what we actually built (without Big Chief i-Spy though!). Our application also bears an uncanny similiarity to the Peppa Pig episode <a href="http://www.youtube.com/watch?v=Htl6NYcBE-k">The Train Ride!</a></p>
+
+<p>After some discussion on ideas, scope, implementation and the <a href="http://www.railperf.org.uk/">Railway Performance Society</a> we started building a Rails web application and an iOS app. Although I know a lot about railways, I'm still in the early days of learning Rails and iOS, so the patience of Jez and Frankie whilst building <a href="http://www.scenicrailways.org.uk">Scenic Railways</a> was much appreciated. So whilst the three of us built the web application, Joe got cracking with building an iOS application.</p>
+
+<p><img src="/images/scenic-railways-on-iphone.png" alt="ios-1" /></p>
+
+<p>We got an initial version built in the time we had (from about 11am until 7pm) before the presentations were due to start. I worked on a bit of map integration using <a href="http://leaflet.cloudmade.com">leaflet.js</a> whilst Jez and Frankie implemented the main structure.</p>
+
+<p>Although the version we finished was relatively basic, there are some nice features, the best one being that the sides to look out of the window on, reverse depending on direction of travel!  It could easily be extended in the future to add extra routes and extra points of interest (POIs). Joe had some ideas on making the iOS app competitive, by providing incentives for people to take photos of the points from the train!</p>
+
+<p><img src="/images/scenic-railways-1.png" alt="screen shot of application" /></p>
+
+<p>So, feel free to have a look at the site <a href="http://www.scenicrailways.org.uk">Scenic Railways</a> and you can even checkout the code from <a href="https://github.com/frankieroberto/scenic-railways">github</a> and laugh at my Rails code (or lack of it!).</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Railway Hackday - Off The Rails]]></title>

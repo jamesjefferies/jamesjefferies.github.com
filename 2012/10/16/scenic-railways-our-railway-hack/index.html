@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Maps - James Jefferies and ShedCode Ltd</title>
+  <title>Scenic Railways - our railway hack - James Jefferies and ShedCode Ltd</title>
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="I found this via basement.org and as I like underground maps and things like that, especially the London Underground, this made fascinating viewing. &hellip;">
+  <meta name="description" content="Thanks to the Off The Rails hackday, I was able to team up with some fellow software engineers to build something in a day. Our team consisted of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jamesjefferies.com/2007/04/26/maps/">
+  <link rel="canonical" href="http://jamesjefferies.com/2012/10/16/scenic-railways-our-railway-hack/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
@@ -82,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">Maps</h1>
+      <h1 class="entry-title">Scenic Railways - Our Railway Hack</h1>
     
     
       <p class="meta">
@@ -98,16 +98,32 @@
   
 
 
-<time datetime="2007-04-26T10:37:32+01:00" pubdate data-updated="true">Apr 26<span>th</span>, 2007</time>
+<time datetime="2012-10-16T16:22:00+01:00" pubdate data-updated="true">Oct 16<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I found this via <a href="http://jamesandclare.net/life/basement.org">basement.org</a> and as I like underground maps and things like that, especially the London Underground, this made fascinating viewing.</p>
+<div class="entry-content"><p><img src="/images/scenic-railways.png" alt="screen shot of application" /></p>
 
-<p>The website has a proposed <a href="http://jamesandclare.net/life/www.kickmap.com">new design</a> of the New York Subway map and is well worth a look&#8230;</p>
+<p>Thanks to the <a href="/2012/10/16/railway-hackday-off-the-rails/">Off The Rails</a> hackday, I was able to team up with some fellow software engineers to build something in a day. Our team consisted of <a href="http://twitter.com/frankieroberto">Frankie Roberto</a>, <a href="http://twitter.com/jnicho02">Jez Nicholson</a>, and <a href="http://twitter.com/joooe">Joe Hughes</a>. Frankie had had the idea for building an application which would show sights of interest visible from the train route, indicating rough placements and which side of the train to look on. I knew Frankie from Sheffield, Frankie had worked with Jez before on a previous hackday and Joe was interested in what we were doing, our team was formed!</p>
+
+<p>Interestingly, during the &#8216;speed dating&#8217; section at the beginning of the day, when we chatted to other people about their ideas and what they were thinking of building, one chap, whose name I think was Phil, was thinking about Railway iSpy, which sounds pretty similar to what we actually built (without Big Chief i-Spy though!). Our application also bears an uncanny similiarity to the Peppa Pig episode <a href="http://www.youtube.com/watch?v=Htl6NYcBE-k">The Train Ride!</a></p>
+
+<p>After some discussion on ideas, scope, implementation and the <a href="http://www.railperf.org.uk/">Railway Performance Society</a> we started building a Rails web application and an iOS app. Although I know a lot about railways, I&#8217;m still in the early days of learning Rails and iOS, so the patience of Jez and Frankie whilst building <a href="http://www.scenicrailways.org.uk">Scenic Railways</a> was much appreciated. So whilst the three of us built the web application, Joe got cracking with building an iOS application.</p>
+
+<p><img src="/images/scenic-railways-on-iphone.png" alt="ios-1" /></p>
+
+<p>We got an initial version built in the time we had (from about 11am until 7pm) before the presentations were due to start. I worked on a bit of map integration using <a href="http://leaflet.cloudmade.com">leaflet.js</a> whilst Jez and Frankie implemented the main structure.</p>
+
+<p>Although the version we finished was relatively basic, there are some nice features, the best one being that the sides to look out of the window on, reverse depending on direction of travel!  It could easily be extended in the future to add extra routes and extra points of interest (POIs). Joe had some ideas on making the iOS app competitive, by providing incentives for people to take photos of the points from the train!</p>
+
+<p><img src="/images/scenic-railways-1.png" alt="screen shot of application" /></p>
+
+<p>So, feel free to have a look at the site <a href="http://www.scenicrailways.org.uk">Scenic Railways</a> and you can even checkout the code from <a href="https://github.com/frankieroberto/scenic-railways">github</a> and laugh at my Rails code (or lack of it!).</p>
 </div>
 
 
@@ -130,12 +146,12 @@
   
 
 
-<time datetime="2007-04-26T10:37:32+01:00" pubdate data-updated="true">Apr 26<span>th</span>, 2007</time>
+<time datetime="2012-10-16T16:22:00+01:00" pubdate data-updated="true">Oct 16<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/categories/maps/'>Maps</a>
+    <a class='category' href='/categories/hackday/'>Hackday</a>, <a class='category' href='/categories/railways/'>Railways</a>, <a class='category' href='/categories/techie/'>Techie</a>
   
 </span>
 
@@ -144,7 +160,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2007/04/26/maps/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2007/04/26/maps/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jamesjefferies.com/2012/10/16/scenic-railways-our-railway-hack/" data-via="shedcode" data-counturl="http://jamesjefferies.com/2012/10/16/scenic-railways-our-railway-hack/" >Tweet</a>
   
   
   
@@ -153,14 +169,18 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2007/04/24/newcastle-set-list-for-james/" title="Previous Post: Newcastle Set list for JAMES">&laquo; Newcastle Set list for JAMES</a>
+        <a class="basic-alignment left" href="/2012/10/16/railway-hackday-off-the-rails/" title="Previous Post: Railway Hackday - Off The Rails">&laquo; Railway Hackday - Off The Rails</a>
       
-      
-        <a class="basic-alignment right" href="/2007/05/01/fire-drama/" title="Next Post: Fire Drama">Fire Drama &raquo;</a>
       
     </p>
   </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -256,6 +276,22 @@
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'jamesjefferiesblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jamesjefferies.com/2012/10/16/scenic-railways-our-railway-hack/';
+        var disqus_url = 'http://jamesjefferies.com/2012/10/16/scenic-railways-our-railway-hack/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 

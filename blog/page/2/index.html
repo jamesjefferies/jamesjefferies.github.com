@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="If you are using the Network Rail Open Data Feeds, then hopefully you&#8217;ve had a look at the fantastic wiki started by poggs. In the reference &hellip;">
+  <meta name="description" content="Let us say that you have a MySQL dump of a database table, with a load of data which ideally, you&#8217;d like to pull into a Mongo DB as json. What &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,76 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/16/from-mysql-datadump-to-mongo/">From MySQL Datadump to Mongo</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-16T14:42:00+01:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/08/16/from-mysql-datadump-to-mongo/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let us say that you have a MySQL dump of  a database table, with a load of data which ideally, you&#8217;d like to pull into a Mongo DB as json.</p>
+
+<p>What you could do is…</p>
+
+<h2>Import data in to MySQL database</h2>
+
+<p>Usual kind of thing here, assuming you have a MySQL username for a created database:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -uusername -p -Ddbname &lt; mysqldumpfile.sql</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Export data from MySQL database in json format</h2>
+
+<p>There is a cracking ruby gem <a href="https://github.com/seamusabshere/mysql2xxxx">mysql2xxxx</a> which will export from a mysql database to various formats, including json.</p>
+
+<p>You can drive it via code or a number of binaries are provided. So:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql2json --user=username --password=password --database=dbname --execute="select * from my_special_table" &gt; my_special_file.json</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Importing the json straight in to your mongodb</h2>
+
+<p>Then you can use mongoimport to pull in the json. If your export from <code>mysql2json</code> is surrounded by the square brackets, you&#8217;ll need the <code>--jsonArray</code> option. Your command will need to be something like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mongoimport --type json --file my_special_file.json --collection mycollection --db mymongodb --jsonArray</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Summary</h2>
+
+<p>Simple three step transformation from MySQL dump to Mongo. You may know a better, more straightforward way of doing this, please add a comment if you do!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -838,75 +908,6 @@ end</code></pre></noscript></div>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/06/08/week-7-8-9-summary/">Week 7, 8 & 9 - Summary</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-08T15:14:32+01:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
-        
-         | <a href="/2012/06/08/week-7-8-9-summary/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Oh dear, what happened to week 7, 8 blog posts (I hear you ask)?</p>
-
-<p>Good question. Here&#8217;s a little re-cap of what you missed (thanks <a href="http://offbott.com/">offbott</a> for the reminders!)</p>
-
-<h3>Week 7</h3>
-
-<p>This week was mainly taken up with:</p>
-
-<ul>
-<li><p>creating a test version of the site gallery website, so that we could have a good tinker with the layout</p></li>
-<li><p>investigating the building&#8217;s network wiring and working out how we could get the office in to a better shape</p></li>
-<li><p>an official rehearsal for our TedX Sheffield talk</p></li>
-</ul>
-
-
-<h3>Week 8 - the broken back week</h3>
-
-<p>I really kernackered my back on Wednesday morning, which meant that I ended up working a bit on .. ahem.. Cathy &amp; Heathcliff&#8217;s back ends from home. Thursday was a bit better and we came up with the idea of building a &#8216;who&#8217;s in the house&#8217; lighting board. Leila has been doing lots of soldering. Our IP camera arrived on Friday and we had it looking around the office with it&#8217;s spooky eye.</p>
-
-<h3>Week 9 - the TedX and Sheffield Doc/Fest Week</h3>
-
-<p>Tuesday was Sheffield TedX and we were invited to do a 10 minute talk as part of the whole shebang. We managed to get Heathcliff working by borrowing a MacMini from Site, getting it to pick up the Wi-fi in the Crucible (yes, THAT crucible in Sheffield) and share it&#8217;s ethernet connection. Attendees could then send SMS to Heathcliff and up in the refreshment area, he&#8217;s print out their messages.</p>
-
-<p>We weren&#8217;t in the main part of the Crucible, but the Crucible studio which has room for about 270 people. I will confess and say that I felt the pressure for this one. Speaking in front of 270 people is one thing, being filmed ready for the TedX channel on YouTube is something else again!</p>
-
-<p>I think we did ok and people had nice things to say about us. Hurrah! The other speakers were, in the main, fantastic! Inspiring stuff.</p>
-
-<p>Then, Wednesday was the <a href="http://www.xolabs.co.uk/2011/11/01/xo-summit-expo-2012/">XO Summit</a> as part of Doc/Fest, which I managed to&#8230; errr, attend. Bumped in to and had a chat with the Right Honourable Honor Harger and caught up with some people I&#8217;d met the day before.</p>
-
-<p>Thursday was more Cathy &amp; Heathcliff re-writing. Getting rid of the awful PHP which we&#8217;d used initially and the gmail to ifttt to twitter thing and replacing it with a bit of Ruby and Sinatra which I got running on Heroku (was it any co-incidence that Heroku had a major outage overnight afterwards? I hope so!)</p>
-
-<p>Then today.. blogging ahoy!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -924,6 +925,10 @@ end</code></pre></noscript></div>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
@@ -937,10 +942,6 @@ end</code></pre></noscript></div>
     
       <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
   </ul>

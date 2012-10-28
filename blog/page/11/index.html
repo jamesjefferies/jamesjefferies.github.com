@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="One cold foggy Sunday night in the autumn of 1871, 68-year-old Lionel Harland, a respected Rodney Street doctor, left his surgery and walked up &hellip;">
+  <meta name="description" content="f  you use instanceof or isInstance it will succeed if the class can be &#8216;upcast&#8217;, so if it inherits from what you&#8217;re comparing it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/05/12/difference-between-instanceof-and-isinstance/">Difference Between Instanceof and isInstance</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-12T11:52:28+01:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>f  you use instanceof or isInstance it will succeed if the class can be &#8216;upcast&#8217;, so if it inherits from what you&#8217;re comparing it to..</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">classA</span> <span class="k">instanceof</span> <span class="n">classB</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>is true if classA is of a type inherited from classB</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">classA</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">isInstance</span><span class="o">(</span><span class="n">ClassB</span><span class="o">.</span><span class="na">class</span><span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>isInstance allows you to do it dynamically though</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -560,44 +610,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/04/17/some-helpful-stuff-with-jsf/">Some Helpful Stuff With Jsf</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-17T18:39:46+01:00" pubdate data-updated="true">Apr 17<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>http://www.jroller.com/eyallupu/entry/javamail_sending_embedded_image_in</p>
-
-<p>http://saloon.javaranch.com/cgi-bin/ubb/ultimatebb.cgi?ubb=get_topic&amp;f=82&amp;t=000921</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -615,6 +627,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
@@ -628,10 +644,6 @@
     
       <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
   </ul>

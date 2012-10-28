@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Unity eh? Love it or hate it the version in Ubuntu 11.04 seems not quite complete. Also other applications sometimes will not play nicely. Eclipse is &hellip;">
+  <meta name="description" content="I&#8217;m really chuffed to say that I&#8217;ve been successful in applying for a residency with the Happenstance Project. When I first heard about &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,68 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/03/11/happenstance-project-technologist-in-residence/">Happenstance Project - Technologist in Residence</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-11T18:24:14+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/11/happenstance-project-technologist-in-residence/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m really chuffed to say that I&#8217;ve been successful in applying for a residency with the <a href="http://happenstanceproject.com">Happenstance Project</a>. When I first heard about it, I thought it sounded interesting but, I didn&#8217;t consider my chances of getting a place were very high.</p>
+
+<p>Filling in the application form was a great way to help me think through what I could offer and also helped me to realise that it was exactly the sort of thing I should try with my new found freelance freedom. So, some time later, I submitted the form to see what would happen. In all I think 60 odd people applied, so I was excited to find that I&#8217;d been invited to the sandpit day at <a href="http://www.nesta.org.uk/">NESTA</a> (The National Endowment for Science, Technology and the Arts) for a selection workshop and interview.</p>
+
+<p>The day came and I zipped down to the big smoke on the train. Candidates were seen 6 at a time and my group including some strong candidates, including <a href="http://finalbullet.com">Leila Johnston</a> who will be my partner in crime for the project up at <a href="http://sitegallery.org">Site Gallery</a> in sunny Sheffield.</p>
+
+<p>After all that, I was offered a place, hurrah!</p>
+
+<p>So you may ask what I&#8217;ll be doing - well, that&#8217;s a very good question. From the project site:</p>
+
+<blockquote><p>As a resident, you will be expected to:</p>
+
+<h3>Complete Two Projects</h3>
+
+<p><em>The main body of the residencies will be split into two short five-week sprints. Each resident, or pair of residents, will complete one small project or one prototype in each sprint. The first project will be based upon the idea that you submit in your application, which will be further refined during the Sandpit Day in February; the second will be based upon your observations while resident in the organisation.</em></p>
+
+<h3>Share Your Work</h3>
+
+<p><em>You will be asked to document your work on a weekly basis, via a project blog, and also participate in three ‘Open House’ events, where you will have the opportunity to present your work, talk through your process and discuss any wider themes or implications. During the residencies, you will have the opportunity to work with both a mentor and a project manager.</em></p></blockquote>
+
+<p>My fellow Technologist In Residence, Leila, has written a good blog post about the kind of stuff we may end up doing. <a href="http://finalbullet.com/2012/03/10/im-going-to-sheffield/">Deffo worth a read</a>!</p>
+
+<p>I&#8217;ll hopefully blog and tweet as I go with the project, as well as the official blog posts which will be part of my &#8216;write up&#8217; - not sure where that will be yet!</p>
+
+<p>Hurrah!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -762,67 +824,6 @@ path/to/eclipse/here
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/12/29/how-big-are-my-mysql-tables/">How Big Are My MySQL Tables?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-29T13:41:15+00:00" pubdate data-updated="true">Dec 29<span>th</span>, 2010</time>
-        
-         | <a href="/2010/12/29/how-big-are-my-mysql-tables/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>You may ask yourself this question - here is a little query from <a href="http://www.mysqlperformanceblog.com/">MySQL performance blog</a> which may well help:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">TABLES</span><span class="p">,</span>
-</span><span class='line'><span class="k">TABLE_NAME</span><span class="p">,</span>
-</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">table_rows</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="k">rows</span><span class="p">,</span>
-</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="k">DATA</span><span class="p">,</span>
-</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="n">idx</span><span class="p">,</span>
-</span><span class='line'><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="o">+</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="n">total_size</span><span class="p">,</span>
-</span><span class='line'><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">index_length</span><span class="p">)</span><span class="o">/</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span> <span class="n">idxfrac</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">TABLES</span>
-</span><span class='line'><span class="k">group</span> <span class="k">by</span> <span class="k">TABLE_NAME</span>
-</span><span class='line'><span class="k">order</span> <span class="k">by</span> <span class="n">total_size</span> <span class="k">desc</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -840,6 +841,10 @@ path/to/eclipse/here
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
@@ -853,10 +858,6 @@ path/to/eclipse/here
     
       <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
   </ul>

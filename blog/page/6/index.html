@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="I have in my hand a piece of paper, well, actually it is an htc hero android phone, but let&#8217;s not let that get in the way of an opening &hellip;">
+  <meta name="description" content="So we had a baby (planned)! At home (planned)! And there was no major damage to the house.. apart from fusing all the lights (unplanned), but you can &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/26/the-arrival-of-the-little-nipper/">The Arrival of the Little Nipper</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-26T14:40:55+00:00" pubdate data-updated="true">Feb 26<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So we had a baby (planned)! At home (planned)! And there was no major damage to the house.. apart from fusing all the lights (unplanned), but you can&#8217;t win them all.</p>
+
+<p>Her name is Iris, she was 6lbs 6oz and is a real cutie.</p>
+
+<p>On Feb 3rd at around 5am, Clare woke up thinking contractions might have been starting. When I woke up an hour later, it hit me that maybe today was it, the beginning of the labour. In the back of my mind I was thinking that we might have a good 48 hours before our baby arrived so I didn&#8217;t need to get too worried, but I&#8217;d best phone work and stay at home to help Clare out. We were actually due 4 days later and often first babies are late, so we didn&#8217;t think we&#8217;d be in a rush.</p>
+
+<p>At around 10am we phoned the community midwife to ask her to come around. She arrived at 2pm and said that we had deffo started, but that it all could fizzle out or continue in to the next day. After she&#8217;d gone though, we were both relieved that things were ok (blood pressure and all that) so Clare went for a bath. It was around about now that things moved up a gear &amp; it started snowing.. a lot.</p>
+
+<p>I go the birthing pool ready and ran around the house trying to prepare everything and then at 5pm we phoned triage to ask for another midwife to come out as we were having three contractions in 10 minutes.</p>
+
+<p>The poor midwife had just managed to get home in the snow before turning around and coming to our house. She told us that if she couldn&#8217;t make it, she&#8217;d send an ambulance and we&#8217;d have to go in to hospital.. we really didn&#8217;t want that to happen..</p>
+
+<p>At around 6:30pm Clare&#8217;s waters broke - which wasn&#8217;t quite what I expected, I was pretty scared actually and called triage again to make sure all was ok. Midwife finally arrived at 7:15pm and we were amazed to find that we were at the 10 cm mark and ready to go!</p>
+
+<p>The midwife called for the second midwife ( you have two for home birth ) and for the baby resuscitation &amp; the gas &amp; air kit. Clare was just using a TENS machine for pain relief at this point as you&#8217;re not supposed to get in to the birthing pool until the midwife arrives, especially first time around. Unfortunately we were now too far gone for the pool, so we decamped to our bedroom.</p>
+
+<p>Iris by this time was facing the correct way, in the proper position and all seemed to be going well, phew. The second midwife arrived about 8pm, but the gas&#8217;n&#8217;air and resuscitation stuff didn&#8217;t arrive until about 15 minutes before Iris did, a close call - fortunately we didn&#8217;t need to use the resus equipment.</p>
+
+<p>Just after she was born, we had some kind of spillage, through the floorboards in our bedroom, in to the light rose of the sitting room which fused all the lights in the house. This wasn&#8217;t too much of a problem until we had to call out for the third midwife to do some repairs to Clare. These repairs were done using standard, anglepoise &amp; bedside lamps - coupled with a few candles for good measure! Very dramatic!</p>
+
+<p>Everyone left about 2:30am to leave the three of us, shattered, but happy!</p>
+
+<p><a href="http://www.flickr.com/photos/53005472@N00/4331197534/"><img src="http://farm5.static.flickr.com/4004/4331197534_09db5094d3_m.jpg" alt="P1000635" /></a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -639,54 +697,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/09/02/spring-configuration-namespace-resolution/">Spring Configuration Namespace Resolution</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-02T18:07:31+01:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>try saying &#8220;Spring configuration namespace resolution&#8221; with a mouthful of tea.</p>
-
-<p>Anyway, from Spring 2.5, one can use the new namespace resolution functionality in your spring configuration. We&#8217;ve used this for example (by the way, http bits have lost a slash - stops them getting wordpress&#8217;d), here:</p>
-
-<p>Which allows you to use the namespace amq in your spring configuration, i.e.</p>
-
-<p>spring knows that amq maps to the active mq schema, and as we provide a url in the location section, it knows where it can get it from.</p>
-
-<p>The only downside to this is when apache.org goes down, as it did last week. Spring tries to look up the schema, can&#8217;t and consequently fails to start. This is catastrophic.</p>
-
-<p>I&#8217;ve been trying to find out how to work around this, ideally I&#8217;d like Spring to get the xsd from the classpath (where I&#8217;ve put it) rather than trying to download it from the internet. Just in case apache.org disappears up it&#8217;s own firewall.. again.</p>
-
-<p>The change is simple, if you know how. Chuck the .xsd schema file in src/main/resources and update the config as follows, change in red - hurrah!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -704,6 +714,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
@@ -717,10 +731,6 @@
     
       <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
   </ul>

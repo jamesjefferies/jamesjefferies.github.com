@@ -9,8 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Should be easy this, but I made an assumption (probably on a Friday afternoon) and it&#8217;s just returned to bite my petite derriere&#8230; 1
-javax &hellip;">
+  <meta name="description" content="I used to know Ingres RDBMS pretty well and then got well in to Oracle, in fact, I&#8217;ve got 7 years of Oracle experience probably. Unfortunately &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +79,49 @@ javax &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/25/creating-mysql-users/">Creating Mysql Users</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-25T14:12:07+00:00" pubdate data-updated="true">Feb 25<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I used to know Ingres RDBMS pretty well and then got well in to Oracle, in fact, I&#8217;ve got 7 years of Oracle experience probably. Unfortunately, each day that goes by, I forget how to do the ninja stuff I used to be able to do..</p>
+
+<p>Instead now, I&#8217;m using HSQLDB for in memory speedy development and then today have been getting local mysql up and running. Of course, it&#8217;s easy to get the db fired up on ubuntu, where I have the block is creating a simple user who can log on to the flippin&#8217; thing. All you mysql veterans out there will be stroking your beard wondering what all the fuss is about. So, to remind my self, here&#8217;s some pimple simple stuff&#8230;</p>
+
+<pre><code> grant all on DATABASENAME.* to 'NEWUSERNAME'@'localhost' identified by 'NEWPASSWORD';
+</code></pre>
+
+<p>Yeah, yeah, you could, should do a lot more with this, but for what I want, it just works&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -597,44 +639,6 @@ var_dump($_SERVER);</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/09/09/httpjstweenblogspotcom/">Javascript Motion Tween&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-09T18:34:38+01:00" pubdate data-updated="true">Sep 9<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>http://jstween.blogspot.com/</p>
-
-<p>says it all</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -652,6 +656,10 @@ var_dump($_SERVER);</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
@@ -665,10 +673,6 @@ var_dump($_SERVER);</p>
     
       <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
   </ul>

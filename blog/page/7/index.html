@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="I have a little gnome applet running which tells me how fast my CPUs are running. Annoyingly, they seem to be lazing about at 2.0Ghz, saving energy &hellip;">
+  <meta name="description" content="try saying &#8220;Spring configuration namespace resolution&#8221; with a mouthful of tea. Anyway, from Spring 2.5, one can use the new namespace &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/09/02/spring-configuration-namespace-resolution/">Spring Configuration Namespace Resolution</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-02T18:07:31+01:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>try saying &#8220;Spring configuration namespace resolution&#8221; with a mouthful of tea.</p>
+
+<p>Anyway, from Spring 2.5, one can use the new namespace resolution functionality in your spring configuration. We&#8217;ve used this for example (by the way, http bits have lost a slash - stops them getting wordpress&#8217;d), here:</p>
+
+<p>Which allows you to use the namespace amq in your spring configuration, i.e.</p>
+
+<p>spring knows that amq maps to the active mq schema, and as we provide a url in the location section, it knows where it can get it from.</p>
+
+<p>The only downside to this is when apache.org goes down, as it did last week. Spring tries to look up the schema, can&#8217;t and consequently fails to start. This is catastrophic.</p>
+
+<p>I&#8217;ve been trying to find out how to work around this, ideally I&#8217;d like Spring to get the xsd from the classpath (where I&#8217;ve put it) rather than trying to download it from the internet. Just in case apache.org disappears up it&#8217;s own firewall.. again.</p>
+
+<p>The change is simple, if you know how. Chuck the .xsd schema file in src/main/resources and update the config as follows, change in red - hurrah!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -631,72 +679,6 @@ private Date startDate;</code></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/04/09/migrating-packages-from-old-machine-to-new/">Migrating Packages From Old Machine to New</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-09T12:41:31+01:00" pubdate data-updated="true">Apr 9<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Before switching off your old ubuntu machine for good, run</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --get-selections &gt; Packages.lst
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>which will output all the stuff you&#8217;ve installed using the package manager to a flat file (Packages.lst). Copy this file to your new machine.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --set-selections &lt; Packages.lst
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will then set all those packages ready for install on your new machine.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get -s dselect-upgrade
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and then when you are feeling brave</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get dselect-upgrade
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will install them for you&#8230;hopefully!</p>
-
-<p>oh and watch out for things you <em>don&#8217;t</em> want to install on the new machine, like gfx drivers. You can remove them from Packages.lst</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -714,6 +696,10 @@ private Date startDate;</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
@@ -727,10 +713,6 @@ private Date startDate;</code></p>
     
       <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
   </ul>

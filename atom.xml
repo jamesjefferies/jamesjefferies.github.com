@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-10-17T20:21:50+01:00</updated>
+  <updated>2012-10-28T15:25:57+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A great idea for Amazon deliveries]]></title>
+    <link href="http://jamesjefferies.com/2012/10/28/a-great-idea-for-amazon-deliveries/"/>
+    <updated>2012-10-28T15:14:00+00:00</updated>
+    <id>http://jamesjefferies.com/2012/10/28/a-great-idea-for-amazon-deliveries</id>
+    <content type="html"><![CDATA[<h2>Amazon Pickup Lockers</h2>
+
+<p>This year, Amazon launched it&#8217;s Pick up lockers and Collection locations. A great idea for a mail order company, providing delivery alternatives for customers so they don&#8217;t have to put up with the, <a href="http://www.guardian.co.uk/money/2012/aug/24/amazon-complaints-yodel-delivery-service">generally awful</a>, parcel delivery services. Having had parcels left outside houses and in rubbish bins, it&#8217;s good to know you can collect, at your convenience from a location you have chosen.</p>
+
+<h2>The Oxford - Cambridge Railway</h2>
+
+<p>Then, the other weekend, I was on a railway line I&#8217;d never been on before, the Bletchley to Bedford line, which joins the West Coast Main Line, to the Midland Main Line, serving lots of small stations on route. A lot of work has been done on the infrastructure recently, as <a href="http://www.railfuture.org.uk/ox-cam/">services get extended</a> from Bletchley towards Oxford, and hopefully one day, back towards Cambridge. The line will also be electrified as part of the <a href="http://jamesjefferies.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/">&#8216;electric spine&#8217;</a>.</p>
+
+<h2>How about&#8230;</h2>
+
+<p>About half way along this route, is a massive Amazon warehouse. Although it is next to the railway line, it isn&#8217;t rail served, there are no sidings set up for transferring goods. It got me thinking though, if local and major railway stations had Amazon pick up lockers, then they could be rail served in a really efficient way. Of course there would be infrastructure costs, getting Amazon warehouses linked up, but once that was done, a really efficient way of delivering goods.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Scenic Railways - our railway hack]]></title>
@@ -1207,46 +1226,6 @@ end</code></pre></noscript></div>
 
 
 <p>At the moment, these are in my preferred order, but I&#8217;ll let you know what happens&#8230;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Week 7, 8 & 9 - summary]]></title>
-    <link href="http://jamesjefferies.com/2012/06/08/week-7-8-9-summary/"/>
-    <updated>2012-06-08T15:14:32+01:00</updated>
-    <id>http://jamesjefferies.com/2012/06/08/week-7-8-9-summary</id>
-    <content type="html"><![CDATA[<p>Oh dear, what happened to week 7, 8 blog posts (I hear you ask)?</p>
-
-<p>Good question. Here&#8217;s a little re-cap of what you missed (thanks <a href="http://offbott.com/">offbott</a> for the reminders!)</p>
-
-<h3>Week 7</h3>
-
-<p>This week was mainly taken up with:</p>
-
-<ul>
-<li><p>creating a test version of the site gallery website, so that we could have a good tinker with the layout</p></li>
-<li><p>investigating the building&#8217;s network wiring and working out how we could get the office in to a better shape</p></li>
-<li><p>an official rehearsal for our TedX Sheffield talk</p></li>
-</ul>
-
-
-<h3>Week 8 - the broken back week</h3>
-
-<p>I really kernackered my back on Wednesday morning, which meant that I ended up working a bit on .. ahem.. Cathy &amp; Heathcliff&#8217;s back ends from home. Thursday was a bit better and we came up with the idea of building a &#8216;who&#8217;s in the house&#8217; lighting board. Leila has been doing lots of soldering. Our IP camera arrived on Friday and we had it looking around the office with it&#8217;s spooky eye.</p>
-
-<h3>Week 9 - the TedX and Sheffield Doc/Fest Week</h3>
-
-<p>Tuesday was Sheffield TedX and we were invited to do a 10 minute talk as part of the whole shebang. We managed to get Heathcliff working by borrowing a MacMini from Site, getting it to pick up the Wi-fi in the Crucible (yes, THAT crucible in Sheffield) and share it&#8217;s ethernet connection. Attendees could then send SMS to Heathcliff and up in the refreshment area, he&#8217;s print out their messages.</p>
-
-<p>We weren&#8217;t in the main part of the Crucible, but the Crucible studio which has room for about 270 people. I will confess and say that I felt the pressure for this one. Speaking in front of 270 people is one thing, being filmed ready for the TedX channel on YouTube is something else again!</p>
-
-<p>I think we did ok and people had nice things to say about us. Hurrah! The other speakers were, in the main, fantastic! Inspiring stuff.</p>
-
-<p>Then, Wednesday was the <a href="http://www.xolabs.co.uk/2011/11/01/xo-summit-expo-2012/">XO Summit</a> as part of Doc/Fest, which I managed to&#8230; errr, attend. Bumped in to and had a chat with the Right Honourable Honor Harger and caught up with some people I&#8217;d met the day before.</p>
-
-<p>Thursday was more Cathy &amp; Heathcliff re-writing. Getting rid of the awful PHP which we&#8217;d used initially and the gmail to ifttt to twitter thing and replacing it with a bit of Ruby and Sinatra which I got running on Heroku (was it any co-incidence that Heroku had a major outage overnight afterwards? I hope so!)</p>
-
-<p>Then today.. blogging ahoy!</p>
 ]]></content>
   </entry>
   

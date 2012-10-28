@@ -9,8 +9,8 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Then nip it in the bud by opening Image Capture and setting it not to open anything in the preferences (not in the app, but from the menu).. hurrah!
-">
+  <meta name="description" content="Before switching off your old ubuntu machine for good, run 1
+dpkg --get-selections &gt; Packages.lst which will output all the stuff you&#8217;ve &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,72 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/04/09/migrating-packages-from-old-machine-to-new/">Migrating Packages From Old Machine to New</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-09T12:41:31+01:00" pubdate data-updated="true">Apr 9<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Before switching off your old ubuntu machine for good, run</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --get-selections &gt; Packages.lst
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which will output all the stuff you&#8217;ve installed using the package manager to a flat file (Packages.lst). Copy this file to your new machine.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>dpkg --set-selections &lt; Packages.lst
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will then set all those packages ready for install on your new machine.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get -s dselect-upgrade
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and then when you are feeling brave</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get dselect-upgrade
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will install them for you&#8230;hopefully!</p>
+
+<p>oh and watch out for things you <em>don&#8217;t</em> want to install on the new machine, like gfx drivers. You can remove them from Packages.lst</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -648,49 +714,6 @@ query.executeUpdate();
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/02/25/creating-mysql-users/">Creating Mysql Users</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-25T14:12:07+00:00" pubdate data-updated="true">Feb 25<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I used to know Ingres RDBMS pretty well and then got well in to Oracle, in fact, I&#8217;ve got 7 years of Oracle experience probably. Unfortunately, each day that goes by, I forget how to do the ninja stuff I used to be able to do..</p>
-
-<p>Instead now, I&#8217;m using HSQLDB for in memory speedy development and then today have been getting local mysql up and running. Of course, it&#8217;s easy to get the db fired up on ubuntu, where I have the block is creating a simple user who can log on to the flippin&#8217; thing. All you mysql veterans out there will be stroking your beard wondering what all the fuss is about. So, to remind my self, here&#8217;s some pimple simple stuff&#8230;</p>
-
-<pre><code> grant all on DATABASENAME.* to 'NEWUSERNAME'@'localhost' identified by 'NEWPASSWORD';
-</code></pre>
-
-<p>Yeah, yeah, you could, should do a lot more with this, but for what I want, it just works&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -708,6 +731,10 @@ query.executeUpdate();
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
@@ -721,10 +748,6 @@ query.executeUpdate();
     
       <li class="post">
         <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/25/the-creativity-tap/">The Creativity Tap</a>
       </li>
     
   </ul>

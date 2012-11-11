@@ -43,7 +43,7 @@ After that run, the pressure dropped and the fuel began to run out, so that was 
 
 ## Next Time
 
-The plan for next time will be to not even start the engine until the pressurce reaches 15 psi. I might also try and extra fuel pellet to see if that helps maintain the pressure.
+The plan for next time will be to not even start the engine until the pressure reaches 15 psi. I might also try and extra fuel pellet to see if that helps maintain the pressure.
 
 I've ordered some [sugru](http://sugru.co.uk) to try and fix the leak too! Will be interesting to see if it works.
 

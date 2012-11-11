@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Printers | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.com/categories/printers/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2012-11-11T17:28:44+00:00</updated>
+  <id>http://jamesjefferies.com/</id>
+  <author>
+    <name><![CDATA[James Jefferies]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Steam powered Arduino part 1]]></title>
+    <link href="http://jamesjefferies.com/2012/11/11/steam-powered-arduino-part-1/"/>
+    <updated>2012-11-11T16:22:00+00:00</updated>
+    <id>http://jamesjefferies.com/2012/11/11/steam-powered-arduino-part-1</id>
+    <content type="html"><![CDATA[<p>Following on from getting Cathy &amp; Heathcliff up and running as part of the <a href="http://happenstanceproject.com">Happenstance Project</a></p>
+]]></content>
+  </entry>
+  
+</feed>

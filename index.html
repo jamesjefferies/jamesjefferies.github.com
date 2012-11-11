@@ -9,7 +9,8 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Amazon Pickup Lockers This year, Amazon launched it&#8217;s Pick up lockers and Collection locations. A great idea for a mail order company, &hellip;">
+  <meta name="description" content="Following on from getting Cathy &amp; Heathcliff up and running as part of the Happenstance Project
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +80,44 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/11/11/steam-powered-arduino-part-1/">Steam Powered Arduino Part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-11T16:22:00+00:00" pubdate data-updated="true">Nov 11<span>th</span>, 2012</time>
+        
+         | <a href="/2012/11/11/steam-powered-arduino-part-1/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Following on from getting Cathy &amp; Heathcliff up and running as part of the <a href="http://happenstanceproject.com">Happenstance Project</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -602,7 +641,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2012/08/22/setting-up-wordpress/">Setting Up WordPress</a></h1>
+      <h1 class="entry-title"><a href="/2012/08/30/the-story-of-cathy-and-heathcliff/">The Story of Cathy and Heathcliff</a></h1>
     
     
       <p class="meta">
@@ -618,429 +657,48 @@
   
 
 
-<time datetime="2012-08-22T15:07:00+01:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+<time datetime="2012-08-30T16:29:00+01:00" pubdate data-updated="true">Aug 30<span>th</span>, 2012</time>
         
-         | <a href="/2012/08/22/setting-up-wordpress/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So, your server is set up and raring to go. Please see my <a href="http://jamesjefferies.com/2012/08/22/setting-up-a-fresh-debian-server/">earlier blogpost</a> on getting the server to this point.. next!</p>
-
-<h2>Install Apache2</h2>
-
-<p>Let&#8217;s get our web server up and running by installing apache</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install apache2</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and check it is up and running with <code>http://123.456.789.012</code> in your friendly web browser.</p>
-
-<h2>Configure Apache2 for low memory usage</h2>
-
-<p>With previous virtual servers, I&#8217;ve found that Apache needs a bit of tweaking to support WordPress load. I found this useful <a href="http://imperialwicket.com/tuning-apache-for-a-low-memory-server-like-aws-micro-ec2-instances">post</a> about tweaking apache. The nuts and bolts are to amend some of the settings in your <code>/etc/apache2/apache.conf</code> as follows:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Timeout 30
-</span><span class='line'>KeepAlive On
-</span><span class='line'>MaxKeepAliveRequests 50
-</span><span class='line'>KeepAliveTimeout 10
-</span><span class='line'>
-</span><span class='line'>&lt;IfModule mpm_prefork_module&gt;
-</span><span class='line'>    StartServers          5
-</span><span class='line'>    MinSpareServers       5
-</span><span class='line'>    MaxSpareServers      10
-</span><span class='line'>    MaxClients          150
-</span><span class='line'>    MaxRequestsPerChild   0
-</span><span class='line'>&lt;/IfModule&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Setting up virtual host with apache</h2>
-
-<p>A very simple set up would be to create the following <code>/etc/apache2/sites-available/myacedomainname.com</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#Ensure that Apache listens on port 80
-</span><span class='line'>#Listen 80 (note uncomment this with ports.conf set to 80 and you will experience a WORLD of pain!)
-</span><span class='line'>
-</span><span class='line'># Listen for virtual host requests on all IP addresses
-</span><span class='line'>NameVirtualHost *:80
-</span><span class='line'>
-</span><span class='line'>&lt;VirtualHost *:80&gt;
-</span><span class='line'>DocumentRoot /var/www/myacedomainname.com
-</span><span class='line'>ServerName www.myacedomainname.com
-</span><span class='line'>
-</span><span class='line'># Other directives here
-</span><span class='line'>
-</span><span class='line'>&lt;/VirtualHost&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Enable site (and other useful commands)</h2>
-
-<p>Create that file in sites-available and use the following commands to enable/disable - they will give you options when they run as to which sites you want to enable/disable</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo a2ensite
-</span><span class='line'>sudo a2dissite</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Force reload configuration?</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo  /etc/init.d/apache2 force-reload</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Install PHP</h2>
-
-<p>Ok, well to get WordPress running, we&#8217;re going to need some PHP, so get it installed</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install php5 libapache2-mod-php5</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Install MySQL</h2>
-
-<p>And we&#8217;ll need a database too</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mysql-server mysql-client php5-mysql</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If already installed, but you want to reset it so you can set root password etc, give it a bit of this:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg-reconfigure mysql-server-5.1</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Migrating a site from another provider</h2>
-
-<h3>Database gubbins</h3>
-
-<p>Get a database dump from your old site, either using PHPMyAdmin if installed, or doing a dump from the command line using <code>mysqldump</code>. Hopefully at the end of that process you&#8217;ll be able to import the dump in to your new set up with a bit of:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -uroot -p &lt; databasedump.sql</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The dump may contain a create database statement to create the database, right at the top along the lines of</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE DATABASE `db1234` DEFAULT CHARACTER SET latin1 COLLATE latin1_german2_ci; USE db1234;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now you&#8217;ll need to create a database user for WordPress to use. So make sure you&#8217;ve got a file dump of your WordPress installation, either by command line, or the hosting admin suite, or an FTP application or whatever you&#8217;re comfortable with. You&#8217;re going to need your wp-config.php file which will tell you how your existing WordPress site is set up. This is the bit you need to look at for now</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>/** The name of the database for WordPress */
-</span><span class='line'>define('DB_NAME', 'db1234');
-</span><span class='line'>
-</span><span class='line'>/** MySQL database username */
-</span><span class='line'>define('DB_USER', 'dbuser');
-</span><span class='line'>
-</span><span class='line'>/** MySQL database password */
-</span><span class='line'>define('DB_PASSWORD', 'dbpassword');
-</span><span class='line'>
-</span><span class='line'>/** MySQL hostname */
-</span><span class='line'>define('DB_HOST', 'localhost');
-</span><span class='line'>
-</span><span class='line'>/** Database Charset to use in creating database tables. */
-</span><span class='line'>define('DB_CHARSET', 'utf8');
-</span><span class='line'>
-</span><span class='line'>/** The Database Collate type. Don't change this if in doubt. */
-</span><span class='line'>define('DB_COLLATE', '');</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So in your existing set up you have a database user called <code>dbuser</code> with password <code>dbpassword</code> so create that user in your new setup as follows</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>grant all on db1234.* to 'dbuser'@'localhost' identified by 'dbpassword';</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then make sure it works with a bit of <code>mysql -udbuser -Ddb1234 -p</code> enter your password and hopefully you are in.</p>
-
-<h3>Filesystem</h3>
-
-<p>Now get that dump of the filesystem you have and unpack it in <code>/var/www/myacedomain.com</code> or whatever you set in your virtual hosts configuration earlier. You may need to change the ownership of everything, including that directory to www-data with a bit of</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chown -R www-data:www-data /var/www/myacedomain.com</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-and check the permissions too, directories should be set to 755 and files to 644. You can enforce this with</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo find . -type f -print | sudo xargs chmod 644  # Files
-</span><span class='line'>sudo find . -type d -print | sudo xargs chmod 755  # Directories</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It is entirely possible that after all this, you can now hit <code>http://myacedomain.com</code> or <code>http://123.456.789.012</code> and see your migrated WordPress site!</p>
-
-<h3>UTF-8 issues</h3>
-
-<p>Now, one issue I&#8217;ve had in the past is problems with UTF-8 conversion. I.e. the posts you&#8217;ve migrated end up with funny characters like â€“ â€œ â€™ â€ - you can tell if this is causing you grief because you see the characters mixed up in your posts, but if you comment out these lines (by adding // in front) in your WordPress config, then they.. ahem, magically go away</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>define('DB_CHARSET', 'utf8');
-</span><span class='line'>define('DB_COLLATE', '');</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Best not to do that though, you <em>can</em> use the <a href="http://wordpress.org/extend/plugins/search-and-replace/">search and replace</a> WordPress plugin to replace all the dodgy characters in the database. Find &#8220;â&#8221; and replace with &#8220;&#8221; - hooray!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/08/22/setting-up-a-fresh-debian-server/">Setting Up a Fresh Debian Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-22T14:41:00+01:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
-        
-         | <a href="/2012/08/22/setting-up-a-fresh-debian-server/#disqus_thread">Comments</a>
+         | <a href="/2012/08/30/the-story-of-cathy-and-heathcliff/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2>Accessing the server</h2>
+  <div class="entry-content"><p>Back, back, back in the day&#8230; well, January 1978, Kate Bush released the classic song Wuthering Heights, inspired by the Emily Bronte novel. As well as launching her career, and boosting the sales of flowy white dresses, the song provided inspiration for us when it came to one of our projects.</p>
 
-<p>Once set up, you will have the IP address, in the form 123.456.789.012 and the root password. This means you will be able to log on to the server using ssh (secure shell), i.e.</p>
+<h2>Go Free Range</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ssh root@123.456.789.012</span></code></pre></td></tr></table></div></figure>
+<p>James Adam of <a href="http://gofreerange.com">GoFreeRange</a> has done a lot of work on transforming simple thermal receipt printers in to intelligent, ethernet enabled printing devices. He’s done an incredible job of writing software and working out the electronics, based on the Arduino device, to get them up and running.</p>
 
+<p><img src="/images/nyancat.png" alt="nyancat" /></p>
 
-<p>You will get a message along the lines of</p>
+<h2>Cathy &amp; Heathcliff</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>The authenticity of host '123.456.789.012(123.456.789.012)' can't be established. RSA key fingerprint is blah blah bla
-</span><span class='line'>Are you sure you want to continue connecting (yes/no)?</span></code></pre></td></tr></table></div></figure>
+<p>When our two printers arrived to play their part in the Happenstance project, their default names were a bit of a mouthful, they made a good password, but not a name which slipped off the tongue - 4j8k6i5x5q7a7b5y.</p>
 
+<h2>Up and running</h2>
 
-<p>to which you will reply</p>
+<p>So, when we finally got the printers up and running, after a few head scratching hours, the first message we sent to 4j8k6i5x5q7a7b5y was, ‘It&#8217;s me, Cathy, I&#8217;ve come home’ – a line from Cathy to Heathcliff in the song. So Cathy named herself, and 4j8k6i5x5q7a7b5y became Heathcliff.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>yes</span></code></pre></td></tr></table></div></figure>
+<p><img src="/images/output.png" alt="output" /></p>
 
+<p>That was in the final week of the Bill Drummond exhibition, “Ragworts” at Site Gallery and we gave the two printers a part to play in the project. Some local Sixth Form students were tasked with sending messages to Cathy &amp; Heathcliff as they jumped on the nearest bus they could find, and journeyed into the wilds of outer Sheffield.</p>
 
-<p>and you will then get</p>
+<p>At first we thought they could tweet their progress and the printers would pick up on those tweets and print them, but we decided to mash up a lot of technology to provide a simpler solution for the students. With the clock ticking, we glued together Twilio, Gmail, ifttt (‘If This Then That’) and some custom code we wrote. Cathy &amp; Heathcliff now had their own Sheffield phone numbers, and now you could send them a text message and the contents would be printed and tweeted.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Warning: Permanently added '123.456.789.012' (RSA) to the list of known hosts.
-</span><span class='line'>root@123.456.789.012's password: </span></code></pre></td></tr></table></div></figure>
+<p>When the students set off on their journeys, they could send SMS text messages to Cathy and Heathcliff’s numbers and the magic of technology would take care of the rest. Their messages would appear on the printers, back at Site Gallery and on their Twitter account. It was fascinating to read the messages sent back to base by the students, many of which were very poetic and evocative.</p>
 
+<p>After all this excitement, our plan was to get Cathy and Heathcliff mobile so they could roam the streets of Sheffield whilst remaining available for printing. With the aid of dongle, a mac and a giffgaff sim card they were freed from the shackles of mains power and wifi, ready to explore!</p>
 
-<p>which is when you can enter your password. Hopefully then you&#8217;ll be logged on to the server.</p>
+<p><img src="/images/getonabus.png" alt="get on a bus" /></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>blah blah blah snip…
-</span><span class='line'>servername:~# </span></code></pre></td></tr></table></div></figure>
+<h2>What&#8217;s next</h2>
 
+<p>Although Happenstance has now finished, the printers have been used in Site for other purposes. Cathy has been on reception acting as a comments book (text her and she’ll print your comment) whilst Heathcliff has been reading twitter and printing mentions of Site Gallery!</p>
 
-<h3>First things first</h3>
-
-<p>Root access is the super user for your server. You really don&#8217;t want to have people being able to log on to your server as root. What you really need is to have user accounts which people can use to log on, and if/when required, they can get super user privileges to do whatever they need to do.</p>
-
-<p>What we are going to do is to stop root being able to secure shell straight in to the server, create a new user account to use for our admin (with upgradable privileges) and run ssh on a different port to deter basic attacks.</p>
-
-<h3>Change root&#8217;s password!</h3>
-
-<p>So you have a default root password - CHANGE IT to a new one! From a root prompt, use <code>passwd</code> to change the password</p>
-
-<h3>Adding a new user</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>adduser james</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Will create a new user, called James - you can add in extra details as you go like full name etc.</p>
-
-<p>Now we want to allow james a bit of privilege, not by default though, but by using the sudo command.</p>
-
-<h4>Aside - setting default editor to be vi</h4>
-
-<p>By default, for all users, you may want to use vi as your editor (ok, you may not, but I do!) so add the following to <code>/etc/profile</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>EDITOR=vi
-</span><span class='line'>export EDITOR</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Giving the new user sudo privileges</h3>
-
-<p>You may need to install sudo if it isn&#8217;t already installed on your server. It&#8217;s a simple case of</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install sudo</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then, the application <code>visudo</code> is your friend. You edit the config file using visudo and then sudo does the rest. When you open the file, you&#8217;ll see a section with:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># User privilege specification
-</span><span class='line'>root    ALL=(ALL) ALL
-</span><span class='line'>admin ALL = (ALL) ALL
-</span><span class='line'>james ALL = (ALL) ALL</span></code></pre></td></tr></table></div></figure>
-
-
-<p>By adding my own entry, it allows me to upgrade my user to super user privileges for all actions. You can limit the commands which users can run if you like using this, but if you are going to be the super user, you probably want to leave it as all.</p>
-
-<h2>Sorting out access</h2>
-
-<p>Let&#8217;s stop people attempting to log on to the server as <a href="http://www.howtogeek.com/howto/linux/security-tip-disable-root-ssh-login-on-linux/">root via ssh</a> and also to run ssh on a different port than the default. There is a lot of good advice <a href="http://www.foogazi.com/2006/11/29/modify-ssh-to-maximize-security/">here</a></p>
-
-<h3>Amend port</h3>
-
-<p>The default port is 22, change this to something else, which isn&#8217;t being used by anything else</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># What ports, IPs and protocols we listen for
-</span><span class='line'>Port 60</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Stop root login</h3>
-
-<p>Now stop people logging in as root</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>PermitRootLogin no</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Some other bits</h3>
-
-<p>Give maximum number of log in attempts to be 3, only allow james to login.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>MaxAuthTries 3
-</span><span class='line'>AllowUsers james </span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Restart sshd</h3>
-
-<p>As root (or sudo)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/init.d/ssh restart</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now try logging in remotely from a different shell (i.e. keep the one you&#8217;ve just restarted sshd on open in case you have any problems!)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -p60 james@123.456.789.0123</span></code></pre></td></tr></table></div></figure>
-
-
-<p>obviously set the p to be the port you set earlier.</p>
-
-<h3>Stop chancers getting in</h3>
-
-<p>It&#8217;s also a good idea to stop people attempting to log on to your server using common passwords, usernames etc. A good way to do this is to install the <a href="http://en.wikipedia.org/wiki/Fail2ban">fail2ban</a> which goes some way to banning people trying to brute force their way in to your server.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install fail2ban</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Default settings are pretty good here.</p>
-
-<h2>Firewall configuration</h2>
-
-<p>UFW or Uncomplicated Firewall is a good first port of call for securing your shiny new server. You can install it as root with</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install ufw</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now, unlike fail2ban, ufw is installed switched off. You need to configure a few things before getting it up and running and providing that extra security. By default ALL ports are shut, so make sure you&#8217;ve opened up the ones you need before switching the firewall on!</p>
-
-<p>For example, if you&#8217;ve set up your ssh to run on port 60, then you need to run</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ufw allow 60</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If you&#8217;re going to be running apache on port 80 (the usual)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ufw allow 80</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here are a few <a href="http://www.mmncs.com/2011/07/this-guide-shows-howto-install-and-setup-uncomplicatedfirewall-ufw-on-linux-ubuntu-10-04-and-11-04-and-other-debian-distributions/">notes</a></p>
-
-<p>Don&#8217;t forget to run <code>ufw enable</code> when you are ready! <code>ufw status</code> tells you what is set up.</p>
+<p>We still hope to use them for one final experiment where we get them to run off steam power!</p>
 </div>
   
   
@@ -1063,6 +721,10 @@ and check the permissions too, directories should be set to 755 and files to 644
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
       </li>
     
@@ -1076,10 +738,6 @@ and check the permissions too, directories should be set to 755 and files to 644
     
       <li class="post">
         <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
   </ul>

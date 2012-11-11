@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Arduino | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.com/categories/arduino/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2012-11-11T17:28:44+00:00</updated>
+  <id>http://jamesjefferies.com/</id>
+  <author>
+    <name><![CDATA[James Jefferies]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Steam powered Arduino part 1]]></title>
+    <link href="http://jamesjefferies.com/2012/11/11/steam-powered-arduino-part-1/"/>
+    <updated>2012-11-11T16:22:00+00:00</updated>
+    <id>http://jamesjefferies.com/2012/11/11/steam-powered-arduino-part-1</id>
+    <content type="html"><![CDATA[<p>Following on from getting Cathy &amp; Heathcliff up and running as part of the <a href="http://happenstanceproject.com">Happenstance Project</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Story of Cathy and Heathcliff]]></title>
+    <link href="http://jamesjefferies.com/2012/08/30/the-story-of-cathy-and-heathcliff/"/>
+    <updated>2012-08-30T16:29:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/30/the-story-of-cathy-and-heathcliff</id>
+    <content type="html"><![CDATA[<p>Back, back, back in the day... well, January 1978, Kate Bush released the classic song Wuthering Heights, inspired by the Emily Bronte novel. As well as launching her career, and boosting the sales of flowy white dresses, the song provided inspiration for us when it came to one of our projects.</p>
+
+<h2>Go Free Range</h2>
+
+<p>James Adam of <a href="http://gofreerange.com">GoFreeRange</a> has done a lot of work on transforming simple thermal receipt printers in to intelligent, ethernet enabled printing devices. He’s done an incredible job of writing software and working out the electronics, based on the Arduino device, to get them up and running.</p>
+
+<p><img src="/images/nyancat.png" alt="nyancat" /></p>
+
+<h2>Cathy &amp; Heathcliff</h2>
+
+<p>When our two printers arrived to play their part in the Happenstance project, their default names were a bit of a mouthful, they made a good password, but not a name which slipped off the tongue - 4j8k6i5x5q7a7b5y.</p>
+
+<h2>Up and running</h2>
+
+<p>So, when we finally got the printers up and running, after a few head scratching hours, the first message we sent to 4j8k6i5x5q7a7b5y was, ‘It's me, Cathy, I've come home’ – a line from Cathy to Heathcliff in the song. So Cathy named herself, and 4j8k6i5x5q7a7b5y became Heathcliff.</p>
+
+<p><img src="/images/output.png" alt="output" /></p>
+
+<p>That was in the final week of the Bill Drummond exhibition, “Ragworts” at Site Gallery and we gave the two printers a part to play in the project. Some local Sixth Form students were tasked with sending messages to Cathy &amp; Heathcliff as they jumped on the nearest bus they could find, and journeyed into the wilds of outer Sheffield.</p>
+
+<p>At first we thought they could tweet their progress and the printers would pick up on those tweets and print them, but we decided to mash up a lot of technology to provide a simpler solution for the students. With the clock ticking, we glued together Twilio, Gmail, ifttt (‘If This Then That’) and some custom code we wrote. Cathy &amp; Heathcliff now had their own Sheffield phone numbers, and now you could send them a text message and the contents would be printed and tweeted.</p>
+
+<p>When the students set off on their journeys, they could send SMS text messages to Cathy and Heathcliff’s numbers and the magic of technology would take care of the rest. Their messages would appear on the printers, back at Site Gallery and on their Twitter account. It was fascinating to read the messages sent back to base by the students, many of which were very poetic and evocative.</p>
+
+<p>After all this excitement, our plan was to get Cathy and Heathcliff mobile so they could roam the streets of Sheffield whilst remaining available for printing. With the aid of dongle, a mac and a giffgaff sim card they were freed from the shackles of mains power and wifi, ready to explore!</p>
+
+<p><img src="/images/getonabus.png" alt="get on a bus" /></p>
+
+<h2>What's next</h2>
+
+<p>Although Happenstance has now finished, the printers have been used in Site for other purposes. Cathy has been on reception acting as a comments book (text her and she’ll print your comment) whilst Heathcliff has been reading twitter and printing mentions of Site Gallery!</p>
+
+<p>We still hope to use them for one final experiment where we get them to run off steam power!</p>
+]]></content>
+  </entry>
+  
+</feed>

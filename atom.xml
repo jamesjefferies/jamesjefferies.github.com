@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-10-28T15:48:31+00:00</updated>
+  <updated>2012-11-11T17:28:44+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Steam powered Arduino part 1]]></title>
+    <link href="http://jamesjefferies.com/2012/11/11/steam-powered-arduino-part-1/"/>
+    <updated>2012-11-11T16:22:00+00:00</updated>
+    <id>http://jamesjefferies.com/2012/11/11/steam-powered-arduino-part-1</id>
+    <content type="html"><![CDATA[<p>Following on from getting Cathy &amp; Heathcliff up and running as part of the <a href="http://happenstanceproject.com">Happenstance Project</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A great idea for Amazon deliveries]]></title>
@@ -295,6 +304,47 @@
 <p>Of course, keep things up to date that you do use, Operating systems, browsers etc</p>
 
 <p>Java server side is a different story. If you do use the Java Virtual Machine, whether it is for Java apps, Clojure, Scala or whatever. Keep your eyes on the Oracle security bulletins, update when you can and be aware of any vulnerabilities in the latest version.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Story of Cathy and Heathcliff]]></title>
+    <link href="http://jamesjefferies.com/2012/08/30/the-story-of-cathy-and-heathcliff/"/>
+    <updated>2012-08-30T16:29:00+01:00</updated>
+    <id>http://jamesjefferies.com/2012/08/30/the-story-of-cathy-and-heathcliff</id>
+    <content type="html"><![CDATA[<p>Back, back, back in the day&#8230; well, January 1978, Kate Bush released the classic song Wuthering Heights, inspired by the Emily Bronte novel. As well as launching her career, and boosting the sales of flowy white dresses, the song provided inspiration for us when it came to one of our projects.</p>
+
+<h2>Go Free Range</h2>
+
+<p>James Adam of <a href="http://gofreerange.com">GoFreeRange</a> has done a lot of work on transforming simple thermal receipt printers in to intelligent, ethernet enabled printing devices. He’s done an incredible job of writing software and working out the electronics, based on the Arduino device, to get them up and running.</p>
+
+<p><img src="http://jamesjefferies.com/images/nyancat.png" alt="nyancat" /></p>
+
+<h2>Cathy &amp; Heathcliff</h2>
+
+<p>When our two printers arrived to play their part in the Happenstance project, their default names were a bit of a mouthful, they made a good password, but not a name which slipped off the tongue - 4j8k6i5x5q7a7b5y.</p>
+
+<h2>Up and running</h2>
+
+<p>So, when we finally got the printers up and running, after a few head scratching hours, the first message we sent to 4j8k6i5x5q7a7b5y was, ‘It&#8217;s me, Cathy, I&#8217;ve come home’ – a line from Cathy to Heathcliff in the song. So Cathy named herself, and 4j8k6i5x5q7a7b5y became Heathcliff.</p>
+
+<p><img src="http://jamesjefferies.com/images/output.png" alt="output" /></p>
+
+<p>That was in the final week of the Bill Drummond exhibition, “Ragworts” at Site Gallery and we gave the two printers a part to play in the project. Some local Sixth Form students were tasked with sending messages to Cathy &amp; Heathcliff as they jumped on the nearest bus they could find, and journeyed into the wilds of outer Sheffield.</p>
+
+<p>At first we thought they could tweet their progress and the printers would pick up on those tweets and print them, but we decided to mash up a lot of technology to provide a simpler solution for the students. With the clock ticking, we glued together Twilio, Gmail, ifttt (‘If This Then That’) and some custom code we wrote. Cathy &amp; Heathcliff now had their own Sheffield phone numbers, and now you could send them a text message and the contents would be printed and tweeted.</p>
+
+<p>When the students set off on their journeys, they could send SMS text messages to Cathy and Heathcliff’s numbers and the magic of technology would take care of the rest. Their messages would appear on the printers, back at Site Gallery and on their Twitter account. It was fascinating to read the messages sent back to base by the students, many of which were very poetic and evocative.</p>
+
+<p>After all this excitement, our plan was to get Cathy and Heathcliff mobile so they could roam the streets of Sheffield whilst remaining available for printing. With the aid of dongle, a mac and a giffgaff sim card they were freed from the shackles of mains power and wifi, ready to explore!</p>
+
+<p><img src="http://jamesjefferies.com/images/getonabus.png" alt="get on a bus" /></p>
+
+<h2>What&#8217;s next</h2>
+
+<p>Although Happenstance has now finished, the printers have been used in Site for other purposes. Cathy has been on reception acting as a comments book (text her and she’ll print your comment) whilst Heathcliff has been reading twitter and printing mentions of Site Gallery!</p>
+
+<p>We still hope to use them for one final experiment where we get them to run off steam power!</p>
 ]]></content>
   </entry>
   
@@ -1154,78 +1204,6 @@ end</code></pre></noscript></div>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Week 10 - the end of the Happenstance]]></title>
-    <link href="http://jamesjefferies.com/2012/06/22/week-10-the-end-of-the-happenstance/"/>
-    <updated>2012-06-22T18:16:55+01:00</updated>
-    <id>http://jamesjefferies.com/2012/06/22/week-10-the-end-of-the-happenstance</id>
-    <content type="html"><![CDATA[<p>At our Open House yesterday we had an &#8216;In conversation&#8217; kind of thing with our mentor <a href="http://twitter.com/jamesb">James Boardwell</a> and what we thought would be a chat for 30 minutes or so, ended up being nearer to 2 hours! I knew we could talk about the last 10 weeks of Happenstance, that we had ideas and theories about what happened and why, but I hadn&#8217;t anticipated there being so much to talk about&#8230; in front of an audience!</p>
-
-<p>When I went freelance last summer and set up my company, ShedCode, I was planning on doing some client work and in between, hopefully working on some of my own ideas to see what would happen. In the end I did 99% client work and was planning, at some point, to pause and work on my stuff.</p>
-
-<p>That&#8217;s when Happenstance came along and it is fair to say that I thought at the beginning that Happenstance may have been a pleasant and interesting detour for my career as a Software Engineer/Developer and Techie. Instead of returning back to the path I was treading before Happenstance, I&#8217;ve finished the project on what feels like a completely different path, going who knows where!</p>
-
-<p>Helping an arts organisation learn new things, to be inspiring and to fix stuff is what I thought would happen. We did some of that, but also I learnt what a Technologist could be, that we could make things, real things with lives of their own which will live on after the project has finished. I&#8217;ve met new people, made friends and found out about interesting things. An interest in electronics has been rekindled, thanks to arduinos and I&#8217;ve started to pick up some Ruby and a bit of Rails. Speaking at Future Everything, TedX Sheffield and at the Open Houses has given me some confidence in public speaking.</p>
-
-<p>People have been so encouraging! Thanks to all who have had kind words to say, shared their knowledge, wisdom, contacts, experience, advice, tea and biscuits. Thanks too to those at <a href="http://sitegallery.org">Site</a> who have been incredibly open, helpful and friendly during the project, I&#8217;ve really appreciated it. Special thanks of course go to my co-resident, <a href="http://finalbullet.com">Leila</a>, who has put up with some of my more, er, random ideas, given me confidence to do stuff, been a great sounding board, co-speaker and partner in crime. She&#8217;s been so generous to me and I think we&#8217;ve been a great team (even if I say so myself!). I hope we can work together on more stuff soon!</p>
-
-<p>I wrote a couple of blog posts about what to do next, both for me in <a href="http://jamesjefferies.com/2012/05/31/whatever-next/">general</a> and <a href="http://jamesjefferies.com/2012/06/15/whatever-next-the-technical-stuff/">technically</a> and really it&#8217;s a work in progress. We&#8217;ve got debrief next week, then I&#8217;m on holiday for a couple of weeks. I think I really need a break, but I don&#8217;t want to lose the momentum I&#8217;ve built up during Happenstance. So, those who&#8217;ve become my friends over the last 10 weeks and those who&#8217;ve known me for ages, don&#8217;t let me slip in to old habits and ways &amp; please bear with me as I bounce ideas around like fleas on space hoppers. I hope that life post-Happenstance is going to get even more interesting!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Whatever next - the technical stuff]]></title>
-    <link href="http://jamesjefferies.com/2012/06/15/whatever-next-the-technical-stuff/"/>
-    <updated>2012-06-15T12:51:02+01:00</updated>
-    <id>http://jamesjefferies.com/2012/06/15/whatever-next-the-technical-stuff</id>
-    <content type="html"><![CDATA[<p>In recent years my main programming language has been Java, sprinkled with a bit of the usual korn/zsh scrips, SQL, HTML, JavaScript and other gubbins. The world of Java is rich with libraries, web frameworks, platforms and alternate languages. I&#8217;ve invested a lot of time in this ecosystem, knowing which tools are useful for which problems, gained expertise in various web frameworks, development environments and platforms, generally to be as productive as I&#8217;ve ever been.</p>
-
-<p>For the last couple of years though, I&#8217;ve been pondering whether to stick with what I know, or to spend time learning some new stuff. It is fair to say that I&#8217;m not a natural polyglot. I like to spend decent time getting to know a language and it&#8217;s ecosystem and I find it can be tricky switching.</p>
-
-<h3>Grails &amp; Groovy</h3>
-
-<p>At first I spent a bit of time, starting to get to know <a href="http://grails.org">Grails</a>, basically using <a href="http://groovy.codehaus.org/">Groovy</a> on the JVM (Java Virtual Machine) to build a Rails like web framework. The rest of the Grails stack is also stuff which I know very well, Spring, Hibernate etc. There is a lot I like about Grails and I&#8217;ve yet to investigate all this is new in the latest 2.0 release.</p>
-
-<p>So, there you go, something I&#8217;d like, building upon a lot which I already know. Should be the favourite right?</p>
-
-<h3>Scala &amp; Play/Lift</h3>
-
-<p>Well, I then started thinking a bit about <a href="http://www.scala-lang.org/">Scala</a>, a language which polarises opinion, especially amongst the Java community. It is either the &#8216;new&#8217; Java or it is a hodge podge of static typed semi functional programming. People complain about it&#8217;s complexity or love how doing things in a more functional fashion reduces code and maintenance and gets it all set up for multi-core CPUs. If I was planning on doing more &#8216;corporate&#8217; work, working on huge projects in London or building a twitter competitor then it&#8217;d make sense for me to have a good look at Scala.</p>
-
-<p>But I&#8217;m not, maybe ShedCode will work on an idea which will one day be huge, I think I&#8217;ll worry about that another time!</p>
-
-<h3>Clojure</h3>
-
-<p>I&#8217;d also like to learn <a href="http://clojure.org/">Clojure</a>, mainly because I think it will be good for my programming skills and good for my brain.</p>
-
-<h3>Rails &amp; Ruby</h3>
-
-<p>Then, working on <a href="http://happenstanceproject.com">Happenstance</a> has made me think again&#8230;</p>
-
-<p>In early 2008 I was going to investigate <a href="http://rubyonrails.org/">Rails</a> &amp; Ruby, one because I liked the fact it was called Rails, but then also because it seemed to be gaining a lot of momentum and interest and it was &#8216;cool&#8217;. In the end I got a job doing java, so I put it on the back burner. I also started to realise that, as is often the case where things are a bit &#8216;cool&#8217; there were quite a few.. ahem.. nobbers around who not only believed that Rails was THE framework to use but that using anything else was such a POOR substitute. I have to be honest, it did my nut. I did meet a few people who seemed ok, but the majority, I didn&#8217;t really get on with.</p>
-
-<p>Now I find that a lot of the R&amp;D web apps I&#8217;m interested in, have been built with Rails. I&#8217;ve also met some more Rails devs who are not nobbers, in fact, they are interesting, helpful, open minded people. I&#8217;d like to work with some of them, I&#8217;d like to build things on top of the work they&#8217;ve done. I&#8217;d like to explore the Rails ecosystem which has inspired so much in other languages (like Grails for example).</p>
-
-<h3>Client Side</h3>
-
-<p>Even though over the last few weeks, I&#8217;ve been thinking more about whether the classic server side MVC web framework is what I should be looking at all. There is a significant trend for using client side JavaScript frameworks for doing a lot of the hardwork in the browser, whilst having a more simple RESTful service/API set up on the server. Examples would be <a href="http://documentcloud.github.com/backbone/">Backbone.js</a>, <a href="http://emberjs.com/">Ember.js</a>, <a href="http://knockoutjs.com/">Knockout.js</a> etc. This somehow feels like a good idea, but I&#8217;m not great with JavaScript and I&#8217;m not sure this is what I want to do just yet. Obviously improving my JavaScript knowledge would be useful regardless!</p>
-
-<h3>Crossroads</h3>
-
-<p>So, I find myself at a crossroads. I&#8217;ll spend some time with Clojure, regardless of what else I do, but I&#8217;ve got some interesting projects to start in the next month or so and I need to decide whether I:</p>
-
-<ol>
-<li><p>Learn Rails and see what happens&#8230;</p></li>
-<li><p>Go with what I know a bit and build something with Grails. I know the tools, I know the libraries and I know it works (mainly)</p></li>
-<li><p>Client side JavaScript stuff</p></li>
-<li><p>Go with Scala, build on top of the Java I know and become have decent with functional languages</p></li>
-</ol>
-
-
-<p>At the moment, these are in my preferred order, but I&#8217;ll let you know what happens&#8230;</p>
 ]]></content>
   </entry>
   

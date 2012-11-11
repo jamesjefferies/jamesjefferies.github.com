@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="So we had a baby (planned)! At home (planned)! And there was no major damage to the house.. apart from fusing all the lights (unplanned), but you can &hellip;">
+  <meta name="description" content="Having used jetty a fair bit recently, one thing I couldn&#8217;t get working was remote debugging connections from Eclipse. The magic combination of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,88 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/05/12/debugging-with-jetty/">Debugging With Jetty</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-12T14:45:24+01:00" pubdate data-updated="true">May 12<span>th</span>, 2010</time>
+        
+         | <a href="/2010/05/12/debugging-with-jetty/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Having used jetty a fair bit recently, one thing I couldn&#8217;t get working was remote debugging connections from Eclipse. The magic combination of parameters for Jetty 6.1.24 and Java 1.6 is as follows, if you&#8217;re using maven.</p>
+
+<pre><code>export MAVEN_OPTS="$MAVEN_OPTS -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n" ; mvn jetty:run
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/04/the-amazing-gnu-sed/">The Amazing GNU Sed</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-04T11:50:57+00:00" pubdate data-updated="true">Mar 4<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Goodness me, how have I managed for the last 19 years without sed editing inplace&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sed -i <span class="s1">&#39;s/old-fogey/new-fangled/g&#39;</span> *.james.documents.txt
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -606,97 +688,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/11/16/devox-2009-antwerp/">Devox 2009 – Antwerp</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-11-16T19:21:44+00:00" pubdate data-updated="true">Nov 16<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m really pleased to be at Devoxx this year which is the biggest Java conference in Europe. Today around 3000 people turned up for day 1 of the university sessions. I ended up going to the following sessions</p>
-
-<ol>
-<li>Kanban methodology in the morning</li>
-<li>New features of JSF2 in the afternoon</li>
-<li>Half hour session on hades and JPA</li>
-<li>Half hour session on Spock, the testing framework.</li>
-</ol>
-
-
-<p>See other posts for how I got on!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/09/04/svn-diff-ignoring-whitespace/">Svn Diff Ignoring Whitespace</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-04T18:05:02+01:00" pubdate data-updated="true">Sep 4<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>svn diff is nice but not very configurable&#8230; fear not!</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn diff --diff-cmd diff -x -uw /path/to/file
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will save the day. this tells svn diff to use diff with the -uw flags. Brill&#8230;</p>
-
-<p>now to get it working with my favourite diff, sdiff!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -714,6 +705,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
       </li>
     
@@ -727,10 +722,6 @@
     
       <li class="post">
         <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
   </ul>

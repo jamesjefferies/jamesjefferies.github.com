@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="Let us say that you have a MySQL dump of a database table, with a load of data which ideally, you&#8217;d like to pull into a Mongo DB as json. What &hellip;">
+  <meta name="description" content="So, your server is set up and raring to go. Please see my earlier blogpost on getting the server to this point.. next! Install Apache2 Let&#8217;s &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,457 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/22/setting-up-wordpress/">Setting Up WordPress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T15:07:00+01:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+        
+         | <a href="/2012/08/22/setting-up-wordpress/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So, your server is set up and raring to go. Please see my <a href="http://jamesjefferies.com/2012/08/22/setting-up-a-fresh-debian-server/">earlier blogpost</a> on getting the server to this point.. next!</p>
+
+<h2>Install Apache2</h2>
+
+<p>Let&#8217;s get our web server up and running by installing apache</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install apache2</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and check it is up and running with <code>http://123.456.789.012</code> in your friendly web browser.</p>
+
+<h2>Configure Apache2 for low memory usage</h2>
+
+<p>With previous virtual servers, I&#8217;ve found that Apache needs a bit of tweaking to support WordPress load. I found this useful <a href="http://imperialwicket.com/tuning-apache-for-a-low-memory-server-like-aws-micro-ec2-instances">post</a> about tweaking apache. The nuts and bolts are to amend some of the settings in your <code>/etc/apache2/apache.conf</code> as follows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Timeout 30
+</span><span class='line'>KeepAlive On
+</span><span class='line'>MaxKeepAliveRequests 50
+</span><span class='line'>KeepAliveTimeout 10
+</span><span class='line'>
+</span><span class='line'>&lt;IfModule mpm_prefork_module&gt;
+</span><span class='line'>    StartServers          5
+</span><span class='line'>    MinSpareServers       5
+</span><span class='line'>    MaxSpareServers      10
+</span><span class='line'>    MaxClients          150
+</span><span class='line'>    MaxRequestsPerChild   0
+</span><span class='line'>&lt;/IfModule&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Setting up virtual host with apache</h2>
+
+<p>A very simple set up would be to create the following <code>/etc/apache2/sites-available/myacedomainname.com</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#Ensure that Apache listens on port 80
+</span><span class='line'>#Listen 80 (note uncomment this with ports.conf set to 80 and you will experience a WORLD of pain!)
+</span><span class='line'>
+</span><span class='line'># Listen for virtual host requests on all IP addresses
+</span><span class='line'>NameVirtualHost *:80
+</span><span class='line'>
+</span><span class='line'>&lt;VirtualHost *:80&gt;
+</span><span class='line'>DocumentRoot /var/www/myacedomainname.com
+</span><span class='line'>ServerName www.myacedomainname.com
+</span><span class='line'>
+</span><span class='line'># Other directives here
+</span><span class='line'>
+</span><span class='line'>&lt;/VirtualHost&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Enable site (and other useful commands)</h2>
+
+<p>Create that file in sites-available and use the following commands to enable/disable - they will give you options when they run as to which sites you want to enable/disable</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo a2ensite
+</span><span class='line'>sudo a2dissite</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Force reload configuration?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo  /etc/init.d/apache2 force-reload</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install PHP</h2>
+
+<p>Ok, well to get WordPress running, we&#8217;re going to need some PHP, so get it installed</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install php5 libapache2-mod-php5</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install MySQL</h2>
+
+<p>And we&#8217;ll need a database too</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mysql-server mysql-client php5-mysql</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If already installed, but you want to reset it so you can set root password etc, give it a bit of this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg-reconfigure mysql-server-5.1</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Migrating a site from another provider</h2>
+
+<h3>Database gubbins</h3>
+
+<p>Get a database dump from your old site, either using PHPMyAdmin if installed, or doing a dump from the command line using <code>mysqldump</code>. Hopefully at the end of that process you&#8217;ll be able to import the dump in to your new set up with a bit of:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -uroot -p &lt; databasedump.sql</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The dump may contain a create database statement to create the database, right at the top along the lines of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE DATABASE `db1234` DEFAULT CHARACTER SET latin1 COLLATE latin1_german2_ci; USE db1234;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you&#8217;ll need to create a database user for WordPress to use. So make sure you&#8217;ve got a file dump of your WordPress installation, either by command line, or the hosting admin suite, or an FTP application or whatever you&#8217;re comfortable with. You&#8217;re going to need your wp-config.php file which will tell you how your existing WordPress site is set up. This is the bit you need to look at for now</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/** The name of the database for WordPress */
+</span><span class='line'>define('DB_NAME', 'db1234');
+</span><span class='line'>
+</span><span class='line'>/** MySQL database username */
+</span><span class='line'>define('DB_USER', 'dbuser');
+</span><span class='line'>
+</span><span class='line'>/** MySQL database password */
+</span><span class='line'>define('DB_PASSWORD', 'dbpassword');
+</span><span class='line'>
+</span><span class='line'>/** MySQL hostname */
+</span><span class='line'>define('DB_HOST', 'localhost');
+</span><span class='line'>
+</span><span class='line'>/** Database Charset to use in creating database tables. */
+</span><span class='line'>define('DB_CHARSET', 'utf8');
+</span><span class='line'>
+</span><span class='line'>/** The Database Collate type. Don't change this if in doubt. */
+</span><span class='line'>define('DB_COLLATE', '');</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So in your existing set up you have a database user called <code>dbuser</code> with password <code>dbpassword</code> so create that user in your new setup as follows</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grant all on db1234.* to 'dbuser'@'localhost' identified by 'dbpassword';</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then make sure it works with a bit of <code>mysql -udbuser -Ddb1234 -p</code> enter your password and hopefully you are in.</p>
+
+<h3>Filesystem</h3>
+
+<p>Now get that dump of the filesystem you have and unpack it in <code>/var/www/myacedomain.com</code> or whatever you set in your virtual hosts configuration earlier. You may need to change the ownership of everything, including that directory to www-data with a bit of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chown -R www-data:www-data /var/www/myacedomain.com</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+and check the permissions too, directories should be set to 755 and files to 644. You can enforce this with</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo find . -type f -print | sudo xargs chmod 644  # Files
+</span><span class='line'>sudo find . -type d -print | sudo xargs chmod 755  # Directories</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It is entirely possible that after all this, you can now hit <code>http://myacedomain.com</code> or <code>http://123.456.789.012</code> and see your migrated WordPress site!</p>
+
+<h3>UTF-8 issues</h3>
+
+<p>Now, one issue I&#8217;ve had in the past is problems with UTF-8 conversion. I.e. the posts you&#8217;ve migrated end up with funny characters like â€“ â€œ â€™ â€ - you can tell if this is causing you grief because you see the characters mixed up in your posts, but if you comment out these lines (by adding // in front) in your WordPress config, then they.. ahem, magically go away</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>define('DB_CHARSET', 'utf8');
+</span><span class='line'>define('DB_COLLATE', '');</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Best not to do that though, you <em>can</em> use the <a href="http://wordpress.org/extend/plugins/search-and-replace/">search and replace</a> WordPress plugin to replace all the dodgy characters in the database. Find &#8220;â&#8221; and replace with &#8220;&#8221; - hooray!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/22/setting-up-a-fresh-debian-server/">Setting Up a Fresh Debian Server</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T14:41:00+01:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+        
+         | <a href="/2012/08/22/setting-up-a-fresh-debian-server/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Accessing the server</h2>
+
+<p>Once set up, you will have the IP address, in the form 123.456.789.012 and the root password. This means you will be able to log on to the server using ssh (secure shell), i.e.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh root@123.456.789.012</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You will get a message along the lines of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>The authenticity of host '123.456.789.012(123.456.789.012)' can't be established. RSA key fingerprint is blah blah bla
+</span><span class='line'>Are you sure you want to continue connecting (yes/no)?</span></code></pre></td></tr></table></div></figure>
+
+
+<p>to which you will reply</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yes</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and you will then get</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Warning: Permanently added '123.456.789.012' (RSA) to the list of known hosts.
+</span><span class='line'>root@123.456.789.012's password: </span></code></pre></td></tr></table></div></figure>
+
+
+<p>which is when you can enter your password. Hopefully then you&#8217;ll be logged on to the server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>blah blah blah snip…
+</span><span class='line'>servername:~# </span></code></pre></td></tr></table></div></figure>
+
+
+<h3>First things first</h3>
+
+<p>Root access is the super user for your server. You really don&#8217;t want to have people being able to log on to your server as root. What you really need is to have user accounts which people can use to log on, and if/when required, they can get super user privileges to do whatever they need to do.</p>
+
+<p>What we are going to do is to stop root being able to secure shell straight in to the server, create a new user account to use for our admin (with upgradable privileges) and run ssh on a different port to deter basic attacks.</p>
+
+<h3>Change root&#8217;s password!</h3>
+
+<p>So you have a default root password - CHANGE IT to a new one! From a root prompt, use <code>passwd</code> to change the password</p>
+
+<h3>Adding a new user</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>adduser james</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Will create a new user, called James - you can add in extra details as you go like full name etc.</p>
+
+<p>Now we want to allow james a bit of privilege, not by default though, but by using the sudo command.</p>
+
+<h4>Aside - setting default editor to be vi</h4>
+
+<p>By default, for all users, you may want to use vi as your editor (ok, you may not, but I do!) so add the following to <code>/etc/profile</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>EDITOR=vi
+</span><span class='line'>export EDITOR</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Giving the new user sudo privileges</h3>
+
+<p>You may need to install sudo if it isn&#8217;t already installed on your server. It&#8217;s a simple case of</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install sudo</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, the application <code>visudo</code> is your friend. You edit the config file using visudo and then sudo does the rest. When you open the file, you&#8217;ll see a section with:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># User privilege specification
+</span><span class='line'>root    ALL=(ALL) ALL
+</span><span class='line'>admin ALL = (ALL) ALL
+</span><span class='line'>james ALL = (ALL) ALL</span></code></pre></td></tr></table></div></figure>
+
+
+<p>By adding my own entry, it allows me to upgrade my user to super user privileges for all actions. You can limit the commands which users can run if you like using this, but if you are going to be the super user, you probably want to leave it as all.</p>
+
+<h2>Sorting out access</h2>
+
+<p>Let&#8217;s stop people attempting to log on to the server as <a href="http://www.howtogeek.com/howto/linux/security-tip-disable-root-ssh-login-on-linux/">root via ssh</a> and also to run ssh on a different port than the default. There is a lot of good advice <a href="http://www.foogazi.com/2006/11/29/modify-ssh-to-maximize-security/">here</a></p>
+
+<h3>Amend port</h3>
+
+<p>The default port is 22, change this to something else, which isn&#8217;t being used by anything else</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># What ports, IPs and protocols we listen for
+</span><span class='line'>Port 60</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Stop root login</h3>
+
+<p>Now stop people logging in as root</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PermitRootLogin no</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Some other bits</h3>
+
+<p>Give maximum number of log in attempts to be 3, only allow james to login.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MaxAuthTries 3
+</span><span class='line'>AllowUsers james </span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Restart sshd</h3>
+
+<p>As root (or sudo)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/init.d/ssh restart</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now try logging in remotely from a different shell (i.e. keep the one you&#8217;ve just restarted sshd on open in case you have any problems!)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -p60 james@123.456.789.0123</span></code></pre></td></tr></table></div></figure>
+
+
+<p>obviously set the p to be the port you set earlier.</p>
+
+<h3>Stop chancers getting in</h3>
+
+<p>It&#8217;s also a good idea to stop people attempting to log on to your server using common passwords, usernames etc. A good way to do this is to install the <a href="http://en.wikipedia.org/wiki/Fail2ban">fail2ban</a> which goes some way to banning people trying to brute force their way in to your server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install fail2ban</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Default settings are pretty good here.</p>
+
+<h2>Firewall configuration</h2>
+
+<p>UFW or Uncomplicated Firewall is a good first port of call for securing your shiny new server. You can install it as root with</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install ufw</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, unlike fail2ban, ufw is installed switched off. You need to configure a few things before getting it up and running and providing that extra security. By default ALL ports are shut, so make sure you&#8217;ve opened up the ones you need before switching the firewall on!</p>
+
+<p>For example, if you&#8217;ve set up your ssh to run on port 60, then you need to run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ufw allow 60</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you&#8217;re going to be running apache on port 80 (the usual)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ufw allow 80</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here are a few <a href="http://www.mmncs.com/2011/07/this-guide-shows-howto-install-and-setup-uncomplicatedfirewall-ufw-on-linux-ubuntu-10-04-and-11-04-and-other-debian-distributions/">notes</a></p>
+
+<p>Don&#8217;t forget to run <code>ufw enable</code> when you are ready! <code>ufw status</code> tells you what is set up.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -778,136 +1229,6 @@ end</code></pre></noscript></div>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/06/22/week-10-the-end-of-the-happenstance/">Week 10 - the End of the Happenstance</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-22T18:16:55+01:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2012</time>
-        
-         | <a href="/2012/06/22/week-10-the-end-of-the-happenstance/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>At our Open House yesterday we had an &#8216;In conversation&#8217; kind of thing with our mentor <a href="http://twitter.com/jamesb">James Boardwell</a> and what we thought would be a chat for 30 minutes or so, ended up being nearer to 2 hours! I knew we could talk about the last 10 weeks of Happenstance, that we had ideas and theories about what happened and why, but I hadn&#8217;t anticipated there being so much to talk about&#8230; in front of an audience!</p>
-
-<p>When I went freelance last summer and set up my company, ShedCode, I was planning on doing some client work and in between, hopefully working on some of my own ideas to see what would happen. In the end I did 99% client work and was planning, at some point, to pause and work on my stuff.</p>
-
-<p>That&#8217;s when Happenstance came along and it is fair to say that I thought at the beginning that Happenstance may have been a pleasant and interesting detour for my career as a Software Engineer/Developer and Techie. Instead of returning back to the path I was treading before Happenstance, I&#8217;ve finished the project on what feels like a completely different path, going who knows where!</p>
-
-<p>Helping an arts organisation learn new things, to be inspiring and to fix stuff is what I thought would happen. We did some of that, but also I learnt what a Technologist could be, that we could make things, real things with lives of their own which will live on after the project has finished. I&#8217;ve met new people, made friends and found out about interesting things. An interest in electronics has been rekindled, thanks to arduinos and I&#8217;ve started to pick up some Ruby and a bit of Rails. Speaking at Future Everything, TedX Sheffield and at the Open Houses has given me some confidence in public speaking.</p>
-
-<p>People have been so encouraging! Thanks to all who have had kind words to say, shared their knowledge, wisdom, contacts, experience, advice, tea and biscuits. Thanks too to those at <a href="http://sitegallery.org">Site</a> who have been incredibly open, helpful and friendly during the project, I&#8217;ve really appreciated it. Special thanks of course go to my co-resident, <a href="http://finalbullet.com">Leila</a>, who has put up with some of my more, er, random ideas, given me confidence to do stuff, been a great sounding board, co-speaker and partner in crime. She&#8217;s been so generous to me and I think we&#8217;ve been a great team (even if I say so myself!). I hope we can work together on more stuff soon!</p>
-
-<p>I wrote a couple of blog posts about what to do next, both for me in <a href="http://jamesjefferies.com/2012/05/31/whatever-next/">general</a> and <a href="http://jamesjefferies.com/2012/06/15/whatever-next-the-technical-stuff/">technically</a> and really it&#8217;s a work in progress. We&#8217;ve got debrief next week, then I&#8217;m on holiday for a couple of weeks. I think I really need a break, but I don&#8217;t want to lose the momentum I&#8217;ve built up during Happenstance. So, those who&#8217;ve become my friends over the last 10 weeks and those who&#8217;ve known me for ages, don&#8217;t let me slip in to old habits and ways &amp; please bear with me as I bounce ideas around like fleas on space hoppers. I hope that life post-Happenstance is going to get even more interesting!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/06/15/whatever-next-the-technical-stuff/">Whatever Next - the Technical Stuff</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-15T12:51:02+01:00" pubdate data-updated="true">Jun 15<span>th</span>, 2012</time>
-        
-         | <a href="/2012/06/15/whatever-next-the-technical-stuff/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In recent years my main programming language has been Java, sprinkled with a bit of the usual korn/zsh scrips, SQL, HTML, JavaScript and other gubbins. The world of Java is rich with libraries, web frameworks, platforms and alternate languages. I&#8217;ve invested a lot of time in this ecosystem, knowing which tools are useful for which problems, gained expertise in various web frameworks, development environments and platforms, generally to be as productive as I&#8217;ve ever been.</p>
-
-<p>For the last couple of years though, I&#8217;ve been pondering whether to stick with what I know, or to spend time learning some new stuff. It is fair to say that I&#8217;m not a natural polyglot. I like to spend decent time getting to know a language and it&#8217;s ecosystem and I find it can be tricky switching.</p>
-
-<h3>Grails &amp; Groovy</h3>
-
-<p>At first I spent a bit of time, starting to get to know <a href="http://grails.org">Grails</a>, basically using <a href="http://groovy.codehaus.org/">Groovy</a> on the JVM (Java Virtual Machine) to build a Rails like web framework. The rest of the Grails stack is also stuff which I know very well, Spring, Hibernate etc. There is a lot I like about Grails and I&#8217;ve yet to investigate all this is new in the latest 2.0 release.</p>
-
-<p>So, there you go, something I&#8217;d like, building upon a lot which I already know. Should be the favourite right?</p>
-
-<h3>Scala &amp; Play/Lift</h3>
-
-<p>Well, I then started thinking a bit about <a href="http://www.scala-lang.org/">Scala</a>, a language which polarises opinion, especially amongst the Java community. It is either the &#8216;new&#8217; Java or it is a hodge podge of static typed semi functional programming. People complain about it&#8217;s complexity or love how doing things in a more functional fashion reduces code and maintenance and gets it all set up for multi-core CPUs. If I was planning on doing more &#8216;corporate&#8217; work, working on huge projects in London or building a twitter competitor then it&#8217;d make sense for me to have a good look at Scala.</p>
-
-<p>But I&#8217;m not, maybe ShedCode will work on an idea which will one day be huge, I think I&#8217;ll worry about that another time!</p>
-
-<h3>Clojure</h3>
-
-<p>I&#8217;d also like to learn <a href="http://clojure.org/">Clojure</a>, mainly because I think it will be good for my programming skills and good for my brain.</p>
-
-<h3>Rails &amp; Ruby</h3>
-
-<p>Then, working on <a href="http://happenstanceproject.com">Happenstance</a> has made me think again&#8230;</p>
-
-<p>In early 2008 I was going to investigate <a href="http://rubyonrails.org/">Rails</a> &amp; Ruby, one because I liked the fact it was called Rails, but then also because it seemed to be gaining a lot of momentum and interest and it was &#8216;cool&#8217;. In the end I got a job doing java, so I put it on the back burner. I also started to realise that, as is often the case where things are a bit &#8216;cool&#8217; there were quite a few.. ahem.. nobbers around who not only believed that Rails was THE framework to use but that using anything else was such a POOR substitute. I have to be honest, it did my nut. I did meet a few people who seemed ok, but the majority, I didn&#8217;t really get on with.</p>
-
-<p>Now I find that a lot of the R&amp;D web apps I&#8217;m interested in, have been built with Rails. I&#8217;ve also met some more Rails devs who are not nobbers, in fact, they are interesting, helpful, open minded people. I&#8217;d like to work with some of them, I&#8217;d like to build things on top of the work they&#8217;ve done. I&#8217;d like to explore the Rails ecosystem which has inspired so much in other languages (like Grails for example).</p>
-
-<h3>Client Side</h3>
-
-<p>Even though over the last few weeks, I&#8217;ve been thinking more about whether the classic server side MVC web framework is what I should be looking at all. There is a significant trend for using client side JavaScript frameworks for doing a lot of the hardwork in the browser, whilst having a more simple RESTful service/API set up on the server. Examples would be <a href="http://documentcloud.github.com/backbone/">Backbone.js</a>, <a href="http://emberjs.com/">Ember.js</a>, <a href="http://knockoutjs.com/">Knockout.js</a> etc. This somehow feels like a good idea, but I&#8217;m not great with JavaScript and I&#8217;m not sure this is what I want to do just yet. Obviously improving my JavaScript knowledge would be useful regardless!</p>
-
-<h3>Crossroads</h3>
-
-<p>So, I find myself at a crossroads. I&#8217;ll spend some time with Clojure, regardless of what else I do, but I&#8217;ve got some interesting projects to start in the next month or so and I need to decide whether I:</p>
-
-<ol>
-<li><p>Learn Rails and see what happens&#8230;</p></li>
-<li><p>Go with what I know a bit and build something with Grails. I know the tools, I know the libraries and I know it works (mainly)</p></li>
-<li><p>Client side JavaScript stuff</p></li>
-<li><p>Go with Scala, build on top of the Java I know and become have decent with functional languages</p></li>
-</ol>
-
-
-<p>At the moment, these are in my preferred order, but I&#8217;ll let you know what happens&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -925,6 +1246,10 @@ end</code></pre></noscript></div>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
       </li>
     
@@ -938,10 +1263,6 @@ end</code></pre></noscript></div>
     
       <li class="post">
         <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
   </ul>

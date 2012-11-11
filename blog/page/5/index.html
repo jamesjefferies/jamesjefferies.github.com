@@ -9,17 +9,7 @@
   <meta name="author" content="James Jefferies">
   <meta name="google-site-verification" content="x0Mk5K7-ZW7IoUe7Xczv5TvjRygnWGAboUyzxMYYDm0" />
   
-  <meta name="description" content="You may ask yourself this question - here is a little query from MySQL performance blog which may well help: 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-SELECT count(*) &hellip;">
+  <meta name="description" content="For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you&#8217;re working &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,6 +79,265 @@ SELECT count(*) &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/01/06/testing-the-grails-spring-security-ldap-combo/">Testing the Grails, Spring Security, LDAP Combo</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-06T16:00:46+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/06/testing-the-grails-spring-security-ldap-combo/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you&#8217;re working remotely, or because you want a disposable directory to throw away after you&#8217;ve run your tests. Well, there is a <a href="http://www.grails.org/plugin/ldap-server">grails plugin</a> which adds an embedded LDAP directory (ApacheDS) to your application which can be fired up as/when required.</p>
+
+<p>After installing the plugin, it requires a bit of configuration, so in your Config.groovy:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">environments</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">development</span> <span class="o">{</span>       
+</span><span class='line'>      <span class="c1">// Embedded ldap server </span>
+</span><span class='line'>      <span class="n">ldapServers</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">d1</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;dc=people,dc=companyname,dc=int&quot;</span>
+</span><span class='line'>              <span class="n">port</span> <span class="o">=</span> <span class="mi">10389</span>
+</span><span class='line'>              <span class="n">indexed</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;objectClass&quot;</span><span class="o">,</span> <span class="s2">&quot;uid&quot;</span><span class="o">,</span> <span class="s2">&quot;mail&quot;</span><span class="o">,</span> <span class="s2">&quot;userPassword&quot;</span><span class="o">]</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="n">grails</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">springsecurity</span><span class="o">.</span><span class="na">ldap</span><span class="o">.</span><span class="na">context</span><span class="o">.</span><span class="na">server</span> <span class="o">=</span> <span class="s1">&#39;ldap://localhost:10389&#39;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="o">....</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>So now, when the app is instantiated in the development environment, you have an ldap directory running on localhost, post 10389. You might want to change what is indexed depending on what details you actually want indexing!</p>
+
+<p>If you wanted some default data loaded when the ldap server starts, simply add an ldif file to the grails-app/ldap-servers/d1/data directory. This gets auto loaded:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="nl">dn:</span> <span class="n">ou</span><span class="o">=</span><span class="n">group</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">people</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">companyname</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="kt">int</span>
+</span><span class='line'><span class="nl">objectClass:</span> <span class="n">top</span>
+</span><span class='line'><span class="nl">objectClass:</span> <span class="n">organizationalUnit</span>
+</span><span class='line'><span class="nl">ou:</span> <span class="n">group</span>
+</span><span class='line'>
+</span><span class='line'><span class="nl">dn:</span> <span class="n">ou</span><span class="o">=</span><span class="n">People</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">people</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">companyname</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="kt">int</span>
+</span><span class='line'><span class="nl">objectClass:</span> <span class="n">organizationalUnit</span>
+</span><span class='line'><span class="nl">ou:</span> <span class="n">People</span>
+</span><span class='line'>
+</span><span class='line'><span class="nl">dn:</span> <span class="n">uid</span><span class="o">=</span><span class="n">jjefferies</span><span class="o">,</span><span class="n">ou</span><span class="o">=</span><span class="n">People</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">people</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">companyname</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="kt">int</span>
+</span><span class='line'><span class="nl">uid:</span> <span class="n">jjefferies</span>
+</span><span class='line'><span class="nl">objectClass:</span> <span class="n">uidObject</span>
+</span><span class='line'><span class="nl">objectClass:</span> <span class="n">top</span>
+</span><span class='line'><span class="nl">objectClass:</span> <span class="n">person</span>
+</span><span class='line'><span class="nl">objectClass:</span> <span class="n">organizationalPerson</span>
+</span><span class='line'><span class="nl">cn:</span> <span class="n">James</span> <span class="n">Jefferies</span>
+</span><span class='line'><span class="nl">sn:</span> <span class="n">Jefferies</span>
+</span><span class='line'><span class="nl">userPassword:</span> <span class="o">{</span><span class="n">SHA</span><span class="o">}</span><span class="n">ERnP637iUzV</span><span class="o">+</span><span class="n">A0oI2ETuol9v0g8</span><span class="o">=</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>To run unit tests against it, a reference to the server get&#8217;s injected in to your test class and then you can run some tests against it:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="kd">class</span> <span class="nc">LdapTests</span> <span class="kd">extends</span> <span class="n">GroovyTestCase</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kt">def</span> <span class="n">d1LdapServer</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kt">void</span> <span class="nf">testLdapServerShouldExist</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">assert</span> <span class="n">d1LdapServer</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="s2">&quot;uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int&quot;</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kt">void</span> <span class="nf">testJJUserIsThere</span><span class="o">()</span> <span class="o">{</span>        
+</span><span class='line'>      <span class="kt">def</span> <span class="n">user</span> <span class="o">=</span> <span class="n">d1LdapServer</span><span class="o">[</span><span class="s2">&quot;uid=jjefferies,ou=People,dc=people,dc=companyname,dc=int&quot;</span><span class="o">]</span>
+</span><span class='line'>      <span class="k">assert</span> <span class="s2">&quot;James Jefferies&quot;</span> <span class="o">==</span> <span class="n">user</span><span class="o">.</span><span class="na">cn</span><span class="o">.</span><span class="na">first</span><span class="o">()</span> <span class="c1">// cn is a multi valued string attribute       </span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>If you&#8217;re doing the full spring security with custom rolled retrieval of Roles and you want to test it, then you need to make sure you&#8217;ve bootstrapped those users too, so that the roles are retrieved as well as the user being authenticated.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/01/06/grails-spring-security-ldap/">Grails, Spring Security & Ldap</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-06T15:25:32+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/06/grails-spring-security-ldap/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At work we&#8217;re building a grails application which needs to authenticate users against our internal user directory using LDAP (Lightweight Directory something-or-other Protocol). Grails has two fantastic plugins to help here:</p>
+
+<ol>
+<li>Spring security plugin</li>
+<li>Spring security LDAP plugin</li>
+</ol>
+
+
+<p>Now, getting the LDAP plugin to work has proved somewhat problematic, partially because of me rushing ahead, partially because documentation isn&#8217;t quite as good as it could be. So to get the application to authenticate users with LDAP, there are two main ways of doing it.</p>
+
+<ol>
+<li>Password comparison (where you have to do your own password encoding)</li>
+<li>Bind authentication (where you pass on the username and password and let the LDAP directory authenticate)</li>
+</ol>
+
+
+<p>for some daft reason, I started off down the Password comparison route, which was made more problematic when I found out that our internal LDAP directory uses an archaic form of password encryption. Once I&#8217;d stopped and re-read the documentation, a little light came on in my head and I started trying to get it to work with Bind authentication - then it doesn&#8217;t matter how the password is encrypted, you&#8217;re delegating that task.</p>
+
+<p>The other part of the requirement is that the roles which will be retrieved following authentication will be from the application database (initially anyway) rather than the LDAP directory using a userDetailsService. So, to get everything working, the various Spring components need configuring manually, rather than relying on the plug in to do it.</p>
+
+<p>So - how did I get it working against a real LDAP directory once the Spring Security &amp; LDAP plugins are installed?</p>
+
+<p>Well, first, in the application configuration, set the ldap context:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>grails.plugins.springsecurity.ldap.context.server <span class="o">=</span> <span class="s1">&#39;ldap://this is the ip address of my ldap directory:this is the port used&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, in the resources.groovy spring configuration file, set up the following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">beans</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>     <span class="c1">// this gives the pattern for authenticating the user, as the user doesn&#39;t want to enter the whole thing, </span>
+</span><span class='line'>     <span class="c1">// just their unique id</span>
+</span><span class='line'>     <span class="n">myLdapAuthenticator</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ldap</span><span class="o">.</span><span class="na">authentication</span><span class="o">.</span><span class="na">BindAuthenticator</span><span class="o">,</span> <span class="n">ref</span><span class="o">(</span><span class="s2">&quot;contextSource&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>         <span class="n">userDnPatterns</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;uid={0},ou=People,dc=people,dc=somewhereorother,dc=int&#39;</span><span class="o">]</span>
+</span><span class='line'>     <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">// this overrides the default Authentication Provider with our authenticator and our user details service</span>
+</span><span class='line'>     <span class="n">ldapAuthProvider</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ldap</span><span class="o">.</span><span class="na">authentication</span><span class="o">.</span><span class="na">LdapAuthenticationProvider</span><span class="o">,</span>
+</span><span class='line'>        <span class="n">ref</span><span class="o">(</span><span class="s2">&quot;myLdapAuthenticator&quot;</span><span class="o">),</span>
+</span><span class='line'>        <span class="n">ref</span><span class="o">(</span><span class="s2">&quot;userDetailsService&quot;</span><span class="o">)</span>
+</span><span class='line'>     <span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">// defining our user details service</span>
+</span><span class='line'>     <span class="n">userDetailsService</span><span class="o">(</span><span class="n">com</span><span class="o">.</span><span class="na">companyname</span><span class="o">.</span><span class="na">service</span><span class="o">.</span><span class="na">UserDetailsService</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Now, when the application is started, spring security knows it needs to use LDAP to do it&#8217;s business and once it&#8217;s authenticated, it needs to use our user details service to return the list of roles. Hurrah!</p>
+
+<p>PS - nearly forgot - to use the userDetailsService for retrieving the roles, it has to implement the org.springframework.security.ldap.userdetails.LdapAuthoritiesPopulator interface, returning a collection of org.springframework.security.core.GrantedAuthority</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -622,88 +871,6 @@ SELECT count(*) &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/05/12/debugging-with-jetty/">Debugging With Jetty</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-12T14:45:24+01:00" pubdate data-updated="true">May 12<span>th</span>, 2010</time>
-        
-         | <a href="/2010/05/12/debugging-with-jetty/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Having used jetty a fair bit recently, one thing I couldn&#8217;t get working was remote debugging connections from Eclipse. The magic combination of parameters for Jetty 6.1.24 and Java 1.6 is as follows, if you&#8217;re using maven.</p>
-
-<pre><code>export MAVEN_OPTS="$MAVEN_OPTS -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n" ; mvn jetty:run
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/03/04/the-amazing-gnu-sed/">The Amazing GNU Sed</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-04T11:50:57+00:00" pubdate data-updated="true">Mar 4<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Goodness me, how have I managed for the last 19 years without sed editing inplace&#8230;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sed -i <span class="s1">&#39;s/old-fogey/new-fangled/g&#39;</span> *.james.documents.txt
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -721,6 +888,10 @@ SELECT count(*) &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
       </li>
     
@@ -734,10 +905,6 @@ SELECT count(*) &hellip;">
     
       <li class="post">
         <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a>
       </li>
     
   </ul>

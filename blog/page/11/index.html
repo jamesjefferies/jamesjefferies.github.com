@@ -9,18 +9,8 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Number of things need to be done: 1) Update dependencies for api and implementation jars 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-&lt;dependency&gt;
-&lt;groupId&gt;org. &hellip;">
+  <meta name="description" content="Find them in archiva and then follow through with the dependent on tag. Helps to work out which dependencies you might need to add an exclude on
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,6 +80,42 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/05/23/easy-way-to-find-dependencies-for-java-archives/">Easy Way to Find Dependencies for Java Archives</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-23T14:15:08+01:00" pubdate data-updated="true">May 23<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Find them in archiva and then follow through with the dependent on tag. Helps to work out which dependencies you might need to add an exclude on</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -671,57 +697,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/04/22/configuring-c3p0-in-spring/">Configuring C3p0 in Spring</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-22T16:24:37+01:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Tricky, the username and password have to be in the properties bundle as follows:</p>
-
-<p><bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-<property name="driverClass"><value>com.mysql.jdbc.Driver</value></property>
-<property name="jdbcUrl"><value>${db-connection-url}</value></property>
-<property name="properties">
-<props>
-<prop key="user">${db-connection-username}</prop>
-<prop key="password">${db-connection-password}</prop>
-<prop key="c3p0.timeout">25200</prop>
-<prop key="c3p0.idle_test_period">14400</prop>
-<prop key="c3p0.max_size">50</prop>
-</props>
-</property></p>
-
-<p></bean></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -739,6 +714,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/12/20/olympic-legacy-server-setup-part-1/">Olympic legacy server setup - part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
       </li>
     
@@ -752,10 +731,6 @@
     
       <li class="post">
         <a href="/2012/10/16/railway-hackday-off-the-rails/">Railway Hackday - Off The Rails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
       </li>
     
   </ul>

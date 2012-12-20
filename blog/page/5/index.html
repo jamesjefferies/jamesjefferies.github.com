@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="For running unit tests &amp; integration tests, you might not want to run against an existing LDAP directory, maybe because you&#8217;re working &hellip;">
+  <meta name="description" content="Whilst doing some re-work on a loan calculator, I wanted to move the configuration of the various loan rates in to the spring XML configuration. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,76 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/09/using-constants-in-spring-configuration/">Using Constants in Spring Configuration</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-09T13:36:24+00:00" pubdate data-updated="true">Mar 9<span>th</span>, 2011</time>
+        
+         | <a href="/2011/03/09/using-constants-in-spring-configuration/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Whilst doing some re-work on a loan calculator, I wanted to move the configuration of the various loan rates in to the spring XML configuration. Setting up the various loan rates for the amount borrowed is relatively straightforward, but I wanted to use constants (defined only once in the app) in the map rather than straight strings. Easy you may say.. and indeed, it is if you use the &#8216;util&#8217; schema.</p>
+
+<p>Add the util schema to your bean configuration xml</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>    <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+</span><span class='line'>    <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>    <span class="na">xmlns:util=</span><span class="s">&quot;http://www.springframework.org/schema/util&quot;</span>
+</span><span class='line'>    <span class="na">xsi:schemaLocation=</span><span class="s">&quot;</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/beans</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/util</span>
+</span><span class='line'><span class="s">    http://www.springframework.org/schema/util/spring-util-3.0.xsd&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>and then you can just reference your constants as follows:&#8220;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;util:constant</span> <span class="na">static-field=</span><span class="s">&quot;com.foo.bar.RATE_2000_2950&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -828,49 +898,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/06/06/baby-kit-recommendations-part-1/">Baby Kit Recommendations – Part 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-06T19:58:50+01:00" pubdate data-updated="true">Jun 6<span>th</span>, 2010</time>
-        
-         | <a href="/2010/06/06/baby-kit-recommendations-part-1/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So when little nipper was born, we initially used cotton wool and warm water for all wiping up incidents. No nasty chemicals and worked a treat.. after a couple of weeks though, baby skin can cope with a bit more, so we switched to the pack of disposable wipes we&#8217;d been given in our baby welcome pack. They worked fine but just seemed a bit.. well, disposable and wasteful. This is where <a href="http://www.cheekywipes.com">cheeky wipes</a> come in.
-<img src="http://www.cheekywipes.com/images/cw/Opened_Kit_Sml.jpg" alt="Cheeky Wipes" /></p>
-
-<p>They are brilliant. They&#8217;re nice cotton squares complete with dirty and clean tubs and potions. You soak the clean ones in the clean tub with the clean potion, and the dirty go in the dirty tub with the dirty potion. Fantastic, the dirty potion is anti-bacterial and when it&#8217;s full, you pull the drawstring and chuck them in the washing machine.</p>
-
-<p>Travel bags are also provided and our top tip is to leave the squares out in the sunshine to dry as the sun bleaches them, removing any stains.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -888,6 +915,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/12/20/olympic-legacy-server-setup-part-1/">Olympic legacy server setup - part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
       </li>
     
@@ -901,10 +932,6 @@
     
       <li class="post">
         <a href="/2012/10/16/railway-hackday-off-the-rails/">Railway Hackday - Off The Rails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
       </li>
     
   </ul>

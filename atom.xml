@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-12-09T21:10:06+00:00</updated>
+  <updated>2012-12-20T15:31:01+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Olympic legacy server setup - part 1]]></title>
+    <link href="http://jamesjefferies.com/2012/12/20/olympic-legacy-server-setup-part-1/"/>
+    <updated>2012-12-20T15:14:00+00:00</updated>
+    <id>http://jamesjefferies.com/2012/12/20/olympic-legacy-server-setup-part-1</id>
+    <content type="html"><![CDATA[<p>For the Olympics, a whole lot of techie kit was required to do lots of clever things. As a lot of the kit wasn&#8217;t required after the games were over, they have been made available for purchase at super cheap prices! Kit was originally for Educational Establishments, but once that batch were sold, I could buy one. So I did!</p>
+
+<h2>Server Model - Gateway GR380 F1</h2>
+
+<p>Well, I hadn&#8217;t realised that the Gateway brand had been brought back to life, but it has by Acer! It is a 2U (i.e. bigger) version of one of <a href="http://www.pcpro.co.uk/reviews/servers/359875/gateway-gr360-f1">these</a> coming with 2x146Gb drives, lots of memory and a big cardboard box.</p>
+
+<p><img src="http://jamesjefferies.com/images/big-server.jpeg" alt="bigserver" /></p>
+
+<h2>What are you going to do with it?</h2>
+
+<p>Good question, I&#8217;m thinking of setting up a virtualisation kind of thing, so my big server can pretend to be lots of smaller servers, useful for building client sites, experimental things, build servers etc. We&#8217;ll see</p>
+
+<h2>Where do you start?</h2>
+
+<p>Another good question. It comes with the Smart Manager application, which you can install on it to do lots of clever things, however, at the moment, I&#8217;ve not even fired it up to see if it has the remnants of an Operating System on it. I&#8217;m suspecting not!</p>
+
+<h2>I&#8217;ve got one too, where do I start?</h2>
+
+<p>Well, I&#8217;ve managed to find the user manual, you can download it yourself from the <a href="http://global-download.gateway.com/GDFiles/Document/User%20Manual/User%20Manual_Gateway_1.0_A_A.zip?acerid=634213526746016513&amp;Step1=Server&amp;Step2=Server&amp;Step3=GR380%20F1&amp;OS=303&amp;LC=en&amp;BC=Gateway&amp;SC=EMEA_27G">Acer site</a>.</p>
+
+<p>If nothing else I&#8217;d like to have a look inside to see what sort of state it&#8217;s in. Then I need to work out how to attach the funky rack mounts to it, then I need to work out how to install Debian or Ubuntu on it (plus Xen probably for virtualisation).</p>
+
+<p>Oh - it&#8217;ll need a name too!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Steam powered Arduino part 1]]></title>
@@ -1147,97 +1178,6 @@ end</code></pre></noscript></div>
 <h2>Summary</h2>
 
 <p>I&#8217;m very happy to see these extra plans announced, but would like to understand more about why some very obvious links and connections have been omitted. What to others think?</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Getting started with Network Rail's datafeeds]]></title>
-    <link href="http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds/"/>
-    <updated>2012-07-04T23:46:41+01:00</updated>
-    <id>http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve had a few railway project ideas knocking around for ages now, but have had a couple of blockers which have meant they have not progressed. Mainly lack of time and lack of data! I&#8217;m therefore clearing the decks for July and August to spend some decent time working on these ideas, which also co-incides with Network Rail giving access to a new platform providing live data feeds. You may have heard about <a href="http://www.techweekeurope.co.uk/news/network-rail-open-data-feeds-83128">the launch</a>, I believe the platform was developed in conjunction with <a href="http://rockshore.net/">Rockshore</a>, well, it&#8217;s what this <a href="https://twitter.com/rockshoreltd/status/218323058493108224">tweet</a> says anyway.</p>
-
-<h2>Where do you start?</h2>
-
-<p>If you are interested in using the datafeeds yourself, you can read all about it on <a href="http://www.networkrail.co.uk/data-feeds/">Network Rail&#8217;s site</a> which also has a link to download the developer&#8217;s guide in PDF format.</p>
-
-<p>First, you need to <a href="https://datafeeds.networkrail.co.uk/ntrod/login">create an account</a> - I believe there are limited numbers of accounts going at the moment, so the sooner you do that, the better.</p>
-
-<p>There are two types of feeds available, pub/sub using the stomp protocol for real-ish time data &amp; downloads of huge files from Amazon S3 for timetables etc.</p>
-
-<p>Once your account is active, you can subscribe to any of the pub/sub datafeeds you like and away you go.</p>
-
-<h2>Receiving Messages</h2>
-
-<p>I decided that I was going to try accessing the pub/sub datafeeds using Ruby (not my usual language) and put my experimental code on to my git hub account. Feel free to <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">have a look and check it out</a>, I&#8217;ll be using it for my initial experiments, so it should get updated beyond this basic example!</p>
-
-<p>I&#8217;ve also included a sample, no error checking, very straightforward listener below. If you wish to try and run it, then you will of course need Ruby and Ruby gems installed, plus the stomp ruby gem.</p>
-
-<p>Then, you just need to ensure your username and password are set as the relevant environment variables and away you go.</p>
-
-<p>All being well, you should slowly receive updates from the topic you have selected. The example below uses Train positioning data for the East Midlands (TD_MC_EM_SIG_AREA) and assumes that you have subscribed to that feed using the <a href="https://datafeeds.networkrail.co.uk/ntrod/myFeeds">network rail control panel</a></p>
-
-<p>The updates you receive from this program are not formatted at all, it&#8217;s just sending the message straight to string. Of course, this is just helping you know you&#8217;re set up correctly. So you would get something like:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="no">Stomp</span><span class="o">::</span><span class="no">Message</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message-id&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;ID:blahblah&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436026840&quot;</span><span class="p">,</span> <span class="s2">&quot;expires&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;1341436326840&quot;</span><span class="p">,</span> <span class="s2">&quot;persistent&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;priority&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;4&quot;</span><span class="p">}</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;[{&quot;CA_MSG&quot;:{&quot;to&quot;:&quot;1234&quot;,&quot;time&quot;:&quot;1341435963000&quot;,&quot;area_id&quot;:&quot;WH&quot;,&quot;msg_type&quot;:&quot;CA&quot;,&quot;from&quot;:&quot;5678&quot;,&quot;descr&quot;:&quot;1Z99&quot;}}]&#39;</span> <span class="n">command</span><span class="o">=</span><span class="s1">&#39;MESSAGE&#39;</span> <span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ultimately of course, you&#8217;d process the JSON from the body and do something with it.</p>
-
-<h2>Example Ruby Listener</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;stomp&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">begin</span>
-</span><span class='line'>  <span class="c1"># Credentials set here as environment variables</span>
-</span><span class='line'>  <span class="vi">@user</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;DATAFEEDS_USER&quot;</span><span class="o">]</span><span class="p">;</span>
-</span><span class='line'>  <span class="vi">@password</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;DATAFEEDS_PASSWORD&quot;</span><span class="o">]</span>
-</span><span class='line'>  <span class="vi">@host</span> <span class="o">=</span> <span class="s2">&quot;datafeeds.networkrail.co.uk&quot;</span>
-</span><span class='line'>  <span class="vi">@port</span> <span class="o">=</span> <span class="mi">61618</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Example destination add yours here</span>
-</span><span class='line'>  <span class="vi">@destination</span> <span class="o">=</span> <span class="s2">&quot;/topic/TD_MC_EM_SIG_AREA&quot;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Connecting to datafeeds as </span><span class="si">#{</span><span class="vi">@user</span><span class="si">}</span><span class="s2"> using stomp protocol stomp://</span><span class="si">#{</span><span class="vi">@host</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="vi">@port</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="vi">@connection</span> <span class="o">=</span> <span class="no">Stomp</span><span class="o">::</span><span class="no">Connection</span><span class="o">.</span><span class="n">open</span> <span class="vi">@user</span><span class="p">,</span> <span class="vi">@password</span><span class="p">,</span> <span class="vi">@host</span><span class="p">,</span> <span class="vi">@port</span><span class="p">,</span> <span class="kp">true</span>
-</span><span class='line'>  <span class="vi">@connection</span><span class="o">.</span><span class="n">subscribe</span> <span class="vi">@destination</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">while</span> <span class="kp">true</span>
-</span><span class='line'>    <span class="vi">@msg</span> <span class="o">=</span> <span class="vi">@connection</span><span class="o">.</span><span class="n">receive</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="vi">@msg</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="vi">@connection</span><span class="o">.</span><span class="n">disconnect</span>
-</span><span class='line'><span class="k">rescue</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

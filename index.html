@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Following on from getting Cathy &amp; Heathcliff, our internet enabled thermal printers up and running as part of the Happenstance Project, I wanted &hellip;">
+  <meta name="description" content="For the Olympics, a whole lot of techie kit was required to do lots of clever things. As a lot of the kit wasn&#8217;t required after the games were &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,66 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/12/20/olympic-legacy-server-setup-part-1/">Olympic Legacy Server Setup - Part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-20T15:14:00+00:00" pubdate data-updated="true">Dec 20<span>th</span>, 2012</time>
+        
+         | <a href="/2012/12/20/olympic-legacy-server-setup-part-1/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For the Olympics, a whole lot of techie kit was required to do lots of clever things. As a lot of the kit wasn&#8217;t required after the games were over, they have been made available for purchase at super cheap prices! Kit was originally for Educational Establishments, but once that batch were sold, I could buy one. So I did!</p>
+
+<h2>Server Model - Gateway GR380 F1</h2>
+
+<p>Well, I hadn&#8217;t realised that the Gateway brand had been brought back to life, but it has by Acer! It is a 2U (i.e. bigger) version of one of <a href="http://www.pcpro.co.uk/reviews/servers/359875/gateway-gr360-f1">these</a> coming with 2x146Gb drives, lots of memory and a big cardboard box.</p>
+
+<p><img src="/images/big-server.jpeg" alt="bigserver" /></p>
+
+<h2>What are you going to do with it?</h2>
+
+<p>Good question, I&#8217;m thinking of setting up a virtualisation kind of thing, so my big server can pretend to be lots of smaller servers, useful for building client sites, experimental things, build servers etc. We&#8217;ll see</p>
+
+<h2>Where do you start?</h2>
+
+<p>Another good question. It comes with the Smart Manager application, which you can install on it to do lots of clever things, however, at the moment, I&#8217;ve not even fired it up to see if it has the remnants of an Operating System on it. I&#8217;m suspecting not!</p>
+
+<h2>I&#8217;ve got one too, where do I start?</h2>
+
+<p>Well, I&#8217;ve managed to find the user manual, you can download it yourself from the <a href="http://global-download.gateway.com/GDFiles/Document/User%20Manual/User%20Manual_Gateway_1.0_A_A.zip?acerid=634213526746016513&amp;Step1=Server&amp;Step2=Server&amp;Step3=GR380%20F1&amp;OS=303&amp;LC=en&amp;BC=Gateway&amp;SC=EMEA_27G">Acer site</a>.</p>
+
+<p>If nothing else I&#8217;d like to have a look inside to see what sort of state it&#8217;s in. Then I need to work out how to attach the funky rack mounts to it, then I need to work out how to install Debian or Ubuntu on it (plus Xen probably for virtualisation).</p>
+
+<p>Oh - it&#8217;ll need a name too!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -669,76 +729,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/08/30/the-story-of-cathy-and-heathcliff/">The Story of Cathy and Heathcliff</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-30T16:29:00+01:00" pubdate data-updated="true">Aug 30<span>th</span>, 2012</time>
-        
-         | <a href="/2012/08/30/the-story-of-cathy-and-heathcliff/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Back, back, back in the day&#8230; well, January 1978, Kate Bush released the classic song Wuthering Heights, inspired by the Emily Bronte novel. As well as launching her career, and boosting the sales of flowy white dresses, the song provided inspiration for us when it came to one of our projects.</p>
-
-<h2>Go Free Range</h2>
-
-<p>James Adam of <a href="http://gofreerange.com">GoFreeRange</a> has done a lot of work on transforming simple thermal receipt printers in to intelligent, ethernet enabled printing devices. He’s done an incredible job of writing software and working out the electronics, based on the Arduino device, to get them up and running.</p>
-
-<p><img src="/images/nyancat.png" alt="nyancat" /></p>
-
-<h2>Cathy &amp; Heathcliff</h2>
-
-<p>When our two printers arrived to play their part in the Happenstance project, their default names were a bit of a mouthful, they made a good password, but not a name which slipped off the tongue - 4j8k6i5x5q7a7b5y.</p>
-
-<h2>Up and running</h2>
-
-<p>So, when we finally got the printers up and running, after a few head scratching hours, the first message we sent to 4j8k6i5x5q7a7b5y was, ‘It&#8217;s me, Cathy, I&#8217;ve come home’ – a line from Cathy to Heathcliff in the song. So Cathy named herself, and 4j8k6i5x5q7a7b5y became Heathcliff.</p>
-
-<p><img src="/images/output.png" alt="output" /></p>
-
-<p>That was in the final week of the Bill Drummond exhibition, “Ragworts” at Site Gallery and we gave the two printers a part to play in the project. Some local Sixth Form students were tasked with sending messages to Cathy &amp; Heathcliff as they jumped on the nearest bus they could find, and journeyed into the wilds of outer Sheffield.</p>
-
-<p>At first we thought they could tweet their progress and the printers would pick up on those tweets and print them, but we decided to mash up a lot of technology to provide a simpler solution for the students. With the clock ticking, we glued together Twilio, Gmail, ifttt (‘If This Then That’) and some custom code we wrote. Cathy &amp; Heathcliff now had their own Sheffield phone numbers, and now you could send them a text message and the contents would be printed and tweeted.</p>
-
-<p>When the students set off on their journeys, they could send SMS text messages to Cathy and Heathcliff’s numbers and the magic of technology would take care of the rest. Their messages would appear on the printers, back at Site Gallery and on their Twitter account. It was fascinating to read the messages sent back to base by the students, many of which were very poetic and evocative.</p>
-
-<p>After all this excitement, our plan was to get Cathy and Heathcliff mobile so they could roam the streets of Sheffield whilst remaining available for printing. With the aid of dongle, a mac and a giffgaff sim card they were freed from the shackles of mains power and wifi, ready to explore!</p>
-
-<p><img src="/images/getonabus.png" alt="get on a bus" /></p>
-
-<h2>What&#8217;s next</h2>
-
-<p>Although Happenstance has now finished, the printers have been used in Site for other purposes. Cathy has been on reception acting as a comments book (text her and she’ll print your comment) whilst Heathcliff has been reading twitter and printing mentions of Site Gallery!</p>
-
-<p>We still hope to use them for one final experiment where we get them to run off steam power!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -754,6 +744,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/12/20/olympic-legacy-server-setup-part-1/">Olympic legacy server setup - part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
       </li>
     
@@ -767,10 +761,6 @@
     
       <li class="post">
         <a href="/2012/10/16/railway-hackday-off-the-rails/">Railway Hackday - Off The Rails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/09/30/tech-companies-accelerate-your-employees/">Tech companies - accelerate your employees</a>
       </li>
     
   </ul>

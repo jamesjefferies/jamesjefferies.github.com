@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-12-20T15:36:38+00:00</updated>
+  <updated>2012-12-28T10:33:08+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Olympic legacy server setup - part 1b]]></title>
+    <link href="http://jamesjefferies.com/2012/12/27/olympic-legacy-server-setup-part-1b/"/>
+    <updated>2012-12-27T18:06:00+00:00</updated>
+    <id>http://jamesjefferies.com/2012/12/27/olympic-legacy-server-setup-part-1b</id>
+    <content type="html"><![CDATA[<h2>More details on the Olympic servers</h2>
+
+<p>Thanks to a lot of investigation by <a href="http://twitter.com/interpipes">@interpipes</a> we now have some more details about these servers.</p>
+
+<p>It looks like Acer/Gateway built the servers on top of one of these SuperMicro <a href="http://www.supermicro.com/products/system/2U/2026/SYS-2026T-URF4_.cfm">Super Servers 2026T-URF4+</a></p>
+
+<p>consisting of one of these <a href="http://www.supermicro.com/products/motherboard/qpi/5500/x8dtu_.cfm">motherboards</a></p>
+
+<p>with one of these <a href="http://www.supermicro.com/products/chassis/2U/213/SC213A-R740W.cfm">chassis</a></p>
+
+<h2>Where was the server used</h2>
+
+<p>Apparently, one of the three letter codes on the server can tell you where the server was located. Mine, seems to have SDC on it, but I haven&#8217;t been able to find out if that is a location or not.</p>
+
+<h2>State of servers on delivery</h2>
+
+<p>The RAID card was loose in the server case when I unpacked mine, which I&#8217;m glad I spotted before firing up for the first time. Once re-attached, all seems fine.</p>
+
+<p>I also thought mine was broken, but actually, it was what you might call a user error! What I hadn&#8217;t realised was that if you only plug in one of the power supplies, then the server lets you know that one of the power supplies might be broken by sounding a continous BEEEEEEEP! So don&#8217;t make that error, plug both power leads in!</p>
+
+<p>Once again, @interpipes to the rescue! &#8220;beeping is just to tell you one of the supplies is &#8220;failed&#8221; - pull it out (an inch)/plug it in, and it&#8217;ll stop beeping.&#8221;</p>
+
+<p>@interpipes also had some interesting configurations too on his servers
+&#8220;Half of mine had bios passwords set, half didn&#8217;t, and 3 had a configuration on the BMC controllers.&#8221;</p>
+
+<h3>Advice on getting in to the BMC via @interpipes</h3>
+
+<p>The <a href="http://en.wikipedia.org/wiki/Baseboard_management_controller">BMC</a> is the Baseboard Management Controller, an extra microcontroller which servers to manage server kind of things at a lower level.</p>
+
+<blockquote><p>&#8220;Getting back into the BMC (which among other things gives you full IP KVM access), </p><p>first, set up the network configuration for it in the BIOS as if it has been configured it&#8217;ll have a static IP set the network config is under Server Management, and then the first option in that menu - I forget what it is called - I recommend using the dedicated LAN port setting, which is the solitary lan port above the two usb sockets. </p><p>Now you can get to it over your lan (pointing a web browser at it being the easiest way) but you&#8217;ll need to use ipmitool to change the root user password back to something you know (then you can log in and reset the BMC to factory defaults). Using the BMC it&#8217;s possible to mount an ISO from a windows file share (I think you can also mount one from a local disk when connected to the remote control interface) to install the system from entirely remotely.&#8221;</p></blockquote>
+
+
+<h2>Installing an OS</h2>
+
+<p>Now that I could start mine up without it beeping the place down, I entered the RAID configuration and set up a simple 146Gb RAID1 set up, using the 2x146Gb 10k RPM 2.5&#8221; disks it came with.</p>
+
+<p>I also used <a href="http://unetbootin.sourceforge.net">Unetbootin</a> to get a server ISO set up on my old USB memory stick. Of course, it&#8217;s up to you to choose your favourite Linux distro, Unetbootin will allow you to download a customised ISO too which it will then set up on the USB, so you are not limited to the ones it comes with by default.</p>
+
+<p>The server quite happily booted off the USB stick, so no optical drive is required (my server didn&#8217;t have one).</p>
+
+<h2>What&#8217;s next?</h2>
+
+<p>Getting the OS installed and, I think Xen set up.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Olympic legacy server setup - part 1]]></title>
@@ -1127,57 +1178,6 @@ end</code></pre></noscript></div>
 <p>for Monday&#8217;s update.</p>
 
 <p>Note that you will need to authenticate if you haven&#8217;t already, using your username and password.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Electrified Spine (and the rest of the news)]]></title>
-    <link href="http://jamesjefferies.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news/"/>
-    <updated>2012-07-16T15:39:04+01:00</updated>
-    <id>http://jamesjefferies.com/2012/07/16/the-electrified-spine-and-the-rest-of-the-news</id>
-    <content type="html"><![CDATA[<p>Today the government has announced a further set of infrastructure investment for the railways. This has to be good news, especially where electrification is concerned. Electric trains are more efficient, cleaner and perform better than their diesel (and steam I suppose!) counterparts. I appreciate that the electricity still has to come from somewhere, but in the main it is the right thing to do.</p>
-
-<h2>Already Announced</h2>
-
-<p>We know that plans to electrify the Great Western Mainline (Paddington to Cardiff, Bristol, Oxford &amp; Newbury), plus the Trans-Pennine route between Manchester &amp; York, Blackpool and Manchester to Liverpool are already underway. These are all good things, but there were some unsatisfactory omissions. The new announcement helps with some of the missing links, but not all of them.</p>
-
-<p>There is a helpful <a href="http://assets.dft.gov.uk/publications/hlos-2012/map-hlos-electrification.pdf">map</a> which shows these routes in glorious technicolour</p>
-
-<h2>New Plans - Midland Mainline</h2>
-
-<p>Hooray, the Midland Mainline, which has been electrified to Bedford for many years is to be electrified to Nottingham and Sheffield (via Derby). For those of us who regularly travel to London from Sheffield we should experience a faster service. Not necessarily more trains though, no extra track is to be laid and unless signalling is replaced, you can&#8217;t fit that many more trains on the track.</p>
-
-<p>As far as I&#8217;m aware, there has been no announcement about rolling stock either, the simple solution for East Midlands Trains (assuming they&#8217;re still running the franchise) will be to get the existing Meridian trains upgraded with an extra coach containing all of the required electrical equipment, plus pantograph for current collection etc. Easier said than done, but a lot cheaper than brand new trains. So it is likely you&#8217;ll still be sitting on the same seat.</p>
-
-<h2>Missed Opportunities - Midland Mainline</h2>
-
-<h3>Erewash Valley</h3>
-
-<p>Why or why isn&#8217;t the Erewash valley route included as part of the plans? This is the line which goes straight on at the junction for Derby and Nottingham, joining up with the Sheffield line between Clay Cross and Chesterfield - it&#8217;s the most direct route to Sheffield and is useful when engineering works close the route via Derby. Very few London bound trains use this route, most are routed via Derby from Sheffield, but electrifying it would be useful for diversions and could give the opportunity for Sheffield, Leicester, London services which don&#8217;t call at Derby, potentially shaving more time off the journey.</p>
-
-<h3>Sheffield to Leeds</h3>
-
-<p>Groan, everybody wants a better service between Leeds and Sheffield, the best being the 45 minute Cross Country packed like a sardine train which goes via Wakefield. Why not electrify that route too so that more London trains can be extended easily to Leeds? Plus get some more electrified suburban stoppers on that route. Derby to Leeds semi-fast?</p>
-
-<h3>Sheffield to Doncaster</h3>
-
-<p>Whilst we&#8217;re at it, how about the link to Doncaster too, providing more opportunities for diversions and commuter services?</p>
-
-<h2>New Plans - Oxford to Corby &amp; Nuneaton</h2>
-
-<p>This wasn&#8217;t on my radar at all, but makes a lot of sense for new cross country routes as well as faster Birmingham to London trains via Oxford. Incorporating the start of the Oxford to Cambridge route (as far as Bedford) makes sense with that re-opening. The potential for new routes, well re-establishing old routes should give that part of the country a much better service.</p>
-
-<h2>New Plans - Reading to Southampton</h2>
-
-<p>Cross country trains mainly use this route at the moment and it is partially already electrified using the Southern standard 3rd Rail system. Over the next&#8230; err.. 50 years (?) the 3rd rail system will be phased out and replaced with the standard 25kv AC overhead system. This is the beginning of that process and also good preparation for Cross Country. Birmingham to Southampton trains will be electric all the way, as might, say Sheffield to Southampton trains, routed via Oxford.</p>
-
-<h2>The Spine</h2>
-
-<p>According to the plan, the Electrified Spine is to be the Southampton to Coventry and Sheffield routes and is a piece of spin. If I had a spine looking like that I&#8217;d be worried! The only new route, as far as I can see is the already announced re-opening of the Oxford to Bedford route, everywhere else is straightforward electrification.</p>
-
-<h2>Summary</h2>
-
-<p>I&#8217;m very happy to see these extra plans announced, but would like to understand more about why some very obvious links and connections have been omitted. What to others think?</p>
 ]]></content>
   </entry>
   

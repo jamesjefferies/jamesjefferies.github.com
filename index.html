@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="For the Olympics, a whole lot of techie kit was required to do lots of clever things. As a lot of the kit wasn&#8217;t required after the games were &hellip;">
+  <meta name="description" content="More details on the Olympic servers Thanks to a lot of investigation by @interpipes we now have some more details about these servers. It looks like &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/12/27/olympic-legacy-server-setup-part-1b/">Olympic Legacy Server Setup - Part 1b</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-27T18:06:00+00:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
+        
+         | <a href="/2012/12/27/olympic-legacy-server-setup-part-1b/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>More details on the Olympic servers</h2>
+
+<p>Thanks to a lot of investigation by <a href="http://twitter.com/interpipes">@interpipes</a> we now have some more details about these servers.</p>
+
+<p>It looks like Acer/Gateway built the servers on top of one of these SuperMicro <a href="http://www.supermicro.com/products/system/2U/2026/SYS-2026T-URF4_.cfm">Super Servers 2026T-URF4+</a></p>
+
+<p>consisting of one of these <a href="http://www.supermicro.com/products/motherboard/qpi/5500/x8dtu_.cfm">motherboards</a></p>
+
+<p>with one of these <a href="http://www.supermicro.com/products/chassis/2U/213/SC213A-R740W.cfm">chassis</a></p>
+
+<h2>Where was the server used</h2>
+
+<p>Apparently, one of the three letter codes on the server can tell you where the server was located. Mine, seems to have SDC on it, but I haven&#8217;t been able to find out if that is a location or not.</p>
+
+<h2>State of servers on delivery</h2>
+
+<p>The RAID card was loose in the server case when I unpacked mine, which I&#8217;m glad I spotted before firing up for the first time. Once re-attached, all seems fine.</p>
+
+<p>I also thought mine was broken, but actually, it was what you might call a user error! What I hadn&#8217;t realised was that if you only plug in one of the power supplies, then the server lets you know that one of the power supplies might be broken by sounding a continous BEEEEEEEP! So don&#8217;t make that error, plug both power leads in!</p>
+
+<p>Once again, @interpipes to the rescue! &#8220;beeping is just to tell you one of the supplies is &#8220;failed&#8221; - pull it out (an inch)/plug it in, and it&#8217;ll stop beeping.&#8221;</p>
+
+<p>@interpipes also had some interesting configurations too on his servers
+&#8220;Half of mine had bios passwords set, half didn&#8217;t, and 3 had a configuration on the BMC controllers.&#8221;</p>
+
+<h3>Advice on getting in to the BMC via @interpipes</h3>
+
+<p>The <a href="http://en.wikipedia.org/wiki/Baseboard_management_controller">BMC</a> is the Baseboard Management Controller, an extra microcontroller which servers to manage server kind of things at a lower level.</p>
+
+<blockquote><p>&#8220;Getting back into the BMC (which among other things gives you full IP KVM access), </p><p>first, set up the network configuration for it in the BIOS as if it has been configured it&#8217;ll have a static IP set the network config is under Server Management, and then the first option in that menu - I forget what it is called - I recommend using the dedicated LAN port setting, which is the solitary lan port above the two usb sockets. </p><p>Now you can get to it over your lan (pointing a web browser at it being the easiest way) but you&#8217;ll need to use ipmitool to change the root user password back to something you know (then you can log in and reset the BMC to factory defaults). Using the BMC it&#8217;s possible to mount an ISO from a windows file share (I think you can also mount one from a local disk when connected to the remote control interface) to install the system from entirely remotely.&#8221;</p></blockquote>
+
+
+<h2>Installing an OS</h2>
+
+<p>Now that I could start mine up without it beeping the place down, I entered the RAID configuration and set up a simple 146Gb RAID1 set up, using the 2x146Gb 10k RPM 2.5&#8221; disks it came with.</p>
+
+<p>I also used <a href="http://unetbootin.sourceforge.net">Unetbootin</a> to get a server ISO set up on my old USB memory stick. Of course, it&#8217;s up to you to choose your favourite Linux distro, Unetbootin will allow you to download a customised ISO too which it will then set up on the USB, so you are not limited to the ones it comes with by default.</p>
+
+<p>The server quite happily booted off the USB stick, so no optical drive is required (my server didn&#8217;t have one).</p>
+
+<h2>What&#8217;s next?</h2>
+
+<p>Getting the OS installed and, I think Xen set up.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -649,86 +729,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/09/04/poor-old-java/">Poor Old Java</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-04T12:11:00+01:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
-        
-         | <a href="/2012/09/04/poor-old-java/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There seems to be a lot of noise at the moment about the latest security vulnerabilities in Java, especially Java 7. I&#8217;d go as far as to say that some of the articles are <a href="http://www.pcadvisor.co.uk/news/security/3379150/time-give-java-boot/">scare stories</a>. Is this what we need, to give Java the boot?</p>
-
-<h2>TL;DR</h2>
-
-<p>All computers connected to things have security vulnerabilities of various forms.</p>
-
-<p>Desktop Java installed computers where not required is an unnecessary security risk and should be uninstalled, just as Adobe Flash, Adobe Reader, Silverlight etc. Windows 8 and Mac OS X don&#8217;t bundle Java runtimes via default anymore. This is a good thing. Oracle should be far quicker out of the blocks fixing security vulnerabilitles.</p>
-
-<p>Giving Java the boot full stop is an over the top reaction. However, giving Java the boot on the desktop when it&#8217;s not required is a wise move.</p>
-
-<h2>History</h2>
-
-<p>Java as a platform has a reputation for being secure, reliable and frequently patched. Being able to run Java server side on Sun software provided the building blocks for many web businesses at the end of the last millenium and in to this one.</p>
-
-<p>It also has many branches in to other parts of the internet ecosystem. As well as running server side, the other two main areas are mobile Java, J2ME, for example and desktop Java, either via browser plugin Applets or as runnable GUI applications using a desktop JVM (virtual machine).</p>
-
-<p>Over the last few years, mobile Java has basically been nobbled by the rise of smartphones and their respective application frameworks and stacks, Android, iOS, Windows whatever it&#8217;s called, BlackBerry and the rest.</p>
-
-<p>However, the legacy of desktop Java has continued by some applications still requiring a JVM installed on the local PC and some people still writing or using Java applets. Althoguh Sun and now Oracle have continued to try and encourage desktop development with their JavaFX initative, they&#8217;ve not got very far.</p>
-
-<h3>Applets</h3>
-
-<p>The idea behind applets was that you visited a site via a web browser, which could always deliver the latest version of the application code to your browser, either to run in a plug-in or using the JVM installed on your machine. They were useful for some niche applications, you sometimes see them now replacing flash file uploaders for example, but the User Experience was often a bit shonky.</p>
-
-<h3>Desktop Applications</h3>
-
-<p>Write Once, run anywhere was the mantra behind Java Desktop applications, an attractive proposition. One set of code would run on Windows, Linux, Unix variants &amp; Macs. Many Java development environments have been written in Java and are used today. CrashPlan is an example cross platform application which requires desktop Java to work.</p>
-
-<h2>Legacy</h2>
-
-<p>Unfortunately, a lot of the Java runtimes (and Flash installs, adobe reader installs etc), installed in days of yore on people&#8217;s machines will have security vulnerabilities, either because they are out of date or because of recent new exploits.</p>
-
-<p>It was interesting to see Apple&#8217;s response to recent JVM exploits, although they may have been slow in responding, they, in effect, switched off people&#8217;s Java installations, providing a prompt if it was required. In one OS X update (assuming it was installed!) Macs became better protected from Java exploits.</p>
-
-<h2>Summary</h2>
-
-<p>If you don&#8217;t use Java on your machine - uninstall it, it&#8217;s not worth having a potential vulnerability. Same with Flash or Adobe reader - if you don&#8217;t use them, uninstall them.</p>
-
-<p>If you do need it installed on your machine, there is some great advice <a href="http://www.macworld.co.uk/macsoftware/news/?newsid=3378690&amp;pagtype=allchandate">here</a></p>
-
-<p>Of course, keep things up to date that you do use, Operating systems, browsers etc</p>
-
-<p>Java server side is a different story. If you do use the Java Virtual Machine, whether it is for Java apps, Clojure, Scala or whatever. Keep your eyes on the Oracle security bulletins, update when you can and be aware of any vulnerabilities in the latest version.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -744,6 +744,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012/12/27/olympic-legacy-server-setup-part-1b/">Olympic legacy server setup - part 1b</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/12/20/olympic-legacy-server-setup-part-1/">Olympic legacy server setup - part 1</a>
       </li>
     
@@ -757,10 +761,6 @@
     
       <li class="post">
         <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/16/railway-hackday-off-the-rails/">Railway Hackday - Off The Rails</a>
       </li>
     
   </ul>

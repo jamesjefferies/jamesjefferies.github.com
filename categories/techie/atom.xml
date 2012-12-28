@@ -4,7 +4,7 @@
   <title><![CDATA[Category: techie | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/categories/techie/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-12-20T15:36:38+00:00</updated>
+  <updated>2012-12-28T10:33:08+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Olympic legacy server setup - part 1b]]></title>
+    <link href="http://jamesjefferies.com/2012/12/27/olympic-legacy-server-setup-part-1b/"/>
+    <updated>2012-12-27T18:06:00+00:00</updated>
+    <id>http://jamesjefferies.com/2012/12/27/olympic-legacy-server-setup-part-1b</id>
+    <content type="html"><![CDATA[<h2>More details on the Olympic servers</h2>
+
+<p>Thanks to a lot of investigation by <a href="http://twitter.com/interpipes">@interpipes</a> we now have some more details about these servers.</p>
+
+<p>It looks like Acer/Gateway built the servers on top of one of these SuperMicro <a href="http://www.supermicro.com/products/system/2U/2026/SYS-2026T-URF4_.cfm">Super Servers 2026T-URF4+</a></p>
+
+<p>consisting of one of these <a href="http://www.supermicro.com/products/motherboard/qpi/5500/x8dtu_.cfm">motherboards</a></p>
+
+<p>with one of these <a href="http://www.supermicro.com/products/chassis/2U/213/SC213A-R740W.cfm">chassis</a></p>
+
+<h2>Where was the server used</h2>
+
+<p>Apparently, one of the three letter codes on the server can tell you where the server was located. Mine, seems to have SDC on it, but I haven't been able to find out if that is a location or not.</p>
+
+<h2>State of servers on delivery</h2>
+
+<p>The RAID card was loose in the server case when I unpacked mine, which I'm glad I spotted before firing up for the first time. Once re-attached, all seems fine.</p>
+
+<p>I also thought mine was broken, but actually, it was what you might call a user error! What I hadn't realised was that if you only plug in one of the power supplies, then the server lets you know that one of the power supplies might be broken by sounding a continous BEEEEEEEP! So don't make that error, plug both power leads in!</p>
+
+<p>Once again, @interpipes to the rescue! "beeping is just to tell you one of the supplies is "failed" - pull it out (an inch)/plug it in, and it'll stop beeping."</p>
+
+<p>@interpipes also had some interesting configurations too on his servers
+"Half of mine had bios passwords set, half didn't, and 3 had a configuration on the BMC controllers."</p>
+
+<h3>Advice on getting in to the BMC via @interpipes</h3>
+
+<p>The <a href="http://en.wikipedia.org/wiki/Baseboard_management_controller">BMC</a> is the Baseboard Management Controller, an extra microcontroller which servers to manage server kind of things at a lower level.</p>
+
+<p><blockquote><p></p></p><p><p>"Getting back into the BMC (which among other things gives you full IP KVM access),</p></p><p><p>first, set up the network configuration for it in the BIOS as if it has been configured it'll have a static IP set the network config is under Server Management, and then the first option in that menu - I forget what it is called - I recommend using the dedicated LAN port setting, which is the solitary lan port above the two usb sockets.</p></p><p><p>Now you can get to it over your lan (pointing a web browser at it being the easiest way) but you'll need to use ipmitool to change the root user password back to something you know (then you can log in and reset the BMC to factory defaults). Using the BMC it's possible to mount an ISO from a windows file share (I think you can also mount one from a local disk when connected to the remote control interface) to install the system from entirely remotely."</p></p><p><p></p></blockquote></p>
+
+<h2>Installing an OS</h2>
+
+<p>Now that I could start mine up without it beeping the place down, I entered the RAID configuration and set up a simple 146Gb RAID1 set up, using the 2x146Gb 10k RPM 2.5" disks it came with.</p>
+
+<p>I also used <a href="http://unetbootin.sourceforge.net">Unetbootin</a> to get a server ISO set up on my old USB memory stick. Of course, it's up to you to choose your favourite Linux distro, Unetbootin will allow you to download a customised ISO too which it will then set up on the USB, so you are not limited to the ones it comes with by default.</p>
+
+<p>The server quite happily booted off the USB stick, so no optical drive is required (my server didn't have one).</p>
+
+<h2>What's next?</h2>
+
+<p>Getting the OS installed and, I think Xen set up.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Olympic legacy server setup - part 1]]></title>

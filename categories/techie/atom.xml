@@ -4,7 +4,7 @@
   <title><![CDATA[Category: techie | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/categories/techie/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2013-01-03T14:57:15+00:00</updated>
+  <updated>2013-01-03T17:25:29+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,180 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Olympic legacy server setup - part 3 - installing Ubuntu server]]></title>
+    <link href="http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server/"/>
+    <updated>2013-01-03T15:22:00+00:00</updated>
+    <id>http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server</id>
+    <content type="html"><![CDATA[<p>I was thinking about a Debian install on my server, but in the end, I thought I'd go with Ubuntu server.</p>
+
+<h2>Ubuntu server install</h2>
+
+<p>I'm not going in to all the details about installing Ubuntu server (debian would be similar), but I thought it would be worth noting the steps I made to get the RAID device partitioned ready for installing xen or KVM.</p>
+
+<h3>RAID configuration</h3>
+
+<p>When booting the server, you are able to access the MegaRAID configuration. As my server came with 2 unregistered drives, it was simple to create a new RAID1 configuration with those two 146Gb drives, creating a virtual 146Gb RAID1 drive.</p>
+
+<p>I ummed and ahhed a bit about whether to use the RAID controller, but it looks like it might be ok kit.</p>
+
+<h3>Install</h3>
+
+<p>I usually use inetbootin to create a USB memory stick with the OS I want to install. In this case, I downloaded the 64bit Ubuntu image and used it to create the bootable USB stick.</p>
+
+<p>Expert install followed.</p>
+
+<h3>Grub2 gotcha 1</h3>
+
+<p>Oh dear, I had a number of failed installs until I asked an expert (@wilbatron) for some help. The grub2 installation in to the MBR kept failing because… The grub2 installation doesn't fit in the MBR does it? I wish it told me that rather than just failing.</p>
+
+<p>Ah well, got it sorted in the end, here is how I set up my partitions.</p>
+
+<h3>Partition set up</h3>
+
+<p>During the install, do manual partitioning. We'll set up 2 physical partitions, one of which will be a Logical Volume Manager (LVM) Physical Volume (PV)</p>
+
+<h4>Physical</h4>
+
+<p>At this point, the menu will show your USB stick (still mounted) and your 146Gb virtual RAID drive. The Hardware RAID is hiding the fact that you've actually got two hard drives there and the installer just sees one.</p>
+
+<ul>
+<li>Select the Raid array - in my case, it was labelled <em>146.0Gb LSI MegaRAID 8708EM2</em></li>
+<li>Once selected, create a new empty partition (and table) for this device</li>
+<li>Choose GPT as the partition table type (not MSDOS!)</li>
+<li>Now select FREE SPACE 146.0GB and create new partition</li>
+<li>Set new partition size to be just 10Mb, this is where the installer will put the rest of grub2</li>
+<li>Set to be at the beginning of the drive</li>
+<li>Set type to be used as <em>Reserved BIOS Boot area</em></li>
+<li>Create next partition to use as Physical Volume (PV) for LVM</li>
+</ul>
+
+
+<h4>Logical</h4>
+
+<p>Now we configure the LVM</p>
+
+<ul>
+<li>Configure LVM (option at the top of the partitioning page)</li>
+<li>When prompted, write partition changes to disk</li>
+<li>Create volume group, give it a name and select the PV.</li>
+<li>Create logical volume, call it ROOT or whatever, mine was 15Gb - this is where the OS will be installed. You could create all the separate partitions if you like of course.</li>
+<li>Create swap volume, I chose 6Gb, although the server has 12Gb of server memory, I didn't want to give it swap of that size. We'll see how we go.</li>
+<li>Finish up and head back to partition page</li>
+<li>Set root partition to be root (ext4), doesn't need to be bootable partition.</li>
+<li>Set swap to be swap</li>
+<li>Down to the bottom of the page and write changes to disk</li>
+<li>Back to main menu and install!</li>
+</ul>
+
+
+<h4>Installing grub in MBR - gotcha 2</h4>
+
+<p>Just another slight gotcha, if your USB stick is mounted as /dev/sda &amp; your RAID array as /dev/sdb you might have to tell it not to install to the MBA, but instead to where you want it installed, i.e. /dev/sdb</p>
+
+<p>Sorted!</p>
+
+<h3>BMC (Baseboard Managment Controller)set up</h3>
+
+<p>To get the BMC up and running properly, I needed to do a few things, first, is to ensure that it is set up correctly in the BIOS.</p>
+
+<p>Enter the BIOS and in the server management section, ensure it is set to use the correct LAN port, either <em>Dedicated</em> if you are using the single port on the back of the server, <em>On Board</em> for one of the 4 built in LAN ports. I used the latter with DHCP. Make a note of the IP address which is given to the BMC and fire it up in your web browser. All being well, you should see the log in page:</p>
+
+<p><img src="/images/smartconsole.jpg" alt="console" /></p>
+
+<h4>Default authentication log in</h4>
+
+<p>Apparently the default is either admin/admin or ADMIN/ADMIN so give that a go first of all to see if you get in. If not, we will have to do some jiggery pokery on the server.</p>
+
+<h3>Resetting BMC credentials from the server</h3>
+
+<p>The tool, ipmitool is required to access the BMC from the server. I just did apt-get install ipmitool to get it up and running. However, before I got it working properly, I had to load some kernel modules</p>
+
+<h4>Kernel modules for ipmitool</h4>
+
+<p>First, I'd see whether it is working straight after install:</p>
+
+<p><code>
+ipmitool sensor
+</code></p>
+
+<p>if you get</p>
+
+<p><code>
+Could not open device at / dev/ipmi0 or / or dev/ipmi/0 / dev/ipmidev/0: No such file or directory
+Get Device ID command failed
+Unable to open SDR for reading
+</code></p>
+
+<p>Then try manually loading the kernel modules with</p>
+
+<p><code>
+modprobe ipmi_devintf
+modprobe ipmi_msghandler
+modprobe ipmi_poweroff
+modprobe ipmi_si
+modprobe ipmi_watchdog
+</code></p>
+
+<p>You can add these to <code>/etc/modules</code> for permanent loading.</p>
+
+<p>Now try again, you should get some results</p>
+
+<p><code>
+ipmitool sensor
+</code></p>
+
+<h4>Get correct channel</h4>
+
+<p>By running</p>
+
+<p><code>
+ipmitool -I open channel info 1
+</code></p>
+
+<p>(where the latter 1 is the channel, so if 1 doesn't work, cycle through)</p>
+
+<p>I got</p>
+
+<p><code>
+Channel 0x1 info:
+  Channel Medium Type   : 802.3 LAN
+  Channel Protocol Type : IPMB-1.0
+  Session Support       : multi-session
+  Active Session Count  : 0
+  Protocol Vendor ID    : 7154
+</code></p>
+
+<p>which showed that Channel 1 was the one I needed.</p>
+
+<h4>List users</h4>
+
+<p><code>
+ipmitool user list 1
+</code></p>
+
+<p>should give you a list of users, then you can reset the passwords. I ended up setting all I could to <em>password</em> then, once I was in the web admin, I deleted the users I didn't need and set all the passwords to be more secure ones!</p>
+
+<h4>Set password</h4>
+
+<p>Hmm, not sure I got this right, but I tried</p>
+
+<p><code>
+ipmitool -I open lan set 1 password admin password                                                                                                                         
+Password set for user 1
+</code>
+(the 1 here is the channel)</p>
+
+<p>and</p>
+
+<p><code>
+ipmitool user set password 2 password
+</code></p>
+
+<p>for the various users until I could log in to the console!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Olympic legacy server setup - part 2 - spares]]></title>
@@ -162,45 +336,6 @@
 <p>It would be completely understandable for tech companies to claim that they cannot afford to let their billable employees take time out of their billing cycle to do 'good'. Understandable, but short sighted. It's the same argument about sending employees on courses, or to conferences - "where is the business benefit?".</p>
 
 <p>Well, I believe that good, motivated employees are expensive to recruit and maintain, why risk them getting demotivated, bored and unhappy, when by giving them time to innovate and collaborate, they grow! So the risk is far greater, that you lose good people by not giving them the room to grow. Best to pay out of a sense of innovation and employee investment, than to pay the price for losing them, either by them leaving or by turning them in to faceless, billable resources.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Creativity Tap]]></title>
-    <link href="http://jamesjefferies.com/2012/09/25/the-creativity-tap/"/>
-    <updated>2012-09-25T22:15:00+01:00</updated>
-    <id>http://jamesjefferies.com/2012/09/25/the-creativity-tap</id>
-    <content type="html"><![CDATA[<h2>The Creativity Tap</h2>
-
-<p>Creativity is just like a tap right? You need to do some thing a bit woo and a bit wah, so you switch on the creativity tap and all these incredible ideas just pour out of your brain. There are two dangers though if you use the creativity tap.</p>
-
-<p>One is that if you leave that tap switched off for a while, then all the creativity gets stored up in your brain, without an outlet until... Pop! One day it’s gone, those ideas had to go somewhere, so they leaked out, usually somewhere behind your ear, hopefully picked up by someone else. You have writers block, coders deadlock, songwriters... err, song block. Oh dear</p>
-
-<p>The other danger is that you leave that tap switched on all the time until your brain empties. This too is a bad idea, sure, you’ve made some room in your noddle for new things, but you need a few left in there, to keep the ideas factory ticking over. Oh double dear...</p>
-
-<h2>Writing Songs</h2>
-
-<p>Knowing people who are songwriters, I get the privilege of seeing songs appear, until they end up being recorded and performed, or they mutate into a different song, or they end up on the shelf, maybe for another day. I’m sure not every songwriter works like this, but those I know have to <em>work</em> at honing a song. They rarely appear fully formed but they often appear when there is space in their lives to switch on the creativity tap for a bit to see what happens.</p>
-
-<p>If they don’t have the chance to get the songs <em>out</em>, into the open, then you can see how those song ideas start to play merry hell. The frustration builds, no time for the songs, too busy having to do other stuff. It’s almost a physical pain, the song <em>has</em> to be brought to life. There is a creative imperative which must be fulfilled.</p>
-
-<h2>Writing Code</h2>
-
-<p>Fortunately, for us software engineers, coders, developers, tapping at our keyboards day by day, telling the computer what to do and when to do it, we don’t need the creativity tap. We get stuck? We ask a search engine. We need to do something from scratch? Well, <em>someone</em> will have done something like it, we just need to find it and copy them. We need another pair of eyes? Well, ask a colleague. It’s all there for us, if we use a clever framework or development environment, it’ll probably autocomplete what we’re thinking too. We are coding machines..</p>
-
-<p>Or are we? Having spent many years writing code, I started to realise that when I was mechanistic in what I was doing, I became frustrated that I wasn’t able to come up with new ideas or ways of doing things. I was constrained by getting this piece of work finished in as short a period of time that was possible. No time to switch on the creativity tap, just <em>get it done</em>.</p>
-
-<p>The big problem is when you work for someone else, you can find yourself under a lot of pressure to crank the sausage machine handle rather than think things through. I worked with an engineer once, who would deliberately stop what he was doing and just <em>think</em>. Rather than thrashing through a jungle of code... stop first and think. It worked too, giving a bit of time to turn on the creativity tap to see what happened.</p>
-
-<p>I struggled in my day to day job, so I tried to make time in the evenings and the weekends. But you’re so tired then that switching on the creativity tap just floods you with ideas which you don’t have the energy to either make note of or do anything with. Like the frustrated songwriter I would feel the pain of not learning new skills, not playing with languages and technology. Not actually chuffing making anything which made you say, even if it is just to yourself “I made that and I’m pleased with what I’ve done”.</p>
-
-<p>So, what can be done?</p>
-
-<p>Well one answer, in the workplace, where people have a pressurised, day to day job and a boss, is for the bosses to give people time when they have the headspace to play. With their work, with something new, with wooden blocks, with a great idea they’ve had. Not only do they get chance to switch on the creativity tap, but usually it knocks on in to their ‘day to day’ work too. Wins all around.</p>
-
-<p>If you are your own boss, then plan in time where you put down the work you’re doing for clients or your startup and have a play. You never know what amazing ideas might come to life!</p>
-
-<p>Disclaimer - the creativity tap premise is a load of nonsense, if only it was a tap we could switch on and off!</p>
 ]]></content>
   </entry>
   

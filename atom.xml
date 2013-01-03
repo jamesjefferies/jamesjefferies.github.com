@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2013-01-03T14:57:15+00:00</updated>
+  <updated>2013-01-03T17:25:29+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,193 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Olympic legacy server setup - part 3 - installing Ubuntu server]]></title>
+    <link href="http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server/"/>
+    <updated>2013-01-03T15:22:00+00:00</updated>
+    <id>http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server</id>
+    <content type="html"><![CDATA[<p>I was thinking about a Debian install on my server, but in the end, I thought I&#8217;d go with Ubuntu server.</p>
+
+<h2>Ubuntu server install</h2>
+
+<p>I&#8217;m not going in to all the details about installing Ubuntu server (debian would be similar), but I thought it would be worth noting the steps I made to get the RAID device partitioned ready for installing xen or KVM.</p>
+
+<h3>RAID configuration</h3>
+
+<p>When booting the server, you are able to access the MegaRAID configuration. As my server came with 2 unregistered drives, it was simple to create a new RAID1 configuration with those two 146Gb drives, creating a virtual 146Gb RAID1 drive.</p>
+
+<p>I ummed and ahhed a bit about whether to use the RAID controller, but it looks like it might be ok kit.</p>
+
+<h3>Install</h3>
+
+<p>I usually use inetbootin to create a USB memory stick with the OS I want to install. In this case, I downloaded the 64bit Ubuntu image and used it to create the bootable USB stick.</p>
+
+<p>Expert install followed.</p>
+
+<h3>Grub2 gotcha 1</h3>
+
+<p>Oh dear, I had a number of failed installs until I asked an expert (@wilbatron) for some help. The grub2 installation in to the MBR kept failing because… The grub2 installation doesn&#8217;t fit in the MBR does it? I wish it told me that rather than just failing.</p>
+
+<p>Ah well, got it sorted in the end, here is how I set up my partitions.</p>
+
+<h3>Partition set up</h3>
+
+<p>During the install, do manual partitioning. We&#8217;ll set up 2 physical partitions, one of which will be a Logical Volume Manager (LVM) Physical Volume (PV)</p>
+
+<h4>Physical</h4>
+
+<p>At this point, the menu will show your USB stick (still mounted) and your 146Gb virtual RAID drive. The Hardware RAID is hiding the fact that you&#8217;ve actually got two hard drives there and the installer just sees one.</p>
+
+<ul>
+<li>Select the Raid array - in my case, it was labelled <em>146.0Gb LSI MegaRAID 8708EM2</em></li>
+<li>Once selected, create a new empty partition (and table) for this device</li>
+<li>Choose GPT as the partition table type (not MSDOS!)</li>
+<li>Now select FREE SPACE 146.0GB and create new partition</li>
+<li>Set new partition size to be just 10Mb, this is where the installer will put the rest of grub2</li>
+<li>Set to be at the beginning of the drive</li>
+<li>Set type to be used as <em>Reserved BIOS Boot area</em></li>
+<li>Create next partition to use as Physical Volume (PV) for LVM</li>
+</ul>
+
+
+<h4>Logical</h4>
+
+<p>Now we configure the LVM</p>
+
+<ul>
+<li>Configure LVM (option at the top of the partitioning page)</li>
+<li>When prompted, write partition changes to disk</li>
+<li>Create volume group, give it a name and select the PV.</li>
+<li>Create logical volume, call it ROOT or whatever, mine was 15Gb - this is where the OS will be installed. You could create all the separate partitions if you like of course.</li>
+<li>Create swap volume, I chose 6Gb, although the server has 12Gb of server memory, I didn&#8217;t want to give it swap of that size. We&#8217;ll see how we go.</li>
+<li>Finish up and head back to partition page</li>
+<li>Set root partition to be root (ext4), doesn&#8217;t need to be bootable partition.</li>
+<li>Set swap to be swap</li>
+<li>Down to the bottom of the page and write changes to disk</li>
+<li>Back to main menu and install!</li>
+</ul>
+
+
+<h4>Installing grub in MBR - gotcha 2</h4>
+
+<p>Just another slight gotcha, if your USB stick is mounted as /dev/sda &amp; your RAID array as /dev/sdb you might have to tell it not to install to the MBA, but instead to where you want it installed, i.e. /dev/sdb</p>
+
+<p>Sorted!</p>
+
+<h3>BMC (Baseboard Managment Controller)set up</h3>
+
+<p>To get the BMC up and running properly, I needed to do a few things, first, is to ensure that it is set up correctly in the BIOS.</p>
+
+<p>Enter the BIOS and in the server management section, ensure it is set to use the correct LAN port, either <em>Dedicated</em> if you are using the single port on the back of the server, <em>On Board</em> for one of the 4 built in LAN ports. I used the latter with DHCP. Make a note of the IP address which is given to the BMC and fire it up in your web browser. All being well, you should see the log in page:</p>
+
+<p><img src="http://jamesjefferies.com/images/smartconsole.jpg" alt="console" /></p>
+
+<h4>Default authentication log in</h4>
+
+<p>Apparently the default is either admin/admin or ADMIN/ADMIN so give that a go first of all to see if you get in. If not, we will have to do some jiggery pokery on the server.</p>
+
+<h3>Resetting BMC credentials from the server</h3>
+
+<p>The tool, ipmitool is required to access the BMC from the server. I just did apt-get install ipmitool to get it up and running. However, before I got it working properly, I had to load some kernel modules</p>
+
+<h4>Kernel modules for ipmitool</h4>
+
+<p>First, I&#8217;d see whether it is working straight after install:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ipmitool sensor</span></code></pre></td></tr></table></div></figure>
+
+
+<p>if you get</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Could not open device at / dev/ipmi0 or / or dev/ipmi/0 / dev/ipmidev/0: No such file or directory
+</span><span class='line'>Get Device ID command failed
+</span><span class='line'>Unable to open SDR for reading</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then try manually loading the kernel modules with</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>modprobe ipmi_devintf
+</span><span class='line'>modprobe ipmi_msghandler
+</span><span class='line'>modprobe ipmi_poweroff
+</span><span class='line'>modprobe ipmi_si
+</span><span class='line'>modprobe ipmi_watchdog</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can add these to <code>/etc/modules</code> for permanent loading.</p>
+
+<p>Now try again, you should get some results</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ipmitool sensor</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Get correct channel</h4>
+
+<p>By running</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ipmitool -I open channel info 1</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(where the latter 1 is the channel, so if 1 doesn&#8217;t work, cycle through)</p>
+
+<p>I got</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Channel 0x1 info:
+</span><span class='line'>  Channel Medium Type   : 802.3 LAN
+</span><span class='line'>  Channel Protocol Type : IPMB-1.0
+</span><span class='line'>  Session Support       : multi-session
+</span><span class='line'>  Active Session Count  : 0
+</span><span class='line'>  Protocol Vendor ID    : 7154</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which showed that Channel 1 was the one I needed.</p>
+
+<h4>List users</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ipmitool user list 1</span></code></pre></td></tr></table></div></figure>
+
+
+<p>should give you a list of users, then you can reset the passwords. I ended up setting all I could to <em>password</em> then, once I was in the web admin, I deleted the users I didn&#8217;t need and set all the passwords to be more secure ones!</p>
+
+<h4>Set password</h4>
+
+<p>Hmm, not sure I got this right, but I tried</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ipmitool -I open lan set 1 password admin password                                                                                                                         
+</span><span class='line'>Password set for user 1</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(the 1 here is the channel)</p>
+
+<p>and</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ipmitool user set password 2 password</span></code></pre></td></tr></table></div></figure>
+
+
+<p>for the various users until I could log in to the console!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Olympic legacy server setup - part 2 - spares]]></title>
@@ -1117,75 +1304,6 @@ end</code></pre></noscript></div>
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Moving from WordPress to Octopress]]></title>
-    <link href="http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress/"/>
-    <updated>2012-08-01T12:43:00+01:00</updated>
-    <id>http://jamesjefferies.com/2012/08/01/moving-from-wordpress-to-octopress</id>
-    <content type="html"><![CDATA[<h2>What is Octopress?</h2>
-
-<p><a href="http://octopress.org">Octopress</a> is a blogging engine designed to be run from the command line, it uses Markdown for formatting content and doesn&#8217;t have any built in GUI editing facilities.</p>
-
-<p>It is worth looking at though because it generates static HTML files, so you don&#8217;t need a database, you don&#8217;t need PHP you just need to serve straight forward files.</p>
-
-<p>The integration with github pages is very nice, so you can actually use github to host your blog or website leaving them to worry about server admin etc!</p>
-
-<h2>Why did I switch?</h2>
-
-<p>At the moment, my virtual server was only hosting my blog and nothing else. At the moment, I don&#8217;t need it for anything else, so being able to move to github pages for free was one draw, saving me £X a month. When I need a server again, I&#8217;ll set one up.</p>
-
-<p>I having nothing against WordPress per se, but it wasn&#8217;t very hackable by me, a non-PHP developer. Now with Octopress, it seems a lot more straight forward. Plus I no longer have a MySQL or PHP install to maintain.</p>
-
-<p>It <em>feels</em> like the Octopress templates are more designer friendly. I&#8217;ll let you know if that is the case!</p>
-
-<p>My site now has very straightforward version control, powered by git.</p>
-
-<h2>How does it work?</h2>
-
-<p>You check out the <a href="https://github.com/imathis/octopress">source</a> (from github of course). The html generating engine is written in ruby, so you need to have that installed. Once set up and configured, you can push your content using git to wherever you want to deploy it.</p>
-
-<p>When you deploy, octopress turns your markdown and HTML templates in to straight forward HTML pages ready to be served.</p>
-
-<p>It uses Disqus by default for comments, but if you have a WordPress account, you can set that up with Disqus before migration. Works a treat.</p>
-
-<h2>Exiting WordPress</h2>
-
-<p>At first I tried the ruby WordPress migrating script. Basically it was not very good and I think I wasted a fair bit of time on it. Better is the Python <a href="https://github.com/thomasf/exitwp">exitwp.py</a> script which is.. brilliant!</p>
-
-<h2>Downsides</h2>
-
-<ul>
-<li>There is a much smaller plugin selection available</li>
-<li>You generally re-generate the whole site when you want to publish something new (there are ways around that though, to selectively generate new content).</li>
-<li>If you had a blog with a lot of posts, then it might take some time to generate.</li>
-<li>Small amount of off-the-shelf themes</li>
-</ul>
-
-
-<h2>Upsides</h2>
-
-<ul>
-<li>The standard plugins you might want are available, twitter, github, google analytics.</li>
-<li>Github pages integration is very straightforward</li>
-<li>Simple caching can be set up if required, but no more W3 Total Cache Super Plugin things</li>
-<li>No WordPress security loopholes and patches</li>
-<li>No PHP or MySQL loopholes or patches</li>
-<li>Fast</li>
-<li>Relatively lightweight page sizes</li>
-<li>Nice default, responsive design</li>
-</ul>
-
-
-<h2>Theme</h2>
-
-<p>I&#8217;m using a slightly customised default theme at the moment, but hopefully will have a bespoke one up and running soon.</p>
-
-<h2>Summary</h2>
-
-<p>Now I&#8217;m migrated, I&#8217;m liking it so far, let me know what you think..</p>
 ]]></content>
   </entry>
   

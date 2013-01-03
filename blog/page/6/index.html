@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="I&#8217;ve asked this a number of times in the past, but I think I&#8217;ve finally found the answer! Often with JSF you may have a command button &hellip;">
+  <meta name="description" content="Maven is the build &amp; dependency management tool we use for all our java projects. Used correctly it&#8217;s ace, but it can also prove to be a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/10/14/maven-gets-an-update-3-0/">Maven Gets an Update - 3.0</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-14T11:17:33+01:00" pubdate data-updated="true">Oct 14<span>th</span>, 2010</time>
+        
+         | <a href="/2010/10/14/maven-gets-an-update-3-0/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Maven is the build &amp; dependency management tool we use for all our java projects. Used correctly it&#8217;s ace, but it can also prove to be a headache when you head off the beaten track.</p>
+
+<p>Maven 3.0 has just been released which contains a lot of new goodies, plus, alleged backwards compatibility!</p>
+
+<p>The pom file, which is the main file which describes the structure of the project, it&#8217;d dependencies and plugins <em>is</em> backwards compatible, but there is stricter validation. So when I ran one of our project configuration files through the new version, it came up with a number of missing versions and scopes in the wrong place. Easy to fix and the config still works with version 2 or 3. Bigger and more complicated project structures may have more problems.</p>
+
+<p>The two things I think are most interesting are:</p>
+
+<ul>
+<li><p>When an error occurs, rather than just spitting out an error message, a link is included to a wiki page, what a great idea! For example:</p>
+
+<p>[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] <a href="http://cwiki.apache.org/confluence/display/MAVEN/NoGoalSpecifiedException">http://cwiki.apache.org/confluence/display/MAVEN/NoGoalSpecifiedException</a></p></li>
+<li><p>The maven shell has been updated, the shell is a high performance console add on, giving you syntax highlighting and context sensitive help. At the mo you can download and <a href="http://github.com/sonatype/mvnsh">install it from github </a></p></li>
+</ul>
+
+
+<p>I&#8217;ll be taking it out for a spin with some of our projects to see if there any issues, before we maybe have a look at some of our other projects.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -608,60 +663,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/12/06/mounting-readynas-duo-drives-in-ubuntu/">Mounting ReadyNAS Duo Drives From Ubuntu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-06T00:20:35+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
-        
-         | <a href="/2009/12/06/mounting-readynas-duo-drives-in-ubuntu/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Choosing a NAS solution where you can&#8217;t mount the storage media outside of the NAS is asking for trouble. I was worried I&#8217;d made the wrong choice when I found that mounting the ReadyNAS do ext3 drives is not trivial, mainly because they use a 16kb block size with their SPARC cpus.</p>
-
-<p>A bit of routing around found various solutions, but the one which worked for me was as follows.</p>
-
-<ol>
-<li><p>Fire up ubuntu vm (running on OS X for me and in my case 9.10 Karmic)</p></li>
-<li><p>install lvm2 with a apt-get install lvm2</p></li>
-<li><p>Download ext2fuse 0.5 (from <a href="http://linux.softpedia.com/progDownload/ext2fuse-Download-29820.html">here</a> for example)</p></li>
-<li><p>run vgscan to locate drives</p></li>
-<li><p>vgchange -ay c to allow access to drive</p></li>
-<li><p>mkdir /mnt/lvm</p></li>
-<li><p>ext2fuse /dev/c/c /mnt/lvm (where ext2fuse will have been downloaded)</p></li>
-<li><p>drive can now be accessed on /mnt/lvm</p></li>
-</ol>
-
-
-<p>Hurrah!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -679,6 +680,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server/">Olympic legacy server setup - part 3 - installing Ubuntu server</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic legacy server setup - part 2 - spares</a>
       </li>
     
@@ -692,10 +697,6 @@
     
       <li class="post">
         <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
       </li>
     
   </ul>

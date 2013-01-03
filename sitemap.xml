@@ -561,12 +561,18 @@
         <lastmod>2013-01-03T14:47:41+00:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server/
+        </loc>
+        <lastmod>2013-01-03T17:23:24+00:00</lastmod>
+    </url>
+    <url>
         <loc>http://jamesjefferies.com/about/</loc>
         <lastmod>2012-11-27T11:56:42+00:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/blog/archives/</loc>
-        <lastmod>2013-01-03T14:47:41+00:00</lastmod>
+        <lastmod>2013-01-03T17:23:24+00:00</lastmod>
     </url>
     <url>
         <loc>http://jamesjefferies.com/christmas-list/</loc>
@@ -574,6 +580,6 @@
     </url>
     <url>
         <loc>http://jamesjefferies.com/</loc>
-        <lastmod>2013-01-03T14:47:41+00:00</lastmod>
+        <lastmod>2013-01-03T17:23:24+00:00</lastmod>
     </url>
 </urlset>

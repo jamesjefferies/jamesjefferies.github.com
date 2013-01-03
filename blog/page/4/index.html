@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="This week has given us a real opportunity to do something interesting with Cathy &amp; Heathcliff, we spent two of our three days out of the Site &hellip;">
+  <meta name="description" content="This week has been a bit wonky. Saturday was a triumph, getting Cathy and Heathcliff doing something useful as part of Bill Drummond&#8217;s sixth &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/05/11/week-4-stutter-stutter/">Week 4 - Stutter Stutter</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-11T16:03:50+01:00" pubdate data-updated="true">May 11<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/11/week-4-stutter-stutter/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This week has been a bit wonky.</p>
+
+<p><strong>Saturday</strong> was a triumph, getting Cathy and Heathcliff doing something useful as part of Bill Drummond&#8217;s sixth form workshop. It certainly warmed the cockles &amp; Leila has written some more about it on her post.</p>
+
+<p><strong>Tuesday</strong> was a day where we were part of Site&#8217;s Brand Innovation task force, looking at Site&#8217;s &#8216;Brand Promise&#8217;. This was jam packed and a bit of a brain strain, but we made a contribution and as we were observed by our illustrious researcher, we hopefully gave him something to write about!</p>
+
+<p><strong>Wednesday</strong> went a bit wonky as my daughter was poorly meaning the day was very broken up. I started having a look at Ruby, the programming language whilst thinking about how we could get Cathy &amp; Heathcliff to interact a bit more with Twitter.</p>
+
+<p><strong>Thursday</strong> was the day of working out how to get Cathy and Heathcliff mobile. A frustrating day as the components and bits and bobs we bought didn&#8217;t work or wouldn&#8217;t work how we wanted them to. We ended the day though with a 3G dongle and an ethernet to USB connector which hopefully means that if we can take a Mac, a dongle, a lead, a printer &amp; some sort of power supply then we can take them anywhere where there is a mobile signal and they&#8217;ll work.</p>
+
+<p>We also spent a fair bit of time thinking about our contribution to <a href="http://futureeverything.org/">Future Everything</a> which is next week, meep!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -566,62 +614,6 @@ path/to/eclipse/here
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/06/29/mysql-and-foreign-keys/">MySQL and Foreign Keys</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-29T23:25:40+01:00" pubdate data-updated="true">Jun 29<span>th</span>, 2011</time>
-        
-         | <a href="/2011/06/29/mysql-and-foreign-keys/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This is to remind me next time that MySQL isn’t as clever as you think it might be.</p>
-
-<p>If you have Table A, with column 1, 2, 3 and Table B with columns 4, 5, 6 – Primary keys are columns 1 &amp; 4 respectively.</p>
-
-<p>Now you want to add a foreign key to table B, column 6, referencing column 1 in table A. No problem:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">`</span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tableB</span> <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="n">fk_column_1</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">column6</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">tableA</span> <span class="p">(</span><span class="n">column1</span><span class="p">);</span><span class="o">`</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>oh dear, fails with something like</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">`</span><span class="n">ERROR</span> <span class="mi">1005</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="n">Can</span><span class="s1">&#39;t create table &#39;</span><span class="p">.</span><span class="o">/</span><span class="n">databasename</span><span class="o">/#</span><span class="k">sql</span><span class="o">-</span><span class="mi">55</span><span class="n">d1_b07</span><span class="p">.</span><span class="n">frm</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">errno</span><span class="p">:</span> <span class="mi">150</span><span class="p">)</span><span class="o">`</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This fails because creating the primary key on columns 1 and 4 don’t automatically create indexes on those columns, and adding a foreign key requires there to be an index on the column you are referencing. Boom!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -639,6 +631,10 @@ path/to/eclipse/here
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server/">Olympic legacy server setup - part 3 - installing Ubuntu server</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic legacy server setup - part 2 - spares</a>
       </li>
     
@@ -652,10 +648,6 @@ path/to/eclipse/here
     
       <li class="post">
         <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
       </li>
     
   </ul>

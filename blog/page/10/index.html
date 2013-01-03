@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="So I reckon I&#8217;ve spent over an hour wrestling with this chuffer&#8230;. Simple search button on a page using Tomahawk Data Table to render the &hellip;">
+  <meta name="description" content="So traditionally, using cron on a server, calling a java method would be the default way of running some java code on a regular basis. Usually though &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,101 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/18/setting-up-simple-timer-jobs-using-quartz-2/">Setting Up Simple Timer Jobs Using Quartz</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-18T11:07:21+00:00" pubdate data-updated="true">Feb 18<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So traditionally, using cron on a server, calling a java method would be the default way of running some java code on a regular basis. Usually though you get tangled co-ordinating setting up the cron job, plus you have to write a specific method to be called which can be run from the command line. Before too long you&#8217;re wiring up special persistence sessions to do the work.</p>
+
+<p>There has to be a better way&#8230;</p>
+
+<p>and there is! One option is to use the built in java.timer functions in the jdk. However, a better option might be to use Quartz.</p>
+
+<p><a href="http://www.opensymphony.com/quartz/">Quartz</a> is a job scheduling system, encapuslated in a java library. You can do all sorts of funky stuff, including using cron like scheduling configuration. Everybody&#8217;s happy.</p>
+
+<p>To get it integrated though with your java app is made very easy if you are using <a href="http://www.springsource.org/">Spring</a>. We&#8217;re using Spring 2.5 for this example, you can find out more here: <a href="http://static.springframework.org/spring/docs/2.5.x/reference/scheduling.html">Spring Scheduling</a></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>      <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;jobYouWantToRun&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;targetObject&quot;</span> <span class="na">ref=</span><span class="s">&quot;thisIsAReferenceToTheSpringBeanWithTheMethod&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;targetMethod&quot;</span> <span class="na">value=</span><span class="s">&quot;thisIsTheMethodName&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;concurrent&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So the config above sets up a job bean of type MethodInvoking blah - this takes a reference to a Spring Managed bean (one of your beans) and a method name, which is the method you want to run on a specific schedule.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&quot;org.springframework.scheduling.quartz.SchedulerFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;triggers&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;list&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;ref</span> <span class="na">bean=</span><span class="s">&quot;cronTriggerForOurJob&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/list&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here we set up the actual scheduler. We&#8217;ve only put one trigger in the list for example purposes. You can have simple triggers, for example, run every 100 seconds, or cron based triggers, which is what we&#8217;ve set up below.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;cronTriggerForOurJob&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.scheduling.quartz.CronTriggerBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;jobDetail&quot;</span> <span class="na">ref=</span><span class="s">&quot;jobYouWantToRun&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;cronExpression&quot;</span> <span class="na">value=</span><span class="s">&quot;* 10 * ? * *&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The cron expression can be set up how you want, for <a href="http://quartz.sourceforge.net/javadoc/org/quartz/CronTrigger.html">more details</a></p>
+
+<p>So, when the Spring container is instantiated, it&#8217;ll fire up quartz for you and before you know it, your method is being run on a regular basis.</p>
+
+<p>Nothing needs to change in the Spring managed bean containing the method, it&#8217;s all config in your Spring XML config. Hopefully in Spring 3.0 this can be done with annotations, making the link between the actual code in the class and the timer more explicit.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -481,51 +576,6 @@ var_dump($_SERVER);</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/07/14/so-you-want-to-add-comments-to-a-facelets-page/">So You Want to Add Comments to a Facelets Page?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-14T15:15:55+01:00" pubdate data-updated="true">Jul 14<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Simple, use the remove tag. This gets stripped out very early on and will not be rendered.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;ui:remove&gt;</span>
-</span><span class='line'>This is a comment basically, will get stripped out when facelets sorts out the templates...
-</span><span class='line'><span class="nt">&lt;/ui:remove&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -543,6 +593,10 @@ var_dump($_SERVER);</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server/">Olympic legacy server setup - part 3 - installing Ubuntu server</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic legacy server setup - part 2 - spares</a>
       </li>
     
@@ -556,10 +610,6 @@ var_dump($_SERVER);</p>
     
       <li class="post">
         <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
       </li>
     
   </ul>

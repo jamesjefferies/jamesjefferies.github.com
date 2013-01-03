@@ -9,8 +9,8 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Unpack the latest beta version of selenium update the rdf file, change 3.0b3 to 3.0b5 repack install hooray!
-">
+  <meta name="description" content="thank you Jamie! (but then I found this too with prototype) 1
+$(&#39;container&#39;).update(&#39;&lt;a href=&quot;#&quot; id=&quot;myclickid&quot;&gt &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,103 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/05/01/adding-a-link-in-javascript/">Adding a Link in Javascript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-01T13:26:27+01:00" pubdate data-updated="true">May 1<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>thank you Jamie!</p>
+
+<p>(but then I found this too with prototype)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;#&quot; id=&quot;myclickid&quot;&gt;text for link&lt;/a&gt;&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which will update a container called div and pop in the following stuff</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>should become</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">id=</span><span class="s">&quot;myclickid&quot;</span><span class="nt">&gt;</span>text for link<span class="nt">&lt;/a&gt;&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>function addLink() {
+</span><span class='line'>
+</span><span class='line'>    var closeP = document.createElement(&quot;p&quot;);
+</span><span class='line'>    closeP.appendChild(document.createTextNode(&quot;Alternatively, &quot;);
+</span><span class='line'>
+</span><span class='line'>    var closeLink = document.createElement(&quot;a&quot;);
+</span><span class='line'>    closeLink.href = &quot;#&quot;;
+</span><span class='line'>    closeLink.onclick = function() { window.close(); };
+</span><span class='line'>    closeLink.appendChild(document.createTextNode(&quot;Close window&quot;));
+</span><span class='line'>    closeP.appendChild(closeLink);
+</span><span class='line'>
+</span><span class='line'>    var parentEl = document.getElementById(&quot;container&quot;);
+</span><span class='line'>    // this should be the ID of the element this link should be appended to
+</span><span class='line'>    parentEl.appendChild(closeP);
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    if (window.addEventListener) { window.addEventListener(&quot;load&quot;, addLink, false); }
+</span><span class='line'>    else if (window.attachEvent) { window.attachEvent(&quot;onload&quot;, addLink); }
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -463,54 +560,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/05/01/fire-drama/">Fire Drama</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-05-01T12:12:37+01:00" pubdate data-updated="true">May 1<span>st</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This morning I was woken by an explosion around 5am - when I looked up, I could see red flickering reflecting on the ceiling, consequently I jumped out of bed, put my specs on and looked out of the window. There was a car, on fire opposite my house!</p>
-
-<p>Immediately I phoned the fire brigade and was slightly off put by a voice reading out my mobile phone number, I suspect for the recording. I said there was a car on fire and gave the name of my street, but forget to tell them the city! Once they sorted that out, they said a fire engine would be on it&#8217;s way.</p>
-
-<p>I threw on some clothes, got the car keys and went outside, a bit scared in case there was a further explosion. Noticing that Clare&#8217;s number plate had melted on her car, I quickly hopped in and drove it up the street. The plastic bumper had buckled a bit, but I think it&#8217;ll be ok. The number plate is just a mess.</p>
-
-<p>Then I got my car and moved it out of the way too, taking no chances. At that point the fire engine turned up and they started to put the fire out.</p>
-
-<p>Don&#8217;t know whether it was joyriders, just setting it on fire at the end of the road, or a neighbours car which had developed an electrical fault, set itself on fire and rolled down the hill, or some other explanation.</p>
-
-<p>Needless to say, I went back to bed, but couldn&#8217;t sleep because of the adrenaline! By the time I did feel dozy, it was time to get up for work.. harumph!</p>
-
-<p>The car was there when I left, a wreck, blocking the road at one end.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/13/">&larr; Older</a>
@@ -528,6 +577,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server/">Olympic legacy server setup - part 3 - installing Ubuntu server</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic legacy server setup - part 2 - spares</a>
       </li>
     
@@ -541,10 +594,6 @@
     
       <li class="post">
         <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="svcadm is the service admin command line thing on solaris e.g. svcadm enable tomcat will switch on the tomcat managed service if a service doesn&# &hellip;">
+  <meta name="description" content="Well, after much head scratching, it appears that myfaces 1.2 (.3 specifically) doesn&#8217;t play ball with tomcat 6.0.14. A class cast error occurs &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/09/myfaces-12-and-tomcat-6/">Myfaces 1.2 and Tomcat 6</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-09T16:39:13+01:00" pubdate data-updated="true">Jul 9<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Well, after much head scratching, it appears that myfaces 1.2 (.3 specifically) doesn&#8217;t play ball with tomcat 6.0.14. A class cast error occurs when setting values determined by a select box.</p>
+
+<p>Not only is this a bit rubbish, but it&#8217;s cost me virtually a day of pain to work out what the problem was, and back out some changes.</p>
+
+<p>Consequently I&#8217;ve gone back to myfaces 1.1.5 - painful, but true, as I&#8217;m not sure I&#8217;d be able to get the nod to upgrade the tomcats to 6.0.16 - which does seem to work.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -664,50 +704,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/05/01/getting-selenium-to-work-with-firefox-30b5/">Getting Selenium to Work With Firefox 3.0b5</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-01T11:10:06+01:00" pubdate data-updated="true">May 1<span>st</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Unpack the latest beta version of selenium</p>
-
-<p>update the rdf file, change 3.0b3 to 3.0b5</p>
-
-<p>repack</p>
-
-<p>install</p>
-
-<p>hooray!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -725,6 +721,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic legacy server setup - part 2 - spares</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/12/27/olympic-legacy-server-setup-part-1b/">Olympic legacy server setup - part 1b</a>
       </li>
     
@@ -738,10 +738,6 @@
     
       <li class="post">
         <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
   </ul>
@@ -803,7 +799,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - James Jefferies -
+  Copyright &copy; 2013 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Olympic | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/categories/olympic/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-12-28T10:54:39+00:00</updated>
+  <updated>2013-01-03T14:57:15+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Olympic legacy server setup - part 2 - spares]]></title>
+    <link href="http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-2-spares/"/>
+    <updated>2013-01-03T14:40:00+00:00</updated>
+    <id>http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-2-spares</id>
+    <content type="html"><![CDATA[<p>I've been having a bit of a look around to try and find out where you can buy caddies and Seagate drives for the server.</p>
+
+<h2>Hard Drive Caddies</h2>
+
+<p>My server came with two drives in caddies, but with no spares.</p>
+
+<p>According to the <a href="http://www.supermicro.com/products/system/2U/2026/SYS-2026T-URF4_.cfm">SuperMicro</a> spec for the server, the caddy model number is MCP-220-00047-0B "Black gen 3 hot swap 2.5" HDD tray"</p>
+
+<p>There seem to be a few UK suppliers around, although I wonder what has happened to all the drives removed from the servers before sale?</p>
+
+<p>Anyway, here is one which I think I will try, from <a href="http://www.lambda-tek.com/MCP-220-00047-0B-Supermicro-BLACK-HOT-SWAP-2-5-quot-SAS-SATA-HDD-TRAY~cs/B577304&amp;viewOverview=y#productTop">Lambda-tek</a>, price currently £9.20 + VAT.</p>
+
+<h2>Hard Drives</h2>
+
+<p>Then for the Seagate drives, mine has a couple of Seagate Savvio 10K.3 10k rpm, SAS drives, there are a few on ebay, this one seems to be the cheapest for used drives on <a href="http://r.ebay.com/zq4oCB">ebay</a>. Of course, these drives may have gazillion hours of use on them, but hey ho.</p>
+
+<p><img src="/images/seagate.jpeg" alt="seagatedrive" /></p>
+
+<h2>What next</h2>
+
+<p>Well, I've ordered a couple of caddies and drives, will see how they turn out. Plus, I've got an Operating System installed, see next post!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Olympic legacy server setup - part 1b]]></title>

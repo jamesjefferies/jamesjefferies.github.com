@@ -4,7 +4,7 @@
   <title><![CDATA[Category: techie | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/categories/techie/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-12-28T10:54:39+00:00</updated>
+  <updated>2013-01-03T14:57:15+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Olympic legacy server setup - part 2 - spares]]></title>
+    <link href="http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-2-spares/"/>
+    <updated>2013-01-03T14:40:00+00:00</updated>
+    <id>http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-2-spares</id>
+    <content type="html"><![CDATA[<p>I've been having a bit of a look around to try and find out where you can buy caddies and Seagate drives for the server.</p>
+
+<h2>Hard Drive Caddies</h2>
+
+<p>My server came with two drives in caddies, but with no spares.</p>
+
+<p>According to the <a href="http://www.supermicro.com/products/system/2U/2026/SYS-2026T-URF4_.cfm">SuperMicro</a> spec for the server, the caddy model number is MCP-220-00047-0B "Black gen 3 hot swap 2.5" HDD tray"</p>
+
+<p>There seem to be a few UK suppliers around, although I wonder what has happened to all the drives removed from the servers before sale?</p>
+
+<p>Anyway, here is one which I think I will try, from <a href="http://www.lambda-tek.com/MCP-220-00047-0B-Supermicro-BLACK-HOT-SWAP-2-5-quot-SAS-SATA-HDD-TRAY~cs/B577304&amp;viewOverview=y#productTop">Lambda-tek</a>, price currently £9.20 + VAT.</p>
+
+<h2>Hard Drives</h2>
+
+<p>Then for the Seagate drives, mine has a couple of Seagate Savvio 10K.3 10k rpm, SAS drives, there are a few on ebay, this one seems to be the cheapest for used drives on <a href="http://r.ebay.com/zq4oCB">ebay</a>. Of course, these drives may have gazillion hours of use on them, but hey ho.</p>
+
+<p><img src="/images/seagate.jpeg" alt="seagatedrive" /></p>
+
+<h2>What next</h2>
+
+<p>Well, I've ordered a couple of caddies and drives, will see how they turn out. Plus, I've got an Operating System installed, see next post!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Olympic legacy server setup - part 1b]]></title>
@@ -172,27 +201,6 @@
 <p>If you are your own boss, then plan in time where you put down the work you’re doing for clients or your startup and have a play. You never know what amazing ideas might come to life!</p>
 
 <p>Disclaimer - the creativity tap premise is a load of nonsense, if only it was a tap we could switch on and off!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Before you buy a Berg Little Printer...]]></title>
-    <link href="http://jamesjefferies.com/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot/"/>
-    <updated>2012-08-14T19:56:00+01:00</updated>
-    <id>http://jamesjefferies.com/2012/08/14/before-you-buy-a-berg-little-printer-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>You may have heard today that <a href="http://bergcloud.com/littleprinter/">BERG's Little Printer</a> is now available for pre-order. It does look like a great bit of kit &amp; the ability to produce your own content should produce some interesting rolls of paper!</p>
-
-<p>Anyways, before you splash out with your hard earned £199 + P&amp;P you should, you <em>really</em> should have a look at <a href="http://gofreerange.com/printer">Go free range's Open Source printer</a>.</p>
-
-<p>Not only are they cheaper than the Little Printer, but being Open Source &amp; built using Rails &amp; Arduino, you can get stuck in to the source code, make changes yourself and create some interesting content.</p>
-
-<p>As part of the <a href="http://happenstanceproject.com">Happenstance Project</a> we were fortunate to borrow a couple of Go free range's printers and start experimenting. We hooked them up with <a href="http://twilio.com">Twilio</a> and a bit of ruby magic to get them recieving SMS messages. Each printer (Cathy &amp; Heathcliff) had their own phone numbers, when they recieved the message, they printed it out &amp; sent the contents to their twitter feeds.</p>
-
-<p>You can read more on this blog <a href="http://jamesjefferies.com/2012/05/04/week-3-cathy-heathcliffs-amazing-adventures/">elsewhere</a> or you can watch our <a href="http://tedxtalks.ted.com/video/TEDxSheffield-2012-Leila-Johnst">TEDx</a> talk on the project as a whole.</p>
-
-<p>So, buy all means pre-order a Little Printer, but have a think about getting the super duper Go Free Ranger printer first!</p>
-
-<p><img src="http://25.media.tumblr.com/tumblr_m4uf1acC5R1rvn0edo1_500.jpg" title="Cathy Long Cat" alt="Cathy long cat" /></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2012-12-28T10:54:39+00:00</updated>
+  <updated>2013-01-03T14:57:15+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Olympic legacy server setup - part 2 - spares]]></title>
+    <link href="http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-2-spares/"/>
+    <updated>2013-01-03T14:40:00+00:00</updated>
+    <id>http://jamesjefferies.com/2013/01/03/olympic-legacy-server-setup-part-2-spares</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve been having a bit of a look around to try and find out where you can buy caddies and Seagate drives for the server.</p>
+
+<h2>Hard Drive Caddies</h2>
+
+<p>My server came with two drives in caddies, but with no spares.</p>
+
+<p>According to the <a href="http://www.supermicro.com/products/system/2U/2026/SYS-2026T-URF4_.cfm">SuperMicro</a> spec for the server, the caddy model number is MCP-220-00047-0B &#8220;Black gen 3 hot swap 2.5&#8221; HDD tray&#8221;</p>
+
+<p>There seem to be a few UK suppliers around, although I wonder what has happened to all the drives removed from the servers before sale?</p>
+
+<p>Anyway, here is one which I think I will try, from <a href="http://www.lambda-tek.com/MCP-220-00047-0B-Supermicro-BLACK-HOT-SWAP-2-5-quot-SAS-SATA-HDD-TRAY~cs/B577304&amp;viewOverview=y#productTop">Lambda-tek</a>, price currently £9.20 + VAT.</p>
+
+<h2>Hard Drives</h2>
+
+<p>Then for the Seagate drives, mine has a couple of Seagate Savvio 10K.3 10k rpm, SAS drives, there are a few on ebay, this one seems to be the cheapest for used drives on <a href="http://r.ebay.com/zq4oCB">ebay</a>. Of course, these drives may have gazillion hours of use on them, but hey ho.</p>
+
+<p><img src="http://jamesjefferies.com/images/seagate.jpeg" alt="seagatedrive" /></p>
+
+<h2>What next</h2>
+
+<p>Well, I&#8217;ve ordered a couple of caddies and drives, will see how they turn out. Plus, I&#8217;ve got an Operating System installed, see next post!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Olympic legacy server setup - part 1b]]></title>
@@ -1157,31 +1186,6 @@ end</code></pre></noscript></div>
 <h2>Summary</h2>
 
 <p>Now I&#8217;m migrated, I&#8217;m liking it so far, let me know what you think..</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Downloading the Network Rail Schedules]]></title>
-    <link href="http://jamesjefferies.com/2012/07/18/downloading-the-network-rail-schedules/"/>
-    <updated>2012-07-18T17:43:39+01:00</updated>
-    <id>http://jamesjefferies.com/2012/07/18/downloading-the-network-rail-schedules</id>
-    <content type="html"><![CDATA[<p>As well as the live feeds which you can subscribe to for the Network Rail data, you can also download the Schedule feed which is delivered by Amazon S3. The Schedule feed is an extract of train schedules from the Integration Train Planning System.</p>
-
-<p>When you have your Network Rail account you can subscribe, either to all the data, or to the Train Operators you are interested in. However, at the time of writing, the only feed which works is the one for ALL the data, the Train Operator specific downloads throw an unhelpful error</p>
-
-<blockquote><p>HTTP Status 401 - User not subscribed to CIF_HL_FULL_DAILY</p></blockquote>
-
-<p>Which is a bit rubbish really. So my advice is, at this point to subscribe to ALL the data rather than just for one TOC. You can then access the feeds and download the zip file with either:</p>
-
-<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&amp;day=toc-full</a></p>
-
-<p>for the full feed or, say</p>
-
-<p><a href="https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon">https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&amp;day=toc-mon</a></p>
-
-<p>for Monday&#8217;s update.</p>
-
-<p>Note that you will need to authenticate if you haven&#8217;t already, using your username and password.</p>
 ]]></content>
   </entry>
   

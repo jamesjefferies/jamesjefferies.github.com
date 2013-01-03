@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="More details on the Olympic servers Thanks to a lot of investigation by @interpipes we now have some more details about these servers. It looks like &hellip;">
+  <meta name="description" content="I&#8217;ve been having a bit of a look around to try and find out where you can buy caddies and Seagate drives for the server. Hard Drive Caddies My &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic Legacy Server Setup - Part 2 - Spares</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-03T14:40:00+00:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
+        
+         | <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been having a bit of a look around to try and find out where you can buy caddies and Seagate drives for the server.</p>
+
+<h2>Hard Drive Caddies</h2>
+
+<p>My server came with two drives in caddies, but with no spares.</p>
+
+<p>According to the <a href="http://www.supermicro.com/products/system/2U/2026/SYS-2026T-URF4_.cfm">SuperMicro</a> spec for the server, the caddy model number is MCP-220-00047-0B &#8220;Black gen 3 hot swap 2.5&#8221; HDD tray&#8221;</p>
+
+<p>There seem to be a few UK suppliers around, although I wonder what has happened to all the drives removed from the servers before sale?</p>
+
+<p>Anyway, here is one which I think I will try, from <a href="http://www.lambda-tek.com/MCP-220-00047-0B-Supermicro-BLACK-HOT-SWAP-2-5-quot-SAS-SATA-HDD-TRAY~cs/B577304&amp;viewOverview=y#productTop">Lambda-tek</a>, price currently £9.20 + VAT.</p>
+
+<h2>Hard Drives</h2>
+
+<p>Then for the Seagate drives, mine has a couple of Seagate Savvio 10K.3 10k rpm, SAS drives, there are a few on ebay, this one seems to be the cheapest for used drives on <a href="http://r.ebay.com/zq4oCB">ebay</a>. Of course, these drives may have gazillion hours of use on them, but hey ho.</p>
+
+<p><img src="/images/seagate.jpeg" alt="seagatedrive" /></p>
+
+<h2>What next</h2>
+
+<p>Well, I&#8217;ve ordered a couple of caddies and drives, will see how they turn out. Plus, I&#8217;ve got an Operating System installed, see next post!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -651,88 +709,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/">Troubleshooting WordPress Connectivity Issue - Could Not Connect to Host</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-05T14:57:00+01:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
-        
-         | <a href="/2012/09/05/troubleshooting-wordpress-connectivity-issue/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>The problem</h2>
-
-<p>After migrating a WordPress site, auto update and plugin install wouldn&#8217;t work. The former errored with <code>could not connect to host</code> which seemed very odd.</p>
-
-<h3>First attempts</h3>
-
-<p>WordPress allows you to download the file manually or autoupdate if configured correctly. Clicking on the manual download link and the file downloaded fine to the local machine. So first, I thought I&#8217;d try and download the file from the command line on the new server.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://wordpress.org/wordpress-3.4.1.zip</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Zip, it all downloaded fine.</p>
-
-<h3>Extra help</h3>
-
-<p>There is a good trouble shooting/dev plugin for WordPress called <a href="http://wordpress.org/extend/plugins/core-control/">Core Control</a>. By installing this and enabling the HTTP control, you can test the various transports WordPress uses for downloads. Curl, PHP File open, PHP Fsockopen etc.</p>
-
-<p>Testing all three default transports, starting with cURL came up with the same message, <code>could not connect to host</code></p>
-
-<h3>Head Scratching time</h3>
-
-<p>So WordPress was telling the truth. Now, as WordPress was running as the <code>www-data</code> user, what happens if I tried the wget from the command line for that user?</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://wordpress.org/wordpress-3.4.1.zip
-</span><span class='line'>Permission denied!</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ah-ha, so it was nothing to do with WordPress, the <code>www-data</code> user couldn&#8217;t download anything.</p>
-
-<h3>Problem solved!</h3>
-
-<p>Firewalls, I started thinking firewalls and lo and behold, <a href="https://projects.bytemark.co.uk/projects/24/wiki/Firewall">BytemarkUK block outgoing http traffic</a> for the www-data user by default! This makes sense for when sites get compromised, but it also stops some of the core functionality for updates etc working.</p>
-
-<p>Enabling http traffic for the www-data user will make things worse if the site is compromised, but also makes it a lot easier to keep the site up to date, reducing the chances of a WordPress exploit.</p>
-
-<p>The following removes the firewall rule</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rm /etc/symbiosis/firewall/outgoing.d/50-www-data</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -748,6 +724,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic legacy server setup - part 2 - spares</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/12/27/olympic-legacy-server-setup-part-1b/">Olympic legacy server setup - part 1b</a>
       </li>
     
@@ -761,10 +741,6 @@
     
       <li class="post">
         <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
   </ul>
@@ -826,7 +802,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - James Jefferies -
+  Copyright &copy; 2013 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

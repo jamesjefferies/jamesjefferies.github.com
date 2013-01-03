@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="As a relatively experienced JSF 1.2 user I have high hopes for the next generation of the JSF framework. Consequently I gave up my afternoon to have &hellip;">
+  <meta name="description" content="JPA (Java Persistence API) is the standard implementation for persistence in the Java world. Although most people would probably use Hibernate (which &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/24/jpa-and-hades/">JPA and Hades</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-24T23:21:43+00:00" pubdate data-updated="true">Nov 24<span>th</span>, 2009</time>
+        
+         | <a href="/2009/11/24/jpa-and-hades/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>JPA (Java Persistence API) is the standard implementation for persistence in the Java world. Although most people would probably use Hibernate (which is JPA compliant) the JPA spec gives a standard way forward for the various persistence vendors to produce compliant platforms which they can then extend with their own bells and whistles.</p>
+
+<p>Having used JPA a few times now, I&#8217;ve found it to be well thought out and useful. However, although JPA 2.0 is around the corner there are still some improvments which could be made. Hades is an open source library which is built on top of JPA and makes producing the Data Access (DAO) layer super easy. Using convention over configuration means that simply by writing an interface with the simple queries you require is all that is required for Hades to factory produce the actual services you will need.</p>
+
+<p>So, for example, by declaring public User findByUsername(String username);  in your service interface, Hades will automatically generate a corresponding query returning a type safe User. This works for lists as well (which solves the pain of having generic lists returned which are not type safe)</p>
+
+<p>It uses a genericDAO service which is the JPA entity manager on steroids.</p>
+
+<p>Proper named queries can be added to the interface and once again, Hades will implement the query for you.</p>
+
+<p>All in all, definitely worth a look.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -561,56 +609,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/05/01/deploying-applications-to-tomcat-running-under/">Deploying Applications to Tomcat Running Under /</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-01T11:22:15+01:00" pubdate data-updated="true">May 1<span>st</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Standard practice with tomcat is that the application is deployed under a directory which is derived from the name of the war file archive which is deployed.</p>
-
-<p>i.e. foo.war will be deployed to the foo directory and will be accessed with the URL http://application-server-url/foo</p>
-
-<p>All well and good, but what if you want to access it as http://app-server-url/   ?</p>
-
-<p>a number of approaches were tried, none of which worked 100%, they part worked or ended up with the application being deployed twice. Pain, pain, pain.</p>
-
-<p>Trying to use docbase in the server.xml, i.e.</p>
-
-<p><code>&lt;Context path="" docBase="foo" debug="1"/&gt;</code></p>
-
-<p>will result in the application being deployed to / and /foo - not good, we only want it deployed once.</p>
-
-<p>So, take a step back. Only one application can be deployed under / and for tomcat, this defaults to one called ROOT.war, so rather than creating and deploying foo.war, call it ROOT.war and it will deploy to /, once and everyone is happy.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -628,6 +626,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic legacy server setup - part 2 - spares</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/12/27/olympic-legacy-server-setup-part-1b/">Olympic legacy server setup - part 1b</a>
       </li>
     
@@ -641,10 +643,6 @@
     
       <li class="post">
         <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
   </ul>
@@ -706,7 +704,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - James Jefferies -
+  Copyright &copy; 2013 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

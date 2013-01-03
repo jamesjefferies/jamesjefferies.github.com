@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Tinkering around with vmware server install meant that I couldn&#8217;t do any apt-get stuff. It kept on trying to remove the half installed debian &hellip;">
+  <meta name="description" content="So I reckon I&#8217;ve spent over an hour wrestling with this chuffer&#8230;. Simple search button on a page using Tomahawk Data Table to render the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/03/annoying-bug-with-myfaces-2/">Annoying Bug With MyFaces</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-03T09:42:52+00:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So I reckon I&#8217;ve spent over an hour wrestling with this chuffer&#8230;.</p>
+
+<p>Simple search button on a page using Tomahawk Data Table to render the output. Page would render first time out, but then using the search button resulted in the following error</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">NoSuchMethodError</span><span class="o">:</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">myfaces</span><span class="o">.</span><span class="na">component</span><span class="o">.</span><span class="na">html</span><span class="o">.</span><span class="na">ext</span><span class="o">.</span><span class="na">HtmlDataTable</span><span class="o">.</span><span class="na">refresh</span><span class="o">(</span><span class="n">Ljavax</span><span class="o">/</span><span class="n">faces</span><span class="o">/</span><span class="n">context</span><span class="o">/</span><span class="n">FacesContext</span><span class="o">;)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Looks like there might be a problem rendering the data table doesn&#8217;t it. Well, I thought I&#8217;d made a chimpolata mistake somewhere down the line&#8230; and I had, but nothing to do with the table&#8230;.</p>
+
+<p>The last thing the search method did was return a string to tell MyFaces where to navigate to next. Like a complete chump, at some point I&#8217;d removed the config from the faces navigation xml to tell it which page that string referred to.</p>
+
+<p>Consequently, rather than saying something like</p>
+
+<pre><code>Navigation failure you numpty, couldn't find "list-applicants"
+</code></pre>
+
+<p>it came up with the other error&#8230; Thanks MyFaces, you&#8217;re really helpful</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -470,46 +526,6 @@ var_dump($_SERVER);</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/07/09/myfaces-12-and-tomcat-6/">Myfaces 1.2 and Tomcat 6</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-09T16:39:13+01:00" pubdate data-updated="true">Jul 9<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Well, after much head scratching, it appears that myfaces 1.2 (.3 specifically) doesn&#8217;t play ball with tomcat 6.0.14. A class cast error occurs when setting values determined by a select box.</p>
-
-<p>Not only is this a bit rubbish, but it&#8217;s cost me virtually a day of pain to work out what the problem was, and back out some changes.</p>
-
-<p>Consequently I&#8217;ve gone back to myfaces 1.1.5 - painful, but true, as I&#8217;m not sure I&#8217;d be able to get the nod to upgrade the tomcats to 6.0.16 - which does seem to work.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -527,6 +543,10 @@ var_dump($_SERVER);</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic legacy server setup - part 2 - spares</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012/12/27/olympic-legacy-server-setup-part-1b/">Olympic legacy server setup - part 1b</a>
       </li>
     
@@ -540,10 +560,6 @@ var_dump($_SERVER);</p>
     
       <li class="post">
         <a href="/2012/10/28/a-great-idea-for-amazon-deliveries/">A great idea for Amazon deliveries</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/16/scenic-railways-our-railway-hack/">Scenic Railways - our railway hack</a>
       </li>
     
   </ul>
@@ -605,7 +621,7 @@ var_dump($_SERVER);</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - James Jefferies -
+  Copyright &copy; 2013 - James Jefferies -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

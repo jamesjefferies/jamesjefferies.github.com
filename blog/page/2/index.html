@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="The Creativity Tap Creativity is just like a tap right? You need to do some thing a bit woo and a bit wah, so you switch on the creativity tap and &hellip;">
+  <meta name="description" content="Following on from the amazing Happenstance Project I worked on earlier in the year, we had the final Showcase at Nesta HQ. For the Showcase, Leila &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,48 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/09/26/happenstance-newspaper/">Happenstance Newspaper</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-26T20:50:00+01:00" pubdate data-updated="true">Sep 26<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/26/happenstance-newspaper/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Following on from the amazing <a href="http://happenstanceproject.com">Happenstance Project</a> I worked on earlier in the year, we had the final Showcase at Nesta HQ. For the Showcase, <a href="http://finalbullet.com">Leila</a> produced a Happenstance Newspaper, designed by <a href="http://alexparrott.co.uk">Alex Parrott</a> including articles by yours truly! You can download a <a href="http://jamesjefferies.com/Happenstance_2012_Newspaper.pdf">PDF copy of it</a>.</p>
+
+<p>Enjoy!</p>
+
+<p><img src="http://jamesjefferies.com/happenstance_newspaper.jpg" title="Happenstance Newspaper" alt="Newspaper" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1040,143 +1082,6 @@ end</code></pre></noscript></div>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/">Importing Network Rail Train Movement Feeds Into MongoDB</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-07T14:33:00+01:00" pubdate data-updated="true">Aug 7<span>th</span>, 2012</time>
-        
-         | <a href="/2012/08/07/importing-network-rail-train-movement-feeds-into-mongodb/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Network Rail datafeeds?</h2>
-
-<p>Ah yes, please my previous <a href="http://jamesjefferies.com/2012/07/04/getting-started-with-network-rails-datafeeds/">blog</a> post for further info, apologies for the lack of updates on here, I&#8217;ve been away, sent round the loop line.</p>
-
-<h2>Why MongoDB?</h2>
-
-<p><a href="http://www.mongodb.org/">MongoDB</a> is a scalable, high-performance, open source, NoSQL database. I thought it would make a good fit for the train movement feeds as it&#8217;s storage is oriented towards JSON-style documents. It&#8217;s JSON-style because it actually uses <a href="http://bsonspec.org/">binary-encoded serialisation</a> behind the scenes.</p>
-
-<p>There is a nice little interactive tutorial on the MongoDB home page to get you in to the swing of things.</p>
-
-<h2>Getting Mongo installed on OS X</h2>
-
-<p>I use <a href="http://mxcl.github.com/homebrew/">Homebrew</a> for installing packaged stuff on to my Mac, if you use it, then you can easily install it with</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>brew install mongodb</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>What do you need for Ruby Mongo Magic?</h2>
-
-<p>There is a standard Mongo driver available, which you can install using gem</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install mongo</span></code></pre></td></tr></table></div></figure>
-
-
-<p>but it is also worth installing the C compiled extension to speed up any BSON serialisation</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install bson_ext</span></code></pre></td></tr></table></div></figure>
-
-
-<p>More info can be found on the <a href="http://www.mongodb.org/display/DOCS/Ruby+Language+Center">official pages</a></p>
-
-<h2>Code example?</h2>
-
-<p>Here you go, proper version in the <a href="https://github.com/jamesjefferies/national-rail-datafeeds-ruby-examples">github repository</a></p>
-
-<div><script src='https://gist.github.com/3285558.js?file='></script>
-<noscript><pre><code>require 'rubygems' 
-require 'stomp'
-require 'json'
-require 'mongo'
-
-begin
-  # Credentials set here as environment variables
-  @user = ENV[&quot;DATAFEEDS_USER&quot;]; 
-  @password = ENV[&quot;DATAFEEDS_PASSWORD&quot;]
-  @host = &quot;datafeeds.networkrail.co.uk&quot;
-  @port = 61618
-
-  # Example destination add yours here
-  @destination = &quot;/topic/TRAIN_MVT_ALL_TOC&quot;
-
-  puts &quot;Connecting to datafeeds as #{@user} using stomp protocol stomp://#{@host}:#{@port}\n&quot; 
-  @connection = Stomp::Connection.open @user, @password, @host, @port, true 
-  @connection.subscribe @destination 
-
-  while true
-    @msg = @connection.receive
-
-    # Use JSON library to parse the messge body
-    message_body = JSON.parse(@msg.body)
-
-    db = Mongo::Connection.new.db(&quot;rail&quot;)
-    coll = db.collection(&quot;td&quot;)
-
-    message_body.each do |td| 
-
-      # Sanity check debug, output each td message as nice looking JSON 
-      # puts JSON.pretty_generate(td)   
-      
-      # insert into collection
-      id = coll.insert(td)
-
-    end
-  end 
-
-  @connection.disconnect
-rescue 
-end</code></pre></noscript></div>
-
-
-<h2>Examples of querying Mongo</h2>
-
-<p>There are lots of good examples and resources for using Mongo, but just a couple of examples related to the schema I&#8217;ve used in the example. You can fire up the interactive Mongo console and try the following (once you have some data!)</p>
-
-<p>To retrieve all Departure events</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.td.find({ "body.event_type" : "DEPARTURE" })</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To retrieve 10 (using limit) Train Movement (type 3) messages</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.td.find({ "header.msg_type" : "0003" }).limit(10)</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1194,6 +1099,10 @@ end</code></pre></noscript></div>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/08/sheffields-high-speed-railway-station-hs2/">Sheffield&#8217;s High Speed Railway Station HS2</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/01/03/olympic-legacy-server-setup-part-3-installing-ubuntu-server/">Olympic legacy server setup - part 3 - installing Ubuntu server</a>
       </li>
     
@@ -1207,10 +1116,6 @@ end</code></pre></noscript></div>
     
       <li class="post">
         <a href="/2012/12/20/olympic-legacy-server-setup-part-1/">Olympic legacy server setup - part 1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/11/11/steam-powered-arduino-part-1/">Steam powered Arduino part 1</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: HS2 | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/categories/hs2/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2013-01-08T17:15:23+00:00</updated>
+  <updated>2013-01-08T22:32:18+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -26,7 +26,7 @@
 
 <h2>High Speed 2 (HS2)</h2>
 
-<p><a href="http://www.hs2.org.uk/">HS2</a> is a new High Speed line planned to be built over the next 30 odd years from London Euston, initially to Birmingham, before splitting in to two arms, one to Manchester, the other to Leeds (via the East Midlands and South Yorkshire). Speed is projected to be up to 225mph with an estimated journey time from the South Yorkshire station of 1 hour 10 minutes.</p>
+<p><a href="http://www.hs2.org.uk/">HS2</a> is a new High Speed line planned to be built over the next 20 odd years from London Euston, initially to Birmingham, before splitting in to two arms, one to Manchester, the other to Leeds (via the East Midlands and South Yorkshire). Speed is projected to be up to 225mph with an estimated journey time from the South Yorkshire station of 1 hour 10 minutes. The route to Leeds &amp; South Yorkshire is due to be open by <a href="https://www.gov.uk/government/news/britain-to-have-new-national-high-speed-rail-network">2033</a></p>
 
 <h2>Current and near future plans for Sheffield</h2>
 
@@ -34,16 +34,29 @@
 
 <p>Following electrification of the Midland Mainline, projected times to London would be 1 hour 45 minutes within the next 5 years.</p>
 
+<p><strong>UPDATE</strong> - actually, electrification from Derby to Sheffield will take place by December 2021 in <a href="http://www.networkrail.co.uk/browse%20documents/strategicbusinessplan/cp5/supporting%20documents/our%20activity%20and%20expenditure%20plans/route%20plans/east%20midlands%20route%20plan.pdf">Control Period 6</a></p>
+
 <h2>Common Design Patterns for High Speed stations</h2>
 
 <p>Although currently the UK has very few High Speed stations (St. Pancras, Stratford, Ebbsfleet, Ashford), Europe, especially France has a lot more experience of building and siting them. The common design patterns which are generally used are:</p>
 
 <ul>
-<li><p>Intermediate stations are on passing loops, allowing non-stop trains to pass straight through at maximum speed - like <a href="http://www.youtube.com/watch?v=9MMNlsatk18">this</a>. This means the station is generally long and straight, requiring enough room for the loops too. Platforms for HS2 are planned to be about 415m.</p></li>
+<li>Intermediate stations are on passing loops, allowing non-stop trains to pass straight through at maximum speed. This means the station is generally long and straight, requiring enough room for the loops too. Platforms for HS2 are planned to be about 415m.</li>
+</ul>
+
+
+<p>Here is a train passing at high speed!</p>
+
+<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/9MMNlsatk18" frameborder="0">
+</iframe>
+
+
+<ul>
 <li><p>Stations are often out of town to allow easy access for a wide variety of people, including huge car parks for drivers. The equivalent for the UK at the moment is the 'Parkway' station, like at East Midlands.</p></li>
 <li><p>Speed is rarely compromised, and when it is, it is usually because of important cross-connections and infrastructure, i.e. Lille Europe, where a massive new station was built with major disruption. So you rarely get through stations built on bends or in city centres!</p></li>
 <li><p>A new UK example will be the station provided outside Birmingham, the plans are available for <a href="http://assets.dft.gov.uk/publications/hs2-maps-20120110/hs2arp00drrw05303issue2.pdf">download</a></p></li>
 <li><p>HS2 stations are going to be designed for speedy embarkation, the trains are nearly half a kilometre long, so passengers will be directed to the right carriage <em>before</em> the train arrives. There will be no last minute jumping on with these trains.</p></li>
+<li><p>Stations shouldn't be too close together. A purist route would have a terminus at Leeds, a station outside Birmingham and a terminus at London Euston, that would be the most efficent and that's your lot!</p></li>
 </ul>
 
 
@@ -51,9 +64,9 @@
 
 <ul>
 <li><p>Space - there is far more brownfield space around Meadowhall for building new infrastructure. There is also room to move businesses around if required.</p></li>
-<li><p>Existing infrastructure - the station would be on the tram network, serving Sheffield and by then Rotheram too. The M1 travels right by on the Tinsley Viaduct</p></li>
+<li><p>Existing infrastructure - the station would be on the tram network, serving Sheffield and by then Rotheram too. The M1 travels right by on the Tinsley Viaduct.</p></li>
 <li><p>It meets the common design patterns outlined above.</p></li>
-<li><p>Area - it would serve South Yorkshire, not just Sheffield City Centre.</p></li>
+<li><p>Area - it would serve South Yorkshire, not just Sheffield City Centre. Most of the official documentation I have seen references South Yorkshire, not <em>Sheffield</em></p></li>
 <li><p>If built in the old Tinsley Yard, there is a lots of good space for it to go. Access could be provided at either end.</p></li>
 </ul>
 
@@ -61,28 +74,28 @@
 <h2>Why it doesn't make sense</h2>
 
 <ul>
-<li><p>Meadowhall is already busy as a transport hub, especially the M1</p></li>
+<li><p>Meadowhall is already busy as a transport hub, especially the M1.</p></li>
 <li><p>It will add a good 15-20 minutes on to the journey time from the City Centre, giving a similar time to the new 'classic' electrified service  anyway.</p></li>
-<li><p>City Centre businesses need a city centre station for growth (so they say).</p></li>
+<li><p>City Centre businesses need a city centre station for growth (so they say, I've not read up on any research in to this).</p></li>
 </ul>
 
 
 <h2>Route considerations</h2>
 
-<p>At the time of writing we do not know which route HS2 is set to take through South Yorkshire.</p>
+<p>At the time of writing we do not know which route HS2 is set to take through South Yorkshire. Consultation is due in 2014.</p>
 
-<p>HS routes though, again, have common design patterns</p>
+<p>High Speed routes though, again, have common design patterns</p>
 
 <ul>
-<li>no sharp curves which would reduce speed unless absolutely necessary. These trains are not built to tilt.</li>
-<li>gradients aren't usually too much of a problem.</li>
-<li>High density population areas to be avoided otherwise extensive soundproofing is required.</li>
+<li><p>no sharp curves which would reduce speed unless absolutely necessary. These trains are not built to tilt.</p></li>
+<li><p>gradients aren't usually too much of a problem, compared to normal trains and routes. High Speed lines often have 'motorway' style gradients.</p></li>
+<li><p>High density population areas to be avoided otherwise extensive soundproofing &amp; demolishment is required.</p></li>
 </ul>
 
 
-<p>Consequently, I'd be surprised if HS2 was to be routed parallel to the existing mainline route via Dore and the Sheaf valley. You probably could squeeze the infrastrure in and you might have an ideal alignment for the existing Midland station.</p>
+<p>Consequently, I'd be surprised if HS2 was to be routed parallel to the existing mainline route via Dore and the Sheaf valley. You probably could squeeze the infrastructure in and you might have an ideal alignment for the existing Midland station.</p>
 
-<p>However, what is more likely would be a route around the 'old route' where Sheffield's trains from the South originally came from. This is the route you might have experienced when engineering works force a diversion. You leave Sheffield to the North, turn right through Darnall, Woodhouse, before bearing South back round to Chesterfield.</p>
+<p>However, what is more likely would be a route around the East Side of Sheffield where the trains from the South originally came from, before the route along the Sheaf valley was built towards Dore. This is the route you might have experienced when engineering works force a diversion. You leave Sheffield to the North, turn right through Darnall, Woodhouse, before bearing South back round to Chesterfield past Staveley and Barrow Hill.</p>
 
 <p>So, I could see a route which heads round the East of Sheffield, avoiding the centre completely, before heading North to Meadowhall to a South Yorkshire Parkway station.</p>
 
@@ -90,13 +103,13 @@
 
 <p>Let's assume that the route <em>can</em> be built along the Sheaf valley, parallel to the existing mainline. What do you do when you get to Sheffield Midland station?</p>
 
-<p>You can't build underneath it, because that is where the <a href="http://www.flickr.com/photos/richboxfrenzy/sets/72157631911926282/">Megatron</a> is. Midland station is built on top of the river.</p>
+<ul>
+<li><p>You can't build underneath it, because that is where the <a href="http://www.flickr.com/photos/richboxfrenzy/sets/72157631911926282/">Megatron</a> is. Midland station is built on top of the river.</p></li>
+<li><p>You could build on top of it but building a bigger station on top of a smaller station would make a bit of a mess.</p></li>
+<li><p>You could completely knock down Midland station and rebuild it.</p></li>
+<li><p>You could incorporate it in to the existing station, but some platforms would require demolishing and there would be extreme capacity issues for existing services.</p></li>
+</ul>
 
-<p>You could build on top of it but building a bigger station on top of a smaller station would make a bit of a mess.</p>
-
-<p>You could completely knock down Midland station and rebuild it.</p>
-
-<p>You could incorporate it in to the existing station, but some platforms would require demolishing and there would be extreme capacity issues for existing services.</p>
 
 <p>It would end up taking about <a href="https://maps.google.com/maps/ms?ie=UTF&amp;msa=0&amp;msid=203170883012533158238.0004d2c9c0c74fc9d440f">this much</a> space.</p>
 
@@ -104,7 +117,7 @@
 
 <p>If the route of HS2 heads around the East of Sheffield, then why not use the old Victoria station? The alignment is correct for incoming trains and you could have a dedicated station there with, say a tramlink to Midland?</p>
 
-<p>Well, I think the problem there is that trains heading for Leeds would then end up pointing towards Hillsborough, Oughtibridge and Stocksbridge. You would need some serious infrastructure (big tunnel) to get the route back to a more Northerly direction to continue the journey to Leeds. Not impossible, but adds a lot of cost.</p>
+<p>Well, I think the problem there is that trains heading for Leeds would then end up pointing towards Hillsborough, Oughtibridge and Stocksbridge. You would need some serious infrastructure (i.e. a big tunnel) to get the route back to a more Northerly direction to continue the journey to Leeds. Not impossible, but adds a lot of extra cost.</p>
 
 <h2>Hybrid using Victora &amp; Midland Stations</h2>
 
@@ -112,11 +125,15 @@
 
 <p>Services to Lincoln, Leeds (Northern), Barnsley, Huddersfield could all use Victoria with Cross Country and East Midlands then using a reduced size Midland, creating extra space to build High Speed platforms there.</p>
 
+<p>Of course, re-opening Woodhead would be the icing on the cake!</p>
+
 <h2>Tinsley Yard</h2>
 
 <p>This seems to be the best location for alignment and existing space. The long lost Marshalling Yard is in a great location for the Motorway, not that far from Meadowhall and would probably be good for noise and local housing. I think there is a good chance that it will be used as the final location.</p>
 
 <p>Someone has done a great route example <a href="https://maps.google.com/maps/ms?msid=210155476846284269415.0004a7028d801cf5385bd&amp;msa=0&amp;ll=53.401243,-1.384234&amp;spn=0.013868,0.027423">here</a> - looks very plausible to me.</p>
+
+<p>NB. I found that route on a Sheffield Forum <a href="http://www.sheffieldforum.co.uk/showpost.php?p=7828103&amp;postcount=72">post</a></p>
 
 <h2>Meadowhall itself</h2>
 
@@ -124,13 +141,15 @@
 
 <h2>My vote</h2>
 
-<p>Goes to Tinsley Yard. If you want to get quickly to London in 2032 from Sheffield City Centre. Take the Electrified Midland Mainline to St. Pancras in 1 hour 45 minutes. It'll probably be cheaper than HS2, be more scenic and will not take much longer.</p>
+<p>If we end up with a station in South Yorkshire, then my vote goes to Tinsley Yard. If you want to get quickly to London in 2032 from Sheffield City Centre. Take the Electrified Midland Mainline to St. Pancras in 1 hour 45 minutes. It'll probably be cheaper than HS2, be more scenic and will not take much longer.</p>
 
 <p>If you don't live in the City Centre and you drive, park up at the HS2 station next to the M1, get there early and whizz down HS2 to Euston in 1 hour 10-15 minutes. Either way will get you in to the centre of London fairly sharpish. Win win!</p>
 
 <h3>Further reading</h3>
 
 <p><a href="http://www.syltp.org.uk/HS2.aspx">South Yorkshire Local Transport Plan</a></p>
+
+<p><a href="http://beleben.wordpress.com/2013/01/08/hs2-and-south-yorkshire-part-three/">beleben blog</a></p>
 ]]></content>
   </entry>
   

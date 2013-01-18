@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="Lights Out For Darker Skies Remember me Canvey Island Pyrex Atom Zeus Bear Blackout Down On the Ground Can we do it Waving Flags Skua St Louis &hellip;">
+  <meta name="description" content="I&#8217;m having a look at the Liquibase product at the mo, mainly to help automate the database migrations for one of our clients. Currently the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,145 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/12/14/liquibase-and-the-maven-plugin/">Liquibase and the Maven Plugin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-14T16:40:04+00:00" pubdate data-updated="true">Dec 14<span>th</span>, 2010</time>
+        
+         | <a href="/2010/12/14/liquibase-and-the-maven-plugin/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m having a look at the <a href="http://liquibase.org/home">Liquibase</a> product at the mo, mainly to help automate the database migrations for one of our clients. Currently the process is a bit hairy and manual. It&#8217;s easy to make mistakes and you have to be on the ball, plus rollbacks are awkard and generally it&#8217;s a mess.</p>
+
+<p>Liquibase is a Database Change Management system - as they say &#8220;You never develop code without version control, why do you develop your database without it?&#8221; - and I agree.</p>
+
+<p>However, in classic Open Source fashion, the documentation leaves something to be desired. So when I found myself trusting the documentation and getting the error:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>The driver has not been specified either as a parameter or in a properties file
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>when it was specified in both properties and as a parameter I should have realised that it was the documentation which was wrong, not me. I&#8217;m far too trusting&#8230;.</p>
+
+<p>So, when you set up the maven plugin in and they recommend doing this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupid&gt;</span>org.liquibase<span class="nt">&lt;/groupid&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;artifactid&gt;</span>liquibase-plugin<span class="nt">&lt;/artifactid&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;version&gt;</span>1.6.1.0<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                          <span class="nt">&lt;propertyfile&gt;</span>src/main/resources/liquibase.properties<span class="nt">&lt;/propertyfile&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                          <span class="nt">&lt;goal&gt;</span>update<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>you just ignore them as the configuration is only set for that particular phase - whereas you want the configuration for all phases.. so you should set it up like this instead, makes a lot of sense really.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>        <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;groupid&gt;</span>org.liquibase<span class="nt">&lt;/groupid&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;artifactid&gt;</span>liquibase-plugin<span class="nt">&lt;/artifactid&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;version&gt;</span>1.9.3.0<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;propertyfile&gt;</span>src/main/resources/liquibase.properties<span class="nt">&lt;/propertyfile&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;changelogfile&gt;</span>src/main/resources/db/changelog-master.xml<span class="nt">&lt;/changelogfile&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;driver&gt;</span>com.mysql.jdbc.Driver<span class="nt">&lt;/driver&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;url&gt;</span>${db-connection-url}<span class="nt">&lt;/url&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;username&gt;</span>${db-connection-username}<span class="nt">&lt;/username&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;password&gt;</span>${db-connection-password}<span class="nt">&lt;/password&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;goal&gt;</span>update<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>hurrah.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -593,70 +732,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/12/06/ivar-jacobsen-at-devoxx/">Ivar Jacobson at Devoxx</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-06T21:00:25+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2009</time>
-        
-         | <a href="/2009/12/06/ivar-jacobsen-at-devoxx/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.ivarjacobson.com/">Ivar Jacobson</a> is one of the architects of Rational Unified Process (RUP) and use cases and all that stuff. He gave a keynote talk at Devoxx on the state of the software engineering profession. His opening line was &#8216;Everyone knows how to develop software, but as an industry we don&#8217;t&#8217; which is a good line to start to a conference full of developers. His set up was</p>
-
-<ul>
-<li><p>Fashions - our industry follows fashions, how often do we do a project the same way as one previously. Obviously some clients prefer to work in certain ways, but having worked on three major projects recently, they have all done things in different ways. We&#8217;ve gone from OO through components through UML through Unified Process, RUP, CIMMI, 3 years ago XP, now scrum is the flavour of the month. He gave an example of meeting someone who&#8217;s business card had Phd and Certified Scrum master on it. How can you compare a two day course without any kind of test and 3+ years of research and writing! He wasn&#8217;t knocking scrum in it self, but the way in which methodologies seem to change whenever the wind blows.</p></li>
-<li><p>Industry v Academic - there is often a big difference between what happens in academia and industry. Lots of great research goes knowhere and lots of practical experience doesn&#8217;t feed back in to our researchers. Seem to be playing different games. Then when you add &#8216;methodlogists&#8217; in to the mix, it gets even more confusing.</p></li>
-<li><p>Methods - there are a huge number of methods, we re-invent the wheel, every methodology is a soup of new ideas, usually including one or two new ones. If you look at scrum, it isn&#8217;t all new, but just a new way of mixing it up.</p></li>
-<li><p>Learn from others mistakes - why, when we can blunder on ourselves!</p></li>
-</ul>
-
-
-<p>So..</p>
-
-<ul>
-<li><p>We need a theory, a foundation of software engineering. We are hampered by a multitude of immature practices. The differences between them are little understood. There is a lack of creditable experimental evaluation.</p></li>
-<li><p>SEMAT - a process to &#8216;re-found&#8217; software engineering based on a solid theory, proven principles and best practices. A kernel of widely agreed elements, addressing humans and technology, supported by acadameia, researchers, users and the industry. A theory which supports extension.</p></li>
-</ul>
-
-
-<p>&#8211;</p>
-
-<p>Enough processes, more practices. Practice has things to do, to produce, people with competencies, using common patterns. We don&#8217;t need branded methodologies, the kernel should be practice agnostic.</p>
-
-<p>&#8211;</p>
-
-<p>identify kernel and own best practices then you can pull practices from other sources. Many companies throw out the good with the bad, so they junk everything and then pick up &#8216;Scrum&#8217; as a whole. Good to adopt new practices one at a time, rather than wholesale adoption.</p>
-
-<p>&#8216;There is nothing as practical as a good theory&#8217;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -674,6 +749,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/18/dotforge-accelerator-sheffield/">DotForge Accelerator - Sheffield</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/01/08/sheffields-high-speed-railway-station-hs2/">Sheffield&#8217;s High Speed Railway Station HS2</a>
       </li>
     
@@ -687,10 +766,6 @@
     
       <li class="post">
         <a href="/2012/12/27/olympic-legacy-server-setup-part-1b/">Olympic legacy server setup - part 1b</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/12/20/olympic-legacy-server-setup-part-1/">Olympic legacy server setup - part 1</a>
       </li>
     
   </ul>

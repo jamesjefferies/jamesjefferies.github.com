@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="ok, so we&#8217;ll be going for proper open jdk at some point (Java 7 preferably) but to get us up and running with Java 6 update 7&#8230; add the &hellip;">
+  <meta name="description" content="Just about every day I find something else useful out about Maven. Today&#8217;s little nugget of joy is asking it to download the javadocs (i.e. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/19/asking-maven-nicely-to-download-the-javadocs-and-source-for-your-dependencies-2/">Asking Maven Nicely to Download the Javadocs and Source for Your Dependencies</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-19T16:40:08+00:00" pubdate data-updated="true">Feb 19<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just about every day I find something else useful out about Maven. Today&#8217;s little nugget of joy is asking it to download the javadocs (i.e. standard api documentation) and the source of the libraries you&#8217;re using in the project.</p>
+
+<p>Because we use nexus, these nice bits of info will be stored centrally for all to use.</p>
+
+<p>To get source and javadocs simply run</p>
+
+<pre><code>mvn eclipse:eclipse -DdownloadSources=true  -DdownloadJavadocs=true
+</code></pre>
+
+<p>and go and have a cup of tea or a biscuit or both.</p>
+
+<p>You can also run this to get the sources</p>
+
+<pre><code>mvn -DdownloadSources=true dependency:sources
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -562,44 +612,6 @@ var_dump($_SERVER);</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/08/18/apple-keyboards-boot-keys-and-mac-minis/">Apple Keyboards, Boot Keys and Mac Minis</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-18T19:34:47+01:00" pubdate data-updated="true">Aug 18<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So, I thought I&#8217;d completely bust one of the Mac Minis I bought on ebay. It&#8217;s a dual core Intel 1.66Mhz Mini and I have one of the recent aluminium, USB Apple keyboards. Nice combo huh? Well, it would be if you could input key combinations at start up, say for example if you&#8217;d bodged up your boot camp install&#8230;</p>
-
-<p>.. well, you&#8217;re stuffed, because the Aluminium keyboards don&#8217;t work on Intel Minis during the boot sequence. How crappity is that?! So, a lot of trying out different things, until I borrowed a Dell keyboard from work. It felt dirty plugging it in to the Mac, but at least the Mac listened to what it was saying! Now, I&#8217;m happily booted back in to OS X, stumped at the lack of backwards compatibility provided by a keyboard.. yes, that&#8217;s a keyboard..</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -617,6 +629,10 @@ var_dump($_SERVER);</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/01/18/dotforge-accelerator-sheffield/">DotForge Accelerator - Sheffield</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/01/08/sheffields-high-speed-railway-station-hs2/">Sheffield&#8217;s High Speed Railway Station HS2</a>
       </li>
     
@@ -630,10 +646,6 @@ var_dump($_SERVER);</p>
     
       <li class="post">
         <a href="/2012/12/27/olympic-legacy-server-setup-part-1b/">Olympic legacy server setup - part 1b</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/12/20/olympic-legacy-server-setup-part-1/">Olympic legacy server setup - part 1</a>
       </li>
     
   </ul>

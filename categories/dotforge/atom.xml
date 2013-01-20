@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: startup | James Jefferies and ShedCode Ltd]]></title>
-  <link href="http://jamesjefferies.com/categories/startup/atom.xml" rel="self"/>
+  <title><![CDATA[Category: dotforge | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.com/categories/dotforge/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
   <updated>2013-01-20T19:41:58+00:00</updated>
   <id>http://jamesjefferies.com/</id>

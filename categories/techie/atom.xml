@@ -4,7 +4,7 @@
   <title><![CDATA[Category: techie | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/categories/techie/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2013-01-29T15:29:42+00:00</updated>
+  <updated>2013-02-17T17:30:06+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Updating WordPress performance]]></title>
+    <link href="http://jamesjefferies.com/2013/02/13/updating-wordpress-performance/"/>
+    <updated>2013-02-13T14:05:00+00:00</updated>
+    <id>http://jamesjefferies.com/2013/02/13/updating-wordpress-performance</id>
+    <content type="html"><![CDATA[<p>Vanilla WordPress performance isn't great, each page has to be generated via PHP per view, which soon starts to bog your server down under load. Fortunately there are some plugins and tweaks you can make to improve performance and resilience.</p>
+
+<p>Any PHP or Apache gurus out there, feel free to comment and let me know where I'm going wrong, I don't claim to be a PHP environment expert!</p>
+
+<h2>Caching plugin</h2>
+
+<p>I've generally used <a href="http://wordpress.org/extend/plugins/w3-total-cache/">W3 Total Cache</a> which provides a number of different levels of caching, including the PHP itself if the relevant apache modules are installed. You can even delegate data to a CDN if that's your thing.</p>
+
+<p>But before installing the plugin, let's get everything ready for optimising it.</p>
+
+<h2>PHP Performance</h2>
+
+<p>To get the full benefit of a plugin like Total Cache, you need to add a few modules to Apache and PHP.</p>
+
+<h3>Install DotDeb repository</h3>
+
+<p>The DotDeb repository is set up for Debian boxes with up to date versions of common packages.</p>
+
+<p><a href="http://www.dotdeb.org/instructions/">Instructions</a> are straightforward and involve adding their repository.</p>
+
+<h3>Install fpm</h3>
+
+<p><a href="http://php-fpm.org">fpm</a> is a FastCGI process manager.</p>
+
+<pre><code>sudo apt-get install php5-fpm
+</code></pre>
+
+<h3>Install apc</h3>
+
+<p><a href="http://www.php.net/manual/en/intro.apc.php">apc</a> is a PHP object cache. It's required by W3 for doing the PHP caching.</p>
+
+<pre><code>sudo apt-get install php5-apc
+</code></pre>
+
+<h3>Install mod_expires apache module</h3>
+
+<p>The caching plugin works better with mod_expires installed.</p>
+
+<pre><code>sudo a2enmod expires
+</code></pre>
+
+<p>You should get a response like</p>
+
+<pre><code>Enabling module expires.
+Run '/etc/init.d/apache2 restart' to activate new configuration!
+</code></pre>
+
+<h3>Install mod_headers apache module</h3>
+
+<p>.. and with mod_headers installed</p>
+
+<pre><code>sudo a2enmod headers    
+</code></pre>
+
+<p>You should get a response like</p>
+
+<pre><code>Enabling module headers.
+Run '/etc/init.d/apache2 restart' to activate new configuration!
+</code></pre>
+
+<h2>Do a graceful apache restart</h2>
+
+<pre><code>sudo /etc/init.d/apache2 reload
+</code></pre>
+
+<p>Once you have restarted, have a look in your apache logs for any thing unusual.</p>
+
+<h2>Now install W3 Total Cache</h2>
+
+<p>Once installed and activated, the first thing to do is run the compatibility check to ensure that everything is ok.</p>
+
+<p>Then you can start enabling features.. and hopefully see some response time improvements!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[DotForge Accelerator - Sheffield - updated 29th Jan]]></title>
@@ -352,37 +432,6 @@ ipmitool user set password 2 password
 <h2>What's next?</h2>
 
 <p>Getting the OS installed and, I think Xen set up.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Olympic legacy server setup - part 1]]></title>
-    <link href="http://jamesjefferies.com/2012/12/20/olympic-legacy-server-setup-part-1/"/>
-    <updated>2012-12-20T15:14:00+00:00</updated>
-    <id>http://jamesjefferies.com/2012/12/20/olympic-legacy-server-setup-part-1</id>
-    <content type="html"><![CDATA[<p>For the Olympics, a whole lot of techie kit was required to do lots of clever things. As a lot of the kit wasn't required after the games were over, they have been made available for purchase at super cheap prices! Kit was originally for Educational Establishments, but once that batch were sold, I could buy one. So I did!</p>
-
-<h2>Server Model - Gateway GR380 F1</h2>
-
-<p>Well, I hadn't realised that the Gateway brand had been brought back to life, but it has by Acer! The Gateway GR380 F1 - you can have a look at the <a href="http://tinyurl.com/d2xvncz">spec</a> if you like.  It is a 2U (i.e. bigger) version of one of <a href="http://www.pcpro.co.uk/reviews/servers/359875/gateway-gr360-f1">these</a> coming with 2x146Gb drives, lots of memory and a big cardboard box.</p>
-
-<p><img src="/images/big-server.jpeg" alt="bigserver" /></p>
-
-<h2>What are you going to do with it?</h2>
-
-<p>Good question, I'm thinking of setting up a virtualisation kind of thing, so my big server can pretend to be lots of smaller servers, useful for building client sites, experimental things, build servers etc. We'll see</p>
-
-<h2>Where do you start?</h2>
-
-<p>Another good question. It comes with the Smart Manager application, which you can install on it to do lots of clever things, however, at the moment, I've not even fired it up to see if it has the remnants of an Operating System on it. I'm suspecting not!</p>
-
-<h2>I've got one too, where do I start?</h2>
-
-<p>Well, I've managed to find the user manual, you can download it yourself from the <a href="http://global-download.gateway.com/GDFiles/Document/User%20Manual/User%20Manual_Gateway_1.0_A_A.zip?acerid=634213526746016513&amp;Step1=Server&amp;Step2=Server&amp;Step3=GR380%20F1&amp;OS=303&amp;LC=en&amp;BC=Gateway&amp;SC=EMEA_27G">Acer site</a>.</p>
-
-<p>If nothing else I'd like to have a look inside to see what sort of state it's in. Then I need to work out how to attach the funky rack mounts to it, then I need to work out how to install Debian or Ubuntu on it (plus Xen probably for virtualisation).</p>
-
-<p>Oh - it'll need a name too!</p>
 ]]></content>
   </entry>
   

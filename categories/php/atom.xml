@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: php | James Jefferies and ShedCode Ltd]]></title>
+  <link href="http://jamesjefferies.com/categories/php/atom.xml" rel="self"/>
+  <link href="http://jamesjefferies.com/"/>
+  <updated>2013-02-17T17:30:06+00:00</updated>
+  <id>http://jamesjefferies.com/</id>
+  <author>
+    <name><![CDATA[James Jefferies]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Updating WordPress performance]]></title>
+    <link href="http://jamesjefferies.com/2013/02/13/updating-wordpress-performance/"/>
+    <updated>2013-02-13T14:05:00+00:00</updated>
+    <id>http://jamesjefferies.com/2013/02/13/updating-wordpress-performance</id>
+    <content type="html"><![CDATA[<p>Vanilla WordPress performance isn't great, each page has to be generated via PHP per view, which soon starts to bog your server down under load. Fortunately there are some plugins and tweaks you can make to improve performance and resilience.</p>
+
+<p>Any PHP or Apache gurus out there, feel free to comment and let me know where I'm going wrong, I don't claim to be a PHP environment expert!</p>
+
+<h2>Caching plugin</h2>
+
+<p>I've generally used <a href="http://wordpress.org/extend/plugins/w3-total-cache/">W3 Total Cache</a> which provides a number of different levels of caching, including the PHP itself if the relevant apache modules are installed. You can even delegate data to a CDN if that's your thing.</p>
+
+<p>But before installing the plugin, let's get everything ready for optimising it.</p>
+
+<h2>PHP Performance</h2>
+
+<p>To get the full benefit of a plugin like Total Cache, you need to add a few modules to Apache and PHP.</p>
+
+<h3>Install DotDeb repository</h3>
+
+<p>The DotDeb repository is set up for Debian boxes with up to date versions of common packages.</p>
+
+<p><a href="http://www.dotdeb.org/instructions/">Instructions</a> are straightforward and involve adding their repository.</p>
+
+<h3>Install fpm</h3>
+
+<p><a href="http://php-fpm.org">fpm</a> is a FastCGI process manager.</p>
+
+<pre><code>sudo apt-get install php5-fpm
+</code></pre>
+
+<h3>Install apc</h3>
+
+<p><a href="http://www.php.net/manual/en/intro.apc.php">apc</a> is a PHP object cache. It's required by W3 for doing the PHP caching.</p>
+
+<pre><code>sudo apt-get install php5-apc
+</code></pre>
+
+<h3>Install mod_expires apache module</h3>
+
+<p>The caching plugin works better with mod_expires installed.</p>
+
+<pre><code>sudo a2enmod expires
+</code></pre>
+
+<p>You should get a response like</p>
+
+<pre><code>Enabling module expires.
+Run '/etc/init.d/apache2 restart' to activate new configuration!
+</code></pre>
+
+<h3>Install mod_headers apache module</h3>
+
+<p>.. and with mod_headers installed</p>
+
+<pre><code>sudo a2enmod headers    
+</code></pre>
+
+<p>You should get a response like</p>
+
+<pre><code>Enabling module headers.
+Run '/etc/init.d/apache2 restart' to activate new configuration!
+</code></pre>
+
+<h2>Do a graceful apache restart</h2>
+
+<pre><code>sudo /etc/init.d/apache2 reload
+</code></pre>
+
+<p>Once you have restarted, have a look in your apache logs for any thing unusual.</p>
+
+<h2>Now install W3 Total Cache</h2>
+
+<p>Once installed and activated, the first thing to do is run the compatibility check to ensure that everything is ok.</p>
+
+<p>Then you can start enabling features.. and hopefully see some response time improvements!</p>
+]]></content>
+  </entry>
+  
+</feed>

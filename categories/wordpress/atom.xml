@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: WordPress | James Jefferies and ShedCode Ltd]]></title>
+  <title><![CDATA[Category: wordpress | James Jefferies and ShedCode Ltd]]></title>
   <link href="http://jamesjefferies.com/categories/wordpress/atom.xml" rel="self"/>
   <link href="http://jamesjefferies.com/"/>
-  <updated>2013-01-29T15:29:42+00:00</updated>
+  <updated>2013-02-17T17:30:06+00:00</updated>
   <id>http://jamesjefferies.com/</id>
   <author>
     <name><![CDATA[James Jefferies]]></name>
@@ -14,52 +14,82 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Troubleshooting WordPress connectivity issue - could not connect to host]]></title>
-    <link href="http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue/"/>
-    <updated>2012-09-05T14:57:00+01:00</updated>
-    <id>http://jamesjefferies.com/2012/09/05/troubleshooting-wordpress-connectivity-issue</id>
-    <content type="html"><![CDATA[<h2>The problem</h2>
+    <title type="html"><![CDATA[Updating WordPress performance]]></title>
+    <link href="http://jamesjefferies.com/2013/02/13/updating-wordpress-performance/"/>
+    <updated>2013-02-13T14:05:00+00:00</updated>
+    <id>http://jamesjefferies.com/2013/02/13/updating-wordpress-performance</id>
+    <content type="html"><![CDATA[<p>Vanilla WordPress performance isn't great, each page has to be generated via PHP per view, which soon starts to bog your server down under load. Fortunately there are some plugins and tweaks you can make to improve performance and resilience.</p>
 
-<p>After migrating a WordPress site, auto update and plugin install wouldn't work. The former errored with <code>could not connect to host</code> which seemed very odd.</p>
+<p>Any PHP or Apache gurus out there, feel free to comment and let me know where I'm going wrong, I don't claim to be a PHP environment expert!</p>
 
-<h3>First attempts</h3>
+<h2>Caching plugin</h2>
 
-<p>WordPress allows you to download the file manually or autoupdate if configured correctly. Clicking on the manual download link and the file downloaded fine to the local machine. So first, I thought I'd try and download the file from the command line on the new server.</p>
+<p>I've generally used <a href="http://wordpress.org/extend/plugins/w3-total-cache/">W3 Total Cache</a> which provides a number of different levels of caching, including the PHP itself if the relevant apache modules are installed. You can even delegate data to a CDN if that's your thing.</p>
 
-<p><code>
-wget http://wordpress.org/wordpress-3.4.1.zip
-</code></p>
+<p>But before installing the plugin, let's get everything ready for optimising it.</p>
 
-<p>Zip, it all downloaded fine.</p>
+<h2>PHP Performance</h2>
 
-<h3>Extra help</h3>
+<p>To get the full benefit of a plugin like Total Cache, you need to add a few modules to Apache and PHP.</p>
 
-<p>There is a good trouble shooting/dev plugin for WordPress called <a href="http://wordpress.org/extend/plugins/core-control/">Core Control</a>. By installing this and enabling the HTTP control, you can test the various transports WordPress uses for downloads. Curl, PHP File open, PHP Fsockopen etc.</p>
+<h3>Install DotDeb repository</h3>
 
-<p>Testing all three default transports, starting with cURL came up with the same message, <code>could not connect to host</code></p>
+<p>The DotDeb repository is set up for Debian boxes with up to date versions of common packages.</p>
 
-<h3>Head Scratching time</h3>
+<p><a href="http://www.dotdeb.org/instructions/">Instructions</a> are straightforward and involve adding their repository.</p>
 
-<p>So WordPress was telling the truth. Now, as WordPress was running as the <code>www-data</code> user, what happens if I tried the wget from the command line for that user?</p>
+<h3>Install fpm</h3>
 
-<p><code>
-wget http://wordpress.org/wordpress-3.4.1.zip
-Permission denied!
-</code></p>
+<p><a href="http://php-fpm.org">fpm</a> is a FastCGI process manager.</p>
 
-<p>Ah-ha, so it was nothing to do with WordPress, the <code>www-data</code> user couldn't download anything.</p>
+<pre><code>sudo apt-get install php5-fpm
+</code></pre>
 
-<h3>Problem solved!</h3>
+<h3>Install apc</h3>
 
-<p>Firewalls, I started thinking firewalls and lo and behold, <a href="https://projects.bytemark.co.uk/projects/24/wiki/Firewall">BytemarkUK block outgoing http traffic</a> for the www-data user by default! This makes sense for when sites get compromised, but it also stops some of the core functionality for updates etc working.</p>
+<p><a href="http://www.php.net/manual/en/intro.apc.php">apc</a> is a PHP object cache. It's required by W3 for doing the PHP caching.</p>
 
-<p>Enabling http traffic for the www-data user will make things worse if the site is compromised, but also makes it a lot easier to keep the site up to date, reducing the chances of a WordPress exploit.</p>
+<pre><code>sudo apt-get install php5-apc
+</code></pre>
 
-<p>The following removes the firewall rule</p>
+<h3>Install mod_expires apache module</h3>
 
-<p><code>
-rm /etc/symbiosis/firewall/outgoing.d/50-www-data
-</code></p>
+<p>The caching plugin works better with mod_expires installed.</p>
+
+<pre><code>sudo a2enmod expires
+</code></pre>
+
+<p>You should get a response like</p>
+
+<pre><code>Enabling module expires.
+Run '/etc/init.d/apache2 restart' to activate new configuration!
+</code></pre>
+
+<h3>Install mod_headers apache module</h3>
+
+<p>.. and with mod_headers installed</p>
+
+<pre><code>sudo a2enmod headers    
+</code></pre>
+
+<p>You should get a response like</p>
+
+<pre><code>Enabling module headers.
+Run '/etc/init.d/apache2 restart' to activate new configuration!
+</code></pre>
+
+<h2>Do a graceful apache restart</h2>
+
+<pre><code>sudo /etc/init.d/apache2 reload
+</code></pre>
+
+<p>Once you have restarted, have a look in your apache logs for any thing unusual.</p>
+
+<h2>Now install W3 Total Cache</h2>
+
+<p>Once installed and activated, the first thing to do is run the compatibility check to ensure that everything is ok.</p>
+
+<p>Then you can start enabling features.. and hopefully see some response time improvements!</p>
 ]]></content>
   </entry>
   

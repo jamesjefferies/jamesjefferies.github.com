@@ -9,7 +9,7 @@
   <meta name="author" content="James Jefferies">
 
   
-  <meta name="description" content="The other day I went to the first event for the new Dotforge Accelerator programme in Sheffield. Having been following the progress of a couple of &hellip;">
+  <meta name="description" content="Vanilla WordPress performance isn&#8217;t great, each page has to be generated via PHP per view, which soon starts to bog your server down under load &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,115 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/02/13/updating-wordpress-performance/">Updating WordPress Performance</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-13T14:05:00+00:00" pubdate data-updated="true">Feb 13<span>th</span>, 2013</time>
+        
+         | <a href="/2013/02/13/updating-wordpress-performance/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Vanilla WordPress performance isn&#8217;t great, each page has to be generated via PHP per view, which soon starts to bog your server down under load. Fortunately there are some plugins and tweaks you can make to improve performance and resilience.</p>
+
+<p>Any PHP or Apache gurus out there, feel free to comment and let me know where I&#8217;m going wrong, I don&#8217;t claim to be a PHP environment expert!</p>
+
+<h2>Caching plugin</h2>
+
+<p>I&#8217;ve generally used <a href="http://wordpress.org/extend/plugins/w3-total-cache/">W3 Total Cache</a> which provides a number of different levels of caching, including the PHP itself if the relevant apache modules are installed. You can even delegate data to a CDN if that&#8217;s your thing.</p>
+
+<p>But before installing the plugin, let&#8217;s get everything ready for optimising it.</p>
+
+<h2>PHP Performance</h2>
+
+<p>To get the full benefit of a plugin like Total Cache, you need to add a few modules to Apache and PHP.</p>
+
+<h3>Install DotDeb repository</h3>
+
+<p>The DotDeb repository is set up for Debian boxes with up to date versions of common packages.</p>
+
+<p><a href="http://www.dotdeb.org/instructions/">Instructions</a> are straightforward and involve adding their repository.</p>
+
+<h3>Install fpm</h3>
+
+<p><a href="http://php-fpm.org">fpm</a> is a FastCGI process manager.</p>
+
+<pre><code>sudo apt-get install php5-fpm
+</code></pre>
+
+<h3>Install apc</h3>
+
+<p><a href="http://www.php.net/manual/en/intro.apc.php">apc</a> is a PHP object cache. It&#8217;s required by W3 for doing the PHP caching.</p>
+
+<pre><code>sudo apt-get install php5-apc
+</code></pre>
+
+<h3>Install mod_expires apache module</h3>
+
+<p>The caching plugin works better with mod_expires installed.</p>
+
+<pre><code>sudo a2enmod expires
+</code></pre>
+
+<p>You should get a response like</p>
+
+<pre><code>Enabling module expires.
+Run '/etc/init.d/apache2 restart' to activate new configuration!
+</code></pre>
+
+<h3>Install mod_headers apache module</h3>
+
+<p>.. and with mod_headers installed</p>
+
+<pre><code>sudo a2enmod headers    
+</code></pre>
+
+<p>You should get a response like</p>
+
+<pre><code>Enabling module headers.
+Run '/etc/init.d/apache2 restart' to activate new configuration!
+</code></pre>
+
+<h2>Do a graceful apache restart</h2>
+
+<pre><code>sudo /etc/init.d/apache2 reload
+</code></pre>
+
+<p>Once you have restarted, have a look in your apache logs for any thing unusual.</p>
+
+<h2>Now install W3 Total Cache</h2>
+
+<p>Once installed and activated, the first thing to do is run the compatibility check to ensure that everything is ok.</p>
+
+<p>Then you can start enabling features.. and hopefully see some response time improvements!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -955,82 +1064,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/10/16/railway-hackday-off-the-rails/">Railway Hackday - Off the Rails</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-16T15:12:00+01:00" pubdate data-updated="true">Oct 16<span>th</span>, 2012</time>
-        
-         | <a href="/2012/10/16/railway-hackday-off-the-rails/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/images/off_the_rails_sponsors1.png" title="Off The Rails" alt="off the rails image" /></p>
-
-<p>After being Technologist in Residence at <a href="http://sitegallery.org">Site Gallery</a> earlier in the year, as part of the <a href="http://happenstanceproject.com">Happenstance Project</a> I started to think of some ideas I wanted to follow for later in 2012.</p>
-
-<h2>Hackday</h2>
-
-<p>One of those ideas was to run a <a href="http://rewiredstate.org/hack-days">Hackday</a>, but not any old Hackday, one centred around Railways. Network Rail had just opened up their realtime <a href="http://datafeeds.networkrail.co.uk">Datafeeds</a> and as far as I knew, no one else had ever run one. Sure, there had been Transport Hackdays, but not Railway specific ones.</p>
-
-<h2>First steps</h2>
-
-<p>So I got to work, I went to experience a 24 hour hackday for myself, where I discovered that sometimes technical issues with the building can really slow people&#8217;s progress and that working overnight doesn&#8217;t really suit me anymore!</p>
-
-<h2>Clickerty Hack</h2>
-
-<p>I also bought a domain and registered a Twitter account. The hackday would be called Clickerty Hack. Then, having a good read of <a href="http://hackdaymanifesto.com/">The Hackday Manifesto</a> made me realise that a lot of work was required to get a decent Hackday up and running.</p>
-
-<h2>Loco 2 and Off The Rails</h2>
-
-<p>It was then that I found out about somebody else&#8217;s plans for a Railway Hackday, <a href="http://loco2.com">loco2</a> was a company I was already watching with interest. A startup based around European Train travel, ticketing and guides.</p>
-
-<p>Their hackday, Off the Rails, was in a more advanced state than Clickerty Hack, so putting it on hold, I volunteered to help.</p>
-
-<h2>ShedCode Sponsorship</h2>
-
-<p>It was a real privilege to be able to help with a small part of the organising and for my company <a href="http://shedcode.co.uk">ShedCode</a> to be one of the sponsors, providing some of the food for the masses!</p>
-
-<h2>Meeting the experts</h2>
-
-<p>During 2012, I&#8217;d found a number of people who had built some incredible pieces of software using Railway data, especially <a href="http://twitter.com/poggs">Peter Hicks</a> and <a href="http://twitter.com/swlines">Tom Cairns</a> who built, amongst other things <a href="http://www.opentraintimes.com/">Open Train Times</a> and <a href="http://traintimes.im">Train Times</a> respectively. So it was brilliant to meet them in person at Off The Rails. There were also many other people knowledgeable about Railways, Open Data and Mapping - I could have spent all day just talking to people!</p>
-
-<h2>The teams</h2>
-
-<p>During the day, the teams built some inspiring things, including an application which builds spotify playlists to match the length of your train journey and many others. Most of them will hopefully be available at some point on github for perusal.</p>
-
-<h2>Thanks</h2>
-
-<p>All in all, a fantastic day, thanks to <a href="http://loco2.com">Loco2</a> and <a href="http://bethnalgreenventures.com">Bethnal Green Ventures</a> and here&#8217;s to the next Railway Hackday, whether it&#8217;s Off The Rails 2, or Clickerty Hack! With cake too of course ;)</p>
-
-<p><img src="/images/cake.jpg" title="Cake" alt="off the rails cake" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1046,6 +1079,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/02/13/updating-wordpress-performance/">Updating WordPress performance</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/01/18/dotforge-accelerator-sheffield/">DotForge Accelerator - Sheffield - updated 29th Jan</a>
       </li>
     
@@ -1059,10 +1096,6 @@
     
       <li class="post">
         <a href="/2013/01/03/olympic-legacy-server-setup-part-2-spares/">Olympic legacy server setup - part 2 - spares</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/12/27/olympic-legacy-server-setup-part-1b/">Olympic legacy server setup - part 1b</a>
       </li>
     
   </ul>
